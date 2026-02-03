@@ -1,7 +1,9 @@
 import { BrowserRouter, Routes, Route, Link, useParams } from "react-router-dom";
-import { Puck } from "@measured/puck";
+import { Puck, Render } from "@measured/puck";
 import "@measured/puck/puck.css";
 import MainSlider from "./MainSlider";
+import { useState } from "react";
+
 
 const initialData = { content: [] };
 
@@ -802,6 +804,150 @@ const config = {
       },
     },
 
+    Accordion: {
+      label: "Accordion",
+
+      defaultProps: {
+        backgroundColor: "#ffffff",
+        itemSpacing: 12,
+        iconPosition: "right",
+        items: [
+          {
+            id: "acc-1",
+            title: "First accordion item",
+            description: "Click here to edit description...",
+          },
+        ],
+      },
+
+      fields: {
+        backgroundColor: {
+          type: "text",
+          label: "Background color",
+        },
+
+        itemSpacing: {
+          type: "number",
+          label: "Vertical spacing (px)",
+        },
+        iconImage: {
+          type: "text",
+          label: "Accordion icon (image URL)",
+        },
+
+        iconPosition: {
+          type: "select",
+          label: "Icon position",
+          options: [
+            { label: "Left", value: "left" },
+            { label: "Right", value: "right" },
+          ],
+        },
+
+        items: {
+          type: "array",
+          label: "Accordion items",
+          arrayFields: {
+            title: { type: "text", label: "Title" },
+
+            description: {
+              type: "textarea",
+              label: "Description",
+              contentEditable: true,
+            },
+          },
+
+          getItemSummary: (item) => item.title || "Accordion item",
+        },
+      },
+
+      render: ({ backgroundColor, itemSpacing, iconPosition, items, iconImage }) => {
+        return (
+          <div
+            style={{
+              backgroundColor: backgroundColor || "#ffffff",
+              padding: "20px",
+              borderRadius: "12px",
+            }}
+          >
+            {items.map((item, i) => (
+              <details
+                key={item.id || i}
+                style={{
+                  marginBottom: `${itemSpacing}px`,
+                  borderRadius: "10px",
+                  border: "1px solid #e5e7eb",
+                  background: "#ffffff",
+                  boxShadow: "0 1px 3px rgba(0,0,0,0.05)",
+                  overflow: "hidden",
+                }}
+              >
+                <summary
+                  style={{
+                    listStyle: "none",
+                    display: "flex",
+                    flexDirection: iconPosition === "left" ? "row-reverse" : "row",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    cursor: "pointer",
+                    fontWeight: 600,
+                    fontSize: "16px",
+                    padding: "14px 16px",
+                    background: "#f8fafc",
+                    transition: "background 0.2s ease",
+                  }}
+                  onMouseOver={(e) =>
+                    (e.currentTarget.style.background = "#f1f5f9")
+                  }
+                  onMouseOut={(e) =>
+                    (e.currentTarget.style.background = "#f8fafc")
+                  }
+                >
+                  <span>{item.title}</span>
+
+                  {iconImage ? (
+                    <img
+                      src={iconImage}
+                      alt="accordion icon"
+                      style={{
+                        width: "18px",
+                        height: "18px",
+                        transition: "transform 0.2s ease",
+                        marginLeft: iconPosition === "right" ? "8px" : "0",
+                        marginRight: iconPosition === "left" ? "8px" : "0",
+                      }}
+                      className="accordion-icon"
+                    />
+                  ) : (
+                    <span style={{ marginLeft: "8px" }}>▼</span>
+                  )}
+                </summary>
+
+                <div
+                  style={{
+                    padding: "12px 16px",
+                    background: "#ffffff",
+                    color: "#374151",
+                    fontSize: "14px",
+                    lineHeight: "1.6",
+                  }}
+                >
+                  {item.description}
+                </div>
+              </details>
+            ))}
+
+            <style>{`
+        details[open] summary .accordion-icon {
+          transform: rotate(180deg);
+        }
+      `}</style>
+          </div>
+        );
+      },
+    },
+
+
     Carousel: {
       label: "Carousel",
 
@@ -1283,30 +1429,146 @@ const config = {
 function Editor() {
   const { page } = useParams();
 
-  const saved =
-    JSON.parse(localStorage.getItem(`puck-${page}`)) || initialData;
+  const saved = JSON.parse(localStorage.getItem(`puck-${page}`)) || initialData;
+
+  const [puckData, setPuckData] = useState(saved);
+  const [mode, setMode] = useState("edit"); // "edit" or "preview"
+
+
+  const handleImportJSON = (event) => {
+    const file = event.target.files[0];
+
+    if (!file) return;
+
+    const reader = new FileReader();
+
+    reader.onload = (e) => {
+      try {
+        const importedData = JSON.parse(e.target.result);
+
+        const mergedData = {
+          ...initialData,      // keep Puck defaults
+          ...importedData,     // override with your file
+          content: importedData.content || [] // make sure content exists
+        };
+
+        console.log("Merged data:", mergedData);
+        setPuckData(mergedData);
+      } catch (err) {
+        alert("Invalid JSON file");
+      }
+    };
+
+
+    reader.readAsText(file);
+  };
+
+  console.log("Umang Data =>", puckData);
 
   return (
-    <Puck
-      config={config}
-      data={saved}
-      onPublish={(data) => {
-        const item = JSON.stringify(data);
-        console.log(item);
+    <>
+      <label
+        style={{
+          display: "inline-block",
+          padding: "8px 14px",
+          backgroundColor: "#2563eb",
+          color: "white",
+          borderRadius: "6px",
+          cursor: "pointer",
+          fontSize: "14px",
+          marginBottom: "12px",
+          margin: "10px"
+        }}
+      >
+        Import JSON
+        <input
+          type="file"
+          accept=".json"
+          onChange={handleImportJSON}
+          style={{ display: "none" }}
+        />
+      </label>
 
-        localStorage.setItem('puck-page', item);
-        console.log("STORED IN LOCAL STORAGE");
 
-        // Send data to Angular parent window
-        window.parent.postMessage(
-          { type: "PUCK_PUBLISHED", payload: data },
-          "*"
-        );
+      <div style={{ margin: "10px" }}>
+        <button
+          onClick={() => setMode("edit")}
+          style={{
+            marginRight: "8px",
+            padding: "8px 12px",
+            borderRadius: "6px",
+            border: "1px solid #ddd",
+            background: mode === "edit" ? "#2563eb" : "#fff",
+            color: mode === "edit" ? "white" : "black",
+            cursor: "pointer",
+          }}
+        >
+          Edit mode
+        </button>
 
-        console.log("PUCK PUBLISHED");
-      }}
+        <button
+          onClick={() => setMode("preview")}
+          style={{
+            padding: "8px 12px",
+            borderRadius: "6px",
+            border: "1px solid #ddd",
+            background: mode === "preview" ? "#16a34a" : "#fff",
+            color: mode === "preview" ? "white" : "black",
+            cursor: "pointer",
+          }}
+        >
+          Preview page
+        </button>
+      </div>
 
-    />
+
+      {/* <Puck
+        key={JSON.stringify(puckData)}
+        config={config}
+        data={puckData}
+        onPublish={(data) => {
+          const item = JSON.stringify(data);
+          console.log(item);
+
+          localStorage.setItem('puck-page', item);
+          console.log("STORED IN LOCAL STORAGE");
+
+          // Send data to Angular parent window
+          window.parent.postMessage(
+            { type: "PUCK_PUBLISHED", payload: data },
+            "*"
+          );
+
+          console.log("PUCK PUBLISHED");
+        }}
+
+      /> */}
+      {mode === "edit" ? (
+        <Puck
+          key={JSON.stringify(puckData)}
+          config={config}
+          data={puckData}
+          onPublish={(data) => {
+            setPuckData(data);   // keep latest version
+            localStorage.setItem("puck-page", JSON.stringify(data));
+            window.parent.postMessage(
+              { type: "PUCK_PUBLISHED", payload: data },
+              "*"
+            );
+          }}
+        />
+      ) : (
+        <div style={{ padding: "20px" }}>
+          <h3>Preview</h3>
+
+          <Render
+            data={puckData}
+            config={config}
+          />
+        </div>
+      )}
+
+    </>
   );
 }
 

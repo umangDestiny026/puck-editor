@@ -1,0 +1,63 @@
+{
+    "root": {
+        "props": {}
+    },
+    "content": [
+        {
+            "type": "Text",
+            "props": {
+                "content": "Navbar ",
+                "level": "h1",
+                "size": "lg",
+                "align": "left",
+                "widthUnit": "px",
+                "maxWidthValue": 700,
+                "maxWidthUnit": "px",
+                "minWidthUnit": "px",
+                "textColor": "#000000",
+                "padding": 0,
+                "id": "Text-446d18ce-cc8f-4435-ae93-9c059f95927f"
+            }
+        },
+        {
+            "type": "ImageText",
+            "props": {
+                "imagePosition": "left",
+                "gap": 24,
+                "paddingY": 24,
+                "image": "https://images.unsplash.com/photo-1526779259212-939e64788e3c?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8ZnJlZSUyMGltYWdlc3xlbnwwfHwwfHx8MA%3D%3D",
+                "imageWidth": "50%",
+                "imageMaxWidth": 0,
+                "imageBorderRadius": 8,
+                "imageObjectFit": "cover",
+                "title": "Hello this is umang ",
+                "subtitle": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet nobis, recusandae explicabo quisquam commodi vel animi. A perferendis sit possimus dolorem fugiat reiciendis aliquam sint quibusdam, maiores nihil eligendi repudiandae. Dolor, eius dolorum. Quas adipisci facilis itaque eligendi, quod eveniet blanditiis pariatur vero molestias fugiat necessitatibus placeat illo culpa est doloremque! Odit sunt officiis enim similique commodi, vel culpa exercitationem illo deleniti minima vero dicta quia at ipsum ut quidem magni voluptas quisquam maiores nemo! Minus molestiae fuga architecto, unde eius quo magnam nihil sapiente consequatur odit vero iusto cupiditate earum aut quae labore fugit amet laboriosam! Quos, quod vitae?",
+                "titleColor": "#111827",
+                "subtitleColor": "#374151",
+                "textAlign": "left",
+                "textMaxWidth": 500,
+                "id": "ImageText-547152e5-d195-4edd-aa10-6086d8444589"
+            }
+        },
+        {
+            "type": "Button",
+            "props": {
+                "text": "subscribe",
+                "type": "primary",
+                "href": "",
+                "external": false,
+                "align": "center",
+                "widthUnit": "px",
+                "heightUnit": "px",
+                "maxWidthUnit": "px",
+                "maxHeightUnit": "px",
+                "paddingX": 16,
+                "paddingY": 10,
+                "borderRadius": 6,
+                "customCss": "",
+                "id": "Button-a21f97e3-0c62-41f3-802c-26e2a659c6a3"
+            }
+        }
+    ],
+    "zones": {}
+}
