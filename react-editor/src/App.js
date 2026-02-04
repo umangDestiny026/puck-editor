@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route, Link, useParams } from "react-router-dom"
 import { DropZone, Puck, Render } from "@measured/puck";
 import "@measured/puck/puck.css";
 import MainSlider from "./MainSlider";
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 
 const initialData = { content: [] };
 
@@ -64,8 +64,8 @@ const config = {
     Text: {
       label: "Text",
       fields: {
-        /* -------- CONTENT -------- */
-
+        className: { type: "text", label: "Custom class" },
+        customCss: { type: "textarea", label: "Custom CSS" },
         content: {
           type: "textarea",
           label: "Text content",
@@ -152,11 +152,6 @@ const config = {
           type: "text",
           label: "Background color",
         },
-
-        padding: {
-          type: "number",
-          label: "Padding (px)",
-        },
       },
 
       defaultProps: {
@@ -164,6 +159,8 @@ const config = {
         level: "h1",
         size: "lg",
         align: "left",
+        className: "text-001",
+        customCss: "",
 
         widthValue: undefined,
         widthUnit: "px",
@@ -176,7 +173,6 @@ const config = {
 
         textColor: "#000000",
         backgroundColor: undefined,
-        padding: 0,
       },
 
       render: ({
@@ -194,7 +190,8 @@ const config = {
 
         textColor,
         backgroundColor,
-        padding,
+        className,
+        customCss,
       }) => {
         const fontSizeMap = {
           sm: 14,
@@ -212,7 +209,6 @@ const config = {
 
           color: textColor || undefined,
           backgroundColor: backgroundColor || undefined,
-          padding: padding ? `${padding}px` : undefined,
 
           width:
             widthValue != null
@@ -230,16 +226,22 @@ const config = {
               : undefined,
         };
 
-        return <Level style={style}>{content}</Level>;
+        const wrapperClass = className || "";
+        const uniqueClass = `text-${Math.random().toString(36).substr(2, 9)}`;
+
+        return (<Level style={style} className={`${wrapperClass} ${uniqueClass}`}>
+          {customCss && <style>{`.${uniqueClass} { ${customCss} }`}</style>}
+          {content}
+        </Level>);
       },
     },
 
-    // -------- IMAGE BLOCK --------
     Image: {
       label: "Image",
       category: "Typography",
       fields: {
-        /* -------- IMAGE SOURCE -------- */
+        className: { type: "text", label: "Custom class" },
+        customCss: { type: "textarea", label: "Custom CSS" },
 
         sourceType: {
           type: "select",
@@ -353,7 +355,9 @@ const config = {
 
       defaultProps: {
         sourceType: "url",
-        image: "https://via.placeholder.com/600x400",
+        className: "image-001",
+        customCss: "",
+        image: "https://png.pngtree.com/thumb_back/fh260/background/20240522/pngtree-abstract-cloudy-background-beautiful-natural-streaks-of-sky-and-clouds-red-image_15684333.jpg",
         alt: "Image",
 
         align: "center",
@@ -382,6 +386,8 @@ const config = {
         image,
         alt,
         align,
+        className,
+        customCss,
 
         widthValue,
         widthUnit,
@@ -437,37 +443,120 @@ const config = {
             </div>
           );
         }
+        const wrapperClass = className || "";
+        const uniqueClass = `image-${Math.random().toString(36).substr(2, 9)}`;
 
         return (
-          <div style={wrapperStyle}>
+          <div style={wrapperStyle} className={`${wrapperClass} ${uniqueClass}`}>
+            {customCss && <style>{`.${uniqueClass} { ${customCss} }`}</style>}
             <img src={image} alt={alt} style={imgStyle} />
           </div>
         );
       },
     },
 
-    // -------- VIDEO BLOCK --------
     Video: {
       label: "Video",
+
       fields: {
+        className: {
+          type: "text",
+          label: "Custom class",
+        },
+
+        customCss: {
+          type: "textarea",
+          label: "Custom CSS",
+        },
         url: {
           type: "text",
           label: "Video URL (YouTube/Vimeo)",
         },
+
+        width: {
+          type: "number",
+          label: "Width",
+          defaultValue: 100,
+        },
+
+        widthUnit: {
+          type: "select",
+          label: "Width unit",
+          options: [
+            { label: "%", value: "%" },
+            { label: "px", value: "px" },
+            { label: "vw", value: "vw" },
+          ],
+          defaultValue: "%",
+        },
+
+        maxWidth: {
+          type: "number",
+          label: "Max width (px)",
+          defaultValue: 900,
+        },
+
+        height: {
+          type: "number",
+          label: "Height (px)",
+          defaultValue: 315,
+        },
+
+        maxHeight: {
+          type: "number",
+          label: "Max height (px)",
+          defaultValue: 600,
+        },
       },
+
       defaultProps: {
         url: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+        width: 100,
+        widthUnit: "%",
+        maxWidth: 900,
+        height: 315,
+        maxHeight: 600,
+        className: "video-00414",
+        customCss: "",
       },
-      render: ({ url }) => {
+
+      render: ({
+        url,
+        width,
+        widthUnit,
+        maxWidth,
+        height,
+        maxHeight,
+        className,
+        customCss,
+      }) => {
+        const wrapperStyle = {
+          width: `${width}${widthUnit}`,
+          maxWidth: `${maxWidth}px`,
+          margin: "0 auto",
+        };
+
+        const iframeStyle = {
+          width: "100%",
+          height: `${height}px`,
+          maxHeight: `${maxHeight}px`,
+          borderRadius: 8,
+          display: "block",
+        };
+
+        const wrapperClass = className || "";
+        const uniqueClass = `video-${Math.random().toString(36).substr(2, 9)}`;
+
         return (
-          <iframe
-            width="100%"
-            height="315"
-            src={url}
-            title="Video"
-            allowFullScreen
-            style={{ borderRadius: 8 }}
-          />
+          <div className={`video-wrapper ${wrapperClass} ${uniqueClass}`} style={wrapperStyle}>
+            {customCss && <style>{`.${uniqueClass} { ${customCss} }`}</style>}
+            <iframe
+              src={url}
+              title="Video"
+              allowFullScreen
+              style={iframeStyle}
+            />
+          </div>
         );
       },
     },
@@ -475,8 +564,11 @@ const config = {
     Button: {
       label: "Button",
       fields: {
-        /* -------- CONTENT -------- */
-
+        className: { type: "text", label: "Custom class" },
+        customCss: {
+          type: "textarea",
+          label: "Custom CSS",
+        },
         text: {
           type: "text",
           label: "Button text",
@@ -502,13 +594,6 @@ const config = {
           type: "text",
           label: "Link URL",
         },
-
-        // external: {
-        //   type: "url",
-        //   label: "Open in new tab",
-        // },
-
-        /* -------- LAYOUT -------- */
 
         align: {
           type: "radio",
@@ -558,8 +643,6 @@ const config = {
           ],
         },
 
-        /* -------- STYLE -------- */
-
         paddingX: {
           type: "number",
           label: "Horizontal padding (px)",
@@ -575,10 +658,7 @@ const config = {
           label: "Border radius (px)",
         },
 
-        customCss: {
-          type: "textarea",
-          label: "Custom CSS",
-        },
+
       },
 
       defaultProps: {
@@ -605,7 +685,7 @@ const config = {
         paddingX: 16,
         paddingY: 10,
         borderRadius: 6,
-
+        className: "button-001",
         customCss: "",
       },
 
@@ -628,6 +708,7 @@ const config = {
         paddingX,
         paddingY,
         borderRadius,
+        className,
         customCss,
       }) => {
         const typeStyles = {
@@ -702,13 +783,16 @@ const config = {
 
           ...typeStyles[type],
         };
+        const wrapperClass = className || "";
+        const uniqueClass = `button-${Math.random().toString(36).substr(2, 9)}`;
 
         return (
-          <div style={wrapperStyle}>
+          <div style={wrapperStyle} className={`${wrapperClass}`}>
             <a
               href={href || "#"}
               target={external ? "_blank" : undefined}
               rel={external ? "noopener noreferrer" : undefined}
+              className={uniqueClass}
               style={buttonStyle}
             >
               {text}
@@ -716,7 +800,7 @@ const config = {
               {customCss && (
                 <style>
                   {`
-                a {
+                .${uniqueClass} {
                   ${customCss}
                 }
               `}
@@ -790,8 +874,8 @@ const config = {
         columns: 2,
         rows: undefined,
         gap: 16,
-        alignItems: "stretch",
-        justifyItems: "stretch",
+        alignItems: "start",
+        justifyItems: "center",
         maxWidth: 1200,
         padding: 0,
         className: "",
@@ -816,7 +900,7 @@ const config = {
             <style>
               {`
           /* Base grid styles */
-          #${gridId} {
+          .${gridId} {
             gap: ${gap}px;
             align-items: ${alignItems};
             justify-items: ${justifyItems};
@@ -841,7 +925,7 @@ const config = {
                 gridTemplateRows: `repeat(${rows || 1}, auto)`,
               }}
               zone="grid-zone"
-              className={className}
+              className={`${className} ${gridId}`}
             />
           </>
         );
@@ -860,6 +944,7 @@ const config = {
           type: "textarea",
           label: "Custom CSS",
         },
+
         direction: {
           type: "select",
           label: "Flex direction",
@@ -947,7 +1032,7 @@ const config = {
             <style>
               {`
             /* Base flex styles */
-            #${flexId} {
+            .${flexId} {
               ${flex ? `flex: ${flex};` : ""}
             }
 
@@ -962,7 +1047,7 @@ const config = {
             <DropZone
               id={flexId}
               zone="flex-zone"
-              className={className}
+              className={`${className} ${flexId}`}
               style={{
                 display: "flex",
                 gap: `${gap}px`,
@@ -994,9 +1079,26 @@ const config = {
       },
 
       fields: {
-        backgroundColor: {
-          type: "text",
-          label: "Background color",
+        className: { type: "text", label: "Custom class" },
+        customCss: {
+          type: "textarea",
+          label: "Custom CSS",
+        },
+
+        items: {
+          type: "array",
+          label: "Accordion items",
+          arrayFields: {
+            title: { type: "text", label: "Title" },
+
+            description: {
+              type: "textarea",
+              label: "Description",
+              contentEditable: true,
+            },
+          },
+
+          getItemSummary: (item) => item.title || "Accordion item",
         },
 
         itemSpacing: {
@@ -1034,16 +1136,26 @@ const config = {
         },
       },
 
-      render: ({ backgroundColor, itemSpacing, iconPosition, items, iconImage }) => {
+      // defaultProps: {
+      //   className: "accordion-001",
+      //   customCss: "",
+      // },
+      render: ({ itemSpacing, iconPosition, items, iconImage, className,
+        customCss, }) => {
+
+        const wrapperClass = className || "";
+        const uniqueClass = `accordion-${Math.random().toString(36).substr(2, 9)}`;
         return (
           <div
+            className={`${wrapperClass} ${uniqueClass}`}
             style={{
-              backgroundColor: backgroundColor || "#ffffff",
-              padding: "20px",
+              padding: "10px",
               borderRadius: "12px",
             }}
           >
-            {items.map((item, i) => (
+            {customCss && <style>{`.${uniqueClass} { ${customCss} }`}</style>}
+
+            {items?.map((item, i) => (
               <details
                 key={item.id || i}
                 style={{
@@ -1259,6 +1371,15 @@ const config = {
     ImageText: {
       label: "Image + Text",
       fields: {
+        className: {
+          type: "text",
+          label: "Custom class",
+        },
+
+        customCss: {
+          type: "textarea",
+          label: "Custom CSS",
+        },
         /* -------- LAYOUT -------- */
         imagePosition: {
           type: "select",
@@ -1367,6 +1488,8 @@ const config = {
         subtitleColor: "#374151",
         textAlign: "left",
         textMaxWidth: 500,
+        className: "section-00414",
+        customCss: "",
       },
 
       render: ({
@@ -1388,8 +1511,12 @@ const config = {
         subtitleColor,
         textAlign,
         textMaxWidth,
+        className,
+        customCss,
       }) => {
         const isLeft = imagePosition === "left";
+        const wrapperClass = className || "";
+        const uniqueClass = `section-${Math.random().toString(36).substr(2, 9)}`;
 
         const containerStyle = {
           display: "flex",
@@ -1417,7 +1544,9 @@ const config = {
         };
 
         return (
-          <div style={containerStyle}>
+          <div className={wrapperClass + " " + uniqueClass} style={containerStyle}>
+            {customCss && <style>{`.${uniqueClass} { ${customCss} }`}</style>}
+
             <img src={image} alt="Image" style={imgStyle} />
             <div style={textStyle}>
               <h2 style={{ color: titleColor, margin: 0 }}>{title}</h2>
@@ -1512,7 +1641,8 @@ const config = {
         imageBorderRadius: 8,
         imageObjectFit: "cover",
         imageAlign: "top",
-
+        className: "card-001",
+        customCss: "",
         title: "Card Title",
         titleColor: "#111827",
         description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet nobis, recusandae explicabo quisquam commodi vel animi. A perferendis sit possimus dolorem fugiat reiciendis aliquam sint quibusdam, maiores nihil eligendi repudiandae. Dolor, eius dolorum. Quas adipisci facilis itaque eligendi, quod eveniet blanditiis pariatur vero molestias fugiat necessitatibus placeat illo culpa est doloremque! Odit sunt officiis enim similique commodi, vel culpa exercitationem illo deleniti minima vero dicta quia at ipsum ut quidem magni voluptas quisquam maiores nemo! Minus molestiae fuga architecto, unde eius quo magnam nihil sapiente consequatur odit vero iusto cupiditate earum aut quae labore fugit amet laboriosam! Quos, quod vitae?",
@@ -1549,6 +1679,8 @@ const config = {
 
         buttonText,
         buttonType,
+        className,
+        customCss,
         buttonHref,
         buttonExternal,
 
@@ -1558,6 +1690,8 @@ const config = {
         cardBorderRadius,
         cardShadow,
       }) => {
+        const wrapperClass = className || "";
+        const uniqueClass = `card-${Math.random().toString(36).substr(2, 9)}`;
         // image style
         const imgStyle = {
           width: imageWidth ? `${imageWidth}px` : "100%",
@@ -1615,7 +1749,8 @@ const config = {
         };
 
         return (
-          <div style={containerStyle}>
+          <div className={wrapperClass + " " + uniqueClass} style={containerStyle}>
+            {customCss && <style>{`.${uniqueClass} { ${customCss} }`}</style>}
             {image && <img src={image} alt="Card image" style={imgStyle} />}
             <div style={textStyle}>
               {title && <h3 style={{ color: titleColor, margin: 0 }}>{title}</h3>}
@@ -1780,8 +1915,6 @@ function Editor() {
         />
       ) : (
         <div style={{ padding: "20px" }}>
-          <h3>Preview</h3>
-
           <Render
             data={puckData}
             config={config}
