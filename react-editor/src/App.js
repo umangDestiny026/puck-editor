@@ -2,10 +2,62 @@ import { BrowserRouter, Routes, Route, Link, useParams } from "react-router-dom"
 import { DropZone, Puck, Render } from "@measured/puck";
 import "@measured/puck/puck.css";
 import MainSlider from "./MainSlider";
-import { useState } from "react";
-
+import React, { useState } from "react";
 
 const initialData = { content: [] };
+
+const TabsRenderer = ({ tabs, activeTabIndex, className, customCss }) => {
+  const [activeTab, setActiveTab] = React.useState(() => activeTabIndex);
+
+  return (
+    <div className={`puck-tabs ${className || ""}`}>
+      {customCss && <style>{customCss}
+
+      </style>}
+
+      <div style={{ display: "flex", gap: "8px", marginBottom: "12px" }}>
+        {tabs.map((tab, index) => (
+          <button
+            key={index}
+            onClick={() => setActiveTab(index)}
+            style={{
+              padding: "8px 12px",
+              border: "1px solid #ddd",
+              background: activeTab === index ? "#e6f0ff" : "#f5f5f5",
+              cursor: "pointer",
+            }}
+          >
+            {tab.icon} {tab.label}
+          </button>
+        ))}
+      </div>
+
+      <div className="puck-tabs-body">
+        {tabs.map((tab, index) => {
+          const isActive = index === activeTab;
+
+          return (
+            <div
+              key={index}
+              style={{
+                display: isActive ? "block" : "none",   // keep zones mounted
+                minHeight: "150px",
+              }}
+            >
+              <div style={{ marginBottom: "12px", color: "#555" }}>
+                {tab.defaultContent}
+              </div>
+
+              {/* IMPORTANT: each tab has its own permanent DropZone */}
+              <DropZone zone={`tab-${index}`} />
+            </div>
+          );
+        })}
+      </div>
+
+    </div>
+  );
+};
 
 const config = {
   components: {
@@ -393,7 +445,6 @@ const config = {
         );
       },
     },
-
 
     // -------- VIDEO BLOCK --------
     Video: {
@@ -1068,6 +1119,7 @@ const config = {
         );
       },
     },
+
     Tabs: {
       label: "Tabs",
 
@@ -1110,74 +1162,8 @@ const config = {
       },
 
       render: (props) => {
-        const { tabs, activeTabIndex, className, customCss } = props;
-        const set = props.set || (() => { });
-        const wrapperClass = className || "puck-tabs";
-
-        return (
-          <div className={wrapperClass}>
-            {/* Scoped custom CSS */}
-            {customCss && <style>{`.${wrapperClass} { ${customCss} }`}</style>}
-
-            {/* Tabs Header */}
-            <ul
-              className="nav nav-tabs"
-              style={{ display: "flex", listStyle: "none", padding: 0, margin: 0, borderBottom: "1px solid #ddd" }}
-            >
-              {tabs.map((tab, i) => (
-                <li
-                  key={i}
-                  className={i === activeTabIndex ? "active" : ""}
-                  style={{
-                    cursor: "pointer",
-                    padding: "10px 15px",
-                    border: "1px solid transparent",
-                    borderBottom: i === activeTabIndex ? "none" : "1px solid transparent",
-                    borderTopLeftRadius: 4,
-                    borderTopRightRadius: 4,
-                    fontWeight: i === activeTabIndex ? "600" : "normal",
-                    display: "flex",
-                    alignItems: "center",
-                    gap: 6,
-                  }}
-                  onClick={() => set({ activeTabIndex: i })}
-                >
-                  {tab.icon && <span>{tab.icon}</span>}
-                  {tab.label}
-                </li>
-              ))}
-            </ul>
-
-            {/* Tabs Body */}
-            <div
-              className="tab-content"
-              style={{
-                border: "1px solid #ddd",
-                borderTop: "none",
-                padding: 16,
-                borderRadius: "0 4px 4px 4px",
-                minHeight: 150,
-              }}
-            >
-              {tabs.map((tab, i) =>
-                i === activeTabIndex ? (
-                  <div key={i} className="tab-pane active">
-                    {/* Render default content as a paragraph above DropZone */}
-                    {tab.defaultContent && (
-                      <p style={{ marginBottom: 16, whiteSpace: "pre-wrap", color: "#444" }}>
-                        {tab.defaultContent}
-                      </p>
-                    )}
-
-                    {/* DropZone to drag/drop blocks */}
-                    <DropZone zone={`tab-${i}`} />
-                  </div>
-                ) : null
-              )}
-            </div>
-          </div>
-        );
-      },
+        return <TabsRenderer {...props} />;
+      }
     },
 
     Carousel: {
