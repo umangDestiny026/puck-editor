@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route, Link, useParams } from "react-router-dom";
-import { Puck, Render } from "@measured/puck";
+import { DropZone, Puck, Render } from "@measured/puck";
 import "@measured/puck/puck.css";
 import MainSlider from "./MainSlider";
 import { useState } from "react";
@@ -185,6 +185,7 @@ const config = {
     // -------- IMAGE BLOCK --------
     Image: {
       label: "Image",
+      category: "Typography",
       fields: {
         /* -------- IMAGE SOURCE -------- */
 
@@ -392,6 +393,7 @@ const config = {
         );
       },
     },
+
 
     // -------- VIDEO BLOCK --------
     Video: {
@@ -678,127 +680,247 @@ const config = {
     Grid: {
       label: "Grid",
       fields: {
-        /* -------- CONTENT -------- */
-
-        content: {
-          type: "slot",
+        className: {
+          type: "text",
+          label: "Custom class",
         },
-
-        /* -------- RESPONSIVE COLUMNS -------- */
-
-        columnsDesktop: {
+        columns: {
           type: "number",
-          label: "Columns (Desktop)",
+          label: "Columns",
         },
 
-        columnsTablet: {
+        rows: {
           type: "number",
-          label: "Columns (Tablet)",
+          label: "Rows",
         },
 
-        columnsMobile: {
+        gap: {
           type: "number",
-          label: "Columns (Mobile)",
+          label: "Gap (px)",
+        },
+        customCss: {
+          type: "textarea",
+          label: "Custom CSS",
+        },
+        alignItems: {
+          type: "select",
+          label: "Align items",
+          options: [
+            { label: "Stretch", value: "stretch" },
+            { label: "Start", value: "start" },
+            { label: "Center", value: "center" },
+            { label: "End", value: "end" },
+          ],
         },
 
-        /* -------- GRID SETTINGS -------- */
+        justifyItems: {
+          type: "select",
+          label: "Justify items",
+          options: [
+            { label: "Start", value: "start" },
+            { label: "Center", value: "center" },
+            { label: "End", value: "end" },
+            { label: "Stretch", value: "stretch" },
+          ],
+        },
+        maxWidth: {
+          type: "number",
+          label: "Max width (px)",
+        },
+
+        padding: {
+          type: "number",
+          label: "Padding (px)",
+        },
+
+      },
+
+      defaultProps: {
+        columns: 2,
+        rows: undefined,
+        gap: 16,
+        alignItems: "stretch",
+        justifyItems: "stretch",
+        maxWidth: 1200,
+        padding: 0,
+        className: "",
+        customCss: "",
+      },
+
+      render: ({
+        columns,
+        rows,
+        gap,
+        alignItems,
+        justifyItems,
+        maxWidth,
+        padding,
+        className,
+        customCss,
+      }) => {
+        const gridId = `grid-${Math.random().toString(36).slice(2)}`;
+
+        return (
+          <>
+            <style>
+              {`
+          /* Base grid styles */
+          #${gridId} {
+            gap: ${gap}px;
+            align-items: ${alignItems};
+            justify-items: ${justifyItems};
+            max-width: ${maxWidth}px;
+            padding: ${padding}px;
+            margin: 0 auto;
+          }
+
+          /* Custom user CSS attached to class */
+            ${className && customCss
+                  ? `.${className} { ${customCss} }`
+                  : ""
+                }
+            `}
+            </style>
+
+            <DropZone
+              id={gridId}
+              style={{
+                display: "grid",
+                gridTemplateColumns: `repeat(${columns || 1}, 1fr)`,
+                gridTemplateRows: `repeat(${rows || 1}, auto)`,
+              }}
+              zone="grid-zone"
+              className={className}
+            />
+          </>
+        );
+      },
+    },
+
+    Flex: {
+      label: "Flex",
+      fields: {
+        className: {
+          type: "text",
+          label: "Custom class",
+        },
+
+        customCss: {
+          type: "textarea",
+          label: "Custom CSS",
+        },
+        direction: {
+          type: "select",
+          label: "Flex direction",
+          options: [
+            { label: "Row", value: "row" },
+            { label: "Row reverse", value: "row-reverse" },
+            { label: "Column", value: "column" },
+            { label: "Column reverse", value: "column-reverse" },
+          ],
+        },
+
+        wrap: {
+          type: "select",
+          label: "Flex wrap",
+          options: [
+            { label: "No wrap", value: "nowrap" },
+            { label: "Wrap", value: "wrap" },
+            { label: "Wrap reverse", value: "wrap-reverse" },
+          ],
+        },
+
+        justifyContent: {
+          type: "select",
+          label: "Justify content",
+          options: [
+            { label: "Start", value: "flex-start" },
+            { label: "Center", value: "center" },
+            { label: "End", value: "flex-end" },
+            { label: "Space between", value: "space-between" },
+            { label: "Space around", value: "space-around" },
+            { label: "Space evenly", value: "space-evenly" },
+          ],
+        },
+
+        alignItems: {
+          type: "select",
+          label: "Align items",
+          options: [
+            { label: "Stretch", value: "stretch" },
+            { label: "Start", value: "flex-start" },
+            { label: "Center", value: "center" },
+            { label: "End", value: "flex-end" },
+            { label: "Baseline", value: "baseline" },
+          ],
+        },
 
         gap: {
           type: "number",
           label: "Gap (px)",
         },
 
-        gridTemplateColumns: {
+        flex: {
           type: "text",
-          label: "Grid columns (CSS override)",
+          label: "Flex (e.g. 1 1 auto)",
         },
 
-        gridTemplateRows: {
-          type: "text",
-          label: "Grid rows (CSS)",
-        },
 
-        /* -------- SPACING -------- */
-
-        paddingY: {
-          type: "number",
-          label: "Vertical padding (px)",
-        },
       },
 
       defaultProps: {
-        columnsDesktop: 3,
-        columnsTablet: 2,
-        columnsMobile: 1,
-
-        gap: 16,
-
-        gridTemplateColumns: "",
-        gridTemplateRows: "",
-
-        paddingY: 0,
+        direction: "row",
+        wrap: "nowrap",
+        justifyContent: "flex-start",
+        alignItems: "stretch",
+        gap: 0,
+        flex: "",
+        className: "",
+        customCss: "",
       },
 
       render: ({
-        content: Content,
-        columnsDesktop,
-        columnsTablet,
-        columnsMobile,
+        direction,
+        wrap,
+        justifyContent,
+        alignItems,
         gap,
-        gridTemplateColumns,
-        gridTemplateRows,
-        paddingY,
+        flex,
+        className,
+        customCss,
       }) => {
-        const gridId = `grid-${Math.random()
-          .toString(36)
-          .slice(2, 9)}`;
+        const flexId = `flex-${Math.random().toString(36).slice(2)}`;
 
         return (
           <>
             <style>
               {`
-          #${gridId} {
-            display: grid;
-            gap: ${gap}px;
-            padding: ${paddingY}px 0;
-            grid-template-columns: ${gridTemplateColumns ||
-                `repeat(${columnsDesktop}, minmax(0, 1fr))`
-                };
-            ${gridTemplateRows
-                  ? `grid-template-rows: ${gridTemplateRows};`
-                  : ""}
-          }
-
-          @media (max-width: 1024px) {
-            #${gridId} {
-              grid-template-columns: repeat(${columnsTablet}, minmax(0, 1fr));
+            /* Base flex styles */
+            #${flexId} {
+              ${flex ? `flex: ${flex};` : ""}
             }
-          }
 
-          @media (max-width: 640px) {
-            #${gridId} {
-              grid-template-columns: repeat(${columnsMobile}, minmax(0, 1fr));
-            }
-          }
-
-          /* 🔥 CRITICAL FIX */
-          #${gridId} > .puck-grid-item {
-            min-width: 0;
-          }
-        `}
+            /* Custom user CSS attached to class */
+            ${className && customCss
+                  ? `.${className} { ${customCss} }`
+                  : ""
+                }
+          `}
             </style>
 
-            <div id={gridId}>
-              <Content
-                render={(children) =>
-                  children.map((child, i) => (
-                    <div key={i} className="puck-grid-item">
-                      {child}
-                    </div>
-                  ))
-                }
-              />
-            </div>
+            <DropZone
+              id={flexId}
+              zone="flex-zone"
+              className={className}
+              style={{
+                display: "flex",
+                gap: `${gap}px`,
+                flexDirection: direction,
+                flexWrap: wrap,
+                alignItems: alignItems,
+                justifyContent: justifyContent,
+              }}
+            />
           </>
         );
       },
@@ -946,7 +1068,117 @@ const config = {
         );
       },
     },
+    Tabs: {
+      label: "Tabs",
 
+      fields: {
+        tabs: {
+          type: "array",
+          label: "Tabs",
+          arrayFields: {
+            label: { type: "text", label: "Tab label" },
+            icon: { type: "text", label: "Tab icon (emoji or class)" },
+            defaultContent: { type: "textarea", label: "Tab default content" },
+          },
+          defaultItemProps: {
+            label: "Tab",
+            icon: "",
+            defaultContent: "",
+          },
+        },
+
+        activeTabIndex: {
+          type: "number",
+          label: "Active tab index",
+          defaultValue: 0,
+          min: 0,
+          description: "Index of currently active tab",
+        },
+
+        className: { type: "text", label: "Custom class" },
+        customCss: { type: "textarea", label: "Custom CSS" },
+      },
+
+      defaultProps: {
+        tabs: [
+          { label: "Tab 1", icon: "📄", defaultContent: "Hello, this is tab 1 default content. You can drag and drop blocks here." },
+          { label: "Tab 2", icon: "🎥", defaultContent: "Hello, this is tab 2 default content. You can drag and drop blocks here." },
+        ],
+        activeTabIndex: 0,
+        className: "",
+        customCss: "",
+      },
+
+      render: (props) => {
+        const { tabs, activeTabIndex, className, customCss } = props;
+        const set = props.set || (() => { });
+        const wrapperClass = className || "puck-tabs";
+
+        return (
+          <div className={wrapperClass}>
+            {/* Scoped custom CSS */}
+            {customCss && <style>{`.${wrapperClass} { ${customCss} }`}</style>}
+
+            {/* Tabs Header */}
+            <ul
+              className="nav nav-tabs"
+              style={{ display: "flex", listStyle: "none", padding: 0, margin: 0, borderBottom: "1px solid #ddd" }}
+            >
+              {tabs.map((tab, i) => (
+                <li
+                  key={i}
+                  className={i === activeTabIndex ? "active" : ""}
+                  style={{
+                    cursor: "pointer",
+                    padding: "10px 15px",
+                    border: "1px solid transparent",
+                    borderBottom: i === activeTabIndex ? "none" : "1px solid transparent",
+                    borderTopLeftRadius: 4,
+                    borderTopRightRadius: 4,
+                    fontWeight: i === activeTabIndex ? "600" : "normal",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 6,
+                  }}
+                  onClick={() => set({ activeTabIndex: i })}
+                >
+                  {tab.icon && <span>{tab.icon}</span>}
+                  {tab.label}
+                </li>
+              ))}
+            </ul>
+
+            {/* Tabs Body */}
+            <div
+              className="tab-content"
+              style={{
+                border: "1px solid #ddd",
+                borderTop: "none",
+                padding: 16,
+                borderRadius: "0 4px 4px 4px",
+                minHeight: 150,
+              }}
+            >
+              {tabs.map((tab, i) =>
+                i === activeTabIndex ? (
+                  <div key={i} className="tab-pane active">
+                    {/* Render default content as a paragraph above DropZone */}
+                    {tab.defaultContent && (
+                      <p style={{ marginBottom: 16, whiteSpace: "pre-wrap", color: "#444" }}>
+                        {tab.defaultContent}
+                      </p>
+                    )}
+
+                    {/* DropZone to drag/drop blocks */}
+                    <DropZone zone={`tab-${i}`} />
+                  </div>
+                ) : null
+              )}
+            </div>
+          </div>
+        );
+      },
+    },
 
     Carousel: {
       label: "Carousel",
@@ -1418,6 +1650,7 @@ const config = {
       },
     },
   },
+
   root: {
     render: ({ children }) => {
       return <div>{children}</div>;
@@ -1467,60 +1700,62 @@ function Editor() {
 
   return (
     <>
-      <label
-        style={{
-          display: "inline-block",
-          padding: "8px 14px",
-          backgroundColor: "#2563eb",
-          color: "white",
-          borderRadius: "6px",
-          cursor: "pointer",
-          fontSize: "14px",
-          marginBottom: "12px",
-          margin: "10px"
-        }}
-      >
-        Import JSON
-        <input
-          type="file"
-          accept=".json"
-          onChange={handleImportJSON}
-          style={{ display: "none" }}
-        />
-      </label>
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <div style={{ margin: "10px" }}>
+          <button
+            onClick={() => setMode("edit")}
+            style={{
+              marginRight: "8px",
+              padding: "8px 12px",
+              borderRadius: "6px",
+              border: "1px solid #ddd",
+              background: mode === "edit" ? "#2563eb" : "#fff",
+              color: mode === "edit" ? "white" : "black",
+              cursor: "pointer",
+            }}
+          >
+            Edit mode
+          </button>
 
+          <button
+            onClick={() => setMode("preview")}
+            style={{
+              padding: "8px 12px",
+              borderRadius: "6px",
+              border: "1px solid #ddd",
+              background: mode === "preview" ? "#16a34a" : "#fff",
+              color: mode === "preview" ? "white" : "black",
+              cursor: "pointer",
+            }}
+          >
+            Preview page
+          </button>
+        </div>
 
-      <div style={{ margin: "10px" }}>
-        <button
-          onClick={() => setMode("edit")}
+        <label
           style={{
-            marginRight: "8px",
-            padding: "8px 12px",
+            display: "inline-block",
+            padding: "8px 14px",
+            backgroundColor: "#2563eb",
+            color: "white",
             borderRadius: "6px",
-            border: "1px solid #ddd",
-            background: mode === "edit" ? "#2563eb" : "#fff",
-            color: mode === "edit" ? "white" : "black",
             cursor: "pointer",
+            fontSize: "14px",
+            marginBottom: "12px",
+            margin: "10px"
           }}
         >
-          Edit mode
-        </button>
-
-        <button
-          onClick={() => setMode("preview")}
-          style={{
-            padding: "8px 12px",
-            borderRadius: "6px",
-            border: "1px solid #ddd",
-            background: mode === "preview" ? "#16a34a" : "#fff",
-            color: mode === "preview" ? "white" : "black",
-            cursor: "pointer",
-          }}
-        >
-          Preview page
-        </button>
+          Import JSON
+          <input
+            type="file"
+            accept=".json"
+            onChange={handleImportJSON}
+            style={{ display: "none" }}
+          />
+        </label>
       </div>
 
+      <hr />
 
       {/* <Puck
         key={JSON.stringify(puckData)}
