@@ -47,7 +47,7 @@ export default function TemplateDrawer({
                     }}
                 >
                     <div>
-                        <h2 style={{ margin: "0 0 2px", fontWeight: 600,  }}><span style={{ color: "#ff494e" }}>T</span>emplates</h2>
+                        <h2 style={{ margin: "0 0 2px", fontWeight: 600, }}><span style={{ color: "#ff494e" }}>T</span>emplates</h2>
                         <p style={{ color: "#6b7280", marginTop: 0 }}>
                             Choose a template to apply to your page
                         </p>
@@ -84,10 +84,13 @@ export default function TemplateDrawer({
                         }
                     >
                         <strong>Template 1</strong>
-                        <img src={template} alt="Template 1" style={{ marginTop: "10px" }} />
-                        <p style={{ margin: "6px 0 0", fontSize: "13px", color: "#6b7280" }}>
-                            Title + hero section + tabs + button
-                        </p>
+                        <div>
+
+                            <img src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTE10pMwJmYEzyKGfQxNsRMx4piv0ypZYpuKA&s"} alt="Template 1" style={{ marginTop: "10px" }} />
+                            <p style={{ margin: "6px 0 0", fontSize: "13px", color: "#6b7280" }}>
+                                Title + hero section + tabs + button
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
