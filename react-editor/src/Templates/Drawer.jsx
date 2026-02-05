@@ -1,3 +1,4 @@
+import template from '../assets/template.svg';
 export default function TemplateDrawer({
     isOpen,
     onClose,
@@ -83,7 +84,7 @@ export default function TemplateDrawer({
                         }
                     >
                         <strong>Template 1</strong>
-                        <img src="/template.svg" alt="Template 1" style={{ marginTop: "10px" }} />
+                        <img src={template} alt="Template 1" style={{ marginTop: "10px" }} />
                         <p style={{ margin: "6px 0 0", fontSize: "13px", color: "#6b7280" }}>
                             Title + hero section + tabs + button
                         </p>
