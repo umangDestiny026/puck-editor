@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route, Link, useParams } from "react-router-dom";
 import { DropZone, Puck, Render } from "@measured/puck";
 import "@measured/puck/puck.css";
-import MainSlider from "./MainSlider";
+import MainSlider from "./component/MainSlider";
 import React, { useState, useMemo } from "react";
 import { defaultTemplate } from "./Templates/template";
 import TemplateDrawer from "./Templates/Drawer";
@@ -16,33 +16,128 @@ import PuckForm from "./component/Form";
 
 const initialData = { content: [] };
 
+// const TabsRenderer = ({ tabs, activeTabIndex, className, customCss }) => {
+//   const [activeTab, setActiveTab] = React.useState(activeTabIndex);
+
+//   // 🔥 IMPORTANT: sync with editor changes
+//   React.useEffect(() => {
+//     setActiveTab(activeTabIndex);
+//   }, [activeTabIndex]);
+
+//   return (
+//     <div className={`puck-tabs ${className || ""}`}>
+
+//       {customCss && <style>{customCss}</style>}
+
+//       {/* ======= TAB BUTTONS (VIEW ONLY IN PREVIEW) ======= */}
+//       <div style={{ display: "flex", gap: "8px", marginBottom: "12px" }}>
+//         {tabs.map((tab, index) => (
+//           <button
+//             key={index}
+//             type="button"
+//             onClick={() => setActiveTab(index)}
+//             style={{
+//               padding: "8px 12px",
+//               border: "1px solid #ddd",
+//               background: activeTab === index ? "#e6f0ff" : "#f5f5f5",
+//               cursor: "pointer",
+//             }}
+//           >
+//             {tab.icon} {tab.label}
+//           </button>
+//         ))}
+//       </div>
+
+//       {/* ======= TAB CONTENT WITH DROPZONES ======= */}
+//       <div>
+//         {tabs.map((tab, index) => {
+//           const isActive = index === activeTab;
+
+//           return (
+//             <div
+//               key={index}
+//               style={{
+//                 display: isActive ? "block" : "none",
+//                 minHeight: "150px",
+//                 border: "1px dashed #ddd",
+//                 padding: "12px",
+//               }}
+//             >
+//               <div style={{ marginBottom: "10px", color: "#555" }}>
+//                 {tab.defaultContent}
+//               </div>
+
+//               <DropZone zone={`tab-${index}`} />
+//             </div>
+//           );
+//         })}
+//       </div>
+//     </div>
+//   );
+// };
+
 const TabsRenderer = ({ tabs, activeTabIndex, className, customCss }) => {
-  const [activeTab, setActiveTab] = React.useState(() => activeTabIndex);
+  const [activeTab, setActiveTab] = React.useState(activeTabIndex);
+  const uniqueClass = `tab-${Math.random().toString(36).substr(2, 9)}`;
+
+  React.useEffect(() => {
+    setActiveTab(activeTabIndex);
+  }, [activeTabIndex]);
 
   return (
     <div className={`puck-tabs ${className || ""}`}>
-      {customCss && <style>{customCss}
 
-      </style>}
+      {customCss && <style>{`.${uniqueClass} { ${customCss} }`}</style>}
 
-      <div style={{ display: "flex", gap: "8px", marginBottom: "12px" }}>
-        {tabs.map((tab, index) => (
-          <button
-            key={index}
-            onClick={() => setActiveTab(index)}
-            style={{
-              padding: "8px 12px",
-              border: "1px solid #ddd",
-              background: activeTab === index ? "#e6f0ff" : "#f5f5f5",
-              cursor: "pointer",
-            }}
-          >
-            {tab.icon} {tab.label}
-          </button>
-        ))}
+      <div
+        style={{
+          display: "flex",
+          borderBottom: "1px solid #e5e7eb",
+          marginBottom: "16px",
+          gap: "24px",
+        }}
+      >
+        {tabs.map((tab, index) => {
+          const isActive = index === activeTab;
+
+          return (
+            <button
+              key={index}
+              type="button"
+              onClick={() => setActiveTab(index)}
+              style={{
+                background: "none",
+                border: "none",
+                padding: "10px 4px",
+                fontSize: "14px",
+                color: isActive ? "#111827" : "#6b7280",
+                fontWeight: isActive ? "600" : "400",
+                cursor: "pointer",
+                position: "relative",
+              }}
+            >
+              {tab.icon && <span style={{ marginRight: "6px" }}>{tab.icon}</span>}
+              {tab.label}
+
+              {isActive && (
+                <span
+                  style={{
+                    position: "absolute",
+                    bottom: "-1px",
+                    left: 0,
+                    width: "100%",
+                    height: "2px",
+                    background: "#111827",
+                  }}
+                />
+              )}
+            </button>
+          );
+        })}
       </div>
 
-      <div className="puck-tabs-body">
+      {/* ======= TAB CONTENT WITH DROPZONES ======= */}
+      <div>
         {tabs.map((tab, index) => {
           const isActive = index === activeTab;
 
@@ -50,21 +145,22 @@ const TabsRenderer = ({ tabs, activeTabIndex, className, customCss }) => {
             <div
               key={index}
               style={{
-                display: isActive ? "block" : "none",   // keep zones mounted
+                display: isActive ? "block" : "none",
                 minHeight: "150px",
+                padding: "8px 0",
               }}
             >
-              <div style={{ marginBottom: "12px", color: "#555" }}>
-                {tab.defaultContent}
-              </div>
+              {tab.defaultContent && (
+                <div style={{ marginBottom: "10px", color: "#555" }}>
+                  {tab.defaultContent}
+                </div>
+              )}
 
-              {/* IMPORTANT: each tab has its own permanent DropZone */}
               <DropZone zone={`tab-${index}`} />
             </div>
           );
         })}
       </div>
-
     </div>
   );
 };
@@ -1243,38 +1339,65 @@ const config = {
     Tabs: {
       label: "🏷️ Tabs",
 
-      fields: {
-        tabs: {
-          type: "array",
-          label: "Tabs",
-          arrayFields: {
-            label: { type: "text", label: "Tab label" },
-            icon: { type: "text", label: "Tab icon (emoji or class)" },
-            defaultContent: { type: "textarea", label: "Tab default content" },
-          },
-          defaultItemProps: {
-            label: "Tab",
-            icon: "",
-            defaultContent: "",
-          },
-        },
+      resolveFields: (data) => {
+        const tabs = data.props?.tabs || [];
 
-        activeTabIndex: {
-          type: "number",
-          label: "Active tab index",
-          defaultValue: 0,
-          min: 0,
-          description: "Index of currently active tab",
-        },
+        const baseFields = {
+          tabs: {
+            type: "array",
+            label: "Tabs",
+            arrayFields: {
+              label: { type: "text", label: "Tab label" },
+              icon: { type: "text", label: "Tab icon (emoji or class)" },
+              defaultContent: {
+                type: "textarea",
+                label: "Tab default content",
+              },
+            },
+            defaultItemProps: {
+              label: "Tab",
+              icon: "",
+              defaultContent: "",
+            },
+          },
 
-        className: { type: "text", label: "Custom class" },
-        customCss: { type: "textarea", label: "Custom CSS" },
+          className: { type: "text", label: "Custom class" },
+          customCss: { type: "textarea", label: "Custom CSS" },
+        };
+
+        // ✅ Dynamically build activeTab options from tabs length
+        if (tabs.length > 0) {
+          return {
+            ...baseFields,
+
+            activeTabIndex: {
+              type: "select",
+              label: "Active tab (for editing)",
+              options: tabs.map((tab, index) => ({
+                label: tab.label || `Tab ${index + 1}`,
+                value: index,
+              })),
+            },
+          };
+        }
+
+        return baseFields;
       },
 
       defaultProps: {
         tabs: [
-          { label: "Tab 1", icon: "📄", defaultContent: "Hello, this is tab 1 default content. You can drag and drop blocks here." },
-          { label: "Tab 2", icon: "🎥", defaultContent: "Hello, this is tab 2 default content. You can drag and drop blocks here." },
+          {
+            label: "Tab 1",
+            icon: "",
+            defaultContent:
+              "Hello, this is tab 1 default content.",
+          },
+          {
+            label: "Tab 2",
+            icon: "",
+            defaultContent:
+              "Hello, this is tab 2 default content.",
+          },
         ],
         activeTabIndex: 0,
         className: "",
@@ -1283,7 +1406,7 @@ const config = {
 
       render: (props) => {
         return <TabsRenderer {...props} />;
-      }
+      },
     },
 
     Carousel: {
@@ -1297,8 +1420,15 @@ const config = {
           arrayFields: {
             imageMobile: { type: "text", label: "Mobile image URL" },
             imageDesktop: { type: "text", label: "Desktop image URL" },
+
             title: { type: "text", label: "Title" },
             description: { type: "textarea", label: "Description" },
+
+            dotText: {
+              type: "textarea",
+              label: "Dot label text (optional)",
+            },
+
             link: { type: "text", label: "Link (optional)" },
             videoUrl: { type: "text", label: "Video URL (optional)" },
 
@@ -1372,6 +1502,63 @@ const config = {
             autoplayDelay={autoplayDelay} // ✅ correct
             alignBottom={alignBottom}
           />
+        );
+      },
+    },
+
+    Container: {
+      label: "📦 Container",
+
+      fields: {
+        className: { type: "text", label: "Custom class" },
+        customCss: { type: "textarea", label: "Custom CSS" },
+
+        marginValue: { type: "number", label: "Side margin" },
+        paddingValue: { type: "number", label: "Padding" },
+
+        backgroundColor: { type: "text", label: "Background color" },
+      },
+
+      defaultProps: {
+        className: "container-001",
+        customCss: "",
+
+        marginValue: 40,
+        paddingValue: 20,
+        backgroundColor: "#f5f5f5",
+      },
+
+      render: ({
+        className,
+        customCss,
+        marginValue,
+        paddingValue,
+        backgroundColor,
+      }) => {
+        const uniqueClass = `container-${Math.random()
+          .toString(36)
+          .substr(2, 9)}`;
+
+        const style = {
+          margin: marginValue != null ? `0 ${marginValue}px` : "0 auto",
+          padding: paddingValue != null ? `${paddingValue}px` : undefined,
+          backgroundColor: backgroundColor || undefined,
+          minHeight: "120px",
+        };
+
+        return (
+          <div className={`${className} ${uniqueClass}`} style={style}>
+            {customCss && (
+              <style>{`
+            .${uniqueClass} {
+              ${customCss}
+            }
+          `}</style>
+            )}
+
+            {/* THIS IS YOUR DROPZONE */}
+            <DropZone zone="content" />
+          </div>
         );
       },
     },
@@ -2457,7 +2644,7 @@ function Editor() {
           }}
         />
       ) : (
-        <div style={{ padding: "20px" }}>
+        <div>
           <Render
             data={puckData}
             config={config}

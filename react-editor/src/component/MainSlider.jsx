@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { View, Flex, Image, Heading, Text, Button } from "@aws-amplify/ui-react";
+import "./style.css";
 
 const MainSlider = ({
     slides = [],
