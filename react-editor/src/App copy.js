@@ -3,18 +3,8 @@ import { DropZone, Puck, Render } from "@measured/puck";
 import "@measured/puck/puck.css";
 import MainSlider from "./MainSlider";
 import React, { useState, useMemo } from "react";
-import { defaultTemplate } from "./Templates/template";
-import TemplateDrawer from "./Templates/Drawer";
-import PuckInput from "./component/Input";
-import PuckCheckbox from "./component/Checkbox";
-import PuckDatePicker from "./component/DatePicker";
-import PuckDropdown from "./component/Dropdown";
-import PuckSearchableDropdown from "./component/SearchDropdown";
-import PuckRadioGroup from "./component/RadioBtn";
-import PuckForm from "./component/Form";
-
-
-const initialData = { content: [] };
+import dummy from '../../demo.json'
+const initialData = dummy;
 
 const TabsRenderer = ({ tabs, activeTabIndex, className, customCss }) => {
   const [activeTab, setActiveTab] = React.useState(() => activeTabIndex);
@@ -72,7 +62,7 @@ const TabsRenderer = ({ tabs, activeTabIndex, className, customCss }) => {
 const config = {
   components: {
     Text: {
-      label: "📝 Text",
+      label: "Text",
       fields: {
         className: { type: "text", label: "Custom class" },
         customCss: { type: "textarea", label: "Custom CSS" },
@@ -150,6 +140,8 @@ const config = {
             { label: "vw", value: "vw" },
           ],
         },
+
+        /* -------- COLORS -------- */
 
         textColor: {
           type: "text",
@@ -245,7 +237,7 @@ const config = {
     },
 
     Image: {
-      label: "🖼️ Image",
+      label: "Image",
       category: "Typography",
       fields: {
         className: { type: "text", label: "Custom class" },
@@ -464,7 +456,7 @@ const config = {
     },
 
     Video: {
-      label: "🎬 Video",
+      label: "Video",
 
       fields: {
         className: {
@@ -570,7 +562,7 @@ const config = {
     },
 
     Button: {
-      label: "🔘 Button",
+      label: "Button",
       fields: {
         className: { type: "text", label: "Custom class" },
         customCss: {
@@ -821,7 +813,7 @@ const config = {
     },
 
     Grid: {
-      label: "🧱 Grid",
+      label: "Grid",
       fields: {
         className: {
           type: "text",
@@ -941,7 +933,7 @@ const config = {
     },
 
     Flex: {
-      label: "🧷 Flex",
+      label: "Flex",
       fields: {
         className: {
           type: "text",
@@ -1071,7 +1063,7 @@ const config = {
     },
 
     Accordion: {
-      label: "🧷 Accordion",
+      label: "Accordion",
 
       defaultProps: {
         backgroundColor: "#ffffff",
@@ -1241,7 +1233,7 @@ const config = {
     },
 
     Tabs: {
-      label: "🏷️ Tabs",
+      label: "Tabs",
 
       fields: {
         tabs: {
@@ -1287,7 +1279,7 @@ const config = {
     },
 
     Carousel: {
-      label: "🎞️ Carousel",
+      label: "Carousel",
 
       fields: {
         /* -------- SLIDES -------- */
@@ -1377,7 +1369,7 @@ const config = {
     },
 
     ImageText: {
-      label: "🖼️ Image + Text",
+      label: "Image + Text",
       fields: {
         className: {
           type: "text",
@@ -1566,7 +1558,7 @@ const config = {
     },
 
     Card: {
-      label: "🧱 Card",
+      label: "Card",
       fields: {
         /* -------- IMAGE -------- */
         image: {
@@ -1778,500 +1770,6 @@ const config = {
         );
       },
     },
-
-    Input: {
-      label: "✏️ Input",
-      fields: {
-        className: { type: "text", label: "Custom class" },
-        customCss: { type: "textarea", label: "Custom CSS" },
-        name: { type: "text", label: "Field name (for form submit)" },
-        placeholder: { type: "text", label: "Placeholder" },
-
-        type: {
-          type: "select",
-          label: "Input type",
-          options: [
-            { label: "Text", value: "text" },
-            { label: "Email", value: "email" },
-            { label: "Password", value: "password" },
-            { label: "Number", value: "number" },
-            { label: "Tel", value: "tel" },
-            { label: "URL", value: "url" },
-            { label: "Search", value: "search" },
-            { label: "Date", value: "date" },
-            { label: "Time", value: "time" },
-          ],
-        },
-
-        /* ---------- LAYOUT ---------- */
-        width: { type: "number", label: "Width (px)" },
-        height: { type: "number", label: "Height (px)" },
-        padding: { type: "text", label: "Padding (CSS)" },
-        margin: { type: "text", label: "Margin (CSS)" },
-
-        /* ---------- VALIDATION ---------- */
-        required: {
-          type: "radio", label: "Required", options: [
-            { label: "Yes", value: true },
-            { label: "No", value: false },
-          ]
-        },
-
-        minLength: { type: "number", label: "Min length" },
-        maxLength: { type: "number", label: "Max length" },
-
-        pattern: {
-          type: "text",
-          label: "Regex pattern (optional)",
-          description: "Example: ^[A-Za-z]+$"
-        },
-
-        errorMessage: {
-          type: "textarea",
-          label: "Custom error message",
-        },
-
-        /* ---------- ONCHANGE EDITOR ---------- */
-        onChangeCode: {
-          type: "textarea",
-          label: "Custom onChange logic (JS)",
-          description: "You can write: value => { your logic }",
-        },
-      },
-
-      defaultProps: {
-        type: "text",
-        placeholder: "Enter text...",
-        width: 320,
-        height: 40,
-        padding: "8px 10px",
-        name: "input_1",
-        margin: "8px 0",
-        className: "",
-        customCss: "",
-        required: false,
-        minLength: undefined,
-        maxLength: undefined,
-        pattern: "",
-        errorMessage: "Invalid input",
-        onChangeCode: "value => console.log(value)",
-      },
-
-      render: (props) => {
-        const uniqueClass = `input-${Math.random()
-          .toString(36)
-          .substr(2, 9)}`;
-
-        return (
-          <PuckInput
-            {...props}
-            uniqueClass={uniqueClass}
-          />
-        );
-      },
-    },
-
-    Checkbox: {
-      label: "☑️ Checkbox",
-      fields: {
-        className: { type: "text", label: "Custom class" },
-        customCss: { type: "textarea", label: "Custom CSS" },
-        name: { type: "text", label: "Field name (for form submit)" },
-
-        label: { type: "text", label: "Checkbox label" },
-
-        /* ---------- BEHAVIOR ---------- */
-        defaultChecked: {
-          type: "radio",
-          label: "Checked by default",
-          options: [
-            { label: "Yes", value: true },
-            { label: "No", value: false },
-          ],
-        },
-
-        required: {
-          type: "radio",
-          label: "Required",
-          options: [
-            { label: "Yes", value: true },
-            { label: "No", value: false },
-          ],
-        },
-
-        errorMessage: {
-          type: "textarea",
-          label: "Custom error message",
-        },
-
-        /* ---------- ONCHANGE EDITOR ---------- */
-        onChangeCode: {
-          type: "textarea",
-          label: "Custom onChange logic (JS)",
-          description: "Example: checked => { console.log(checked) }",
-        },
-      },
-
-      defaultProps: {
-        label: "Accept terms and conditions",
-        defaultChecked: false,
-        required: false,
-        name: "checkbox_1",
-        className: "",
-        customCss: "",
-        errorMessage: "This field is required",
-        onChangeCode: "checked => console.log(checked)",
-      },
-
-      render: (props) => {
-        const uniqueClass = `checkbox-${Math.random()
-          .toString(36)
-          .substr(2, 9)}`;
-
-        return <PuckCheckbox {...props} uniqueClass={uniqueClass} />;
-      },
-    },
-
-    DatePicker: {
-      label: "📅 Date Picker",
-      fields: {
-        className: { type: "text", label: "Custom class" },
-        customCss: { type: "textarea", label: "Custom CSS" },
-        name: { type: "text", label: "Field name (for form submit)" },
-        label: { type: "text", label: "Field label" },
-
-        defaultValue: {
-          type: "text",
-          label: "Default date (YYYY-MM-DD)",
-          description: "Example: 2025-02-05",
-        },
-
-        minDate: {
-          type: "text",
-          label: "Min date (YYYY-MM-DD)",
-        },
-
-        maxDate: {
-          type: "text",
-          label: "Max date (YYYY-MM-DD)",
-        },
-
-        required: {
-          type: "radio",
-          label: "Required",
-          options: [
-            { label: "Yes", value: true },
-            { label: "No", value: false },
-          ],
-        },
-
-        errorMessage: {
-          type: "textarea",
-          label: "Custom error message",
-        },
-
-        /* ---------- ONCHANGE EDITOR ---------- */
-        onChangeCode: {
-          type: "textarea",
-          label: "Custom onChange logic (JS)",
-          description: "Example: date => { console.log(date) }",
-        },
-      },
-
-      defaultProps: {
-        label: "Select date",
-        defaultValue: "",
-        minDate: "",
-        name: "datepicker_1",
-
-        maxDate: "",
-        required: false,
-        className: "",
-        customCss: "",
-        errorMessage: "Please select a valid date",
-        onChangeCode: "date => console.log(date)",
-      },
-
-      render: (props) => {
-        const uniqueClass = `datepicker-${Math.random()
-          .toString(36)
-          .substr(2, 9)}`;
-
-        return <PuckDatePicker {...props} uniqueClass={uniqueClass} />;
-      },
-    },
-
-    Dropdown: {
-      label: "📥 Dropdown",
-      fields: {
-        className: { type: "text", label: "Custom class" },
-        customCss: { type: "textarea", label: "Custom CSS" },
-
-        name: { type: "text", label: "Field name (for form submit)" },
-        label: { type: "text", label: "Field label" },
-
-        options: {
-          type: "array",
-          label: "Options",
-          arrayFields: {
-            label: { type: "text", label: "Option label" },
-            value: { type: "text", label: "Option value" },
-          },
-          getItemSummary: (item) =>
-            item?.label ? `${item.label} (${item.value})` : "New option",
-        },
-
-        defaultValue: {
-          type: "text",
-          label: "Default selected value",
-          description: "Must match one option value",
-        },
-
-        required: {
-          type: "radio",
-          label: "Required",
-          options: [
-            { label: "Yes", value: true },
-            { label: "No", value: false },
-          ],
-        },
-
-        errorMessage: {
-          type: "textarea",
-          label: "Custom error message",
-        },
-
-        onChangeCode: {
-          type: "textarea",
-          label: "Custom onChange logic (JS)",
-          description: "Example: value => { console.log(value) }",
-        },
-      },
-
-      defaultProps: {
-        label: "Choose an option",
-        className: "",
-        customCss: "",
-        required: false,
-        name: "dropdown_1",
-        errorMessage: "Please select an option",
-        onChangeCode: "value => console.log(value)",
-
-        options: [
-          { label: "Option 1", value: "option1" },
-          { label: "Option 2", value: "option2" },
-          { label: "Option 3", value: "option3" },
-        ],
-
-        defaultValue: "",
-      },
-
-      render: (props) => {
-        const uniqueClass = `dropdown-${Math.random()
-          .toString(36)
-          .substr(2, 9)}`;
-
-        return <PuckDropdown {...props} uniqueClass={uniqueClass} />;
-      },
-    },
-
-    SearchableDropdown: {
-      label: "📥 Searchable Dropdown",
-      fields: {
-        className: { type: "text", label: "Custom class" },
-        customCss: { type: "textarea", label: "Custom CSS" },
-        name: { type: "text", label: "Field name (for form submit)" },
-        label: { type: "text", label: "Field label" },
-
-        /* ---------- OPTIONS (ARRAY FIELD) ---------- */
-        options: {
-          type: "array",
-          label: "Options",
-          arrayFields: {
-            label: { type: "text", label: "Option label" },
-            value: { type: "text", label: "Option value" },
-          },
-          getItemSummary: (item) =>
-            item?.label ? `${item.label} (${item.value})` : "New option",
-        },
-
-        placeholder: {
-          type: "text",
-          label: "Search placeholder",
-        },
-
-        required: {
-          type: "radio",
-          label: "Required",
-          options: [
-            { label: "Yes", value: true },
-            { label: "No", value: false },
-          ],
-        },
-
-        errorMessage: {
-          type: "textarea",
-          label: "Custom error message",
-        },
-
-        /* ---------- ONCHANGE EDITOR ---------- */
-        onChangeCode: {
-          type: "textarea",
-          label: "Custom onChange logic (JS)",
-          description: "Example: value => { console.log(value) }",
-        },
-      },
-
-      defaultProps: {
-        label: "Search and select",
-        placeholder: "Type to search...",
-        name: "searchdd_1",
-        className: "",
-        customCss: "",
-        required: false,
-        errorMessage: "Please select an option",
-        onChangeCode: "value => console.log(value)",
-
-        // default 3 options
-        options: [
-          { label: "Apple", value: "apple" },
-          { label: "Banana", value: "banana" },
-          { label: "Orange", value: "orange" },
-        ],
-      },
-
-      render: (props) => {
-        const uniqueClass = `searchdd-${Math.random()
-          .toString(36)
-          .substr(2, 9)}`;
-
-        return <PuckSearchableDropdown {...props} uniqueClass={uniqueClass} />;
-      },
-    },
-
-    RadioGroup: {
-      label: "🔘 Radio Group",
-      fields: {
-        className: { type: "text", label: "Custom class" },
-        customCss: { type: "textarea", label: "Custom CSS" },
-
-        label: { type: "text", label: "Field label" },
-
-        /* ---------- OPTIONS (ARRAY FIELD) ---------- */
-        options: {
-          type: "array",
-          label: "Radio options",
-          arrayFields: {
-            label: { type: "text", label: "Option label" },
-            value: { type: "text", label: "Option value" },
-          },
-          getItemSummary: (item) =>
-            item?.label ? `${item.label} (${item.value})` : "New option",
-        },
-
-        defaultValue: {
-          type: "text",
-          label: "Default selected value",
-          description: "Must match one option value",
-        },
-
-        required: {
-          type: "radio",
-          label: "Required",
-          options: [
-            { label: "Yes", value: true },
-            { label: "No", value: false },
-          ],
-        },
-
-        errorMessage: {
-          type: "textarea",
-          label: "Custom error message",
-        },
-
-        /* ---------- ONCHANGE EDITOR ---------- */
-        onChangeCode: {
-          type: "textarea",
-          label: "Custom onChange logic (JS)",
-          description: "Example: value => { console.log(value) }",
-        },
-      },
-
-      defaultProps: {
-        label: "Choose one option",
-        className: "",
-        customCss: "",
-        required: false,
-        errorMessage: "Please select an option",
-        onChangeCode: "value => console.log(value)",
-
-        // Default 3 options
-        options: [
-          { label: "Option A", value: "A" },
-          { label: "Option B", value: "B" },
-          { label: "Option C", value: "C" },
-        ],
-
-        defaultValue: "",
-      },
-
-      render: (props) => {
-        const uniqueClass = `radiogroup-${Math.random()
-          .toString(36)
-          .substr(2, 9)}`;
-
-        return <PuckRadioGroup {...props} uniqueClass={uniqueClass} />;
-      },
-    },
-
-    Form: {
-      label: "📝 Form",
-      fields: {
-        className: { type: "text", label: "Custom class" },
-        customCss: { type: "textarea", label: "Custom CSS" },
-        formLabel: {
-          type: "text",
-          label: "Form title"
-        },
-        submitLabel: {
-          type: "text",
-          label: "Submit button text"
-        },
-
-        /* ---------- ON SUBMIT EDITOR ---------- */
-        onSubmitCode: {
-          type: "textarea",
-          label: "Custom onSubmit logic (JS)",
-          description: `
-          You will receive an object: values
-
-          Example:
-          (values) => {
-            console.log(values);
-          }
-      `,
-        },
-      },
-
-      defaultProps: {
-        submitLabel: "Submit",
-        className: "",
-        formLabel: "Checkout form",
-        customCss: "",
-        onSubmitCode: "(values) => console.log(values)",
-      },
-
-      render: (props) => {
-        const uniqueClass = `form-${Math.random()
-          .toString(36)
-          .substr(2, 9)}`;
-
-        return (
-          <PuckForm {...props} uniqueClass={uniqueClass} />
-        );
-      },
-    },
-
   },
 
   root: {
@@ -2281,6 +1779,8 @@ const config = {
   },
 };
 
+
+
 function Editor() {
   const { page } = useParams();
 
@@ -2288,7 +1788,7 @@ function Editor() {
 
   const [puckData, setPuckData] = useState(saved);
   const [mode, setMode] = useState("edit");
-  const [isPanelOpen, setIsPanelOpen] = React.useState(false);
+
 
   const handleImportJSON = (event) => {
     const file = event.target.files[0];
@@ -2318,85 +1818,29 @@ function Editor() {
     reader.readAsText(file);
   };
 
-
-  // switch to default template
-  const handelSwitchTemplate = (templateName) => {
-    if (templateName === "default") {
-      setPuckData(defaultTemplate);
-    }
-  };
-
   console.log("Umang Data =>", puckData);
 
   return (
     <>
-      <div style={{ display: "flex", justifyContent: "space-between", backgroundColor: "#000", padding: "10px 20px" }}>
-        <div style={{ margin: "10px", display: "flex", gap: "10px", alignItems: "center" }}>
-
-          {
-            mode === "edit" ? (
-              <button
-                onClick={() => setMode("preview")}
-                style={{
-                  padding: "8px 14px",
-                  borderRadius: "8px",
-                  border: mode === "preview" ? "1px solid #16a34a" : "1px solid #e5e7eb",
-                  background: mode === "preview" ? "#16a34a" : "#ebebeb",
-                  color: mode === "preview" ? "white" : "#111827",
-                  fontWeight: 500,
-                  cursor: "pointer",
-                  transition: "all 0.2s ease",
-                  boxShadow: mode === "preview" ? "0 1px 3px rgba(22,163,74,0.3)" : "none",
-                }}
-              >
-                👁️ Preview page
-              </button>
-            ) : (
-              <button
-                onClick={() => setMode("edit")}
-                style={{
-                  padding: "8px 14px",
-                  borderRadius: "8px",
-                  border: mode === "edit" ? "1px solid #2563eb" : "1px solid #e5e7eb",
-                  background: mode === "edit" ? "#2563eb" : "#f9fafb",
-                  color: mode === "edit" ? "white" : "#111827",
-                  fontWeight: 500,
-                  cursor: "pointer",
-                  transition: "all 0.2s ease",
-                  boxShadow: mode === "edit" ? "0 1px 3px rgba(37,99,235,0.3)" : "none",
-                }}
-              >
-                ✏️ Edit mode
-              </button>
-            )
-          }
-        </div>
-
-        <div style={{ paddingRight: "20px" }}>
-          <label
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <div style={{ margin: "10px" }}>
+          <button
+            onClick={() => setMode("edit")}
             style={{
-              display: "inline-block",
-              padding: "8px 14px",
-              backgroundColor: "#2563eb",
-              color: "white",
+              marginRight: "8px",
+              padding: "8px 12px",
               borderRadius: "6px",
+              border: "1px solid #ddd",
+              background: mode === "edit" ? "#2563eb" : "#fff",
+              color: mode === "edit" ? "white" : "black",
               cursor: "pointer",
-              fontSize: "14px",
-              marginBottom: "12px",
-              margin: "10px"
             }}
           >
-            Import JSON
-            <input
-              type="file"
-              accept=".json"
-              onChange={handleImportJSON}
-              style={{ display: "none" }}
-            />
-          </label>
+            Edit mode
+          </button>
 
           <button
-            onClick={() => setIsPanelOpen(true)}
+            onClick={() => setMode("preview")}
             style={{
               padding: "8px 12px",
               borderRadius: "6px",
@@ -2406,21 +1850,35 @@ function Editor() {
               cursor: "pointer",
             }}
           >
-            Default Template
+            Preview page
           </button>
         </div>
+
+        <label
+          style={{
+            display: "inline-block",
+            padding: "8px 14px",
+            backgroundColor: "#2563eb",
+            color: "white",
+            borderRadius: "6px",
+            cursor: "pointer",
+            fontSize: "14px",
+            marginBottom: "12px",
+            margin: "10px"
+          }}
+        >
+          Import JSON
+          <input
+            type="file"
+            accept=".json"
+            onChange={handleImportJSON}
+            style={{ display: "none" }}
+          />
+        </label>
       </div>
 
-      {isPanelOpen && (
-        <TemplateDrawer
-          isOpen={isPanelOpen}
-          onClose={() => setIsPanelOpen(false)}
-          onSelectTemplate={(name) => {
-            handelSwitchTemplate(name);
-            setIsPanelOpen(false);
-          }}
-        />
-      )}
+      <hr />
+
       {/* <Puck
         key={JSON.stringify(puckData)}
         config={config}

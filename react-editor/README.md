@@ -68,3 +68,27 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+```
+<Puck
+        key={JSON.stringify(puckData)}
+        config={config}
+        data={puckData}
+        onPublish={(data) => {
+          const item = JSON.stringify(data);
+          console.log(item);
+
+          localStorage.setItem('puck-page', item);
+          console.log("STORED IN LOCAL STORAGE");
+
+          // Send data to Angular parent window
+          window.parent.postMessage(
+            { type: "PUCK_PUBLISHED", payload: data },
+            "*"
+          );
+
+          console.log("PUCK PUBLISHED");
+        }}
+
+      />
+```
