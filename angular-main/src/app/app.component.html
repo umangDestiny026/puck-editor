@@ -1,6 +1,10 @@
 <router-outlet></router-outlet>
+<button (click)="sendToReact()">Send JSON to React</button>
+
+
 <iframe
-  src="/build/index.html"
+  id="puckFrame"
+  src="http://localhost:3000/"
   style="width:100%; height:100vh;"
   >
 </iframe>

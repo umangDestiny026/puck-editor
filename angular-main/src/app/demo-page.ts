@@ -1,0 +1,142 @@
+export const demopage ={
+    "root": {
+        "props": {}
+    },
+    "content": [
+        {
+            "type": "Image",
+            "props": {
+                "sourceType": "url",
+                "className": "image-001",
+                "customCss": "",
+                "image": "https://toyota.com.co/images/comunidad-wayuu-desktop-banner.png",
+                "alt": "Image",
+                "align": "center",
+                "widthUnit": "px",
+                "maxWidthValue": 100,
+                "maxWidthUnit": "%",
+                "heightUnit": "px",
+                "maxHeightUnit": "px",
+                "objectFit": "contain",
+                "objectPosition": "center",
+                "overflow": "hidden",
+                "borderRadius": 0,
+                "id": "Image-6ee89dd5-9293-49d1-a548-f43eb828bff0"
+            }
+        },
+        {
+            "type": "Text",
+            "props": {
+                "content": "Beyond Zero\n",
+                "level": "h4",
+                "size": "lg",
+                "align": "center",
+                "className": "text-minor",
+                "customCss": "margin-top: 50px !important;\nmargin-bottom: 10px !important;\nfont-weight: 400;",
+                "widthUnit": "px",
+                "maxWidthValue": 700,
+                "maxWidthUnit": "px",
+                "minWidthUnit": "px",
+                "textColor": "#000000",
+                "id": "Text-a5f80e50-5f19-4bb0-a4b5-4c2f41e0acb9"
+            }
+        },
+        {
+            "type": "Text",
+            "props": {
+                "content": "Movilidad Sostenible\n",
+                "level": "h1",
+                "size": "lg",
+                "align": "center",
+                "className": "text-001",
+                "customCss": "margin-bottom:50px !important;",
+                "widthUnit": "px",
+                "maxWidthValue": 700,
+                "maxWidthUnit": "px",
+                "minWidthUnit": "px",
+                "textColor": "#000000",
+                "id": "Text-4c8cc28f-9dfe-47b0-a172-2fc848346a95"
+            }
+        },
+        {
+            "type": "Text",
+            "props": {
+                "content": "¡En Toyota ya vivimos la movilidad sostenible! Te explicamos de qué se trata y como la promovemos, con nuestros vehículos y en nuestra filosofía.\n",
+                "level": "h4",
+                "size": "lg",
+                "align": "center",
+                "className": "custom0004",
+                "customCss": "top:20px;\nmargin-bottom:50px !important;\nmargin:50px;\nfont-weight: 400;",
+                "widthUnit": "px",
+                "maxWidthValue": 700,
+                "maxWidthUnit": "px",
+                "minWidthUnit": "px",
+                "textColor": "#000000",
+                "id": "Text-2b6e677d-4add-41b4-985b-70429ff718d0"
+            }
+        },
+        {
+            "type": "Video",
+            "props": {
+                "url": "https://www.youtube.com/embed/2DO4HXhb5RI?si=AzVl9y7bpemRARjv",
+                "width": 100,
+                "widthUnit": "%",
+                "maxWidth": 900,
+                "height": 315,
+                "maxHeight": 600,
+                "className": "video-00414",
+                "customCss": "margin-top: 50px;\n",
+                "id": "Video-aa8d9586-34d6-42a9-bd09-26249538add1"
+            }
+        },
+        {
+            "type": "Text",
+            "props": {
+                "content": "La movilidad sostenible es una realidad en Toyota. Te mostramos cómo nuestros automóviles y valores\ncorporativos contribuyen a un entorno más limpio y seguro.\n",
+                "level": "h3",
+                "size": "lg",
+                "align": "center",
+                "className": "text-001",
+                "customCss": "margin-top:30px !important;\nmargin-bottom: 30px !important;",
+                "widthUnit": "px",
+                "maxWidthValue": 700,
+                "maxWidthUnit": "px",
+                "minWidthUnit": "px",
+                "textColor": "#000000",
+                "id": "Text-145f9d30-1730-497f-aab0-b77022c0a4a4"
+            }
+        },
+        {
+            "type": "Text",
+            "props": {
+                "content": "En Toyota, entendemos que la movilidad sostenible transforma nuestro futuro, creando una sociedad más eficiente y ecológica. ¡Muévete con nosotros!",
+                "level": "h4",
+                "size": "lg",
+                "align": "center",
+                "className": "custom0004",
+                "customCss": "top:20px;\nmargin-top:30px !important;\nmargin-bottom: 80px !important;\nfont-weight: 400;",
+                "widthUnit": "px",
+                "maxWidthValue": 700,
+                "maxWidthUnit": "px",
+                "minWidthUnit": "px",
+                "textColor": "#000000",
+                "id": "Text-8935ea70-c251-4bc3-bbfd-b343712fd9cb"
+            }
+        },
+        {
+            "type": "Video",
+            "props": {
+                "url": "https://www.youtube.com/embed/tS1E6HPi_9o?si=6YtKXgcayCAj4KWF",
+                "width": 100,
+                "widthUnit": "%",
+                "maxWidth": 900,
+                "height": 500,
+                "maxHeight": 600,
+                "className": "video-00414",
+                "customCss": "margin-top: 50px !important;\nmargin-bottom: 50px !important;\n",
+                "id": "Video-2ae0f2b6-1081-4a3e-b076-c831fab5ebfc"
+            }
+        }
+    ],
+    "zones": {}
+}

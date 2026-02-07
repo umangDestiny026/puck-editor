@@ -2477,6 +2477,21 @@ function Editor() {
   const [mode, setMode] = useState("edit");
   const [isPanelOpen, setIsPanelOpen] = React.useState(false);
 
+  React.useEffect(() => {
+    const handleMessage = (event) => {
+      if (event.data?.type === "LOAD_PUCK_DATA") {
+        console.log("Umang Received from Angular:", event.data.payload);
+        setPuckData(event.data.payload);
+      }
+    };
+
+    window.addEventListener("message", handleMessage);
+
+    return () => {
+      window.removeEventListener("message", handleMessage);
+    };
+  }, []);
+
   const handleImportJSON = (event) => {
     const file = event.target.files[0];
 
