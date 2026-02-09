@@ -166,6 +166,13 @@ const TabsRenderer = ({ tabs, activeTabIndex, className, customCss }) => {
 };
 
 const config = {
+  overrides: {
+    ui: {
+      publishButton: {
+        label: "Save",
+      },
+    },
+  },
   components: {
     Text: {
       label: "📝 Text",
@@ -2471,9 +2478,9 @@ const config = {
 function Editor() {
   const { page } = useParams();
 
-  const saved = JSON.parse(localStorage.getItem(`puck-${page}`)) || initialData;
+  // const saved = JSON.parse(localStorage.getItem(`puck-${page}`)) || initialData;
 
-  const [puckData, setPuckData] = useState(saved);
+  const [puckData, setPuckData] = useState(initialData);
   const [mode, setMode] = useState("edit");
   const [isPanelOpen, setIsPanelOpen] = React.useState(false);
 
@@ -2532,7 +2539,7 @@ function Editor() {
 
   return (
     <>
-      <div style={{ display: "flex", justifyContent: "space-between", backgroundColor: "#000", padding: "10px 20px" }}>
+      {/* <div style={{ display: "flex", justifyContent: "space-between", backgroundColor: "#000", padding: "10px 20px" }}>
         <div style={{ margin: "10px", display: "flex", gap: "10px", alignItems: "center" }}>
 
           {
@@ -2611,7 +2618,7 @@ function Editor() {
             Default Template
           </button>
         </div>
-      </div>
+      </div> */}
 
       {isPanelOpen && (
         <TemplateDrawer
@@ -2648,10 +2655,15 @@ function Editor() {
         <Puck
           key={JSON.stringify(puckData)}
           config={config}
+          // overrides={{
+          //   ui: {
+          //     publishButton: { label: "Save" }
+          //   }
+          // }}
           data={puckData}
           onPublish={(data) => {
             setPuckData(data);   // keep latest version
-            localStorage.setItem("puck-page", JSON.stringify(data));
+            // localStorage.setItem("puck-page", JSON.stringify(data));
             window.parent.postMessage(
               { type: "PUCK_PUBLISHED", payload: data },
               "*"
