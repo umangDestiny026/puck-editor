@@ -1,5 +1,5 @@
+import { DropZone } from "@puckeditor/core";
 import React from "react";
-import { DropZone } from "@measured/puck";
 
 export default function PuckForm({
   submitLabel,
@@ -15,12 +15,10 @@ export default function PuckForm({
 
     const formData = new FormData(e.target);
     const values = {};
-
-    console.log("Umang formData => ", formData, " Umang Values", values);
     
-    for (let [key, value] of formData.entries()) {
+    formData.forEach((value, key) => {
       values[key] = value;
-    }
+    });
 
     try {
       const fn = new Function(

@@ -1,179 +1,31 @@
-import { BrowserRouter, Routes, Route, Link, useParams } from "react-router-dom";
-import { DropZone, Puck, Render } from "@measured/puck";
-import "@measured/puck/puck.css";
-import MainSlider from "./component/MainSlider";
-import React, { useState, useMemo } from "react";
-import { defaultTemplate } from "./Templates/template";
-import TemplateDrawer from "./Templates/Drawer";
-import PuckInput from "./component/Input";
-import PuckCheckbox from "./component/Checkbox";
-import PuckDatePicker from "./component/DatePicker";
-import PuckDropdown from "./component/Dropdown";
-import PuckSearchableDropdown from "./component/SearchDropdown";
-import PuckRadioGroup from "./component/RadioBtn";
-import PuckForm from "./component/Form";
+import { DropZone, RichTextMenu } from "@puckeditor/core";
+import Superscript from "@tiptap/extension-superscript";
+import { Superscript as SuperscriptIcon } from "lucide-react";
+import MainSlider from "./app/component/MainSlider";
+import PuckInput from "./app/component/Input";
+import PuckCheckbox from "./app/component/Checkbox";
+import PuckDatePicker from "./app/component/DatePicker";
+import PuckDropdown from "./app/component/Dropdown";
+import PuckSearchableDropdown from "./app/component/SearchDropdown";
+import PuckRadioGroup from "./app/component/RadioBtn";
+import PuckForm from "./app/component/Form";
+import TabsRenderer from "./app/component/Tab";
 
-
-const initialData = { content: [] };
-
-// const TabsRenderer = ({ tabs, activeTabIndex, className, customCss }) => {
-//   const [activeTab, setActiveTab] = React.useState(activeTabIndex);
-
-//   // 🔥 IMPORTANT: sync with editor changes
-//   React.useEffect(() => {
-//     setActiveTab(activeTabIndex);
-//   }, [activeTabIndex]);
-
-//   return (
-//     <div className={`puck-tabs ${className || ""}`}>
-
-//       {customCss && <style>{customCss}</style>}
-
-//       {/* ======= TAB BUTTONS (VIEW ONLY IN PREVIEW) ======= */}
-//       <div style={{ display: "flex", gap: "8px", marginBottom: "12px" }}>
-//         {tabs.map((tab, index) => (
-//           <button
-//             key={index}
-//             type="button"
-//             onClick={() => setActiveTab(index)}
-//             style={{
-//               padding: "8px 12px",
-//               border: "1px solid #ddd",
-//               background: activeTab === index ? "#e6f0ff" : "#f5f5f5",
-//               cursor: "pointer",
-//             }}
-//           >
-//             {tab.icon} {tab.label}
-//           </button>
-//         ))}
-//       </div>
-
-//       {/* ======= TAB CONTENT WITH DROPZONES ======= */}
-//       <div>
-//         {tabs.map((tab, index) => {
-//           const isActive = index === activeTab;
-
-//           return (
-//             <div
-//               key={index}
-//               style={{
-//                 display: isActive ? "block" : "none",
-//                 minHeight: "150px",
-//                 border: "1px dashed #ddd",
-//                 padding: "12px",
-//               }}
-//             >
-//               <div style={{ marginBottom: "10px", color: "#555" }}>
-//                 {tab.defaultContent}
-//               </div>
-
-//               <DropZone zone={`tab-${index}`} />
-//             </div>
-//           );
-//         })}
-//       </div>
-//     </div>
-//   );
-// };
-
-const TabsRenderer = ({ tabs, activeTabIndex, className, customCss }) => {
-  const [activeTab, setActiveTab] = React.useState(activeTabIndex);
-  const uniqueClass = `tab-${Math.random().toString(36).substr(2, 9)}`;
-
-  React.useEffect(() => {
-    setActiveTab(activeTabIndex);
-  }, [activeTabIndex]);
-
-  return (
-    <div className={`puck-tabs ${className || ""}`}>
-
-      {customCss && <style>{`.${uniqueClass} { ${customCss} }`}</style>}
-
-      <div
-        style={{
-          display: "flex",
-          borderBottom: "1px solid #e5e7eb",
-          marginBottom: "16px",
-          gap: "24px",
-        }}
-      >
-        {tabs.map((tab, index) => {
-          const isActive = index === activeTab;
-
-          return (
-            <button
-              key={index}
-              type="button"
-              onClick={() => setActiveTab(index)}
-              style={{
-                background: "none",
-                border: "none",
-                padding: "10px 4px",
-                fontSize: "14px",
-                color: isActive ? "#111827" : "#6b7280",
-                fontWeight: isActive ? "600" : "400",
-                cursor: "pointer",
-                position: "relative",
-              }}
-            >
-              {tab.icon && <span style={{ marginRight: "6px" }}>{tab.icon}</span>}
-              {tab.label}
-
-              {isActive && (
-                <span
-                  style={{
-                    position: "absolute",
-                    bottom: "-1px",
-                    left: 0,
-                    width: "100%",
-                    height: "2px",
-                    background: "#111827",
-                  }}
-                />
-              )}
-            </button>
-          );
-        })}
-      </div>
-
-      {/* ======= TAB CONTENT WITH DROPZONES ======= */}
-      <div>
-        {tabs.map((tab, index) => {
-          const isActive = index === activeTab;
-
-          return (
-            <div
-              key={index}
-              style={{
-                display: isActive ? "block" : "none",
-                minHeight: "150px",
-                padding: "8px 0",
-              }}
-            >
-              {tab.defaultContent && (
-                <div style={{ marginBottom: "10px", color: "#555" }}>
-                  {tab.defaultContent}
-                </div>
-              )}
-
-              <DropZone zone={`tab-${index}`} />
-            </div>
-          );
-        })}
-      </div>
-    </div>
-  );
-};
-
-const config = {
-  overrides: {
-    ui: {
-      publishButton: {
-        label: "Save",
-      },
+export const config = {
+  categories: {
+    typography: {
+      components: ["Text", "Image", "Video", "Button"],
     },
+    layout: {
+      components: ["Grid", "Flex", "Accordion", "Tabs"],
+    },
+    Form: {
+      components: ["Form", "Input", "Checkbox", "DatePicker", "Dropdown", "SearchableDropdown", "RadioGroup"],
+    }
   },
+
   components: {
+    // Simple text block (baseline comparison)
     Text: {
       label: "📝 Text",
       fields: {
@@ -492,27 +344,9 @@ const config = {
         borderRadius: 0,
       },
 
-      render: ({
-        sourceType,
-        image,
-        alt,
-        align,
-        className,
-        customCss,
-
-        widthValue,
-        widthUnit,
-        maxWidthValue,
-        maxWidthUnit,
-        heightValue,
-        heightUnit,
-        maxHeightValue,
-        maxHeightUnit,
-
-        objectFit,
-        objectPosition,
-        overflow,
-        borderRadius,
+      render: ({ sourceType, image, alt, align, className, customCss,
+        widthValue, widthUnit, maxWidthValue, maxWidthUnit, heightValue, heightUnit, maxHeightValue, maxHeightUnit,
+        objectFit, objectPosition, overflow, borderRadius,
       }) => {
         const wrapperStyle = {
           textAlign: align,
@@ -1029,7 +863,7 @@ const config = {
             </style>
 
             <DropZone
-              id={gridId}
+              // id={gridId}
               style={{
                 display: "grid",
                 gridTemplateColumns: `repeat(${columns || 1}, 1fr)`,
@@ -1156,7 +990,7 @@ const config = {
             </style>
 
             <DropZone
-              id={flexId}
+              // id={flexId}
               zone="flex-zone"
               className={`${className} ${flexId}`}
               style={{
@@ -1228,22 +1062,6 @@ const config = {
             { label: "Left", value: "left" },
             { label: "Right", value: "right" },
           ],
-        },
-
-        items: {
-          type: "array",
-          label: "Accordion items",
-          arrayFields: {
-            title: { type: "text", label: "Title" },
-
-            description: {
-              type: "textarea",
-              label: "Description",
-              contentEditable: true,
-            },
-          },
-
-          getItemSummary: (item) => item.title || "Accordion item",
         },
       },
 
@@ -1343,13 +1161,200 @@ const config = {
       },
     },
 
+    Carousel: {
+      label: "🎞️ Carousel",
+
+      fields: {
+        slides: {
+          type: "array",
+          label: "Slides",
+          arrayFields: {
+            imageMobile: { type: "text", label: "Mobile image URL" },
+            imageDesktop: { type: "text", label: "Desktop image URL" },
+            title: { type: "text", label: "Title" },
+            description: { type: "textarea", label: "Description" },
+            link: { type: "text", label: "Link (optional)" },
+            videoUrl: { type: "text", label: "Video URL (optional)" },
+
+            showButton: {
+              type: "radio",
+              label: "Show button?",
+              options: [
+                { label: "Yes", value: true },
+                { label: "No", value: false },
+              ],
+            },
+
+            buttonLink: { type: "text", label: "Button link" },
+          },
+        },
+
+        /* ===== SLIDER CONFIG (maps to your defaultConfig) ===== */
+
+        slidesPerView: {
+          type: "number",
+          label: "Slides per view",
+        },
+
+        spaceBetween: {
+          type: "number",
+          label: "Space between slides",
+        },
+
+        loop: {
+          type: "radio",
+          label: "Loop slider?",
+          options: [
+            { label: "Yes", value: true },
+            { label: "No", value: false },
+          ],
+        },
+
+        autoplayDelay: {
+          type: "number",
+          label: "Autoplay delay (ms)",
+        },
+
+        paginationClickable: {
+          type: "radio",
+          label: "Clickable dots?",
+          options: [
+            { label: "Yes", value: true },
+            { label: "No", value: false },
+          ],
+        },
+
+        showNavigationArrows: {
+          type: "radio",
+          label: "Show navigation arrows?",
+          options: [
+            { label: "Yes", value: true },
+            { label: "No", value: false },
+          ],
+        },
+
+        isPlayicon: {
+          type: "radio",
+          label: "Show play/pause icon?",
+          options: [
+            { label: "Yes", value: true },
+            { label: "No", value: false },
+          ],
+        },
+
+        alignBottom: {
+          type: "radio",
+          label: "Align text bottom?",
+          options: [
+            { label: "Yes", value: true },
+            { label: "No", value: false },
+          ],
+        },
+
+        height: {
+          type: "text",
+          label: "Container height (e.g. 50vh or 630px)",
+        },
+
+        minHeight: {
+          type: "text",
+          label: "Container min-height (e.g. 630px)",
+        },
+      },
+
+      defaultProps: {
+        slides: [],
+        slidesPerView: 1,
+        spaceBetween: 0,
+        loop: true,
+        autoplayDelay: 3000,
+        paginationClickable: true,
+        showNavigationArrows: false,
+        isPlayicon: true,
+        alignBottom: false,
+        height: "50vh",
+        minHeight: "400px",
+      },
+
+      render: ({
+        slides,
+        slidesPerView,
+        spaceBetween,
+        loop,
+        autoplayDelay,
+        paginationClickable,
+        showNavigationArrows,
+        isPlayicon,
+        alignBottom,
+        height,
+        minHeight,
+      }) => {
+        const sliderConfig = {
+          slidesPerView,
+          spaceBetween,
+          loop,
+          autoplay: { delay: autoplayDelay },
+          pagination: { clickable: paginationClickable },
+          navigation: true,
+        };
+
+        return (
+          <MainSlider
+            slides={slides}
+            sliderConfig={sliderConfig}
+            alignBottom={alignBottom}
+            isPlayicon={isPlayicon}
+            showNavigationArrows={showNavigationArrows}
+            containerProps={{
+              height,
+              minHeight,
+            }}
+          />
+        );
+      },
+    },
+
     Tabs: {
       label: "🏷️ Tabs",
 
-      resolveFields: (data) => {
+      resolveFields: (data: any) => {
         const tabs = data.props?.tabs || [];
 
         const baseFields = {
+          className: { type: "text", label: "Custom class" },
+          customCss: { type: "textarea", label: "Custom CSS" },
+          subTitle: {
+            type: "text",
+            label: "Section Title",
+          },
+          title: {
+            type: "text",
+            label: "Section Title",
+          },
+
+          theme: {
+            type: "select",
+            label: "Theme (Light / Dark)",
+            options: [
+              { label: "Dark", value: "dark" },
+              { label: "Light", value: "light" },
+            ],
+          },
+
+          backgroundColor: {
+            type: "text",
+            label: "Background color (CSS value)",
+          },
+          TabItemPosition: {
+            type: "select",
+            label: "Tab item position",
+            options: [
+              { label: "Left", value: "start" },
+              { label: "Center", value: "center" },
+              { label: "Right", value: "end" },
+            ],
+          },
+
           tabs: {
             type: "array",
             label: "Tabs",
@@ -1368,11 +1373,9 @@ const config = {
             },
           },
 
-          className: { type: "text", label: "Custom class" },
-          customCss: { type: "textarea", label: "Custom CSS" },
+
         };
 
-        // ✅ Dynamically build activeTab options from tabs length
         if (tabs.length > 0) {
           return {
             ...baseFields,
@@ -1380,7 +1383,7 @@ const config = {
             activeTabIndex: {
               type: "select",
               label: "Active tab (for editing)",
-              options: tabs.map((tab, index) => ({
+              options: tabs.map((tab: any, index: any) => ({
                 label: tab.label || `Tab ${index + 1}`,
                 value: index,
               })),
@@ -1392,6 +1395,11 @@ const config = {
       },
 
       defaultProps: {
+        title: "Descubre Toyota",
+        subTitle: "Sub title",
+        TabItemPosition: "center",
+        theme: "light",
+        backgroundColor: "#ffffff",
         tabs: [
           {
             label: "Tab 1",
@@ -1407,109 +1415,12 @@ const config = {
           },
         ],
         activeTabIndex: 0,
-        className: "",
+        className: "tab-content-00",
         customCss: "",
       },
 
-      render: (props) => {
+      render: (props: any) => {
         return <TabsRenderer {...props} />;
-      },
-    },
-
-    Carousel: {
-      label: "🎞️ Carousel",
-
-      fields: {
-        /* -------- SLIDES -------- */
-        slides: {
-          type: "array",
-          label: "Slides",
-          arrayFields: {
-            imageMobile: { type: "text", label: "Mobile image URL" },
-            imageDesktop: { type: "text", label: "Desktop image URL" },
-
-            title: { type: "text", label: "Title" },
-            description: { type: "textarea", label: "Description" },
-
-            dotText: {
-              type: "textarea",
-              label: "Dot label text (optional)",
-            },
-
-            link: { type: "text", label: "Link (optional)" },
-            videoUrl: { type: "text", label: "Video URL (optional)" },
-
-            showButton: {
-              type: "radio",
-              label: "Show button?",
-              options: [
-                { label: "Yes", value: true },
-                { label: "No", value: false },
-              ],
-            },
-
-            buttonLink: { type: "text", label: "Button link" },
-          },
-        },
-
-        /* -------- SLIDER CONTROLS -------- */
-        showDots: {
-          type: "radio",
-          label: "Show pagination dots?",
-          options: [
-            { label: "Yes", value: true },
-            { label: "No", value: false },
-          ],
-        },
-
-        showArrows: {
-          type: "radio",
-          label: "Show navigation arrows?",
-          options: [
-            { label: "Yes", value: true },
-            { label: "No", value: false },
-          ],
-        },
-
-        autoplayDelay: {
-          type: "number",
-          label: "Autoplay delay (ms)",
-        },
-
-        alignBottom: {
-          type: "radio",
-          label: "Align text bottom?",
-          options: [
-            { label: "Yes", value: true },
-            { label: "No", value: false },
-          ],
-        },
-      },
-
-      defaultProps: {
-        slides: [],
-        showDots: true,
-        showArrows: false,
-        autoplayDelay: 3000,
-        alignBottom: false,
-      },
-
-      render: ({
-        slides,
-        showDots,
-        showArrows,
-        autoplayDelay,
-        alignBottom,
-      }) => {
-        return (
-          <MainSlider
-            slides={slides}
-            showDots={showDots}        // ✅ correct
-            showArrows={showArrows}    // ✅ correct
-            autoplayDelay={autoplayDelay} // ✅ correct
-            alignBottom={alignBottom}
-          />
-        );
       },
     },
 
@@ -1720,9 +1631,9 @@ const config = {
         const wrapperClass = className || "";
         const uniqueClass = `section-${Math.random().toString(36).substr(2, 9)}`;
 
-        const containerStyle = {
+        const containerStyle: React.CSSProperties = {
           display: "flex",
-          flexDirection: isLeft ? "row" : "row-reverse",
+          flexDirection: (isLeft ? "row" : "row-reverse") as React.CSSProperties["flexDirection"],
           alignItems: "center",
           gap: `${gap}px`,
           paddingTop: `${paddingY}px`,
@@ -1938,9 +1849,9 @@ const config = {
 
         // card container flex
         const isHorizontal = imageAlign === "left" || imageAlign === "right";
-        const containerStyle = {
+        const containerStyle: React.CSSProperties = {
           display: isHorizontal ? "flex" : "block",
-          flexDirection: imageAlign === "right" ? "row-reverse" : "row",
+          flexDirection: (imageAlign === "right" ? "row-reverse" : "row") as React.CSSProperties['flexDirection'],
           width: cardWidth ? `${cardWidth}px` : "100%",
           maxWidth: cardMaxWidth ? `${cardMaxWidth}px` : "100%",
           padding: `${cardPadding}px`,
@@ -2051,7 +1962,7 @@ const config = {
         onChangeCode: "value => console.log(value)",
       },
 
-      render: (props) => {
+      render: (props: any) => {
         const uniqueClass = `input-${Math.random()
           .toString(36)
           .substr(2, 9)}`;
@@ -2117,7 +2028,7 @@ const config = {
         onChangeCode: "checked => console.log(checked)",
       },
 
-      render: (props) => {
+      render: (props: any) => {
         const uniqueClass = `checkbox-${Math.random()
           .toString(36)
           .substr(2, 9)}`;
@@ -2186,7 +2097,7 @@ const config = {
         onChangeCode: "date => console.log(date)",
       },
 
-      render: (props) => {
+      render: (props: any) => {
         const uniqueClass = `datepicker-${Math.random()
           .toString(36)
           .substr(2, 9)}`;
@@ -2260,7 +2171,7 @@ const config = {
         defaultValue: "",
       },
 
-      render: (props) => {
+      render: (props: any) => {
         const uniqueClass = `dropdown-${Math.random()
           .toString(36)
           .substr(2, 9)}`;
@@ -2334,7 +2245,7 @@ const config = {
         ],
       },
 
-      render: (props) => {
+      render: (props: any) => {
         const uniqueClass = `searchdd-${Math.random()
           .toString(36)
           .substr(2, 9)}`;
@@ -2409,7 +2320,7 @@ const config = {
         defaultValue: "",
       },
 
-      render: (props) => {
+      render: (props: any) => {
         const uniqueClass = `radiogroup-${Math.random()
           .toString(36)
           .substr(2, 9)}`;
@@ -2455,7 +2366,7 @@ const config = {
         onSubmitCode: "(values) => console.log(values)",
       },
 
-      render: (props) => {
+      render: (props: any) => {
         const uniqueClass = `form-${Math.random()
           .toString(36)
           .substr(2, 9)}`;
@@ -2466,228 +2377,52 @@ const config = {
       },
     },
 
-  },
+    RichTextBlock: {
+      label: "Rich Text",
+      fields: {
+        content: {
+          type: "richtext",
 
-  root: {
-    render: ({ children }) => {
-      return <div>{children}</div>;
+          // Add custom TipTap extension
+          tiptap: {
+            extensions: [Superscript],
+            selector: ({ editor }) => ({
+              isSuperscript: editor?.isActive("superscript"),
+              canSuperscript: editor
+                ?.can()
+                .chain()
+                .toggleSuperscript()
+                .run(),
+            }),
+          },
+
+          // Custom toolbar with a Superscript control
+          renderMenu: ({ children, editor, editorState }) => (
+            <RichTextMenu>
+              {children}
+
+              <RichTextMenu.Group>
+                <RichTextMenu.Control
+                  title="Superscript"
+                  icon={<SuperscriptIcon size={16} />}
+                  onClick={() =>
+                    editor?.chain().focus().toggleSuperscript().run()
+                  }
+                  active={editorState?.isSuperscript}
+                  disabled={!editorState?.canSuperscript}
+                />
+              </RichTextMenu.Group>
+            </RichTextMenu>
+          ),
+        },
+      },
+      render: ({ content }) => (
+        <div style={{ padding: 64, maxWidth: 700, margin: "0 auto" }}>
+          {content}
+        </div>
+      ),
     },
   },
 };
 
-function Editor() {
-  const { page } = useParams();
-
-  // const saved = JSON.parse(localStorage.getItem(`puck-${page}`)) || initialData;
-
-  const [puckData, setPuckData] = useState(initialData);
-  const [mode, setMode] = useState("edit");
-  const [isPanelOpen, setIsPanelOpen] = React.useState(false);
-
-  React.useEffect(() => {
-    const handleMessage = (event) => {
-      if (event.data?.type === "LOAD_PUCK_DATA") {
-        console.log("Umang Received from Angular:", event.data.payload);
-        setPuckData(event.data.payload);
-      }
-    };
-
-    window.addEventListener("message", handleMessage);
-
-    return () => {
-      window.removeEventListener("message", handleMessage);
-    };
-  }, []);
-
-  const handleImportJSON = (event) => {
-    const file = event.target.files[0];
-
-    if (!file) return;
-
-    const reader = new FileReader();
-
-    reader.onload = (e) => {
-      try {
-        const importedData = JSON.parse(e.target.result);
-
-        const mergedData = {
-          ...initialData,      // keep Puck defaults
-          ...importedData,     // override with your file
-          content: importedData.content || [] // make sure content exists
-        };
-
-        console.log("Merged data:", mergedData);
-        setPuckData(mergedData);
-      } catch (err) {
-        alert("Invalid JSON file");
-      }
-    };
-
-
-    reader.readAsText(file);
-  };
-
-
-  // switch to default template
-  const handelSwitchTemplate = (templateName) => {
-    if (templateName === "default") {
-      setPuckData(defaultTemplate);
-    }
-  };
-
-  console.log("Umang Data =>", puckData);
-
-  return (
-    <>
-      {/* <div style={{ display: "flex", justifyContent: "space-between", backgroundColor: "#000", padding: "10px 20px" }}>
-        <div style={{ margin: "10px", display: "flex", gap: "10px", alignItems: "center" }}>
-
-          {
-            mode === "edit" ? (
-              <button
-                onClick={() => setMode("preview")}
-                style={{
-                  padding: "8px 14px",
-                  borderRadius: "8px",
-                  border: mode === "preview" ? "1px solid #16a34a" : "1px solid #e5e7eb",
-                  background: mode === "preview" ? "#16a34a" : "#ebebeb",
-                  color: mode === "preview" ? "white" : "#111827",
-                  fontWeight: 500,
-                  cursor: "pointer",
-                  transition: "all 0.2s ease",
-                  boxShadow: mode === "preview" ? "0 1px 3px rgba(22,163,74,0.3)" : "none",
-                }}
-              >
-                👁️ Preview page
-              </button>
-            ) : (
-              <button
-                onClick={() => setMode("edit")}
-                style={{
-                  padding: "8px 14px",
-                  borderRadius: "8px",
-                  border: mode === "edit" ? "1px solid #2563eb" : "1px solid #e5e7eb",
-                  background: mode === "edit" ? "#2563eb" : "#f9fafb",
-                  color: mode === "edit" ? "white" : "#111827",
-                  fontWeight: 500,
-                  cursor: "pointer",
-                  transition: "all 0.2s ease",
-                  boxShadow: mode === "edit" ? "0 1px 3px rgba(37,99,235,0.3)" : "none",
-                }}
-              >
-                ✏️ Edit mode
-              </button>
-            )
-          }
-        </div>
-
-        <div style={{ paddingRight: "20px" }}>
-          <label
-            style={{
-              display: "inline-block",
-              padding: "8px 14px",
-              backgroundColor: "#2563eb",
-              color: "white",
-              borderRadius: "6px",
-              cursor: "pointer",
-              fontSize: "14px",
-              marginBottom: "12px",
-              margin: "10px"
-            }}
-          >
-            Import JSON
-            <input
-              type="file"
-              accept=".json"
-              onChange={handleImportJSON}
-              style={{ display: "none" }}
-            />
-          </label>
-
-          <button
-            onClick={() => setIsPanelOpen(true)}
-            style={{
-              padding: "8px 12px",
-              borderRadius: "6px",
-              border: "1px solid #ddd",
-              background: mode === "preview" ? "#16a34a" : "#fff",
-              color: mode === "preview" ? "white" : "black",
-              cursor: "pointer",
-            }}
-          >
-            Default Template
-          </button>
-        </div>
-      </div> */}
-
-      {isPanelOpen && (
-        <TemplateDrawer
-          isOpen={isPanelOpen}
-          onClose={() => setIsPanelOpen(false)}
-          onSelectTemplate={(name) => {
-            handelSwitchTemplate(name);
-            setIsPanelOpen(false);
-          }}
-        />
-      )}
-      {/* <Puck
-        key={JSON.stringify(puckData)}
-        config={config}
-        data={puckData}
-        onPublish={(data) => {
-          const item = JSON.stringify(data);
-          console.log(item);
-
-          localStorage.setItem('puck-page', item);
-          console.log("STORED IN LOCAL STORAGE");
-
-          // Send data to Angular parent window
-          window.parent.postMessage(
-            { type: "PUCK_PUBLISHED", payload: data },
-            "*"
-          );
-
-          console.log("PUCK PUBLISHED");
-        }}
-
-      /> */}
-      {mode === "edit" ? (
-        <Puck
-          key={JSON.stringify(puckData)}
-          config={config}
-          // overrides={{
-          //   ui: {
-          //     publishButton: { label: "Save" }
-          //   }
-          // }}
-          data={puckData}
-          onPublish={(data) => {
-            setPuckData(data);   // keep latest version
-            // localStorage.setItem("puck-page", JSON.stringify(data));
-            window.parent.postMessage(
-              { type: "PUCK_PUBLISHED", payload: data },
-              "*"
-            );
-          }}
-        />
-      ) : (
-        <div>
-          <Render
-            data={puckData}
-            config={config}
-          />
-        </div>
-      )}
-
-    </>
-  );
-}
-
-export default function App() {
-  return (
-    <>
-      <Editor />
-    </>
-
-  );
-}
+export default config;

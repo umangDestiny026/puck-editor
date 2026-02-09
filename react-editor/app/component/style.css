@@ -1,0 +1,324 @@
+.custom-slider-container {
+  position: relative;
+  width: 100%;
+  margin-bottom: -5px;
+}
+
+.custom-slider-container .swiper {
+  height: 100%;
+}
+
+.top-overlay,
+.bottom-overlay {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 100px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.low-slider-image {
+  object-position: center;
+}
+
+.top-overlay {
+  top: 0;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), transparent);
+}
+
+.bottom-overlay {
+  bottom: 0;
+  height: auto;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent);
+}
+
+.custom-slider-container .swiper-wrapper {
+  @media (min-width: 1249px) {
+    height: 100%;
+  }
+}
+.slide-content {
+  position: relative;
+  display: block;
+  height: 100%;
+}
+
+.slide-image {
+  width: 100%;
+  height: 100%;
+  min-height: auto;
+  object-fit: cover;
+}
+
+.slide-overlay {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  color: #fff;
+  z-index: 10;
+  top: auto;
+}
+.slide-overlay h6 {
+  margin-top: 102px;
+}
+
+.slide-title {
+  font-size: 56px;
+  line-height: 56px;
+  font-weight: 400;
+  font-family: var(--font-ToyotaType-Regular);
+}
+
+.slide-description {
+  font-size: 22px;
+  font-weight: 400;
+  font-family: var(--font-ToyotaType-Regular);
+}
+
+.slide-button {
+  width: 100%;
+  height: 100%;
+  max-width: 175px;
+  background-color: #d42224 !important;
+  max-height: 40px;
+  margin: 0 auto;
+  padding: 10px 24px !important;
+}
+
+@media (min-width: 1250px) {
+  .slide-button {
+    min-width: 18.125rem;
+    min-height: 3.125rem;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.25rem;
+    margin-bottom: 0;
+  }
+}
+
+.custom-arrow {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background-color: rgba(0, 0, 0, 1);
+  color: #fff;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 24px;
+  border-radius: 50%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.swiper-button-prev.custom-arrow {
+  background-image: url("https://toyota.com.co/images/arrow-simple-prev.svg");
+  left: 10%;
+  display: none;
+}
+
+.swiper-button-next.custom-arrow {
+  background-image: url("https://toyota.com.co/images/arrow-simple-next.svg");
+  right: 10%;
+  display: none;
+}
+
+.play-pause-btn {
+  width: 3.4375rem;
+  position: absolute;
+  bottom: 85px;
+  right: 10%;
+  background-color: #fff;
+  color: #1e1e1e;
+  border: none;
+  line-height: 10px;
+  padding: 10px 15px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 16px;
+  z-index: 1;
+}
+
+.swiper-pagination-bullet {
+  background: #fff;
+  opacity: 0.5;
+}
+
+.swiper-pagination-bullet-active {
+  background: #ff0000;
+  opacity: 1;
+}
+
+/* Contenedor de la paginación */
+.custom-pagination {
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  bottom: 6px !important;
+  top: unset !important;
+  left: 0px;
+  right: 0px;
+  padding: 0px;
+  width: 100%;
+  height: 6px !important;
+  /* Altura de las barras */
+  z-index: 10;
+  background: transparent;
+  /* Color base para las barras inactivas */
+  overflow: hidden;
+  gap: 15px;
+  border: 0px !important;
+}
+
+/* Barras individuales */
+.custom-pagination .swiper-pagination-bullet {
+  height: 6px;
+  flex: 1;
+  /* Todas las barras ocupan el mismo espacio */
+  height: 100%;
+  background: #58595b;
+  /* Color inactivo */
+  transition: background 0.3s ease;
+  /* Animación de transición */
+  border-radius: 40px;
+  /* Sin bordes redondeados */
+  margin: 0px !important;
+  opacity: 1;
+  border: 0px !important;
+}
+
+/* Barra activa */
+.custom-pagination .swiper-pagination-bullet-active {
+  background: #fff;
+  /* Color activo */
+  border: 0px !important;
+}
+
+@media (width < 768px) {
+  .custom-pagination .swiper-pagination-bullet {
+    max-width: 45.4px;
+    max-height: 3px;
+    margin-bottom: 21px !important;
+  }
+
+  .custom-pagination {
+    justify-content: center;
+    bottom: 21px !important;
+  }
+
+  .slide-button {
+    max-width: 175px;
+    max-height: 40px;
+    margin-bottom: 83px;
+  }
+
+  .play-pause-btn {
+    bottom: 82px !important;
+    right: 15px;
+  }
+}
+
+@media (width < 1250px) {
+  .slide-title {
+    font-size: 32px;
+    line-height: 41.6px;
+    font-weight: 400;
+    font-family: var(--font-ToyotaType-Regular);
+  }
+
+  .slide-description {
+    font-size: 18px;
+    line-height: 25.67px;
+    font-weight: 400;
+    font-family: var(--font-ToyotaType-Regular);
+  }
+
+  .slide-container {
+    justify-self: flex-start;
+    margin-bottom: auto;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .slide-overlay {
+    width: 100%;
+    height: 100%;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 2rem 0 4rem;
+  }
+
+  @media (max-width: 768px) {
+    .slide-overlay h6 {
+      margin-top: 23px;
+    }
+
+    .slide-overlay {
+      width: 100%;
+      height: 100%;
+      bottom: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 0;
+    }
+
+    .custom-slider-container {
+      /* height: 610px; */
+    }
+  }
+  .custom-arrow {
+    display: none;
+  }
+
+  .custom-pagination {
+    bottom: 21px !important;
+    width: 70% !important;
+    height: 3px !important;
+    margin: auto;
+  }
+
+  .play-pause-btn {
+    bottom: 64px;
+  }
+}
+
+.responsive-iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  max-width: 100%;
+}
+
+@media (min-width: 1250px) {
+  .responsive-iframe {
+    height: 960px !important ;
+  }
+}
+@media (min-width: 768px) and (max-width: 800px) {
+  .slide-button {
+    margin-bottom: 80px;
+  }
+}
+
+@media (min-width: 801px) and (max-width: 980px) {
+  .slide-button {
+    margin-bottom: 30px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .slide-overlay h6 {
+    margin-top: 25px;
+    font-size: 36px;
+  }
+}
