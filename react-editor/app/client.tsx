@@ -1,7 +1,7 @@
 "use client";
 
 import type { Data } from "@puckeditor/core";
-import { Puck } from "@puckeditor/core";
+import { Puck, ActionBar } from "@puckeditor/core";
 import { createAiPlugin } from "@puckeditor/plugin-ai";
 import { useEffect, useState } from "react";
 
@@ -54,7 +54,7 @@ export function Client() {
       data={puckData}
       onPublish={(data) => {
         setPuckData(data);   // keep latest version
-        // localStorage.setItem("puck-page", JSON.stringify(data));
+        
         window.parent.postMessage(
           { type: "PUCK_PUBLISHED", payload: data },
           "*"

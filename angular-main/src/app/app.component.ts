@@ -35,7 +35,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
     iframe.contentWindow.postMessage(
       { type: "LOAD_PUCK_DATA", payload: data },
-      "http://localhost:3000/"   // Chnage this url of genera url
+      "*"   // Chnage this url of genera url
     );
   }
 
