@@ -1,4 +1,4 @@
-import { DropZone, RichTextMenu } from "@puckeditor/core";
+import { DropZone, Render, RichTextMenu } from "@puckeditor/core";
 import Superscript from "@tiptap/extension-superscript";
 import { Superscript as SuperscriptIcon } from "lucide-react";
 import MainSlider from "./app/component/MainSlider";
@@ -10,14 +10,18 @@ import PuckSearchableDropdown from "./app/component/SearchDropdown";
 import PuckRadioGroup from "./app/component/RadioBtn";
 import PuckForm from "./app/component/Form";
 import TabsRenderer from "./app/component/Tab";
+import { Flex, Link, Text, View } from "@aws-amplify/ui-react";
 
 export const config = {
   categories: {
+    Navigation: {
+      components: ["Footer"],
+    },
     typography: {
       components: ["Text", "Image", "Video", "Button"],
     },
     layout: {
-      components: ["Grid", "Flex", "Accordion", "Tabs"],
+      components: ["Grid", "Flex", "Flexbox", "Accordion", "Tabs"],
     },
     Form: {
       components: ["Form", "Input", "Checkbox", "DatePicker", "Dropdown", "SearchableDropdown", "RadioGroup"],
@@ -196,6 +200,361 @@ export const config = {
           {customCss && <style>{`.${uniqueClass} { ${customCss} }`}</style>}
           {content}
         </Level>);
+      },
+    },
+
+    Footer: {
+      label: "🦶 Footer",
+
+      resolveFields: (data: any) => {
+        const baseFields = {
+          layout: {
+            type: "select",
+            label: "Footer layout",
+            options: [
+              { label: "Links only", value: "linksOnly" },
+              { label: "Info + Links", value: "infoAndLinks" },
+              { label: "Info + Links + Social", value: "infoAndLinksSocial" },
+            ],
+          },
+
+          columns: {
+            type: "array",
+            label: "Link columns",
+            itemLabel: "Column",
+            arrayFields: {
+              title: { type: "text", label: "Column title" },
+              links: {
+                type: "array",
+                label: "Links",
+                itemLabel: "Link",
+                arrayFields: {
+                  label: { type: "text", label: "Label" },
+                  href: { type: "text", label: "URL" },
+                },
+              },
+            },
+          },
+
+          backgroundColor: {
+            type: "text",
+            label: "Background color",
+          },
+
+          textColor: {
+            type: "text",
+            label: "Text color",
+          },
+
+          className: {
+            type: "text",
+            label: "Custom class",
+          },
+
+          customCss: {
+            type: "textarea",
+            label: "Custom CSS",
+          },
+        };
+
+        // -------- If layout = infoAndLinks --------
+        if (data.props.layout === "infoAndLinks") {
+          return {
+            ...baseFields,
+            infoTitle: {
+              type: "text",
+              label: "Info title",
+            },
+            infoText: {
+              type: "textarea",
+              label: "Info text",
+            },
+          };
+        }
+
+        // -------- If layout = infoAndLinksSocial --------
+        if (data.props.layout === "infoAndLinksSocial") {
+          return {
+            ...baseFields,
+            infoTitle: {
+              type: "text",
+              label: "Info title",
+            },
+            infoText: {
+              type: "textarea",
+              label: "Info text",
+            },
+            socialLinks: {
+              type: "array",
+              label: "Social links",
+              itemLabel: "Social link",
+              arrayFields: {
+                label: { type: "text", label: "Label" },
+                href: { type: "text", label: "URL" },
+                icon: { type: "text", label: "Icon URL (optional)" },
+              },
+            },
+          };
+        }
+
+        // Default (linksOnly)
+        return baseFields;
+      },
+
+      defaultProps: {
+        layout: "infoAndLinks",
+        columns: [
+          {
+            title: "Home",
+            links: [
+              { label: "Recordings", href: "#" },
+              { label: "Statistics", href: "#" },
+            ],
+          },
+          {
+            title: "About",
+            links: [
+              { label: "Recordings", href: "#" },
+              { label: "Statistics", href: "#" },
+            ],
+          },
+          {
+            title: "Company",
+            links: [
+              { label: "Recordings", href: "#" },
+              { label: "Statistics", href: "#" },
+            ],
+          },
+        ],
+        socialLinks: [
+          {
+            label: "Instagram",
+            icon: "https://example.com/home-icon.png",
+            href: "#",
+          },
+          {
+            label: "Whatsapp",
+            icon: "https://example.com/home-icon.png",
+            href: "#",
+          },
+        ],
+
+        infoTitle: "Puck Visual Editor",
+        infoText: "Build visually. Launch instantly.",
+
+        backgroundColor: "#ffffff",
+        textColor: "#000000",
+
+        className: "footer-001",
+        customCss: "",
+      },
+
+      render: ({
+        layout,
+        columns = [],
+        infoTitle,
+        socialLinks = [],
+        infoText,
+        backgroundColor,
+        textColor,
+        className,
+        customCss,
+      }) => {
+        const uniqueClass = `footer-${Math.random()
+          .toString(36)
+          .substr(2, 9)}`;
+
+        return (
+          <View
+            backgroundColor={backgroundColor}
+            color={textColor}
+            className={`${className || ""} ${uniqueClass}`}
+            padding="40px"
+          >
+            {customCss && (
+              <style>{`.${uniqueClass} { ${customCss} }`}</style>
+            )}
+
+            <Flex
+              direction="row"
+              wrap="wrap"
+              gap="40px"
+              marginBottom={"30px"}
+              justifyContent="space-between"
+            >
+              {(layout === "infoAndLinks" ||
+                layout === "infoAndLinksSocial") && (
+                  <View maxWidth="300px">
+                    <>
+                      {infoTitle && (
+                        <Text fontSize="20px" fontWeight="bold">
+                          {infoTitle}
+                        </Text>
+                      )}
+
+                      {infoText && (
+                        <Text fontSize="14px" marginTop="8px">
+                          {infoText}
+                        </Text>
+                      )}
+                    </>
+                    {/* <DropZone zone="text-zone" /> */}
+                  </View>
+                )}
+
+              {/* LINKS SECTION */}
+              <Flex direction="row" gap="40px" wrap="wrap">
+                {columns.map((col, i) => (
+                  <View key={i}>
+                    {col.title && (
+                      <Text fontWeight="bold" marginBottom="8px">
+                        {col.title}
+                      </Text>
+                    )}
+
+                    <Flex direction="column" gap="6px">
+                      {(col.links || []).map((link: any, j: any) => (
+                        <Link
+                          key={j}
+                          href={link.href || "#"}
+                          color={textColor}
+                        >
+                          {link.label}
+                        </Link>
+                      ))}
+                    </Flex>
+                  </View>
+                ))}
+              </Flex>
+              {layout === "infoAndLinksSocial" && socialLinks.length > 0 && (
+                <View minWidth="160px">
+                  <Text fontWeight="bold" marginBottom="8px">
+                    Social
+                  </Text>
+
+                  <Flex direction="column" gap="8px">
+                    {socialLinks.map((social, i) => (
+                      <Link
+                        key={i}
+                        href={social.href || "#"}
+                        color={textColor}
+                        display="flex"
+                        style={{
+                          alignItems: "center",
+                          gap: "8px"
+                        }}
+                      >
+                        {social.icon && (
+                          <img src={social.icon} className={`icon-${social.label}`} />
+                        )}
+                        {social.label}
+                      </Link>
+                    ))}
+                  </Flex>
+                </View>
+              )}
+
+            </Flex>
+            <DropZone zone="text-zone" />
+          </View>
+        );
+      },
+    },
+
+    Flexbox: {
+      label: "📦 Flexbox",
+      fields: {
+        className: { type: "text", label: "Custom class" },
+        customCss: { type: "textarea", label: "Custom CSS" },
+        direction: {
+          type: "select",
+          label: "Direction",
+          options: [
+            { label: "Row", value: "row" },
+            { label: "Column", value: "column" },
+          ],
+        },
+
+        justify: {
+          type: "select",
+          label: "Justify Content",
+          options: [
+            { label: "Start", value: "flex-start" },
+            { label: "Center", value: "center" },
+            { label: "End", value: "flex-end" },
+            { label: "Space Between", value: "space-between" },
+            { label: "Space Around", value: "space-around" },
+          ],
+        },
+
+        align: {
+          type: "select",
+          label: "Align Items",
+          options: [
+            { label: "Start", value: "flex-start" },
+            { label: "Center", value: "center" },
+            { label: "End", value: "flex-end" },
+            { label: "Stretch", value: "stretch" },
+          ],
+        },
+
+        gap: {
+          type: "number",
+          label: "Gap (px)",
+        },
+
+        items: {
+          type: "array",
+          label: "Content Blocks",
+          arrayFields: {},
+        },
+      },
+
+      defaultProps: {
+        className: "flexbox-001",
+        customCss: "",
+        direction: "row",
+        justify: "flex-start",
+        align: "center",
+        gap: 10,
+
+        items: [
+          {
+            type: "Text",
+            props: { content: "Text 1", level: "p" },
+          },
+          {
+            type: "Text",
+            props: { content: "Text 2", level: "p" },
+          },
+          {
+            type: "Text",
+            props: { content: "Text 3", level: "p" },
+          },
+        ],
+      },
+
+      render: ({ direction, justify, align, gap, items, className, customCss }) => {
+        const style = {
+          display: "flex",
+          flexDirection: direction,
+          justifyContent: justify,
+          alignItems: align,
+          gap: `${gap}px`,
+        };
+        const uniqueClass = `flexbox-${Math.random().toString(36).substr(2, 9)}`;
+
+        return (
+          <div style={style} className={`${className || ""} ${uniqueClass}`}>
+            {customCss && <style>{`.${uniqueClass} { ${customCss} }`}</style>}
+
+            {items?.map((item: any, index: number) => (
+              <>
+                <DropZone zone={`flex-item-${index}`} />
+              </>
+            ))}
+          </div>
+        );
       },
     },
 
@@ -1420,6 +1779,9 @@ export const config = {
       },
 
       render: (props: any) => {
+        const uniqueClass = `tab-${Math.random()
+          .toString(36)
+          .substr(2, 9)}`;
         return <TabsRenderer {...props} />;
       },
     },

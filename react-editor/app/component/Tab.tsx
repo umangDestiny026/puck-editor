@@ -4,9 +4,7 @@ import { useEffect, useState } from "react";
 import { Heading, Tabs, Text, View } from "@aws-amplify/ui-react";
 import "@aws-amplify/ui-react/styles.css";
 
-const TabsRenderer = ({ tabs, activeTabIndex, className, customCss, title, subTitle, TabItemPosition,
-    theme = "dark",
-    backgroundColor = "#111827", }) => {
+const TabsRenderer = ({ tabs, activeTabIndex, className, uniqueClass, customCss, title, subTitle, TabItemPosition, theme = "dark", backgroundColor = "#111827", }) => {
     const [activeTab, setActiveTab] = useState(
         tabs?.[activeTabIndex]?.label || tabs?.[0]?.label
     );
@@ -20,8 +18,15 @@ const TabsRenderer = ({ tabs, activeTabIndex, className, customCss, title, subTi
     const isDark = theme === "dark";
 
     return (
-        <View className={`puck-tabs ${className || ""}`} backgroundColor={backgroundColor} color={isDark ? "#FFFFFF" : "#000000"}>
-            {customCss && <style>{customCss}</style>}
+        <View className={`puck-tabs ${className || ""} ${uniqueClass || ""}`} backgroundColor={backgroundColor} color={isDark ? "#FFFFFF" : "#000000"}>
+            {customCss && (
+                <style>{`
+                    .${uniqueClass} {
+                        ${customCss}
+                        }
+                    `}
+                </style>
+            )}
             {
                 subTitle && (
                     <Text textAlign="center" margin="1rem auto 0.5rem" color={isDark ? "#FFFFFF" : "#000000"}>{subTitle}</Text>
