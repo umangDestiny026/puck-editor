@@ -328,14 +328,14 @@ export const config = {
                   href: { type: "text", label: "URL" },
                 },
               },
-              savedMegaMenu: {
-                type: "select",
-                label: "Select Saved Mega Menu (Mega mode)",
-                options: getSavedMegaMenus().map((m: any) => ({
-                  label: m.name,
-                  value: m.name,
-                })),
-              },
+              // savedMegaMenu: {
+              //   type: "select",
+              //   label: "Select Saved Mega Menu (Mega mode)",
+              //   options: getSavedMegaMenus().map((m: any) => ({
+              //     label: m.name,
+              //     value: m.name,
+              //   })),
+              // },
             },
           },
           rightLinks: {
