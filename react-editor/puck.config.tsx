@@ -15,7 +15,7 @@ import { Flex, Link, Text, View } from "@aws-amplify/ui-react";
 export const config = {
   categories: {
     Navigation: {
-      components: ["Footer"],
+      components: ["Footer", "Header", "MegaMenu", "MulipleMegaMenuItems"],
     },
     typography: {
       components: ["Text", "Image", "Video", "Button"],
@@ -202,6 +202,187 @@ export const config = {
         </Level>);
       },
     },
+
+    Header: {
+      label: "🚗 Header",
+      resolveFields: (data: any) => {
+        const baseFields = {
+          layout: {
+            type: "select",
+            label: "Header layout",
+            options: [
+              { label: "Logo + Menu + CTA", value: "LogoMenuCTA" },
+              { label: "Logo + CTA", value: "LogoCTA" },
+              { label: "Logo + Menu", value: "LogoMenu" },
+            ],
+          },
+
+          backgroundColor: {
+            type: "text",
+            label: "Background color",
+          },
+
+          textColor: {
+            type: "text",
+            label: "Text color",
+          },
+
+          logoUrl: {
+            type: "text",
+            label: "Logo image URL",
+          },
+
+          navPosition: {
+            type: "select",
+            label: "Navbar position",
+            options: [
+              { label: "Static (default)", value: "static" },
+              { label: "Sticky", value: "sticky" },
+              { label: "Fixed", value: "fixed" },
+            ],
+          },
+
+          hamburgerIcon: {
+            type: "text",
+            label: "Hamburger icon URL (optional)",
+          },
+
+        };
+
+        if (data.props.layout === "LogoCTA") {
+          return {
+            ...baseFields,
+            rightLinks: {
+              type: "array",
+              label: "Right side links",
+              itemLabel: "Utility link",
+              arrayFields: {
+                label: { type: "text", label: "Label" },
+                href: { type: "text", label: "URL" },
+                icon: { type: "text", label: "Icon URL (optional)" },
+              },
+            },
+          };
+        }
+
+        if (data.props.layout === "LogoMenu") {
+          return {
+            ...baseFields,
+            menuItems: {
+              type: "array",
+              label: "Navigation items",
+              itemLabel: "Menu item",
+              arrayFields: {
+                menuMode: {
+                  type: "select",
+                  label: "Menu mode",
+                  options: [
+                    { label: "Link", value: "linksonly" },
+                    { label: "Dropdown", value: "dropdown" },
+                    { label: "Mega Menu", value: "megamenu" },
+                  ],
+                },
+                label: { type: "text", label: "Menu label (Menu mode: Link)" },
+                href: { type: "text", label: "URL (Menu mode: Link)" },
+
+                dropdownItems: {
+                  type: "array",
+                  label: "Dropdown items",
+                  itemLabel: "Dropdown link (Menu mode: Dropdown)",
+                  arrayFields: {
+                    label: { type: "text", label: "Label" },
+                    href: { type: "text", label: "URL" },
+                  },
+                },
+              },
+            },
+          };
+        }
+
+        // ---- Default: LogoMenuCTA (SHOW ALL) ----
+        return {
+          ...baseFields,
+          menuItems: {
+            type: "array",
+            label: "Navigation items",
+            itemLabel: "Menu item",
+            arrayFields: {
+              menuMode: {
+                type: "select",
+                label: "Menu mode",
+                options: [
+                  { label: "Link", value: "linksonly" },
+                  { label: "Dropdown", value: "dropdown" },
+                  { label: "Mega Menu", value: "megamenu" },
+                ],
+              },
+              label: { type: "text", label: "Menu label (Menu mode: Link)" },
+              href: { type: "text", label: "URL (Menu mode: Link)" },
+
+              dropdownItems: {
+                type: "array",
+                label: "Dropdown items",
+                itemLabel: "Dropdown link",
+                arrayFields: {
+                  label: { type: "text", label: "Label" },
+                  href: { type: "text", label: "URL" },
+                },
+              },
+              savedMegaMenu: {
+                type: "select",
+                label: "Select Saved Mega Menu (Mega mode)",
+                options: getSavedMegaMenus().map((m: any) => ({
+                  label: m.name,
+                  value: m.name,
+                })),
+              },
+            },
+          },
+          rightLinks: {
+            type: "array",
+            label: "Right side links",
+            itemLabel: "Utility link",
+            arrayFields: {
+              label: { type: "text", label: "Label" },
+              href: { type: "text", label: "URL" },
+              icon: { type: "text", label: "Icon URL (optional)" },
+            },
+          },
+        };
+      },
+
+      defaultProps: {
+        backgroundColor: "#ffffff",
+        layout: "LogoMenuCTA",
+        menuMode: "linksonly",
+        textColor: "#000000",
+        navPosition: "static",
+        logoUrl: "https://toyota.com.co/images/Logo.svg",
+        hamburgerIcon: "https://toyota.com.co/images/menu.svg",
+
+        menuItems: [
+          { label: "Vehículos", menuMode: "dropdown", dropdownItems: [], savedMegaMenu: "" },
+          { label: "Cotiza tu Toyota", menuMode: "linksonly", dropdownItems: [], savedMegaMenu: "" },
+          { label: "Mi Toyota", menuMode: "linksonly", dropdownItems: [], savedMegaMenu: "" },
+          { label: "Descubre Toyota", menuMode: "linksonly", dropdownItems: [], savedMegaMenu: "" },
+          { label: "Alquila", menuMode: "linksonly", dropdownItems: [], savedMegaMenu: "" },
+          { label: "Noticias", menuMode: "linksonly", dropdownItems: [], savedMegaMenu: "" },
+          { label: "Deportivos TGR", menuMode: "linksonly", dropdownItems: [], savedMegaMenu: "" },
+        ],
+
+        rightLinks: [
+          { label: "Cotizador", href: "#" },
+          { label: "Concesionarios Toyota", href: "#" },
+          { label: "WhatsApp", href: "#", icon: "https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" },
+        ],
+      },
+
+      render: (props: any) => {
+        return <Navbar {...props} />;
+      },
+    },
+
+
 
     Footer: {
       label: "🦶 Footer",
