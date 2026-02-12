@@ -12,6 +12,10 @@ import PuckRadioGroup from "./app/component/RadioBtn";
 import PuckForm from "./app/component/Form";
 import TabsRenderer from "./app/component/Tab";
 import { Flex, Link, Text, View } from "@aws-amplify/ui-react";
+import React, { useEffect } from "react";
+import SubmenuDropdown from "./app/component/SubMenu";
+import { MegaMenu } from "./constant";
+import { megaMenuStore } from "./app/zone";
 
 export const config = {
   categories: {
@@ -207,6 +211,15 @@ export const config = {
     Header: {
       label: "🚗 Header",
       resolveFields: (data: any) => {
+
+        const MegaMenuoptions = [
+          { label: "Select the mega menu", value: "" }, // default empty option
+          ...megaMenuStore.items.map((m: any) => ({
+            label: m.id,
+            value: m.id,
+          }))
+        ];
+
         const baseFields = {
           layout: {
             type: "select",
@@ -295,6 +308,12 @@ export const config = {
                     href: { type: "text", label: "URL" },
                   },
                 },
+
+                savedMegaMenu: {
+                  type: "select",
+                  label: "Select Saved Mega Menu (Mega mode)",
+                  options: MegaMenuoptions,
+                },
               },
             },
           };
@@ -312,6 +331,7 @@ export const config = {
                 type: "select",
                 label: "Menu mode",
                 options: [
+                  { label: "Select menu mode", value: "" },
                   { label: "Link", value: "linksonly" },
                   { label: "Dropdown", value: "dropdown" },
                   { label: "Mega Menu", value: "megamenu" },
@@ -329,14 +349,11 @@ export const config = {
                   href: { type: "text", label: "URL" },
                 },
               },
-              // savedMegaMenu: {
-              //   type: "select",
-              //   label: "Select Saved Mega Menu (Mega mode)",
-              //   options: getSavedMegaMenus().map((m: any) => ({
-              //     label: m.name,
-              //     value: m.name,
-              //   })),
-              // },
+              savedMegaMenu: {
+                type: "select",
+                label: "Select Saved Mega Menu (Mega mode)",
+                options: MegaMenuoptions,
+              },
             },
           },
           rightLinks: {
@@ -362,13 +379,13 @@ export const config = {
         hamburgerIcon: "https://toyota.com.co/images/menu.svg",
 
         menuItems: [
-          { label: "Vehículos", menuMode: "dropdown", dropdownItems: [], savedMegaMenu: "" },
-          { label: "Cotiza tu Toyota", menuMode: "linksonly", dropdownItems: [], savedMegaMenu: "" },
-          { label: "Mi Toyota", menuMode: "linksonly", dropdownItems: [], savedMegaMenu: "" },
-          { label: "Descubre Toyota", menuMode: "linksonly", dropdownItems: [], savedMegaMenu: "" },
-          { label: "Alquila", menuMode: "linksonly", dropdownItems: [], savedMegaMenu: "" },
-          { label: "Noticias", menuMode: "linksonly", dropdownItems: [], savedMegaMenu: "" },
-          { label: "Deportivos TGR", menuMode: "linksonly", dropdownItems: [], savedMegaMenu: "" },
+          { label: "Vehículos", menuMode: "dropdown", dropdownItems: [], savedMegaMenu: null },
+          { label: "Cotiza tu Toyota", menuMode: "linksonly", dropdownItems: [], savedMegaMenu: null },
+          { label: "Mi Toyota", menuMode: "linksonly", dropdownItems: [], savedMegaMenu: null },
+          { label: "Descubre Toyota", menuMode: "linksonly", dropdownItems: [], savedMegaMenu: null },
+          { label: "Alquila", menuMode: "linksonly", dropdownItems: [], savedMegaMenu: null },
+          { label: "Noticias", menuMode: "linksonly", dropdownItems: [], savedMegaMenu: null },
+          { label: "Deportivos TGR", menuMode: "linksonly", dropdownItems: [], savedMegaMenu: null },
         ],
 
         rightLinks: [
@@ -383,7 +400,149 @@ export const config = {
       },
     },
 
+    MegaMenu,
 
+    MulipleMegaMenuItems: {
+      label: "🍔 Mega Menu Items",
+      fields: {
+        className: { type: "text", label: "Custom class" },
+        customCss: { type: "textarea", label: "Custom CSS" },
+
+        columns: {
+          type: "array",
+          label: "Top Level Columns",
+          arrayFields: {
+            title: { type: "text", label: "Column Title" },
+
+            links: {
+              type: "array",
+              label: "Menu Items (Level 1)",
+              arrayFields: {
+                label: { type: "text", label: "Label" },
+                href: { type: "text", label: "URL (optional)" },
+
+                /** ===== LEVEL 2 ===== */
+                submenu: {
+                  type: "array",
+                  label: "Submenu Level 2",
+                  arrayFields: {
+                    title: { type: "text", label: "Section Title (optional)" },
+                    subtitle: { type: "text", label: "Subtitle (optional)" },
+
+                    links: {
+                      type: "array",
+                      label: "Items in this section",
+                      arrayFields: {
+                        label: { type: "text", label: "Label" },
+                        href: { type: "text", label: "URL (optional)" },
+
+                        /** ===== LEVEL 3 (THIS WAS MISSING BEFORE) ===== */
+                        submenu: {
+                          type: "array",
+                          label: "Submenu Level 3",
+                          arrayFields: {
+                            title: { type: "text", label: "Section Title (optional)" },
+                            subtitle: { type: "text", label: "Subtitle (optional)" },
+
+                            links: {
+                              type: "array",
+                              label: "Final Links",
+                              arrayFields: {
+                                label: { type: "text", label: "Label" },
+                                href: { type: "text", label: "URL" },
+                              },
+                            },
+                          },
+                        },
+                      },
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+
+      defaultProps: {
+        className: "mega-menu",
+        customCss: "",
+        columns: [
+          {
+            title: "Mega menu title",
+            links: [
+              {
+                label: "Item 1",
+                submenu: [
+                  {
+                    title: "Sub Item title",
+                    links: [
+                      {
+                        label: "sub item 1",
+                        href: "/#",
+                      },
+                      {
+                        label: "sub item 2",
+                        href: "/#",
+                      },
+                    ],
+                  },
+                ],
+              },
+              {
+                label: "Item 2",
+                submenu: [
+                  {
+                    title: "Sub Item 2 title",
+                    links: [
+                      {
+                        label: "sub item 1",
+                        submenu: [
+                          {
+                            title: "level 3 title",
+                            links: [
+                              {
+                                label: "sub item 1",
+                                href: "/#",
+                              },
+                            ],
+                          },
+                          {
+                            subtitle: "Other section title",
+                            links: [
+                              {
+                                label: "sub item",
+                                href: "/#",
+                              },
+                            ],
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                ],
+              },
+              {
+                label: "Cumplimiento",
+                href: "/descubre-toyota/cumplimiento",
+              },
+            ],
+          },
+        ],
+      },
+
+      render: (props: any) => {
+        return (
+          <SubmenuDropdown
+            columns={props.columns}
+            titleStyle={{
+              fontWeight: 600,
+              fontSize: "18px",
+            }}
+          />
+        );
+      },
+    },
 
     Footer: {
       label: "🦶 Footer",

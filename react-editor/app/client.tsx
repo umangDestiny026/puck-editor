@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 
 import config from "../puck.config";
 import { Render } from "@puckeditor/core";
+import { megaMenuStore } from "./zone";
 
 const aiPlugin = createAiPlugin();
 const initialData = { content: [] };
@@ -74,81 +75,90 @@ export function Client() {
   return (
     <>
       {
-        mode === "edit" ? (<Puck
-          key={JSON.stringify(puckData)}
-          plugins={[]}
-          config={config as any}
-          data={puckData}
-          overrides={{
-            header: ({ children, actions }) => {
-              return (
-                <div
-                  style={{
-                    display: "flex",
-                    width: "100%",
-                  }}
-                >
-                  <div style={{ width: "100%" }}>
+        mode === "edit" ? (
+          <Puck
+            plugins={[]}
+            config={config as any}
+            onChange={(updatedData) => {
+              setPuckData(updatedData);
 
-                    {children}
-                  </div>
-                  <div style={{ display: "flex", alignItems: "center", maxHeight: "66px" }}>
-                    <button
-                      onClick={() => setMode("preview")}
-                      style={{
-                        padding: "5px 12px", marginRight: "10px", borderRadius: "6px", border: "1px solid #000000", background: "#ffffff", color: "#000000", cursor: "pointer",
-                      }}
-                    >
-                      Preview
-                    </button>
-                  </div>
-                  <div style={{ display: "flex", alignItems: "center" }}>
-                    <label
-                      style={{
-                        width: "120px",
-                        display: "inline-flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        padding: "8px 16px",
-                        backgroundColor: "#0158ad",
-                        color: "#ffffff",
-                        borderRadius: "6px",
-                        cursor: "pointer",
-                        fontSize: "14px",
-                        fontWeight: 500,
-                        border: "1px solid #2563eb",
-                        transition: "all 0.2s ease",
-                        height: "36px",
-                      }}
-                      onMouseEnter={(e) =>
-                        (e.currentTarget.style.backgroundColor = "#1d4ed8")
-                      }
-                      onMouseLeave={(e) =>
-                        (e.currentTarget.style.backgroundColor = "#2563eb")
-                      }
-                    >
-                      Import JSON
-                      <input
-                        type="file"
-                        accept=".json"
-                        onChange={handleImportJSON}
-                        style={{ display: "none" }}
-                      />
-                    </label>
-                  </div>
-                </div>
+              Object.entries(updatedData.zones || {}).forEach(
+                ([zoneId, zoneContent]) => {
+                  megaMenuStore.updateContent(zoneId, zoneContent as any[]);
+                }
               );
-            },
-          }}
-          onPublish={(data) => {
-            setPuckData(data);   // keep latest version
 
-            window.parent.postMessage(
-              { type: "PUCK_PUBLISHED", payload: data },
-              "*"
-            );
-          }}
-        />) : (
+            }}
+            data={puckData}
+            overrides={{
+              header: ({ children, actions }) => {
+                return (
+                  <div
+                    style={{
+                      display: "flex",
+                      width: "100%",
+                    }}
+                  >
+                    <div style={{ width: "100%" }}>
+
+                      {children}
+                    </div>
+                    <div style={{ display: "flex", alignItems: "center", maxHeight: "66px" }}>
+                      <button
+                        onClick={() => setMode("preview")}
+                        style={{
+                          padding: "5px 12px", marginRight: "10px", borderRadius: "6px", border: "1px solid #000000", background: "#ffffff", color: "#000000", cursor: "pointer",
+                        }}
+                      >
+                        Preview
+                      </button>
+                    </div>
+                    <div style={{ display: "flex", alignItems: "center" }}>
+                      <label
+                        style={{
+                          width: "120px",
+                          display: "inline-flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          padding: "8px 16px",
+                          backgroundColor: "#0158ad",
+                          color: "#ffffff",
+                          borderRadius: "6px",
+                          cursor: "pointer",
+                          fontSize: "14px",
+                          fontWeight: 500,
+                          border: "1px solid #2563eb",
+                          transition: "all 0.2s ease",
+                          height: "36px",
+                        }}
+                        onMouseEnter={(e) =>
+                          (e.currentTarget.style.backgroundColor = "#1d4ed8")
+                        }
+                        onMouseLeave={(e) =>
+                          (e.currentTarget.style.backgroundColor = "#2563eb")
+                        }
+                      >
+                        Import JSON
+                        <input
+                          type="file"
+                          accept=".json"
+                          onChange={handleImportJSON}
+                          style={{ display: "none" }}
+                        />
+                      </label>
+                    </div>
+                  </div>
+                );
+              },
+            }}
+            onPublish={(data) => {
+              setPuckData(data);
+              window.parent.postMessage(
+                { type: "PUCK_PUBLISHED", payload: data },
+                "*"
+              );
+            }}
+          />) : (
           <>
             <button
               onClick={() => setMode("edit")}

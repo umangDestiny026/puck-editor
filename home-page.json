@@ -1,0 +1,923 @@
+{
+    "root": {
+        "props": {
+            "title": "home"
+        }
+    },
+    "content": [
+        {
+            "type": "Flex",
+            "props": {
+                "direction": "row",
+                "wrap": "nowrap",
+                "justifyContent": "space-between",
+                "alignItems": "stretch",
+                "gap": 0,
+                "flex": "",
+                "className": "flex-main",
+                "customCss": "",
+                "id": "Flex-a60d9fba-e20a-4440-9b46-f4279ec7fd93"
+            }
+        },
+        {
+            "type": "Carousel",
+            "props": {
+                "slides": [
+                    {
+                        "imageDesktop": "https://toyota.com.co/images/home-banners/carro-de-tus-suenos-2026.webp",
+                        "imageMobile": "https://toyota.com.co/images/home-banners/carro-de-tus-suenos-2026.webp"
+                    },
+                    {
+                        "imageDesktop": "https://toyota.com.co/images/home-banners/conectados-con-todo-lo-que-se-mueve--desktop.jpg",
+                        "imageMobile": "https://toyota.com.co/images/home-banners/conectados-con-todo-lo-que-se-mueve--desktop.jpg"
+                    },
+                    {
+                        "imageMobile": "https://toyota.com.co/images/home-banners/conneced-web--desktop.png",
+                        "imageDesktop": "https://toyota.com.co/images/home-banners/conneced-web--desktop.png"
+                    },
+                    {
+                        "imageMobile": "https://toyota.com.co/images/home-banners/seguros-toyota--desktop.jpg",
+                        "imageDesktop": "https://toyota.com.co/images/home-banners/seguros-toyota--desktop.jpg"
+                    },
+                    {
+                        "imageMobile": "https://toyota.com.co/images/home-banners/f-takata--desktop.png",
+                        "imageDesktop": "https://toyota.com.co/images/home-banners/f-takata--desktop.png"
+                    }
+                ],
+                "showDots": true,
+                "showArrows": false,
+                "autoplayDelay": 3000,
+                "alignBottom": false,
+                "id": "Carousel-4705ac5a-d593-4792-b7b9-d9672a55f12c",
+                "minHeight": "500px",
+                "height": "500px"
+            }
+        },
+        {
+            "type": "Tabs",
+            "props": {
+                "tabs": [
+                    {
+                        "label": "Autos",
+                        "icon": "",
+                        "defaultContent": ""
+                    },
+                    {
+                        "label": "Deportivos TGR",
+                        "icon": "",
+                        "defaultContent": ""
+                    }
+                ],
+                "activeTabIndex": 0,
+                "className": "",
+                "customCss": "margin-top:20px !important;",
+                "id": "Tabs-ca616d91-e7bc-46bf-8d79-b71fd6d3c824",
+                "title": "Explorar todos los vehículos",
+                "subTitle": " "
+            }
+        },
+        {
+            "type": "Container",
+            "props": {
+                "className": "container-001",
+                "customCss": "background-image: url(\"https://toyota.com.co/images/ConcessionaireSearch--bg-desktop.png\");\nmargin-top:50px !important;\nheight:300px;\nmargin-bottom:50px !important;",
+                "marginValue": 40,
+                "paddingValue": 20,
+                "backgroundColor": "#f5f5f5",
+                "id": "Container-8f0d3382-c59c-40b8-b296-c1197ab13f6b"
+            }
+        },
+        {
+            "type": "Flex",
+            "props": {
+                "direction": "column",
+                "wrap": "nowrap",
+                "justifyContent": "flex-start",
+                "alignItems": "stretch",
+                "gap": 0,
+                "flex": "",
+                "className": "flex-0004444",
+                "customCss": "background-color: #000;\npadding-bottom:50px;\nmargin-bottom:-18px;",
+                "id": "Flex-9e600733-7e5d-40ea-a036-b69bc100d3eb"
+            }
+        },
+        {
+            "type": "Tabs",
+            "props": {
+                "tabs": [
+                    {
+                        "label": "Tecnología Toyota",
+                        "icon": "",
+                        "defaultContent": ""
+                    },
+                    {
+                        "label": "Seguro Toyota",
+                        "icon": "",
+                        "defaultContent": ""
+                    }
+                ],
+                "activeTabIndex": 1,
+                "className": "sssx",
+                "customCss": "",
+                "id": "Tabs-0de8622f-1370-4b50-8d33-45250c879787",
+                "subTitle": "Descubre",
+                "title": "Descubre Toyota",
+                "theme": "dark",
+                "backgroundColor": "#272329"
+            }
+        },
+        {
+            "type": "Text",
+            "props": {
+                "content": "Toyota Gazoo Racing\n",
+                "level": "h1",
+                "size": "lg",
+                "align": "center",
+                "className": "text-001",
+                "customCss": "margin-top:20px !important;\nfont-weight:500;\nletter-spacing:1px;\nfont-size:40px;\n",
+                "widthUnit": "px",
+                "maxWidthValue": 700,
+                "maxWidthUnit": "px",
+                "minWidthUnit": "px",
+                "textColor": "#000000",
+                "id": "Text-859e1d98-c5cc-48c0-b95b-46e0e6df3833"
+            }
+        },
+        {
+            "type": "Text",
+            "props": {
+                "content": "¡Colombia le da la bienvenida a Toyota Gazoo Racing, el equipo de automovilismo y los vehículos ganadores de las competencias más retadoras del mundo!\n",
+                "level": "h1",
+                "size": "lg",
+                "align": "center",
+                "className": "text-001",
+                "customCss": "margin-top:20px !important;\nfont-weight:400;\nfont-size:20px;\nmargin-bottom: 20px !important;\n",
+                "widthUnit": "px",
+                "maxWidthValue": 700,
+                "maxWidthUnit": "px",
+                "minWidthUnit": "px",
+                "textColor": "#000000",
+                "id": "Text-2f409b57-fed0-444a-9fef-9ea35730af95"
+            }
+        },
+        {
+            "type": "Container",
+            "props": {
+                "className": "container-001",
+                "customCss": "",
+                "marginValue": 40,
+                "paddingValue": 20,
+                "backgroundColor": "#fff",
+                "id": "Container-dc6be829-6839-46e8-b038-bc3a1324ad62"
+            }
+        },
+        {
+            "type": "Flex",
+            "props": {
+                "direction": "column",
+                "wrap": "nowrap",
+                "justifyContent": "flex-start",
+                "alignItems": "stretch",
+                "gap": 0,
+                "flex": "",
+                "className": "flex-00444",
+                "customCss": "background-image: linear-gradient(178.06deg, rgb(231, 237, 241) 52.85%, rgb(244, 247, 249) 98.36%);",
+                "id": "Flex-a4be87f3-2acf-45b4-9119-2c4f77c31a14"
+            }
+        },
+        {
+            "type": "Flex",
+            "props": {
+                "direction": "row",
+                "wrap": "nowrap",
+                "justifyContent": "center",
+                "alignItems": "stretch",
+                "gap": 32,
+                "flex": "",
+                "className": "news-section",
+                "customCss": "background-image: linear-gradient(178.06deg, rgb(231, 237, 241) 52.85%, rgb(244, 247, 249) 98.36%);",
+                "id": "Flex-d77ede85-2cc6-48f4-a5ec-c6933adf6fd9"
+            }
+        },
+        {
+            "type": "Grid",
+            "props": {
+                "columns": 4,
+                "gap": 16,
+                "alignItems": "start",
+                "justifyItems": "center",
+                "maxWidth": 1400,
+                "padding": 0,
+                "className": "gridbwsjbjwsw",
+                "customCss": "background-image: linear-gradient(178.06deg, rgb(231, 237, 241) 52.85%, rgb(244, 247, 249) 98.36%);",
+                "id": "Grid-52bc43c1-400d-488b-a643-a0ee569e1fde"
+            }
+        },
+        {
+            "type": "Button",
+            "props": {
+                "text": "Descubre más",
+                "type": "default",
+                "href": "",
+                "external": false,
+                "align": "center",
+                "widthUnit": "px",
+                "heightUnit": "px",
+                "maxWidthUnit": "px",
+                "maxHeightUnit": "px",
+                "paddingX": 16,
+                "paddingY": 10,
+                "borderRadius": 6,
+                "className": "button-001",
+                "customCss": "margin-top:15px !important;\nbackground-color: #000 !important;\ncolor: #fff !important;\npadding: auto 20px !important;\nwidth:200px;\nborder-radius: 20px !important;",
+                "id": "Button-921727ce-8758-45fc-b36e-db4eb2fca7c2"
+            }
+        }
+    ],
+    "zones": {
+        "Flex-a60d9fba-e20a-4440-9b46-f4279ec7fd93:flex-zone": [
+            {
+                "type": "Text",
+                "props": {
+                    "content": "TOYOTA",
+                    "level": "h1",
+                    "size": "lg",
+                    "align": "left",
+                    "className": "text-001",
+                    "customCss": "padding-left:15px;",
+                    "widthUnit": "px",
+                    "maxWidthValue": 700,
+                    "maxWidthUnit": "px",
+                    "minWidthUnit": "px",
+                    "textColor": "#000000",
+                    "id": "Text-42fb7ddf-2481-4fa9-96ba-34e4e7a68430"
+                }
+            },
+            {
+                "type": "Text",
+                "props": {
+                    "content": "Cotizador",
+                    "level": "h2",
+                    "size": "lg",
+                    "align": "left",
+                    "className": "text-001",
+                    "customCss": "padding-right:15px;",
+                    "widthUnit": "px",
+                    "maxWidthValue": 700,
+                    "maxWidthUnit": "px",
+                    "minWidthUnit": "px",
+                    "textColor": "#000000",
+                    "id": "Text-a1a8e52d-e99f-4f0c-91a7-b903084f1658"
+                }
+            }
+        ],
+        "Container-8f0d3382-c59c-40b8-b296-c1197ab13f6b:content": [
+            {
+                "type": "Grid",
+                "props": {
+                    "columns": 2,
+                    "gap": 16,
+                    "alignItems": "center",
+                    "justifyItems": "center",
+                    "maxWidth": 1200,
+                    "padding": 0,
+                    "className": "",
+                    "customCss": "",
+                    "id": "Grid-09898f18-0646-401f-a254-afc500e6b2b1"
+                }
+            },
+            {
+                "type": "Text",
+                "props": {
+                    "content": "Selecciona tu ubicación para encontrar el concesionario más cercano.\n\n",
+                    "level": "h4",
+                    "size": "lg",
+                    "align": "left",
+                    "className": "text-001",
+                    "customCss": "",
+                    "widthUnit": "px",
+                    "maxWidthValue": 700,
+                    "maxWidthUnit": "px",
+                    "minWidthUnit": "px",
+                    "textColor": "#fff",
+                    "id": "Text-483c670c-79ae-4bf5-9931-a95b248108da"
+                }
+            }
+        ],
+        "Grid-09898f18-0646-401f-a254-afc500e6b2b1:grid-zone": [
+            {
+                "type": "Text",
+                "props": {
+                    "content": "Encuentra tu concesionario Toyota más cercano",
+                    "level": "h1",
+                    "size": "lg",
+                    "align": "left",
+                    "className": "text-001",
+                    "customCss": "font-size:40px;\nfont-weight:400;",
+                    "widthUnit": "px",
+                    "maxWidthValue": 700,
+                    "maxWidthUnit": "px",
+                    "minWidthUnit": "px",
+                    "textColor": "#fff",
+                    "id": "Text-770476cc-af94-49c8-a99a-a1d823459b3d"
+                }
+            },
+            {
+                "type": "Dropdown",
+                "props": {
+                    "label": "",
+                    "className": "dropdown-001",
+                    "customCss": "background-color: transparent !important;\nborder: 1px solid #fff !important;\ncolor:white;\nborder-radius: 3rem !important;\nwidth:300px !important;",
+                    "required": false,
+                    "name": "dropdown_1",
+                    "errorMessage": "Please select an option",
+                    "onChangeCode": "value => console.log(value)",
+                    "options": [
+                        {
+                            "label": "Option 1",
+                            "value": "option1"
+                        },
+                        {
+                            "label": "Option 2",
+                            "value": "option2"
+                        },
+                        {
+                            "label": "Option 3",
+                            "value": "option3"
+                        }
+                    ],
+                    "defaultValue": "",
+                    "id": "Dropdown-5052e13b-a390-4e32-8e01-d2ceb690fa1e"
+                }
+            }
+        ],
+        "Tabs-0de8622f-1370-4b50-8d33-45250c879787:tab-0": [
+            {
+                "type": "Image",
+                "props": {
+                    "sourceType": "url",
+                    "className": "image-001",
+                    "customCss": "",
+                    "image": "https://toyota.com.co/images/Toyota-Sostenible-002.png",
+                    "alt": "Image",
+                    "align": "center",
+                    "widthUnit": "px",
+                    "maxWidthValue": 699,
+                    "maxWidthUnit": "px",
+                    "heightUnit": "px",
+                    "maxHeightValue": 500,
+                    "maxHeightUnit": "px",
+                    "objectFit": "contain",
+                    "objectPosition": "center",
+                    "overflow": "hidden",
+                    "borderRadius": 0,
+                    "id": "Image-70922a42-b9cb-46e5-b76e-c18e0a3a0ef3"
+                }
+            }
+        ],
+        "Tabs-0de8622f-1370-4b50-8d33-45250c879787:tab-1": [
+            {
+                "type": "Image",
+                "props": {
+                    "sourceType": "url",
+                    "className": "image-001",
+                    "customCss": "",
+                    "image": "https://toyota.com.co/images/Toyota-Sostenible-001.png",
+                    "alt": "Image",
+                    "align": "center",
+                    "widthUnit": "px",
+                    "maxWidthValue": 699,
+                    "maxWidthUnit": "px",
+                    "heightUnit": "px",
+                    "maxHeightValue": 500,
+                    "maxHeightUnit": "px",
+                    "objectFit": "contain",
+                    "objectPosition": "center",
+                    "overflow": "hidden",
+                    "borderRadius": 0,
+                    "id": "Image-3a9e979e-3f22-4d4f-8ac8-ff26f2fd0d50"
+                }
+            },
+            {
+                "type": "Text",
+                "props": {
+                    "content": "La mejor alternativa de protección diseñada exclusivamente para ti.",
+                    "level": "h2",
+                    "size": "lg",
+                    "align": "center",
+                    "className": "text-001",
+                    "customCss": "margin-top:10px !important;",
+                    "widthUnit": "px",
+                    "maxWidthValue": 700,
+                    "maxWidthUnit": "px",
+                    "minWidthUnit": "px",
+                    "textColor": "#fff",
+                    "id": "Text-446c77e8-53d0-4262-b677-6bb627b966d1"
+                }
+            },
+            {
+                "type": "Button",
+                "props": {
+                    "text": "Conoce más",
+                    "type": "default",
+                    "href": "",
+                    "external": false,
+                    "align": "center",
+                    "widthUnit": "px",
+                    "heightUnit": "px",
+                    "maxWidthUnit": "px",
+                    "maxHeightUnit": "px",
+                    "paddingX": 16,
+                    "paddingY": 10,
+                    "borderRadius": 6,
+                    "className": "button-001",
+                    "customCss": "margin-top:15px !important;\nbackground-color: rgb(255, 255, 255) !important;\npadding: auto 20px !important;\nwidth:200px;\nborder-radius: 20px !important;",
+                    "id": "Button-bbb016e8-72b9-4d67-becf-18a3d31a0528"
+                }
+            }
+        ],
+        "Tabs-ca616d91-e7bc-46bf-8d79-b71fd6d3c824:tab-0": [
+            {
+                "type": "Flex",
+                "props": {
+                    "direction": "row",
+                    "wrap": "nowrap",
+                    "justifyContent": "flex-start",
+                    "alignItems": "stretch",
+                    "gap": 0,
+                    "flex": "",
+                    "className": "",
+                    "customCss": "",
+                    "id": "Flex-30de5c41-d1fa-480b-9ecf-0b116934f5ed"
+                }
+            }
+        ],
+        "Tabs-ca616d91-e7bc-46bf-8d79-b71fd6d3c824:tab-1": [],
+        "Container-dc6be829-6839-46e8-b038-bc3a1324ad62:content": [
+            {
+                "type": "Container",
+                "props": {
+                    "className": "container-001",
+                    "customCss": "",
+                    "marginValue": 40,
+                    "paddingValue": 46,
+                    "backgroundColor": "#000",
+                    "id": "Container-f55ac503-15b5-45f9-b921-0c5147a3ed0b"
+                }
+            }
+        ],
+        "Flex-a4be87f3-2acf-45b4-9119-2c4f77c31a14:flex-zone": [
+            {
+                "type": "Text",
+                "props": {
+                    "content": "Noticias",
+                    "level": "h1",
+                    "size": "lg",
+                    "align": "center",
+                    "className": "text-001",
+                    "customCss": "font-weight:400;\nfont-size:25px;\npadding-top:20px;\n",
+                    "widthValue": 100,
+                    "widthUnit": "vw",
+                    "maxWidthValue": 700,
+                    "maxWidthUnit": "px",
+                    "minWidthUnit": "px",
+                    "textColor": "#000000",
+                    "id": "Text-f5ff7b2c-0c2a-47e3-8ecc-9360bd345bd2"
+                }
+            },
+            {
+                "type": "Text",
+                "props": {
+                    "content": "Nuevas Historias",
+                    "level": "h1",
+                    "size": "lg",
+                    "align": "center",
+                    "className": "text-001",
+                    "customCss": "font-weight:600;\nfont-size:40px;\nmargin-bottom: 20px !important;\n",
+                    "widthUnit": "px",
+                    "maxWidthValue": 700,
+                    "maxWidthUnit": "px",
+                    "minWidthUnit": "px",
+                    "textColor": "#000000",
+                    "id": "Text-d4e40ff5-e795-4ac8-aea0-7490ff90c706"
+                }
+            }
+        ],
+        "Container-f55ac503-15b5-45f9-b921-0c5147a3ed0b:content": [
+            {
+                "type": "Flex",
+                "props": {
+                    "direction": "row",
+                    "wrap": "nowrap",
+                    "justifyContent": "center",
+                    "alignItems": "center",
+                    "gap": 46,
+                    "flex": "",
+                    "className": "flex-#w22",
+                    "customCss": "",
+                    "id": "Flex-7fc08017-f062-43bb-8ff5-5aacf160ebcd"
+                }
+            }
+        ],
+        "Flex-7fc08017-f062-43bb-8ff5-5aacf160ebcd:flex-zone": [
+            {
+                "type": "Image",
+                "props": {
+                    "sourceType": "url",
+                    "className": "image-001",
+                    "customCss": "",
+                    "image": "https://toyota.com.co/images/TGR-cards-00101.png",
+                    "alt": "Image",
+                    "align": "center",
+                    "widthValue": 766,
+                    "widthUnit": "px",
+                    "maxWidthValue": 100,
+                    "maxWidthUnit": "%",
+                    "heightValue": 450,
+                    "heightUnit": "px",
+                    "maxHeightUnit": "px",
+                    "objectFit": "cover",
+                    "objectPosition": "center",
+                    "overflow": "hidden",
+                    "borderRadius": 0,
+                    "id": "Image-9cef9189-7440-4f18-9356-e8dbfbfb4ec3"
+                }
+            },
+            {
+                "type": "Text",
+                "props": {
+                    "content": "¡Colombia le da la bienvenida a Toyota Gazoo Racing, el equipo de automovilismo y los vehículos ganadores de las competencias más retadoras del mundo!\n",
+                    "level": "h1",
+                    "size": "lg",
+                    "align": "center",
+                    "className": "text-001",
+                    "customCss": "font-weight:600;\nfont-size:25px",
+                    "widthUnit": "px",
+                    "maxWidthValue": 700,
+                    "maxWidthUnit": "px",
+                    "minWidthUnit": "px",
+                    "textColor": "#ffff",
+                    "id": "Text-fcf12072-2e55-41e5-8af0-f6587f53ed8a"
+                }
+            }
+        ],
+        "Flex-d77ede85-2cc6-48f4-a5ec-c6933adf6fd9:flex-zone": [
+            {
+                "type": "Card",
+                "props": {
+                    "image": "https://toyota.com.co/images/blog/blog-00101.png",
+                    "imageMaxWidth": 600,
+                    "imageBorderRadius": 8,
+                    "imageObjectFit": "cover",
+                    "imageAlign": "top",
+                    "className": "card-001",
+                    "customCss": "",
+                    "title": "Toyota Colombia impulsa sostenibilidad, innovación y seguridad\n\n",
+                    "titleColor": "#111827",
+                    "description": "Automotores Toyota Colombia prioriza la sostenibilidad, la innovación y la satisfacción del cliente, con metas claras hacia una movilidad más accesible, segura y respetuosa con el medio ambiente.\n\n",
+                    "descriptionColor": "#374151",
+                    "textAlign": "left",
+                    "buttonText": "",
+                    "buttonType": "primary",
+                    "buttonHref": "",
+                    "buttonExternal": false,
+                    "cardMaxWidth": 600,
+                    "cardPadding": 16,
+                    "cardBorderRadius": 12,
+                    "cardShadow": "0",
+                    "id": "Card-6a45355c-6f55-4537-826a-023326eef95b"
+                }
+            },
+            {
+                "type": "Card",
+                "props": {
+                    "image": "https://toyota.com.co/images/blog/blog-02-002.png",
+                    "imageWidth": 0,
+                    "imageMaxWidth": 812,
+                    "imageBorderRadius": 8,
+                    "imageObjectFit": "cover",
+                    "imageAlign": "top",
+                    "className": "card-001",
+                    "customCss": "",
+                    "title": "Combustible sintético: una apuesta de Toyota\n\n",
+                    "titleColor": "#111827",
+                    "description": "Toyota apuesta por combustibles sintéticos para un futuro sostenible en la Expo 2025 de Japón\n\n",
+                    "descriptionColor": "#374151",
+                    "textAlign": "left",
+                    "buttonText": "",
+                    "buttonType": "primary",
+                    "buttonHref": "",
+                    "buttonExternal": false,
+                    "cardMaxWidth": 557,
+                    "cardPadding": 16,
+                    "cardBorderRadius": 0,
+                    "cardShadow": "rgba(0, 0, 0, 0.04) 0px 3px 5px;",
+                    "id": "Card-af92f2ab-bea5-42cf-bb77-95e3f580c922",
+                    "imageHeight": 378
+                }
+            }
+        ],
+        "Flex-9e600733-7e5d-40ea-a036-b69bc100d3eb:flex-zone": [
+            {
+                "type": "Text",
+                "props": {
+                    "content": "Herramientas",
+                    "level": "h1",
+                    "size": "lg",
+                    "align": "center",
+                    "className": "text-001",
+                    "customCss": "padding:050px 0 0;\nfont-weight: 400;\nletter-spacing:0.5px;\nfont-size:25px !important;",
+                    "widthUnit": "px",
+                    "maxWidthValue": 700,
+                    "maxWidthUnit": "px",
+                    "minWidthUnit": "px",
+                    "textColor": "#fff",
+                    "id": "Text-e04b5318-3ef0-4bac-8fad-e64eb3f4eafc"
+                }
+            },
+            {
+                "type": "Text",
+                "props": {
+                    "content": "¿En qué te podemos ayudar?\n\n",
+                    "level": "h1",
+                    "size": "lg",
+                    "align": "center",
+                    "className": "text-001",
+                    "customCss": "padding:0 0 50px 0;\nfont-weight: 400;\nletter-spacing:0.5px;\nfont-size:40px !important;",
+                    "widthUnit": "px",
+                    "maxWidthValue": 700,
+                    "maxWidthUnit": "px",
+                    "minWidthUnit": "px",
+                    "textColor": "#ffff",
+                    "id": "Text-0446f5ae-9023-401c-ad99-63e875da6aac"
+                }
+            },
+            {
+                "type": "Grid",
+                "props": {
+                    "columns": 4,
+                    "gap": 16,
+                    "alignItems": "start",
+                    "justifyItems": "center",
+                    "maxWidth": 1200,
+                    "padding": 0,
+                    "className": "",
+                    "customCss": "",
+                    "id": "Grid-dad97d82-58b3-44b7-88a3-ce36ed4b1ce4"
+                }
+            }
+        ],
+        "Grid-dad97d82-58b3-44b7-88a3-ce36ed4b1ce4:grid-zone": [
+            {
+                "type": "Image",
+                "props": {
+                    "sourceType": "url",
+                    "className": "image-001",
+                    "customCss": "",
+                    "image": "https://toyota.com.co/images/vehicle-1.png",
+                    "alt": "Image",
+                    "align": "center",
+                    "widthUnit": "px",
+                    "maxWidthValue": 100,
+                    "maxWidthUnit": "%",
+                    "heightUnit": "px",
+                    "maxHeightUnit": "px",
+                    "objectFit": "contain",
+                    "objectPosition": "center",
+                    "overflow": "hidden",
+                    "borderRadius": 0,
+                    "id": "Image-a3178e57-c888-41da-a1c8-ab5906385ab8"
+                }
+            },
+            {
+                "type": "Image",
+                "props": {
+                    "sourceType": "url",
+                    "className": "image-001",
+                    "customCss": "",
+                    "image": "https://toyota.com.co/images/boutique-desktop.png",
+                    "alt": "Image",
+                    "align": "center",
+                    "widthUnit": "px",
+                    "maxWidthValue": 100,
+                    "maxWidthUnit": "%",
+                    "heightUnit": "px",
+                    "maxHeightUnit": "px",
+                    "objectFit": "contain",
+                    "objectPosition": "center",
+                    "overflow": "hidden",
+                    "borderRadius": 0,
+                    "id": "Image-4e2d7bd2-56bc-48af-9d6d-fe0a336ef597"
+                }
+            },
+            {
+                "type": "Image",
+                "props": {
+                    "sourceType": "url",
+                    "className": "image-001",
+                    "customCss": "",
+                    "image": "https://toyota.com.co/images/Rav4_kinto-desktop.png",
+                    "alt": "Image",
+                    "align": "center",
+                    "widthUnit": "px",
+                    "maxWidthValue": 100,
+                    "maxWidthUnit": "%",
+                    "heightUnit": "px",
+                    "maxHeightUnit": "px",
+                    "objectFit": "cover",
+                    "objectPosition": "center",
+                    "overflow": "hidden",
+                    "borderRadius": 0,
+                    "id": "Image-ffd97611-2742-4448-81f2-616e975869fd"
+                }
+            },
+            {
+                "type": "Image",
+                "props": {
+                    "sourceType": "url",
+                    "className": "image-001",
+                    "customCss": "",
+                    "image": "https://toyota.com.co/images/test-drive/icons/test-drive-banner.jpg",
+                    "alt": "Image",
+                    "align": "center",
+                    "widthValue": 100,
+                    "widthUnit": "%",
+                    "maxWidthValue": 100,
+                    "maxWidthUnit": "%",
+                    "heightValue": 206,
+                    "heightUnit": "px",
+                    "maxHeightUnit": "px",
+                    "objectFit": "cover",
+                    "objectPosition": "center",
+                    "overflow": "hidden",
+                    "borderRadius": 0,
+                    "id": "Image-6cb5575c-fa1d-491b-9e4c-5503598275d8"
+                }
+            }
+        ],
+        "Flex-30de5c41-d1fa-480b-9ecf-0b116934f5ed:flex-zone": [
+            {
+                "type": "Card",
+                "props": {
+                    "image": "https://toyota.com.co/images/vehicle-tabs/Desktop/Fortuner%20(1).png",
+                    "imageWidth": 0,
+                    "imageHeight": 300,
+                    "imageMaxWidth": 399,
+                    "imageBorderRadius": 8,
+                    "imageObjectFit": "contain",
+                    "imageAlign": "left",
+                    "className": "card-001",
+                    "customCss": "",
+                    "title": "Fortuner ",
+                    "titleColor": "#111827",
+                    "description": "",
+                    "descriptionColor": "#374151",
+                    "textAlign": "left",
+                    "buttonText": "",
+                    "buttonType": "primary",
+                    "buttonHref": "",
+                    "buttonExternal": false,
+                    "cardMaxWidth": 843,
+                    "cardPadding": 16,
+                    "cardBorderRadius": 12,
+                    "cardShadow": "0",
+                    "id": "Card-fbfa809c-6b0d-41bf-9723-9580d058728d"
+                }
+            },
+            {
+                "type": "Card",
+                "props": {
+                    "image": "https://toyota.com.co/images/vehicle-tabs/Desktop/LC300%20(1).png",
+                    "imageWidth": 0,
+                    "imageHeight": 300,
+                    "imageMaxWidth": 399,
+                    "imageBorderRadius": 8,
+                    "imageObjectFit": "contain",
+                    "imageAlign": "left",
+                    "className": "card-001",
+                    "customCss": "",
+                    "title": "Land Cruise 300",
+                    "titleColor": "#111827",
+                    "description": "",
+                    "descriptionColor": "#374151",
+                    "textAlign": "left",
+                    "buttonText": "",
+                    "buttonType": "primary",
+                    "buttonHref": "",
+                    "buttonExternal": false,
+                    "cardMaxWidth": 843,
+                    "cardPadding": 16,
+                    "cardBorderRadius": 12,
+                    "cardShadow": "0",
+                    "id": "Card-212d14e5-a57d-4051-8a8a-ebdd5a4c2117"
+                }
+            }
+        ],
+        "Grid-52bc43c1-400d-488b-a643-a0ee569e1fde:grid-zone": [
+            {
+                "type": "Card",
+                "props": {
+                    "image": "https://toyota.com.co/images/blog-img-thumb.png",
+                    "imageMaxWidth": 600,
+                    "imageBorderRadius": 8,
+                    "imageObjectFit": "cover",
+                    "imageAlign": "top",
+                    "className": "card-001",
+                    "customCss": "",
+                    "title": "Bosque Toyota refuerza el compromiso ambiental de la marca.\n",
+                    "titleColor": "#111827",
+                    "description": "El proyecto de reforestación Bosque Toyota reafirma el compromiso de Automotores Toyota Colombia con el",
+                    "descriptionColor": "#374151",
+                    "textAlign": "left",
+                    "buttonText": "",
+                    "buttonType": "primary",
+                    "buttonHref": "",
+                    "buttonExternal": false,
+                    "cardMaxWidth": 461,
+                    "cardPadding": 16,
+                    "cardBorderRadius": 12,
+                    "cardShadow": "0",
+                    "id": "Card-09d69990-3b78-41cc-af5f-0f7bf8d22713"
+                }
+            },
+            {
+                "type": "Card",
+                "props": {
+                    "image": "https://toyota.com.co/images/blog/blog-00104.png",
+                    "imageMaxWidth": 600,
+                    "imageBorderRadius": 8,
+                    "imageObjectFit": "cover",
+                    "imageAlign": "top",
+                    "className": "card-001",
+                    "customCss": "",
+                    "title": "Toyota Colombia, premiada por seguridad, costos y sostenibilidad.\n\n\n\n",
+                    "titleColor": "#111827",
+                    "description": "En su onceava edición, los Premios Vía destacan a Automotores Toyota Colombia por su apuesta en",
+                    "descriptionColor": "#374151",
+                    "textAlign": "left",
+                    "buttonText": "",
+                    "buttonType": "primary",
+                    "buttonHref": "",
+                    "buttonExternal": false,
+                    "cardMaxWidth": 461,
+                    "cardPadding": 16,
+                    "cardBorderRadius": 12,
+                    "cardShadow": "0",
+                    "id": "Card-22b6a7d5-894c-4683-a7e2-409088d4d9f0"
+                }
+            },
+            {
+                "type": "Card",
+                "props": {
+                    "image": "https://toyota.com.co/images/blog/blog-00101.png",
+                    "imageMaxWidth": 600,
+                    "imageBorderRadius": 8,
+                    "imageObjectFit": "cover",
+                    "imageAlign": "top",
+                    "className": "card-001",
+                    "customCss": "",
+                    "title": "Toyota Colombia impulsa sostenibilidad, innovación y seguridad\n\n",
+                    "titleColor": "#111827",
+                    "description": "Automotores Toyota Colombia prioriza la sostenibilidad, la innovación y la satisfacción del cliente, con metas",
+                    "descriptionColor": "#374151",
+                    "textAlign": "left",
+                    "buttonText": "",
+                    "buttonType": "primary",
+                    "buttonHref": "",
+                    "buttonExternal": false,
+                    "cardMaxWidth": 461,
+                    "cardPadding": 16,
+                    "cardBorderRadius": 12,
+                    "cardShadow": "0",
+                    "id": "Card-3b0d362b-2f1e-453e-a12f-a48a61ce030a"
+                }
+            },
+            {
+                "type": "Card",
+                "props": {
+                    "image": "https://toyota.com.co/images/blog/blog-02-006.png",
+                    "imageMaxWidth": 600,
+                    "imageBorderRadius": 8,
+                    "imageObjectFit": "cover",
+                    "imageAlign": "top",
+                    "className": "card-001",
+                    "customCss": "",
+                    "title": "Automotores Toyota Colombia impulsa una movilidad sostenible y multiruta en Latam Mobility 2025\n",
+                    "titleColor": "#111827",
+                    "description": "Reafirmando su visión de movilidad sostenible a través de su estrategia “Multipath” o multiruta.",
+                    "descriptionColor": "#374151",
+                    "textAlign": "left",
+                    "buttonText": "",
+                    "buttonType": "primary",
+                    "buttonHref": "",
+                    "buttonExternal": false,
+                    "cardMaxWidth": 461,
+                    "cardPadding": 16,
+                    "cardBorderRadius": 12,
+                    "cardShadow": "0",
+                    "id": "Card-1f3dbaf7-8a43-410c-83dd-d3de77e3de75"
+                }
+            }
+        ]
+    }
+}

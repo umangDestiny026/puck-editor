@@ -1,6 +1,8 @@
 import { Flex, Link, Text, View } from '@aws-amplify/ui-react';
-import { DropZone } from '@puckeditor/core';
 import React from 'react'
+import { megaMenuStore } from '../zone';
+import { Render } from "@puckeditor/core";
+import config from '../../puck.config';
 
 export default function Navbar({
     backgroundColor,
@@ -20,6 +22,13 @@ export default function Navbar({
     const uniqueClass = `header-${Math.random().toString(36).slice(2, 9)}`;
     const defaultHamburger =
         "https://upload.wikimedia.org/wikipedia/commons/b/b2/Hamburger_icon.svg";
+
+    const navConfig = {
+        "root": {
+            "props": {}
+        },
+        "zones": {}
+    }
     return (
         <View
             backgroundColor={backgroundColor}
@@ -177,14 +186,57 @@ export default function Navbar({
                             <Flex className="desktop-nav" direction="row" gap="24px">
 
                                 {menuItems.map((item, i) => {
-                                    const hasDropdown =
+                                    const isDropdown =
+                                        item.menuMode === "dropdown" &&
                                         Array.isArray(item.dropdownItems) &&
-                                        item.dropdownItems.length > 0 || menuMode === "dropdown";
-                                    const isMegaMenu = menuMode === "megamenu";
+                                        item.dropdownItems.length > 0;
+
+                                    const isMegaMenu =
+                                        item.menuMode === "megamenu" &&
+                                        !!item.savedMegaMenu;
 
                                     const isOpen = openIndex === i;
 
-                                    if (!hasDropdown) {
+                                    if (isMegaMenu && item.savedMegaMenu !== null) {
+                                        const content = megaMenuStore.get(item.savedMegaMenu)?.content;
+                                        console.log("content", content);
+                                        return (
+                                            <View key={i} style={{ position: "relative" }}>
+                                                <Text
+                                                    onClick={() => setOpenIndex(isOpen ? null : i)}
+                                                    style={{
+                                                        cursor: "pointer",
+                                                        display: "flex",
+                                                        alignItems: "center",
+                                                        gap: "6px",
+                                                    }}
+                                                >
+                                                    {item.label}
+                                                    <span style={{ fontSize: "12px" }}>
+                                                        {isOpen ? "▲" : "▼"}
+                                                    </span>
+                                                </Text>
+                                                {isOpen && isMegaMenu && content && (
+                                                    <View
+                                                        style={{
+                                                            position: "absolute",
+                                                            top: "100%",
+                                                            left: 0,
+                                                            background: "#fff",
+                                                            width: "600px",
+                                                            padding: "20px",
+                                                            boxShadow: "0 4px 12px rgba(0,0,0,.12)",
+                                                            zIndex: 999,
+                                                        }}
+                                                    >
+                                                        <Render data={{...navConfig, ...content}} config={config as any} />
+                                                    </View>
+                                                )}
+                                            </View>
+                                        );
+                                    }
+
+                                    if (!isDropdown) {
                                         return (
                                             <Link key={i} href={item.href} color={textColor}>
                                                 {item.label}
