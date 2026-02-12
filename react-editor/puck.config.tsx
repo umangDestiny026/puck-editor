@@ -4,6 +4,7 @@ import { Superscript as SuperscriptIcon } from "lucide-react";
 import MainSlider from "./app/component/MainSlider";
 import PuckInput from "./app/component/Input";
 import PuckCheckbox from "./app/component/Checkbox";
+import Navbar from "./app/component/Navbar";
 import PuckDatePicker from "./app/component/DatePicker";
 import PuckDropdown from "./app/component/Dropdown";
 import PuckSearchableDropdown from "./app/component/SearchDropdown";
