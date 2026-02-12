@@ -423,6 +423,11 @@ export const config = {
             label: "Background color",
           },
 
+          gap: {
+            type: "text",
+            label: "Gap between columns",
+          },
+
           textColor: {
             type: "text",
             label: "Text color",
@@ -526,6 +531,7 @@ export const config = {
 
         backgroundColor: "#ffffff",
         textColor: "#000000",
+        gap: "40px",
 
         className: "footer-001",
         customCss: "",
@@ -541,6 +547,7 @@ export const config = {
         textColor,
         className,
         customCss,
+        gap
       }) => {
         const uniqueClass = `footer-${Math.random()
           .toString(36)
@@ -560,9 +567,9 @@ export const config = {
             <Flex
               direction="row"
               wrap="wrap"
-              gap="40px"
+              gap={gap || "40px"}
               marginBottom={"30px"}
-              justifyContent="space-between"
+              justifyContent={layout === "linksOnly" ? "center" : "space-between"}
             >
               {(layout === "infoAndLinks" ||
                 layout === "infoAndLinksSocial") && (
@@ -585,7 +592,7 @@ export const config = {
                 )}
 
               {/* LINKS SECTION */}
-              <Flex direction="row" gap="40px" wrap="wrap">
+              <Flex direction="row" gap={gap || "40px"} wrap="wrap">
                 {columns.map((col, i) => (
                   <View key={i}>
                     {col.title && (
