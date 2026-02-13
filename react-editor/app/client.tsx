@@ -33,10 +33,11 @@ export function Client() {
 
 
   useEffect(() => {
-    const handleMessage = (event) => {
+    const handleMessage = (event: any) => {
       if (event.data?.type === "LOAD_PUCK_DATA") {
-        console.log("Umang Received from Angular:", event.data.payload);
+        console.log("REACT APP:Received from Angular:", event.data.payload);
         setPuckData(event.data.payload);
+        setMode("preview");
       }
     };
 
@@ -160,22 +161,30 @@ export function Client() {
             }}
           />) : (
           <>
-            <button
-              onClick={() => setMode("edit")}
+            <div
               style={{
-                padding: "8px 14px",
-                borderRadius: "8px",
-                border: mode === "edit" ? "1px solid #2563eb" : "1px solid #e5e7eb",
-                background: mode === "edit" ? "#2563eb" : "#f9fafb",
-                color: mode === "edit" ? "white" : "#111827",
-                fontWeight: 500,
-                cursor: "pointer",
-                transition: "all 0.2s ease",
-                boxShadow: mode === "edit" ? "0 1px 3px rgba(37,99,235,0.3)" : "none",
-              }}
-            >
-              ← Back to Edit mode
-            </button>
+                display: "flex",
+                justifyContent: "end"
+              }}>
+
+              <button
+                onClick={() => setMode("edit")}
+                style={{
+                  padding: "8px 14px",
+                  marginTop: "8px",
+                  borderRadius: "8px",
+                  border: "1px solid #2563eb",
+                  background: "#2563eb",
+                  color: "white",
+                  fontWeight: 500,
+                  cursor: "pointer",
+                  transition: "all 0.2s ease",
+                  boxShadow: mode === "edit" ? "0 1px 3px rgba(37,99,235,0.3)" : "none",
+                }}
+              >
+                ← Edit page
+              </button>
+            </div>
             <hr />
 
             <div>
