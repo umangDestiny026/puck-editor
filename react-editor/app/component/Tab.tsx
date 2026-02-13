@@ -3,8 +3,21 @@ import { DropZone } from "@puckeditor/core";
 import { useEffect, useState } from "react";
 import { Heading, Tabs, Text, View } from "@aws-amplify/ui-react";
 import "@aws-amplify/ui-react/styles.css";
+import { Select } from "./select";
 
-const TabsRenderer = ({ tabs, activeTabIndex, className, uniqueClass, customCss, title, subTitle, TabItemPosition, theme = "dark", backgroundColor = "#111827", }) => {
+const TabsRenderer = ({
+    tabs,
+    activeTabIndex,
+    className,
+    uniqueClass,
+    customCss,
+    title,
+    subTitle,
+    TabItemPosition = "center",
+    theme = "dark",
+    backgroundImage,
+    backgroundColor,
+}) => {
     const [activeTab, setActiveTab] = useState(
         tabs?.[activeTabIndex]?.label || tabs?.[0]?.label
     );
@@ -18,20 +31,33 @@ const TabsRenderer = ({ tabs, activeTabIndex, className, uniqueClass, customCss,
     const isDark = theme === "dark";
 
     return (
-        <View className={`puck-tabs ${className || ""} ${uniqueClass || ""}`} backgroundColor={backgroundColor} color={isDark ? "#FFFFFF" : "#000000"}>
+        <View
+            className={`puck-tabs ${className || ""} ${uniqueClass || ""}`}
+            padding={{ base: "2rem 1rem", xl: "60px 0 80px 0" }}
+            backgroundColor={backgroundColor}
+            backgroundImage={backgroundImage}
+        >
             {customCss && (
                 <style>{`
-                    .${uniqueClass} {
-                        ${customCss}
-                        }
-                    `}
-                </style>
+          .${uniqueClass} {
+            ${customCss}
+          }
+        `}</style>
             )}
-            {
-                subTitle && (
-                    <Text textAlign="center" margin="1rem auto 0.5rem" color={isDark ? "#FFFFFF" : "#000000"}>{subTitle}</Text>
-                )
-            }
+
+            {/* Subtitle */}
+            {subTitle && (
+                <Text
+                    textAlign="center"
+                    fontSize={{ base: "16px", xl: "18px" }}
+                    margin="0 auto 0.5rem"
+                    color={isDark ? "#FFFFFF" : "#000000"}
+                >
+                    {subTitle}
+                </Text>
+            )}
+
+            {/* Title */}
             {title && (
                 <Heading
                     level={2}
@@ -42,20 +68,51 @@ const TabsRenderer = ({ tabs, activeTabIndex, className, uniqueClass, customCss,
                     {title}
                 </Heading>
             )}
+
             <Tabs.Container
                 value={activeTab}
-                onChange={(value) => setActiveTab(value as unknown as string)}
-                width="100%"
+                onValueChange={(value) => setActiveTab(value)}
             >
+                {/* ✅ Mobile Select (like reference) */}
+                <View
+                    margin="20px auto"
+                    display={{ base: "block", xl: "none" }}
+                    maxWidth="230px"
+                    minHeight="48px"
+                    maxHeight="48px"
+                >
+                    <Select
+                        options={tabs.map((tab) => ({
+                            value: tab.label,
+                            label: tab.label,
+                        }))}
+                        selectedOption={
+                            activeTab ? { value: activeTab, label: activeTab } : null
+                        }
+                        onSelect={(selected) => {
+                            if (selected?.value) {
+                                setActiveTab(selected.value);
+                            }
+                        }}
+                        // theme="dark"
+                        customControlStyles={{
+                            minHeight: "48px",
+                            textAlign: "center",
+                            textAlignLast: "center",
+                        }}
+                        placeholder="Select tab"
+                    />
+                </View>
+
+                {/* ✅ Desktop Tabs */}
                 <Tabs.List
                     justifyContent={TabItemPosition}
-                    style={{
-                        overflowX: "auto",
-                        scrollBehavior: "smooth",
-                        paddingBottom: "8px",
-                    }}
+                    width="max-content"
+                    direction={{ base: "column", xl: "row" }}
+                    margin="32px auto 43px"
+                    display={{ base: "none", xl: "flex" }}
                 >
-                    {tabs.map((tab: any, index: number) => {
+                    {tabs.map((tab, index) => {
                         const isActive = tab.label === activeTab;
 
                         return (
@@ -63,13 +120,15 @@ const TabsRenderer = ({ tabs, activeTabIndex, className, uniqueClass, customCss,
                                 key={index}
                                 value={tab.label}
                                 color={isDark ? "#FFFFFF" : "#000000"}
+                                fontSize={{ base: "14px", xl: "18px" }}
+                                fontWeight={400}
                                 style={{
                                     borderBottomWidth: "4px",
                                     borderBottomColor: isActive
                                         ? isDark
-                                            ? "#FFFFFF"      // 👈 active border in dark mode
-                                            : "#000000"      // 👈 active border in light mode
-                                        : "transparent",   // 👈 hide border when not active
+                                            ? "#FFFFFF"
+                                            : "#000000"
+                                        : "transparent",
                                 }}
                             >
                                 {tab.label}
@@ -78,15 +137,16 @@ const TabsRenderer = ({ tabs, activeTabIndex, className, uniqueClass, customCss,
                     })}
                 </Tabs.List>
 
+                {/* ✅ Panels */}
                 {tabs.map((tab: any, index: number) => (
                     <Tabs.Panel
                         key={index}
                         value={tab.label}
-                        padding="1.5rem"
+                        padding={{ base: "1rem 0", xl: "1.5rem 0" }}
                         color={isDark ? "#FFFFFF" : "#000000"}
                     >
                         {tab.defaultContent && (
-                            <div style={{ marginBottom: "10px", color: isDark ? "#FFFFFF" : "#000000" }}>
+                            <div style={{ marginBottom: "10px" }}>
                                 {tab.defaultContent}
                             </div>
                         )}

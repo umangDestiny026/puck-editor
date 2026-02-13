@@ -82,7 +82,6 @@ const MegaMenuRenderer = (props: any) => {
           inset: "60px 0px 0px",
           paddingTop: "30px",
           backgroundColor,
-          height: "200px",
           zIndex: 9999999,
           display: "flex",
           flexDirection: "column",

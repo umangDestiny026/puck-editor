@@ -403,7 +403,7 @@ export const config = {
     MegaMenu,
 
     MulipleMegaMenuItems: {
-      label: "🍔 Mega Menu Items",
+      label: "🍔 Multiple Menu Items",
       fields: {
         className: { type: "text", label: "Custom class" },
         customCss: { type: "textarea", label: "Custom CSS" },
@@ -421,7 +421,6 @@ export const config = {
                 label: { type: "text", label: "Label" },
                 href: { type: "text", label: "URL (optional)" },
 
-                /** ===== LEVEL 2 ===== */
                 submenu: {
                   type: "array",
                   label: "Submenu Level 2",
@@ -436,7 +435,6 @@ export const config = {
                         label: { type: "text", label: "Label" },
                         href: { type: "text", label: "URL (optional)" },
 
-                        /** ===== LEVEL 3 (THIS WAS MISSING BEFORE) ===== */
                         submenu: {
                           type: "array",
                           label: "Submenu Level 3",
@@ -1192,6 +1190,7 @@ export const config = {
           width: "100%",
           height: `${height}px`,
           maxHeight: `${maxHeight}px`,
+          maxWidth: `${maxWidth}px`,
           borderRadius: 8,
           display: "block",
         };

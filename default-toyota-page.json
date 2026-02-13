@@ -1,0 +1,271 @@
+{
+  "root": {
+    "props": {}
+  },
+  "content": [
+    {
+      "type": "Header",
+      "props": {
+        "backgroundColor": "#ffffff",
+        "layout": "LogoMenuCTA",
+        "menuMode": "linksonly",
+        "textColor": "#000000",
+        "navPosition": "static",
+        "logoUrl": "https://toyota.com.co/images/Logo.svg",
+        "hamburgerIcon": "https://toyota.com.co/images/menu.svg",
+        "menuItems": [
+          {
+            "label": "Vehículos",
+            "menuMode": "dropdown",
+            "dropdownItems": [],
+            "savedMegaMenu": ""
+          },
+          {
+            "label": "Cotiza tu Toyota",
+            "menuMode": "linksonly",
+            "dropdownItems": [],
+            "savedMegaMenu": ""
+          },
+          {
+            "label": "Mi Toyota",
+            "menuMode": "linksonly",
+            "dropdownItems": [],
+            "savedMegaMenu": ""
+          },
+          {
+            "label": "Descubre Toyota",
+            "menuMode": "linksonly",
+            "dropdownItems": [],
+            "savedMegaMenu": ""
+          },
+          {
+            "label": "Alquila",
+            "menuMode": "linksonly",
+            "dropdownItems": [],
+            "savedMegaMenu": ""
+          },
+          {
+            "label": "Noticias",
+            "menuMode": "linksonly",
+            "dropdownItems": [],
+            "savedMegaMenu": ""
+          },
+          {
+            "label": "Deportivos TGR",
+            "menuMode": "linksonly",
+            "dropdownItems": [],
+            "savedMegaMenu": ""
+          }
+        ],
+        "rightLinks": [
+          {
+            "label": "Cotizador",
+            "href": "#"
+          },
+          {
+            "label": "Concesionarios Toyota",
+            "href": "#"
+          },
+          {
+            "label": "WhatsApp",
+            "href": "#",
+            "icon": "https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+          }
+        ],
+        "id": "Header-0811b6b6-bd6c-4f33-8c4b-60a54c9bebdb"
+      }
+    },
+    {
+      "type": "Image",
+      "props": {
+        "sourceType": "url",
+        "className": "image-001",
+        "customCss": "",
+        "image": "https://www.creative-tim.com/blog/content/images/wordpress/2019/05/1.png",
+        "alt": "Image",
+        "align": "center",
+        "widthUnit": "px",
+        "maxWidthValue": 100,
+        "maxWidthUnit": "%",
+        "heightUnit": "px",
+        "maxHeightUnit": "px",
+        "objectFit": "contain",
+        "objectPosition": "center",
+        "overflow": "hidden",
+        "borderRadius": 0,
+        "id": "Image-41a9c819-6797-4e29-9a3d-510ff9382fc3"
+      }
+    },
+    {
+      "type": "Footer",
+      "props": {
+        "layout": "linksOnly",
+        "columns": [
+          {
+            "title": "Vehículos",
+            "links": [
+              {
+                "label": "Automóviles",
+                "href": "#"
+              },
+              {
+                "label": "Camionetas y SUV",
+                "href": "#"
+              }
+            ]
+          },
+          {
+            "title": "Acerca de Toyota",
+            "links": [
+              {
+                "label": "Campañas de seguridad",
+                "href": "#"
+              },
+              {
+                "label": "Mantenimiento Toyota",
+                "href": "#"
+              },
+              {
+                "label": "Alquila tu Toyota",
+                "href": "#"
+              }
+            ]
+          },
+          {
+            "title": "Enlaces Útiles",
+            "links": [
+              {
+                "label": "Canal de Integridad",
+                "href": "#"
+              }
+            ]
+          },
+          {
+            "title": "Contáctanos",
+            "links": [
+              {
+                "label": "Cotizador"
+              },
+              {
+                "label": "Contacto",
+                "href": "#"
+              }
+            ]
+          }
+        ],
+        "socialLinks": [
+          {
+            "label": "Instagram",
+            "icon": "https://example.com/home-icon.png",
+            "href": "#"
+          },
+          {
+            "label": "Whatsapp",
+            "icon": "https://example.com/home-icon.png",
+            "href": "#"
+          }
+        ],
+        "infoTitle": "Puck Visual Editor",
+        "infoText": "Build visually. Launch instantly.",
+        "backgroundColor": "#ffffff",
+        "textColor": "#000000",
+        "gap": "80px",
+        "className": "footer-001",
+        "customCss": "",
+        "id": "Footer-f89a4e60-18b9-407f-875b-a957b62c6109"
+      }
+    }
+  ],
+  "zones": {
+    "Footer-f89a4e60-18b9-407f-875b-a957b62c6109:text-zone": [
+      {
+        "type": "Image",
+        "props": {
+          "sourceType": "url",
+          "className": "image-001",
+          "customCss": "",
+          "image": "https://toyota.com.co/images/Logo.png",
+          "alt": "Image",
+          "align": "center",
+          "widthUnit": "px",
+          "maxWidthValue": 100,
+          "maxWidthUnit": "%",
+          "heightUnit": "px",
+          "maxHeightUnit": "px",
+          "objectFit": "contain",
+          "objectPosition": "center",
+          "overflow": "hidden",
+          "borderRadius": 0,
+          "id": "Image-4867ab2c-e78e-44e4-a397-bcb97af578ba"
+        }
+      },
+      {
+        "type": "Flex",
+        "props": {
+          "direction": "row",
+          "wrap": "nowrap",
+          "justifyContent": "center",
+          "alignItems": "stretch",
+          "gap": 24,
+          "flex": "",
+          "className": "",
+          "customCss": "",
+          "id": "Flex-30b2764d-9de3-467e-bda3-405429c08ed2"
+        }
+      }
+    ],
+    "Flex-30b2764d-9de3-467e-bda3-405429c08ed2:flex-zone": [
+      {
+        "type": "Text",
+        "props": {
+          "content": "© 2025 Automotores Toyota Colombia S.A.S",
+          "level": "h1",
+          "size": "lg",
+          "align": "left",
+          "className": "text-001",
+          "customCss": "font-size:12px;\nfont-weight:400;",
+          "widthUnit": "px",
+          "maxWidthValue": 700,
+          "maxWidthUnit": "px",
+          "minWidthUnit": "px",
+          "textColor": "#000000",
+          "id": "Text-4cb61b66-bf2d-4bad-855e-f8ffd755b8bb"
+        }
+      },
+      {
+        "type": "Text",
+        "props": {
+          "content": "Todos los derechos reservados.",
+          "level": "h1",
+          "size": "lg",
+          "align": "left",
+          "className": "text-001",
+          "customCss": "font-size:12px;\nfont-weight:400;",
+          "widthUnit": "px",
+          "maxWidthValue": 700,
+          "maxWidthUnit": "px",
+          "minWidthUnit": "px",
+          "textColor": "#000000",
+          "id": "Text-887886a7-69aa-46da-994a-6e405cc20cc7"
+        }
+      },
+      {
+        "type": "Text",
+        "props": {
+          "content": "La información aquí presente se aplica solo a vehículos en Colombia.",
+          "level": "h1",
+          "size": "lg",
+          "align": "left",
+          "className": "text-001",
+          "customCss": "font-size:12px;\nfont-weight:400;",
+          "widthUnit": "px",
+          "maxWidthValue": 700,
+          "maxWidthUnit": "px",
+          "minWidthUnit": "px",
+          "textColor": "#000000",
+          "id": "Text-13b7aa3a-4f64-4ae8-af71-6355a13e2b31"
+        }
+      }
+    ]
+  }
+}

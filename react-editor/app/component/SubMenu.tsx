@@ -27,7 +27,7 @@ const ExternalLinkIcon = () => {
     );
 };
 
-const RightArrowIcon = ({ ...props }) => {
+export const RightArrowIcon = ({ ...props }) => {
     return (
         <Icon position={"relative"} top={"5px"} fontSize={20} {...props}>
             <path
@@ -38,7 +38,7 @@ const RightArrowIcon = ({ ...props }) => {
     );
 };
 
-const LeftArrowIcon = ({ ...props }) => {
+export const LeftArrowIcon = ({ ...props }) => {
     return (
         <Icon fontSize={20} {...props}>
             <path
@@ -338,12 +338,7 @@ const SubmenuDropdown: React.FC<MenuProps> = ({
     return (
         <View
             style={{
-                position: "fixed",
-                top: "60px",
                 padding: "60px",
-                left: 0,
-                right: 0,
-                bottom: 0,
                 height: "100%",
                 backgroundColor: "white",
                 zIndex: 9999999,

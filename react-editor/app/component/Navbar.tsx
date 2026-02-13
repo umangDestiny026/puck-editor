@@ -200,6 +200,10 @@ export default function Navbar({
                                     if (isMegaMenu && item.savedMegaMenu !== null) {
                                         const content = megaMenuStore.get(item.savedMegaMenu)?.content;
                                         console.log("content", content);
+                                        const formattedData = {
+                                            content: content || [],
+                                            root: { props: {} },
+                                        };
                                         return (
                                             <View key={i} style={{ position: "relative" }}>
                                                 <Text
@@ -212,26 +216,38 @@ export default function Navbar({
                                                     }}
                                                 >
                                                     {item.label}
-                                                    <span style={{ fontSize: "12px" }}>
-                                                        {isOpen ? "▲" : "▼"}
-                                                    </span>
+                                                    <svg
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        width="12"
+                                                        height="8"
+                                                        viewBox="0 0 12 8"
+                                                        fill="none"
+                                                    >
+                                                        <path
+                                                            d="M10.589 0.294922L5.99902 4.87492L1.40902 0.294922L-0.000976563 1.70492L5.99902 7.70492L11.999 1.70492L10.589 0.294922Z"
+                                                            fill="black"
+                                                        />
+                                                    </svg>
                                                 </Text>
                                                 {isOpen && isMegaMenu && content && (
                                                     <View
                                                         style={{
-                                                            position: "absolute",
-                                                            top: "100%",
+                                                            // inset: "60px 0px 0px",
+                                                            display: "flex",
+                                                            position: "fixed",
+                                                            top: "auto",
                                                             left: 0,
                                                             background: "#fff",
-                                                            width: "600px",
+                                                            width: "100vw",
                                                             padding: "20px",
-                                                            boxShadow: "0 4px 12px rgba(0,0,0,.12)",
+                                                            height: "100%",
                                                             zIndex: 999,
                                                         }}
                                                     >
-                                                        <Render data={{...navConfig, ...content}} config={config as any} />
+                                                        <Render data={formattedData} config={config as any} />
                                                     </View>
-                                                )}
+                                                )
+                                                }
                                             </View>
                                         );
                                     }
@@ -258,7 +274,18 @@ export default function Navbar({
                                             >
                                                 {item.label}
                                                 <span style={{ fontSize: "12px" }}>
-                                                    {isOpen ? "▲" : "▼"}
+                                                    <svg
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        width="12"
+                                                        height="8"
+                                                        viewBox="0 0 12 8"
+                                                        fill="none"
+                                                    >
+                                                        <path
+                                                            d="M10.589 0.294922L5.99902 4.87492L1.40902 0.294922L-0.000976563 1.70492L5.99902 7.70492L11.999 1.70492L10.589 0.294922Z"
+                                                            fill="black"
+                                                        />
+                                                    </svg>
                                                 </span>
                                             </Text>
 
@@ -443,6 +470,6 @@ export default function Navbar({
                 }
 
             </View>
-        </View>
+        </View >
     )
 }
