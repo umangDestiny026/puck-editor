@@ -65,6 +65,7 @@ export function Client() {
 
         console.log("Merged data:", mergedData);
         setPuckData(mergedData);
+        setMode("preview");
       } catch (err) {
         alert("Invalid JSON file");
       }
