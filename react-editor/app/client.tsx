@@ -8,11 +8,11 @@ import config from "../puck.config";
 import { Render } from "@puckeditor/core";
 import { megaMenuStore } from "./zone";
 
-const aiPlugin = createAiPlugin();
+// const aiPlugin = createAiPlugin();
 const initialData = { content: [] };
 
 export function Client() {
-  const [puckData, setPuckData] = useState(initialData);
+  const [puckData, setPuckData] = useState<any>(initialData);
   const [mode, setMode] = useState("edit");
 
   useEffect(() => {
@@ -59,8 +59,16 @@ export function Client() {
         const importedData = JSON.parse(e.target?.result as string);
 
         const mergedData = {
-          ...importedData,
-          content: [...puckData.content, ...importedData.content],
+          ...puckData, // start from existing state
+          ...importedData, // override top-level if needed
+          content: [
+            ...(puckData.content || []),
+            ...(importedData.content || []),
+          ],
+          zones: {
+            ...(puckData.zones || {}),
+            ...(importedData.zones || {}),
+          },
         };
 
         console.log("Merged data:", mergedData);

@@ -1,0 +1,712 @@
+{
+    "root": {
+        "props": {}
+    },
+    "content": [
+        {
+            "type": "Header",
+            "props": {
+                "backgroundColor": "#ffffff",
+                "layout": "LogoMenuCTA",
+                "menuMode": "linksonly",
+                "textColor": "#000000",
+                "navPosition": "static",
+                "logoUrl": "https://toyota.com.co/images/Logo.svg",
+                "hamburgerIcon": "https://toyota.com.co/images/menu.svg",
+                "menuItems": [
+                    {
+                        "label": "Vehículos",
+                        "menuMode": "megamenu",
+                        "dropdownItems": [],
+                        "savedMegaMenu": "MegaMenu-6326552b-15d2-472e-9e4c-a26c907e57b7"
+                    },
+                    {
+                        "label": "Cotiza tu Toyota",
+                        "menuMode": "megamenu",
+                        "dropdownItems": [],
+                        "savedMegaMenu": "MegaMenu-e4e353df-2f46-4f13-82da-042d46bc1acf"
+                    },
+                    {
+                        "label": "Mi Toyota",
+                        "menuMode": "megamenu",
+                        "dropdownItems": [],
+                        "savedMegaMenu": "MegaMenu-d78eb0ab-69e9-41c8-b007-88f5d5b87cb8"
+                    },
+                    {
+                        "label": "Descubre Toyota",
+                        "menuMode": "megamenu",
+                        "dropdownItems": [],
+                        "savedMegaMenu": "MegaMenu-8de5d761-ed58-4c16-a858-e79fd562d873"
+                    },
+                    {
+                        "label": "Alquila",
+                        "menuMode": "linksonly",
+                        "dropdownItems": [],
+                        "savedMegaMenu": null
+                    },
+                    {
+                        "label": "Noticias",
+                        "menuMode": "linksonly",
+                        "dropdownItems": [],
+                        "savedMegaMenu": null
+                    },
+                    {
+                        "label": "Deportivos TGR",
+                        "menuMode": "linksonly",
+                        "dropdownItems": [],
+                        "savedMegaMenu": null
+                    }
+                ],
+                "rightLinks": [
+                    {
+                        "label": "Cotizador",
+                        "href": "#"
+                    },
+                    {
+                        "label": "Concesionarios Toyota",
+                        "href": "#"
+                    },
+                    {
+                        "label": "WhatsApp",
+                        "href": "#",
+                        "icon": "https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+                    }
+                ],
+                "id": "Header-4edb33b1-9d4e-4735-8f9f-8bd0b82cc38e"
+            }
+        }
+    ],
+    "zones": {
+        "MegaMenu-6326552b-15d2-472e-9e4c-a26c907e57b7:MegaMenu-6326552b-15d2-472e-9e4c-a26c907e57b7": [
+            {
+                "type": "Tabs",
+                "props": {
+                    "title": "",
+                    "subTitle": "",
+                    "TabItemPosition": "center",
+                    "theme": "light",
+                    "backgroundColor": "#ffffff",
+                    "tabs": [
+                        {
+                            "label": "Autos",
+                            "icon": "",
+                            "defaultContent": ""
+                        },
+                        {
+                            "label": "Tab 2",
+                            "icon": "",
+                            "defaultContent": "Hello, this is tab 2 default content."
+                        }
+                    ],
+                    "activeTabIndex": 0,
+                    "className": "tab-content-00",
+                    "customCss": "",
+                    "id": "Tabs-cfa14aa7-d9e3-4fe4-9fe7-323b67743a57"
+                }
+            }
+        ],
+        "Tabs-cfa14aa7-d9e3-4fe4-9fe7-323b67743a57:tab-0": [
+            {
+                "type": "Flexbox",
+                "props": {
+                    "className": "flexbox-001",
+                    "customCss": "",
+                    "direction": "row",
+                    "justify": "flex-start",
+                    "align": "center",
+                    "gap": 10,
+                    "items": [
+                        {
+                            "type": "Text",
+                            "props": {
+                                "content": "Text 1",
+                                "level": "p"
+                            }
+                        },
+                        {
+                            "type": "Text",
+                            "props": {
+                                "content": "Text 2",
+                                "level": "p"
+                            }
+                        },
+                        {
+                            "type": "Text",
+                            "props": {
+                                "content": "Text 3",
+                                "level": "p"
+                            }
+                        }
+                    ],
+                    "id": "Flexbox-fa3adf69-68b2-4316-b263-a28627f98898"
+                }
+            }
+        ],
+        "Tabs-cfa14aa7-d9e3-4fe4-9fe7-323b67743a57:tab-1": [],
+        "Flexbox-fa3adf69-68b2-4316-b263-a28627f98898:flex-item-0": [
+            {
+                "type": "Image",
+                "props": {
+                    "sourceType": "url",
+                    "className": "image-001",
+                    "customCss": "",
+                    "image": "https://toyota.com.co/images/seleccion-toyota-jun-Yaris.png",
+                    "alt": "Image",
+                    "align": "center",
+                    "widthUnit": "px",
+                    "maxWidthValue": 100,
+                    "maxWidthUnit": "%",
+                    "heightUnit": "px",
+                    "maxHeightUnit": "px",
+                    "objectFit": "contain",
+                    "objectPosition": "center",
+                    "overflow": "hidden",
+                    "borderRadius": 0,
+                    "id": "Image-e614cb32-1258-4869-862f-e6e5d69fbeaf"
+                }
+            },
+            {
+                "type": "Text",
+                "props": {
+                    "content": "Yaris",
+                    "level": "h3",
+                    "size": "lg",
+                    "align": "center",
+                    "className": "text-001",
+                    "customCss": "",
+                    "widthUnit": "px",
+                    "maxWidthValue": 700,
+                    "maxWidthUnit": "px",
+                    "minWidthUnit": "px",
+                    "textColor": "#000000",
+                    "id": "Text-4f488569-bed8-468c-88ed-fddce97ecbb1"
+                }
+            }
+        ],
+        "Flexbox-fa3adf69-68b2-4316-b263-a28627f98898:flex-item-1": [
+            {
+                "type": "Image",
+                "props": {
+                    "sourceType": "url",
+                    "className": "image-001",
+                    "customCss": "",
+                    "image": "https://toyota.com.co/images/seleccion-toyota-jun-Yaris.png",
+                    "alt": "Image",
+                    "align": "center",
+                    "widthUnit": "px",
+                    "maxWidthValue": 100,
+                    "maxWidthUnit": "%",
+                    "heightUnit": "px",
+                    "maxHeightUnit": "px",
+                    "objectFit": "contain",
+                    "objectPosition": "center",
+                    "overflow": "hidden",
+                    "borderRadius": 0,
+                    "id": "Image-c8edd4a2-0339-42fb-abb6-b937dd55ce23"
+                }
+            },
+            {
+                "type": "Text",
+                "props": {
+                    "content": "Corolla",
+                    "level": "h3",
+                    "size": "lg",
+                    "align": "center",
+                    "className": "text-001",
+                    "customCss": "",
+                    "widthUnit": "px",
+                    "maxWidthValue": 700,
+                    "maxWidthUnit": "px",
+                    "minWidthUnit": "px",
+                    "textColor": "#000000",
+                    "id": "Text-22d281df-fb6d-4540-a92a-757e250ed99f"
+                }
+            }
+        ],
+        "Flexbox-fa3adf69-68b2-4316-b263-a28627f98898:flex-item-2": [
+            {
+                "type": "Image",
+                "props": {
+                    "sourceType": "url",
+                    "className": "image-001",
+                    "customCss": "",
+                    "image": "https://toyota.com.co/images/seleccion-toyota-jun-Yaris.png",
+                    "alt": "Image",
+                    "align": "center",
+                    "widthUnit": "px",
+                    "maxWidthValue": 100,
+                    "maxWidthUnit": "%",
+                    "heightUnit": "px",
+                    "maxHeightUnit": "px",
+                    "objectFit": "contain",
+                    "objectPosition": "center",
+                    "overflow": "hidden",
+                    "borderRadius": 0,
+                    "id": "Image-f51cec97-e3d8-42d6-b715-7e0d686eecc2"
+                }
+            },
+            {
+                "type": "Text",
+                "props": {
+                    "content": "Corolla-GR",
+                    "level": "h3",
+                    "size": "lg",
+                    "align": "center",
+                    "className": "text-001",
+                    "customCss": "",
+                    "widthUnit": "px",
+                    "maxWidthValue": 700,
+                    "maxWidthUnit": "px",
+                    "minWidthUnit": "px",
+                    "textColor": "#000000",
+                    "id": "Text-805acfcf-fbe1-438a-8b9a-dae5096a10bb"
+                }
+            }
+        ],
+        "MegaMenu-8de5d761-ed58-4c16-a858-e79fd562d873:MegaMenu-8de5d761-ed58-4c16-a858-e79fd562d873": [
+            {
+                "type": "MulipleMegaMenuItems",
+                "props": {
+                    "className": "mega-menu",
+                    "customCss": "",
+                    "columns": [
+                        {
+                            "title": "Descubre Toyota",
+                            "links": [
+                                {
+                                    "label": "Tecnologías",
+                                    "submenu": [
+                                        {
+                                            "links": [
+                                                {
+                                                    "label": "Híbridos",
+                                                    "href": "/descubre-toyota/tecnologias/hibridos"
+                                                },
+                                                {
+                                                    "label": "Flex Fuel Hev",
+                                                    "href": "/descubre-toyota/tecnologias/flex-fuel-hev"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "label": "Seguridad",
+                                    "submenu": [
+                                        {
+                                            "title": "Sistemas de seguridad",
+                                            "links": [
+                                                {
+                                                    "label": "Toyota Safety Sense",
+                                                    "href": "/descubre-toyota/seguridad/toyota-safety-sense"
+                                                },
+                                                {
+                                                    "label": "Manual del buen conductor",
+                                                    "href": "/descubre-toyota/seguridad/manual-del-buen-conductor"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "label": "Toyota sostenible",
+                                    "submenu": [
+                                        {
+                                            "title": "Pilares de sostenibilidad",
+                                            "links": [
+                                                {
+                                                    "label": "A-Ambiental",
+                                                    "submenu": [
+                                                        {
+                                                            "title": "Medio ambiente",
+                                                            "links": [
+                                                                {
+                                                                    "label": "Desafío medioambiental 2050",
+                                                                    "href": "/descubre-toyota/toyota-sostensible/a-ambiental/desafio-medioambiental-2025"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "subtitle": "Impacto positivo",
+                                                            "links": [
+                                                                {
+                                                                    "label": "Gestión eficiente del agua",
+                                                                    "href": "/descubre-toyota/toyota-sostensible/a-ambiental/gestion-eficiente-del-agua"
+                                                                },
+                                                                {
+                                                                    "label": "Armonía con la naturaleza",
+                                                                    "href": "/descubre-toyota/toyota-sostensible/a-ambiental/armonia-con-la-naturaleza"
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "label": "S-Social",
+                                                    "submenu": [
+                                                        {
+                                                            "title": "Diversidad, equidad e inclusión",
+                                                            "links": [
+                                                                {
+                                                                    "label": "Cáncer de mama",
+                                                                    "href": "/descubre-toyota/toyota-sostensible/s-social/cancer-de-mama"
+                                                                },
+                                                                {
+                                                                    "label": "Cáncer de próstata",
+                                                                    "href": "/descubre-toyota/toyota-sostensible/s-social/cancer-de-prostata"
+                                                                },
+                                                                {
+                                                                    "label": "Comunidad Wayúu",
+                                                                    "href": "/descubre-toyota/toyota-sostensible/s-social/comunidad-wayuu"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "subtitle": "Movilidad para todos",
+                                                            "links": [
+                                                                {
+                                                                    "label": "Hogares Bambi",
+                                                                    "href": "/descubre-toyota/toyota-sostensible/s-social/hogares-bambi"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "subtitle": "Dibuja tu Toyota",
+                                                            "links": [
+                                                                {
+                                                                    "label": "El carro de tus sueños",
+                                                                    "href": "/descubre-toyota/toyota-sostensible/s-social/el-carro-de-tus-suenos"
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "label": "G-Gobernanza",
+                                                    "submenu": [
+                                                        {
+                                                            "title": "Beyond Zero",
+                                                            "links": [
+                                                                {
+                                                                    "label": "Movilidad sostenible",
+                                                                    "href": "/descubre-toyota/toyota-sostensible/g-gobernanza/movilidad-sostenible"
+                                                                },
+                                                                {
+                                                                    "label": "Ciudad del futuro Woven City",
+                                                                    "href": "/descubre-toyota/toyota-sostensible/g-gobernanza/ciudad-del-futuro-woven-city"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "subtitle": "Conciencia vial",
+                                                            "links": [
+                                                                {
+                                                                    "label": "Parque de seguridad vial",
+                                                                    "href": "/descubre-toyota/toyota-sostensible/g-gobernanza/parque-de-seguridad-vial"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "subtitle": "Informes de sostenibilidad",
+                                                            "links": [
+                                                                {
+                                                                    "label": "Informe del 2022",
+                                                                    "href": "/descubre-toyota/toyota-sostensible/g-gobernanza/informe-de-sostenibilidad"
+                                                                },
+                                                                {
+                                                                    "label": "Informe del 2023",
+                                                                    "href": "/descubre-toyota/toyota-sostensible/g-gobernanza/informe-de-sostenibilidad"
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "label": "Cumplimiento",
+                                    "href": "/descubre-toyota/cumplimiento"
+                                },
+                                {
+                                    "label": "Historia Toyota Colombia",
+                                    "href": "/descubre-toyota/historia-toyota"
+                                }
+                            ]
+                        }
+                    ],
+                    "id": "MulipleMegaMenuItems-b5cfe63d-96d3-4827-ae8e-55862d48badb"
+                }
+            }
+        ],
+        "MegaMenu-d78eb0ab-69e9-41c8-b007-88f5d5b87cb8:MegaMenu-d78eb0ab-69e9-41c8-b007-88f5d5b87cb8": [
+            {
+                "type": "MulipleMegaMenuItems",
+                "props": {
+                    "className": "mega-menu",
+                    "customCss": "",
+                    "columns": [
+                        {
+                            "title": "Mi Toyota",
+                            "links": [
+                                {
+                                    "label": "Mantenimientos Toyota",
+                                    "submenu": [
+                                        {
+                                            "title": "Mantenimientos Toyota",
+                                            "links": [
+                                                {
+                                                    "label": "Mantenimiento",
+                                                    "href": "/mi-toyota/mantenimiento"
+                                                },
+                                                {
+                                                    "label": "Mantenimiento Planeado",
+                                                    "href": "/mi-toyota/mantenimiento/planeado"
+                                                },
+                                                {
+                                                    "label": "Mantenimiento Express",
+                                                    "href": "/mi-toyota/mantenimiento/express"
+                                                },
+                                                {
+                                                    "label": "Mantenimiento Prepagado",
+                                                    "href": "/mi-toyota/mantenimiento/prepagado"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "label": "Campañas de Seguridad",
+                                    "submenu": [
+                                        {
+                                            "title": "Campañas de Seguridad",
+                                            "links": [
+                                                {
+                                                    "label": "Campañas de Seguridad y Servicio",
+                                                    "href": "/mi-toyota/campanas-de-seguridad-y-servicios"
+                                                },
+                                                {
+                                                    "label": "Campaña de Seguridad Tapetes",
+                                                    "href": "/mi-toyota/campanas-de-seguridad-tapetes"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "label": "Cobertura Extendida T10",
+                                    "href": "/mi-toyota/cobertura-extendida-t10"
+                                },
+                                {
+                                    "label": "Boutique",
+                                    "submenu": [
+                                        {
+                                            "links": [
+                                                {
+                                                    "label": "Boutique",
+                                                    "href": "/mi-toyota/boutique"
+                                                },
+                                                {
+                                                    "label": "Boutique Toyota",
+                                                    "href": "/mi-toyota/boutique/marketplace?type=boutique-toyota"
+                                                },
+                                                {
+                                                    "label": "Boutique Ecofriendly",
+                                                    "href": "/mi-toyota/boutique/marketplace?type=boutique-ecofriendly"
+                                                },
+                                                {
+                                                    "label": "Boutique Gazoo Racing",
+                                                    "href": "/deportivos-tgr/marketplace?type=boutique-gazoo-racing"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "label": "Accesorios",
+                                    "href": "/mi-toyota/accesorios"
+                                },
+                                {
+                                    "label": "Toyota conectado",
+                                    "submenu": [
+                                        {
+                                            "title": "Toyota conectado",
+                                            "links": [
+                                                {
+                                                    "label": "Toyota App",
+                                                    "href": "/mi-toyota/servicios-conectados/toyota-app"
+                                                },
+                                                {
+                                                    "label": "Servicios Conectados",
+                                                    "href": "/mi-toyota/servicios-conectados"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "label": "Euro 6",
+                                    "href": "/mi-toyota/euro-6"
+                                }
+                            ],
+                            "showViewAll": false
+                        }
+                    ],
+                    "id": "MulipleMegaMenuItems-f9f84e26-5133-493c-ba8b-31da69bb7cbc"
+                }
+            }
+        ],
+        "MegaMenu-e4e353df-2f46-4f13-82da-042d46bc1acf:MegaMenu-d78eb0ab-69e9-41c8-b007-88f5d5b87cb8": [
+            {
+                "type": "MulipleMegaMenuItems",
+                "props": {
+                    "className": "mega-menu",
+                    "customCss": "",
+                    "columns": [
+                        {
+                            "title": "Mi Toyota",
+                            "links": [
+                                {
+                                    "label": "Mantenimientos Toyota",
+                                    "submenu": [
+                                        {
+                                            "title": "Mantenimientos Toyota",
+                                            "links": [
+                                                {
+                                                    "label": "Mantenimiento",
+                                                    "href": "/mi-toyota/mantenimiento"
+                                                },
+                                                {
+                                                    "label": "Mantenimiento Planeado",
+                                                    "href": "/mi-toyota/mantenimiento/planeado"
+                                                },
+                                                {
+                                                    "label": "Mantenimiento Express",
+                                                    "href": "/mi-toyota/mantenimiento/express"
+                                                },
+                                                {
+                                                    "label": "Mantenimiento Prepagado",
+                                                    "href": "/mi-toyota/mantenimiento/prepagado"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "label": "Campañas de Seguridad",
+                                    "submenu": [
+                                        {
+                                            "title": "Campañas de Seguridad",
+                                            "links": [
+                                                {
+                                                    "label": "Campañas de Seguridad y Servicio",
+                                                    "href": "/mi-toyota/campanas-de-seguridad-y-servicios"
+                                                },
+                                                {
+                                                    "label": "Campaña de Seguridad Tapetes",
+                                                    "href": "/mi-toyota/campanas-de-seguridad-tapetes"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "label": "Cobertura Extendida T10",
+                                    "href": "/mi-toyota/cobertura-extendida-t10"
+                                },
+                                {
+                                    "label": "Boutique",
+                                    "submenu": [
+                                        {
+                                            "links": [
+                                                {
+                                                    "label": "Boutique",
+                                                    "href": "/mi-toyota/boutique"
+                                                },
+                                                {
+                                                    "label": "Boutique Toyota",
+                                                    "href": "/mi-toyota/boutique/marketplace?type=boutique-toyota"
+                                                },
+                                                {
+                                                    "label": "Boutique Ecofriendly",
+                                                    "href": "/mi-toyota/boutique/marketplace?type=boutique-ecofriendly"
+                                                },
+                                                {
+                                                    "label": "Boutique Gazoo Racing",
+                                                    "href": "/deportivos-tgr/marketplace?type=boutique-gazoo-racing"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "label": "Accesorios",
+                                    "href": "/mi-toyota/accesorios"
+                                },
+                                {
+                                    "label": "Toyota conectado",
+                                    "submenu": [
+                                        {
+                                            "title": "Toyota conectado",
+                                            "links": [
+                                                {
+                                                    "label": "Toyota App",
+                                                    "href": "/mi-toyota/servicios-conectados/toyota-app"
+                                                },
+                                                {
+                                                    "label": "Servicios Conectados",
+                                                    "href": "/mi-toyota/servicios-conectados"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "label": "Euro 6",
+                                    "href": "/mi-toyota/euro-6"
+                                }
+                            ],
+                            "showViewAll": false
+                        }
+                    ],
+                    "id": "MulipleMegaMenuItems-288795db-d950-4985-9def-66d4c4b21cb5"
+                }
+            }
+        ],
+        "MegaMenu-e4e353df-2f46-4f13-82da-042d46bc1acf:MegaMenu-e4e353df-2f46-4f13-82da-042d46bc1acf": [
+            {
+                "type": "MulipleMegaMenuItems",
+                "props": {
+                    "className": "mega-menu",
+                    "customCss": "",
+                    "columns": [
+                        {
+                            "title": "Cotiza tu Toyota",
+                            "links": [
+                                {
+                                    "label": "Vehículos nuevos",
+                                    "href": "/cotiza-tu-toyota/vehiculos-nuevos"
+                                },
+                                {
+                                    "label": "Flotas y ventas corporativas",
+                                    "href": "/cotiza-tu-toyota/flotas-y-ventas-corporativas"
+                                },
+                                {
+                                    "label": "Seguro Toyota",
+                                    "href": "/cotiza-tu-toyota/seguro-toyota"
+                                },
+                                {
+                                    "label": "Financiación Toyota",
+                                    "href": "/cotiza-tu-toyota/financiacion-toyota"
+                                }
+                            ],
+                            "showViewAll": false
+                        }
+                    ],
+                    "id": "MulipleMegaMenuItems-37b09c94-c238-479c-81a5-308326e1912c"
+                }
+            }
+        ]
+    }
+}
