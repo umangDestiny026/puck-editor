@@ -7,12 +7,13 @@ import { useEffect, useState } from "react";
 import config from "../puck.config";
 import { Render } from "@puckeditor/core";
 import { megaMenuStore } from "./zone";
+import { usePuck } from "./PuckContext";
 
 // const aiPlugin = createAiPlugin();
 const initialData = { content: [] };
 
 export function Client() {
-  const [puckData, setPuckData] = useState<any>(initialData);
+  const { puckData, setPuckData } = usePuck();
   const [mode, setMode] = useState("edit");
 
   useEffect(() => {
@@ -95,13 +96,7 @@ export function Client() {
             config={config as any}
             onChange={(updatedData) => {
               setPuckData(updatedData);
-
-              Object.entries(updatedData.zones || {}).forEach(
-                ([zoneId, zoneContent]) => {
-                  megaMenuStore.updateContent(zoneId, zoneContent as any[]);
-                }
-              );
-
+              rebuildMegaMenuStore(updatedData);
             }}
             data={puckData}
             overrides={{
@@ -218,7 +213,7 @@ export function Client() {
 
 
 const rebuildMegaMenuStore = (data: any) => {
-  megaMenuStore.items = []; // clear old data
+  megaMenuStore.items = [];
 
   if (!data?.content) return;
 
@@ -228,16 +223,7 @@ const rebuildMegaMenuStore = (data: any) => {
 
       megaMenuStore.addOrUpdate({
         id,
-        isOpen: block.props.isOpen,
-        backgroundColor: block.props.backgroundColor,
-        className: block.props.className,
-        customCss: block.props.customCss,
         content: data.zones?.[`${id}:${id}`] || [],
-        zones: Object.fromEntries(
-          Object.entries(data.zones || {}).filter(([key]) =>
-            key.startsWith(id)
-          )
-        ),
       });
     }
   });

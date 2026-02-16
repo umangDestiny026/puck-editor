@@ -1,3 +1,4 @@
+import { PuckProvider } from "./PuckContext";
 import "./styles.css";
 
 export default function RootLayout({
@@ -7,7 +8,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <PuckProvider>
+          {children}
+        </PuckProvider>
+      </body>
     </html>
   );
 }

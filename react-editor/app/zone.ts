@@ -6,8 +6,8 @@ export interface MegaMenuItem {
     backgroundColor?: string;
     className?: string;
     customCss?: string;
-    content: any[];
-    zones: any;   // 👈 ADD THIS
+    content?: any[];
+    zones?: any;   // 👈 ADD THIS
 }
 
 interface MegaMenuStore {

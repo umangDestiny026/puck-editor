@@ -3,6 +3,7 @@ import React from 'react'
 import { megaMenuStore } from '../zone';
 import { Render } from "@puckeditor/core";
 import config from '../../puck.config';
+import { usePuck } from '../PuckContext';
 
 export default function Navbar({
     backgroundColor,
@@ -17,6 +18,7 @@ export default function Navbar({
 }) {
 
     const [openIndex, setOpenIndex] = React.useState<number | null>(null);
+    const { puckData, setPuckData } = usePuck();
 
     const uniqueClass = `header-${Math.random().toString(36).slice(2, 9)}`;
     const defaultHamburger =
@@ -198,7 +200,7 @@ export default function Navbar({
                                         const formattedData = {
                                             root: { props: {} },
                                             content: megaMenuData?.content || [],
-                                            zones: megaMenuData?.zones || {},
+                                            zones: puckData.zones || {},
                                         };
                                         return (
                                             <View key={i} style={{ position: "relative" }}>
