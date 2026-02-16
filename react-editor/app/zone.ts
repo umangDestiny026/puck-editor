@@ -7,7 +7,7 @@ export interface MegaMenuItem {
     className?: string;
     customCss?: string;
     content: any[];
-    zones: Record<string, any[]>;   // 👈 ADD THIS
+    zones: any;   // 👈 ADD THIS
 }
 
 interface MegaMenuStore {

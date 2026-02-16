@@ -379,13 +379,13 @@ export const config = {
         hamburgerIcon: "https://toyota.com.co/images/menu.svg",
 
         menuItems: [
-          { label: "Vehículos", menuMode: "dropdown", dropdownItems: [], savedMegaMenu: null },
-          { label: "Cotiza tu Toyota", menuMode: "linksonly", dropdownItems: [], savedMegaMenu: null },
-          { label: "Mi Toyota", menuMode: "linksonly", dropdownItems: [], savedMegaMenu: null },
-          { label: "Descubre Toyota", menuMode: "linksonly", dropdownItems: [], savedMegaMenu: null },
-          { label: "Alquila", menuMode: "linksonly", dropdownItems: [], savedMegaMenu: null },
-          { label: "Noticias", menuMode: "linksonly", dropdownItems: [], savedMegaMenu: null },
-          { label: "Deportivos TGR", menuMode: "linksonly", dropdownItems: [], savedMegaMenu: null },
+          { label: "Vehículos", menuMode: "", dropdownItems: [], savedMegaMenu: null },
+          { label: "Cotiza tu Toyota", menuMode: "", dropdownItems: [], savedMegaMenu: null },
+          { label: "Mi Toyota", menuMode: "", dropdownItems: [], savedMegaMenu: null },
+          { label: "Descubre Toyota", menuMode: "", dropdownItems: [], savedMegaMenu: null },
+          { label: "Alquila", menuMode: "", dropdownItems: [], savedMegaMenu: null },
+          { label: "Noticias", menuMode: "", dropdownItems: [], savedMegaMenu: null },
+          { label: "Deportivos TGR", menuMode: "", dropdownItems: [], savedMegaMenu: null },
         ],
 
         rightLinks: [

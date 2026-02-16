@@ -37,6 +37,7 @@ export function Client() {
       if (event.data?.type === "LOAD_PUCK_DATA") {
         console.log("REACT APP:Received from Angular:", event.data.payload);
         setPuckData(event.data.payload);
+        rebuildMegaMenuStore(event.data.payload);
         setMode("preview");
       }
     };
@@ -73,6 +74,7 @@ export function Client() {
 
         console.log("Merged data:", mergedData);
         setPuckData(mergedData);
+        rebuildMegaMenuStore(mergedData);
         setMode("preview");
       } catch (err) {
         alert("Invalid JSON file");
@@ -81,6 +83,8 @@ export function Client() {
 
     reader.readAsText(file);
   };
+
+  // console.log("DATAAAA", puckData);
 
   return (
     <>
@@ -163,6 +167,8 @@ export function Client() {
             }}
             onPublish={(data) => {
               setPuckData(data);
+              console.log("Page save data =>", data);
+
               window.parent.postMessage(
                 { type: "PUCK_PUBLISHED", payload: data },
                 "*"
@@ -209,3 +215,30 @@ export function Client() {
     </>
   );
 }
+
+
+const rebuildMegaMenuStore = (data: any) => {
+  megaMenuStore.items = []; // clear old data
+
+  if (!data?.content) return;
+
+  data.content.forEach((block: any) => {
+    if (block.type === "MegaMenu") {
+      const id = block.props.id;
+
+      megaMenuStore.addOrUpdate({
+        id,
+        isOpen: block.props.isOpen,
+        backgroundColor: block.props.backgroundColor,
+        className: block.props.className,
+        customCss: block.props.customCss,
+        content: data.zones?.[`${id}:${id}`] || [],
+        zones: Object.fromEntries(
+          Object.entries(data.zones || {}).filter(([key]) =>
+            key.startsWith(id)
+          )
+        ),
+      });
+    }
+  });
+};
