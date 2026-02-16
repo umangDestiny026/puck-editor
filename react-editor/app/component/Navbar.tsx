@@ -195,7 +195,6 @@ export default function Navbar({
                                     if (isMegaMenu && item.savedMegaMenu !== null) {
                                         const content = megaMenuStore.get(item.savedMegaMenu)?.content;
                                         const megaMenuData = megaMenuStore.get(item.savedMegaMenu);
-                                        console.log("content megaMenuData", megaMenuData);
 
                                         const formattedData = {
                                             root: { props: {} },
@@ -233,7 +232,7 @@ export default function Navbar({
                                                             // inset: "60px 0px 0px",
                                                             // display: "flex",
                                                             position: "fixed",
-                                                            top: "auto",
+                                                            top: "110px",
                                                             left: 0,
                                                             background: "#fff",
                                                             width: "100vw",
