@@ -16,19 +16,12 @@ export default function Navbar({
     menuMode
 }) {
 
-    console.log("menuItems", menuItems);
     const [openIndex, setOpenIndex] = React.useState<number | null>(null);
 
     const uniqueClass = `header-${Math.random().toString(36).slice(2, 9)}`;
     const defaultHamburger =
         "https://upload.wikimedia.org/wikipedia/commons/b/b2/Hamburger_icon.svg";
 
-    const navConfig = {
-        "root": {
-            "props": {}
-        },
-        "zones": {}
-    }
     return (
         <View
             backgroundColor={backgroundColor}
@@ -199,10 +192,13 @@ export default function Navbar({
 
                                     if (isMegaMenu && item.savedMegaMenu !== null) {
                                         const content = megaMenuStore.get(item.savedMegaMenu)?.content;
-                                        console.log("content", content);
+                                        const megaMenuData = megaMenuStore.get(item.savedMegaMenu);
+                                        console.log("content megaMenuData", megaMenuData);
+
                                         const formattedData = {
-                                            content: content || [],
                                             root: { props: {} },
+                                            content: megaMenuData?.content || [],
+                                            zones: megaMenuData?.zones || {},
                                         };
                                         return (
                                             <View key={i} style={{ position: "relative" }}>
@@ -233,7 +229,7 @@ export default function Navbar({
                                                     <View
                                                         style={{
                                                             // inset: "60px 0px 0px",
-                                                            display: "flex",
+                                                            // display: "flex",
                                                             position: "fixed",
                                                             top: "auto",
                                                             left: 0,

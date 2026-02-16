@@ -1,12 +1,13 @@
 export let zone: any = {};
 
 export interface MegaMenuItem {
-    id: string; // saveAs
+    id: string;
     isOpen?: boolean;
     backgroundColor?: string;
     className?: string;
     customCss?: string;
-    content: any[]; // DropZone content
+    content: any[];
+    zones: Record<string, any[]>;   // 👈 ADD THIS
 }
 
 interface MegaMenuStore {
@@ -28,12 +29,19 @@ export const megaMenuStore: MegaMenuStore = {
         }
     },
 
-    updateContent(id: string, content: any[]) {
-        const cleanId = id.split(":")[0];
+    updateContent(zoneId: string, content: any[]) {
+        const cleanId = zoneId.split(":")[0];
         const item = this.items.find(i => i.id === cleanId);
-        if (item) {
+
+        if (!item) return;
+
+        // If it's the main MegaMenu zone
+        if (zoneId === `${cleanId}:${cleanId}`) {
             item.content = content;
         }
+
+        // Always store zone content
+        item.zones[zoneId] = content;
 
         return item;
     },

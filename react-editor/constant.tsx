@@ -61,7 +61,8 @@ const MegaMenuRenderer = (props: any) => {
       backgroundColor,
       className,
       customCss,
-      content: []
+      content: [],
+      zones: {}
     });
   }, [id]);
 
