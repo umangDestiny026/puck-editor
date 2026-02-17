@@ -4,13 +4,33 @@
     },
     "content": [
         {
+            "type": "MegaMenu",
+            "props": {
+                "isOpen": false,
+                "backgroundColor": "#ffffff",
+                "className": "mega-menu-001",
+                "customCss": "",
+                "id": "MegaMenu-bac3f5ac-a025-45ab-87da-d8c2aacc7632"
+            }
+        },
+        {
+            "type": "MegaMenu",
+            "props": {
+                "isOpen": false,
+                "backgroundColor": "#ffffff",
+                "className": "mega-menu-001",
+                "customCss": "",
+                "id": "MegaMenu-25d0d355-4784-443b-8872-9bc92943a6a2"
+            }
+        },
+        {
             "type": "Header",
             "props": {
                 "backgroundColor": "#ffffff",
                 "layout": "LogoMenuCTA",
                 "menuMode": "linksonly",
                 "textColor": "#000000",
-                "navPosition": "static",
+                "navPosition": "sticky",
                 "logoUrl": "https://toyota.com.co/images/Logo.svg",
                 "hamburgerIcon": "https://toyota.com.co/images/menu.svg",
                 "menuItems": [
@@ -18,41 +38,41 @@
                         "label": "Vehículos",
                         "menuMode": "megamenu",
                         "dropdownItems": [],
-                        "savedMegaMenu": "MegaMenu-6326552b-15d2-472e-9e4c-a26c907e57b7"
+                        "savedMegaMenu": "MegaMenu-17dbc00d-c055-44ff-afd9-7755c66e84ca"
                     },
                     {
                         "label": "Cotiza tu Toyota",
                         "menuMode": "megamenu",
                         "dropdownItems": [],
-                        "savedMegaMenu": "MegaMenu-e4e353df-2f46-4f13-82da-042d46bc1acf"
+                        "savedMegaMenu": "MegaMenu-bac3f5ac-a025-45ab-87da-d8c2aacc7632"
                     },
                     {
                         "label": "Mi Toyota",
                         "menuMode": "megamenu",
                         "dropdownItems": [],
-                        "savedMegaMenu": "MegaMenu-d78eb0ab-69e9-41c8-b007-88f5d5b87cb8"
+                        "savedMegaMenu": "MegaMenu-25d0d355-4784-443b-8872-9bc92943a6a2"
                     },
                     {
                         "label": "Descubre Toyota",
                         "menuMode": "megamenu",
                         "dropdownItems": [],
-                        "savedMegaMenu": "MegaMenu-8de5d761-ed58-4c16-a858-e79fd562d873"
+                        "savedMegaMenu": "MegaMenu-1ec19c21-f9f9-4133-b792-681e7ccf1938"
                     },
                     {
                         "label": "Alquila",
-                        "menuMode": "linksonly",
+                        "menuMode": "megamenu",
                         "dropdownItems": [],
-                        "savedMegaMenu": null
+                        "savedMegaMenu": "MegaMenu-f55167f2-cc9e-43a7-afe8-1e0fb36bc203"
                     },
                     {
                         "label": "Noticias",
-                        "menuMode": "linksonly",
+                        "menuMode": "",
                         "dropdownItems": [],
                         "savedMegaMenu": null
                     },
                     {
                         "label": "Deportivos TGR",
-                        "menuMode": "linksonly",
+                        "menuMode": "",
                         "dropdownItems": [],
                         "savedMegaMenu": null
                     }
@@ -67,203 +87,338 @@
                         "href": "#"
                     },
                     {
-                        "label": "WhatsApp",
+                        "label": "",
                         "href": "#",
-                        "icon": "https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+                        "icon": "https://toyota.com.co/svgs/whatsapp.svg"
                     }
                 ],
-                "id": "Header-4edb33b1-9d4e-4735-8f9f-8bd0b82cc38e"
+                "id": "Header-a6926c18-4084-481d-8057-7570a0fa8be7"
+            }
+        },
+        {
+            "type": "Image",
+            "props": {
+                "sourceType": "url",
+                "className": "image-001",
+                "customCss": "",
+                "image": "https://www.creative-tim.com/blog/content/images/wordpress/2019/05/1.png",
+                "alt": "Image",
+                "align": "center",
+                "widthUnit": "px",
+                "maxWidthValue": 100,
+                "maxWidthUnit": "%",
+                "heightUnit": "px",
+                "maxHeightUnit": "px",
+                "objectFit": "contain",
+                "objectPosition": "center",
+                "overflow": "hidden",
+                "borderRadius": 0,
+                "id": "Image-a8b8aa52-97b7-4537-afe3-d0447ceeb6ba"
+            }
+        },
+        {
+            "type": "Grid",
+            "props": {
+                "columns": 2,
+                "gap": 16,
+                "alignItems": "start",
+                "justifyItems": "center",
+                "maxWidth": 2000,
+                "padding": 0,
+                "className": "grid-footer",
+                "customCss": "padding-top:20px;\nbackground-color:#f6f6f6;",
+                "id": "Grid-ffe70374-1966-401b-ba83-c6eb6a393a8c"
+            }
+        },
+        {
+            "type": "MegaMenu",
+            "props": {
+                "isOpen": false,
+                "backgroundColor": "#ffffff",
+                "className": "mega-menu-001",
+                "customCss": "",
+                "id": "MegaMenu-17dbc00d-c055-44ff-afd9-7755c66e84ca"
+            }
+        },
+        {
+            "type": "MegaMenu",
+            "props": {
+                "isOpen": false,
+                "backgroundColor": "#ffffff",
+                "className": "mega-menu-001",
+                "customCss": "",
+                "id": "MegaMenu-f55167f2-cc9e-43a7-afe8-1e0fb36bc203"
+            }
+        },
+        {
+            "type": "MegaMenu",
+            "props": {
+                "isOpen": false,
+                "backgroundColor": "#ffffff",
+                "className": "mega-menu-001",
+                "customCss": "",
+                "id": "MegaMenu-1ec19c21-f9f9-4133-b792-681e7ccf1938"
+            }
+        },
+        {
+            "type": "Footer",
+            "props": {
+                "layout": "linksOnly",
+                "columns": [
+                    {
+                        "title": "Vehículos",
+                        "links": [
+                            {
+                                "label": "Automóviles",
+                                "href": "#"
+                            },
+                            {
+                                "label": "Camionetas y SUV",
+                                "href": "#"
+                            },
+                            {
+                                "label": "Pick-ups"
+                            },
+                            {
+                                "label": "Híbridos"
+                            },
+                            {
+                                "label": "Deportivos TGR"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Acerca de Toyota",
+                        "links": [
+                            {
+                                "label": "Campañas de seguridad",
+                                "href": "#"
+                            },
+                            {
+                                "label": "Mantenimiento Toyota",
+                                "href": "#"
+                            },
+                            {
+                                "label": "Alquila tu Toyota"
+                            },
+                            {
+                                "label": "Noticias"
+                            },
+                            {
+                                "label": "Toyota Gazoo Racing"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Enlaces Útiles",
+                        "links": [
+                            {
+                                "label": "Canal de Integridad",
+                                "href": "#"
+                            },
+                            {
+                                "label": "PQR",
+                                "href": "#"
+                            },
+                            {
+                                "label": "Financia tu Toyota"
+                            },
+                            {
+                                "label": "Denuncias sobre soborno transnacional"
+                            },
+                            {
+                                "label": "Denuncias sobre Actos de corrupción"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Contáctanos",
+                        "links": [
+                            {
+                                "label": "Cotizador"
+                            },
+                            {
+                                "label": "Contacto"
+                            }
+                        ]
+                    }
+                ],
+                "socialLinks": [
+                    {
+                        "label": "Instagram",
+                        "icon": "https://example.com/home-icon.png",
+                        "href": "#"
+                    },
+                    {
+                        "label": "Whatsapp",
+                        "icon": "https://example.com/home-icon.png",
+                        "href": "#"
+                    }
+                ],
+                "infoTitle": "Puck Visual Editor",
+                "infoText": "Build visually. Launch instantly.",
+                "backgroundColor": "#f6f6f6",
+                "textColor": "#000000",
+                "gap": "80px",
+                "className": "footer-001",
+                "customCss": "",
+                "id": "Footer-aae00d06-d010-4ee4-933f-2cf9062eee3e"
             }
         }
     ],
     "zones": {
-        "MegaMenu-6326552b-15d2-472e-9e4c-a26c907e57b7:MegaMenu-6326552b-15d2-472e-9e4c-a26c907e57b7": [
+        "MegaMenu-bac3f5ac-a025-45ab-87da-d8c2aacc7632:MegaMenu-bac3f5ac-a025-45ab-87da-d8c2aacc7632": [
             {
-                "type": "Tabs",
+                "type": "MulipleMegaMenuItems",
                 "props": {
-                    "title": "",
-                    "subTitle": "",
-                    "TabItemPosition": "center",
-                    "theme": "light",
-                    "backgroundColor": "#ffffff",
-                    "tabs": [
+                    "className": "mega-menu",
+                    "customCss": "",
+                    "columns": [
                         {
-                            "label": "Autos",
-                            "icon": "",
-                            "defaultContent": ""
-                        },
-                        {
-                            "label": "Tab 2",
-                            "icon": "",
-                            "defaultContent": "Hello, this is tab 2 default content."
+                            "title": "Cotiza tu Toyota",
+                            "links": [
+                                {
+                                    "label": "Vehículos nuevos",
+                                    "href": "/cotiza-tu-toyota/vehiculos-nuevos"
+                                },
+                                {
+                                    "label": "Flotas y ventas corporativas",
+                                    "href": "/cotiza-tu-toyota/flotas-y-ventas-corporativas"
+                                },
+                                {
+                                    "label": "Seguro Toyota",
+                                    "href": "/cotiza-tu-toyota/seguro-toyota"
+                                },
+                                {
+                                    "label": "Financiación Toyota",
+                                    "href": "/cotiza-tu-toyota/financiacion-toyota"
+                                }
+                            ],
+                            "showViewAll": false
                         }
                     ],
-                    "activeTabIndex": 0,
-                    "className": "tab-content-00",
-                    "customCss": "",
-                    "id": "Tabs-cfa14aa7-d9e3-4fe4-9fe7-323b67743a57"
+                    "id": "MulipleMegaMenuItems-ac8e1d90-5b16-483e-9edf-da16f8a892f4"
                 }
             }
         ],
-        "Tabs-cfa14aa7-d9e3-4fe4-9fe7-323b67743a57:tab-0": [
+        "MegaMenu-25d0d355-4784-443b-8872-9bc92943a6a2:MegaMenu-25d0d355-4784-443b-8872-9bc92943a6a2": [
             {
-                "type": "Flexbox",
+                "type": "MulipleMegaMenuItems",
                 "props": {
-                    "className": "flexbox-001",
+                    "className": "mega-menu",
                     "customCss": "",
-                    "direction": "row",
-                    "justify": "flex-start",
-                    "align": "center",
-                    "gap": 10,
-                    "items": [
+                    "columns": [
                         {
-                            "type": "Text",
-                            "props": {
-                                "content": "Text 1",
-                                "level": "p"
-                            }
-                        },
-                        {
-                            "type": "Text",
-                            "props": {
-                                "content": "Text 2",
-                                "level": "p"
-                            }
-                        },
-                        {
-                            "type": "Text",
-                            "props": {
-                                "content": "Text 3",
-                                "level": "p"
-                            }
+                            "title": "Mi Toyota",
+                            "links": [
+                                {
+                                    "label": "Mantenimientos Toyota",
+                                    "submenu": [
+                                        {
+                                            "title": "Mantenimientos Toyota",
+                                            "links": [
+                                                {
+                                                    "label": "Mantenimiento",
+                                                    "href": "/mi-toyota/mantenimiento"
+                                                },
+                                                {
+                                                    "label": "Mantenimiento Planeado",
+                                                    "href": "/mi-toyota/mantenimiento/planeado"
+                                                },
+                                                {
+                                                    "label": "Mantenimiento Express",
+                                                    "href": "/mi-toyota/mantenimiento/express"
+                                                },
+                                                {
+                                                    "label": "Mantenimiento Prepagado",
+                                                    "href": "/mi-toyota/mantenimiento/prepagado"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "label": "Campañas de Seguridad",
+                                    "submenu": [
+                                        {
+                                            "title": "Campañas de Seguridad",
+                                            "links": [
+                                                {
+                                                    "label": "Campañas de Seguridad y Servicio",
+                                                    "href": "/mi-toyota/campanas-de-seguridad-y-servicios"
+                                                },
+                                                {
+                                                    "label": "Campaña de Seguridad Tapetes",
+                                                    "href": "/mi-toyota/campanas-de-seguridad-tapetes"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "label": "Cobertura Extendida T10",
+                                    "href": "/mi-toyota/cobertura-extendida-t10"
+                                },
+                                {
+                                    "label": "Boutique",
+                                    "submenu": [
+                                        {
+                                            "links": [
+                                                {
+                                                    "label": "Boutique",
+                                                    "href": "/mi-toyota/boutique"
+                                                },
+                                                {
+                                                    "label": "Boutique Toyota",
+                                                    "href": "/mi-toyota/boutique/marketplace?type=boutique-toyota"
+                                                },
+                                                {
+                                                    "label": "Boutique Ecofriendly",
+                                                    "href": "/mi-toyota/boutique/marketplace?type=boutique-ecofriendly"
+                                                },
+                                                {
+                                                    "label": "Boutique Gazoo Racing",
+                                                    "href": "/deportivos-tgr/marketplace?type=boutique-gazoo-racing"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "label": "Accesorios",
+                                    "href": "/mi-toyota/accesorios"
+                                },
+                                {
+                                    "label": "Toyota conectado",
+                                    "submenu": [
+                                        {
+                                            "title": "Toyota conectado",
+                                            "links": [
+                                                {
+                                                    "label": "Toyota App",
+                                                    "href": "/mi-toyota/servicios-conectados/toyota-app"
+                                                },
+                                                {
+                                                    "label": "Servicios Conectados",
+                                                    "href": "/mi-toyota/servicios-conectados"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "label": "Euro 6",
+                                    "href": "/mi-toyota/euro-6"
+                                }
+                            ],
+                            "showViewAll": false
                         }
                     ],
-                    "id": "Flexbox-fa3adf69-68b2-4316-b263-a28627f98898"
+                    "id": "MulipleMegaMenuItems-6b264a54-b768-43ea-a544-a65b09ca01c4"
                 }
             }
         ],
-        "Tabs-cfa14aa7-d9e3-4fe4-9fe7-323b67743a57:tab-1": [],
-        "Flexbox-fa3adf69-68b2-4316-b263-a28627f98898:flex-item-0": [
-            {
-                "type": "Image",
-                "props": {
-                    "sourceType": "url",
-                    "className": "image-001",
-                    "customCss": "",
-                    "image": "https://toyota.com.co/images/seleccion-toyota-jun-Yaris.png",
-                    "alt": "Image",
-                    "align": "center",
-                    "widthUnit": "px",
-                    "maxWidthValue": 100,
-                    "maxWidthUnit": "%",
-                    "heightUnit": "px",
-                    "maxHeightUnit": "px",
-                    "objectFit": "contain",
-                    "objectPosition": "center",
-                    "overflow": "hidden",
-                    "borderRadius": 0,
-                    "id": "Image-e614cb32-1258-4869-862f-e6e5d69fbeaf"
-                }
-            },
-            {
-                "type": "Text",
-                "props": {
-                    "content": "Yaris",
-                    "level": "h3",
-                    "size": "lg",
-                    "align": "center",
-                    "className": "text-001",
-                    "customCss": "",
-                    "widthUnit": "px",
-                    "maxWidthValue": 700,
-                    "maxWidthUnit": "px",
-                    "minWidthUnit": "px",
-                    "textColor": "#000000",
-                    "id": "Text-4f488569-bed8-468c-88ed-fddce97ecbb1"
-                }
-            }
-        ],
-        "Flexbox-fa3adf69-68b2-4316-b263-a28627f98898:flex-item-1": [
-            {
-                "type": "Image",
-                "props": {
-                    "sourceType": "url",
-                    "className": "image-001",
-                    "customCss": "",
-                    "image": "https://toyota.com.co/images/seleccion-toyota-jun-Yaris.png",
-                    "alt": "Image",
-                    "align": "center",
-                    "widthUnit": "px",
-                    "maxWidthValue": 100,
-                    "maxWidthUnit": "%",
-                    "heightUnit": "px",
-                    "maxHeightUnit": "px",
-                    "objectFit": "contain",
-                    "objectPosition": "center",
-                    "overflow": "hidden",
-                    "borderRadius": 0,
-                    "id": "Image-c8edd4a2-0339-42fb-abb6-b937dd55ce23"
-                }
-            },
-            {
-                "type": "Text",
-                "props": {
-                    "content": "Corolla",
-                    "level": "h3",
-                    "size": "lg",
-                    "align": "center",
-                    "className": "text-001",
-                    "customCss": "",
-                    "widthUnit": "px",
-                    "maxWidthValue": 700,
-                    "maxWidthUnit": "px",
-                    "minWidthUnit": "px",
-                    "textColor": "#000000",
-                    "id": "Text-22d281df-fb6d-4540-a92a-757e250ed99f"
-                }
-            }
-        ],
-        "Flexbox-fa3adf69-68b2-4316-b263-a28627f98898:flex-item-2": [
-            {
-                "type": "Image",
-                "props": {
-                    "sourceType": "url",
-                    "className": "image-001",
-                    "customCss": "",
-                    "image": "https://toyota.com.co/images/seleccion-toyota-jun-Yaris.png",
-                    "alt": "Image",
-                    "align": "center",
-                    "widthUnit": "px",
-                    "maxWidthValue": 100,
-                    "maxWidthUnit": "%",
-                    "heightUnit": "px",
-                    "maxHeightUnit": "px",
-                    "objectFit": "contain",
-                    "objectPosition": "center",
-                    "overflow": "hidden",
-                    "borderRadius": 0,
-                    "id": "Image-f51cec97-e3d8-42d6-b715-7e0d686eecc2"
-                }
-            },
-            {
-                "type": "Text",
-                "props": {
-                    "content": "Corolla-GR",
-                    "level": "h3",
-                    "size": "lg",
-                    "align": "center",
-                    "className": "text-001",
-                    "customCss": "",
-                    "widthUnit": "px",
-                    "maxWidthValue": 700,
-                    "maxWidthUnit": "px",
-                    "minWidthUnit": "px",
-                    "textColor": "#000000",
-                    "id": "Text-805acfcf-fbe1-438a-8b9a-dae5096a10bb"
-                }
-            }
-        ],
-        "MegaMenu-8de5d761-ed58-4c16-a858-e79fd562d873:MegaMenu-8de5d761-ed58-4c16-a858-e79fd562d873": [
+        "MegaMenu-1ec19c21-f9f9-4133-b792-681e7ccf1938:MegaMenu-1ec19c21-f9f9-4133-b792-681e7ccf1938": [
             {
                 "type": "MulipleMegaMenuItems",
                 "props": {
@@ -436,11 +591,11 @@
                             ]
                         }
                     ],
-                    "id": "MulipleMegaMenuItems-b5cfe63d-96d3-4827-ae8e-55862d48badb"
+                    "id": "MulipleMegaMenuItems-bb9e9114-5a02-4f7d-900d-e1478e4b904f"
                 }
             }
         ],
-        "MegaMenu-d78eb0ab-69e9-41c8-b007-88f5d5b87cb8:MegaMenu-d78eb0ab-69e9-41c8-b007-88f5d5b87cb8": [
+        "MegaMenu-f55167f2-cc9e-43a7-afe8-1e0fb36bc203:MegaMenu-f55167f2-cc9e-43a7-afe8-1e0fb36bc203": [
             {
                 "type": "MulipleMegaMenuItems",
                 "props": {
@@ -448,263 +603,3086 @@
                     "customCss": "",
                     "columns": [
                         {
-                            "title": "Mi Toyota",
+                            "title": "Movilidad",
                             "links": [
                                 {
-                                    "label": "Mantenimientos Toyota",
-                                    "submenu": [
-                                        {
-                                            "title": "Mantenimientos Toyota",
-                                            "links": [
-                                                {
-                                                    "label": "Mantenimiento",
-                                                    "href": "/mi-toyota/mantenimiento"
-                                                },
-                                                {
-                                                    "label": "Mantenimiento Planeado",
-                                                    "href": "/mi-toyota/mantenimiento/planeado"
-                                                },
-                                                {
-                                                    "label": "Mantenimiento Express",
-                                                    "href": "/mi-toyota/mantenimiento/express"
-                                                },
-                                                {
-                                                    "label": "Mantenimiento Prepagado",
-                                                    "href": "/mi-toyota/mantenimiento/prepagado"
-                                                }
-                                            ]
-                                        }
-                                    ]
+                                    "label": "KINTO Share",
+                                    "description": "Corto plazo",
+                                    "href": "https://www.kinto-mobility.com.co/kinto-share#no-back",
+                                    "isExternal": true
                                 },
                                 {
-                                    "label": "Campañas de Seguridad",
-                                    "submenu": [
-                                        {
-                                            "title": "Campañas de Seguridad",
-                                            "links": [
-                                                {
-                                                    "label": "Campañas de Seguridad y Servicio",
-                                                    "href": "/mi-toyota/campanas-de-seguridad-y-servicios"
-                                                },
-                                                {
-                                                    "label": "Campaña de Seguridad Tapetes",
-                                                    "href": "/mi-toyota/campanas-de-seguridad-tapetes"
-                                                }
-                                            ]
-                                        }
-                                    ]
-                                },
-                                {
-                                    "label": "Cobertura Extendida T10",
-                                    "href": "/mi-toyota/cobertura-extendida-t10"
-                                },
-                                {
-                                    "label": "Boutique",
-                                    "submenu": [
-                                        {
-                                            "links": [
-                                                {
-                                                    "label": "Boutique",
-                                                    "href": "/mi-toyota/boutique"
-                                                },
-                                                {
-                                                    "label": "Boutique Toyota",
-                                                    "href": "/mi-toyota/boutique/marketplace?type=boutique-toyota"
-                                                },
-                                                {
-                                                    "label": "Boutique Ecofriendly",
-                                                    "href": "/mi-toyota/boutique/marketplace?type=boutique-ecofriendly"
-                                                },
-                                                {
-                                                    "label": "Boutique Gazoo Racing",
-                                                    "href": "/deportivos-tgr/marketplace?type=boutique-gazoo-racing"
-                                                }
-                                            ]
-                                        }
-                                    ]
-                                },
-                                {
-                                    "label": "Accesorios",
-                                    "href": "/mi-toyota/accesorios"
-                                },
-                                {
-                                    "label": "Toyota conectado",
-                                    "submenu": [
-                                        {
-                                            "title": "Toyota conectado",
-                                            "links": [
-                                                {
-                                                    "label": "Toyota App",
-                                                    "href": "/mi-toyota/servicios-conectados/toyota-app"
-                                                },
-                                                {
-                                                    "label": "Servicios Conectados",
-                                                    "href": "/mi-toyota/servicios-conectados"
-                                                }
-                                            ]
-                                        }
-                                    ]
-                                },
-                                {
-                                    "label": "Euro 6",
-                                    "href": "/mi-toyota/euro-6"
+                                    "label": "KINTO One Fleet",
+                                    "description": "Gestión de flotas",
+                                    "href": "https://www.kinto-mobility.com.co/kinto-one-fleet#no-back",
+                                    "isExternal": true
                                 }
                             ],
-                            "showViewAll": false
+                            "showViewAll": true,
+                            "viewAllLink": "https://www.kinto-mobility.com.co/"
                         }
                     ],
-                    "id": "MulipleMegaMenuItems-f9f84e26-5133-493c-ba8b-31da69bb7cbc"
+                    "id": "MulipleMegaMenuItems-77283b7f-429a-415a-b833-30dd5e3bbdcf"
                 }
             }
         ],
-        "MegaMenu-e4e353df-2f46-4f13-82da-042d46bc1acf:MegaMenu-d78eb0ab-69e9-41c8-b007-88f5d5b87cb8": [
+        "MegaMenu-17dbc00d-c055-44ff-afd9-7755c66e84ca:MegaMenu-17dbc00d-c055-44ff-afd9-7755c66e84ca": [
             {
-                "type": "MulipleMegaMenuItems",
+                "type": "Tabs",
                 "props": {
-                    "className": "mega-menu",
-                    "customCss": "",
-                    "columns": [
+                    "title": "",
+                    "subTitle": "",
+                    "TabItemPosition": "center",
+                    "theme": "light",
+                    "backgroundColor": "#ffffff",
+                    "tabs": [
                         {
-                            "title": "Mi Toyota",
-                            "links": [
-                                {
-                                    "label": "Mantenimientos Toyota",
-                                    "submenu": [
-                                        {
-                                            "title": "Mantenimientos Toyota",
-                                            "links": [
-                                                {
-                                                    "label": "Mantenimiento",
-                                                    "href": "/mi-toyota/mantenimiento"
-                                                },
-                                                {
-                                                    "label": "Mantenimiento Planeado",
-                                                    "href": "/mi-toyota/mantenimiento/planeado"
-                                                },
-                                                {
-                                                    "label": "Mantenimiento Express",
-                                                    "href": "/mi-toyota/mantenimiento/express"
-                                                },
-                                                {
-                                                    "label": "Mantenimiento Prepagado",
-                                                    "href": "/mi-toyota/mantenimiento/prepagado"
-                                                }
-                                            ]
-                                        }
-                                    ]
-                                },
-                                {
-                                    "label": "Campañas de Seguridad",
-                                    "submenu": [
-                                        {
-                                            "title": "Campañas de Seguridad",
-                                            "links": [
-                                                {
-                                                    "label": "Campañas de Seguridad y Servicio",
-                                                    "href": "/mi-toyota/campanas-de-seguridad-y-servicios"
-                                                },
-                                                {
-                                                    "label": "Campaña de Seguridad Tapetes",
-                                                    "href": "/mi-toyota/campanas-de-seguridad-tapetes"
-                                                }
-                                            ]
-                                        }
-                                    ]
-                                },
-                                {
-                                    "label": "Cobertura Extendida T10",
-                                    "href": "/mi-toyota/cobertura-extendida-t10"
-                                },
-                                {
-                                    "label": "Boutique",
-                                    "submenu": [
-                                        {
-                                            "links": [
-                                                {
-                                                    "label": "Boutique",
-                                                    "href": "/mi-toyota/boutique"
-                                                },
-                                                {
-                                                    "label": "Boutique Toyota",
-                                                    "href": "/mi-toyota/boutique/marketplace?type=boutique-toyota"
-                                                },
-                                                {
-                                                    "label": "Boutique Ecofriendly",
-                                                    "href": "/mi-toyota/boutique/marketplace?type=boutique-ecofriendly"
-                                                },
-                                                {
-                                                    "label": "Boutique Gazoo Racing",
-                                                    "href": "/deportivos-tgr/marketplace?type=boutique-gazoo-racing"
-                                                }
-                                            ]
-                                        }
-                                    ]
-                                },
-                                {
-                                    "label": "Accesorios",
-                                    "href": "/mi-toyota/accesorios"
-                                },
-                                {
-                                    "label": "Toyota conectado",
-                                    "submenu": [
-                                        {
-                                            "title": "Toyota conectado",
-                                            "links": [
-                                                {
-                                                    "label": "Toyota App",
-                                                    "href": "/mi-toyota/servicios-conectados/toyota-app"
-                                                },
-                                                {
-                                                    "label": "Servicios Conectados",
-                                                    "href": "/mi-toyota/servicios-conectados"
-                                                }
-                                            ]
-                                        }
-                                    ]
-                                },
-                                {
-                                    "label": "Euro 6",
-                                    "href": "/mi-toyota/euro-6"
-                                }
-                            ],
-                            "showViewAll": false
+                            "label": "Autos",
+                            "icon": "",
+                            "defaultContent": ""
+                        },
+                        {
+                            "label": "Camionetas y SUV",
+                            "icon": "",
+                            "defaultContent": ""
+                        },
+                        {
+                            "label": "Pick Ups",
+                            "icon": "",
+                            "defaultContent": ""
+                        },
+                        {
+                            "label": "Híbridos",
+                            "icon": "",
+                            "defaultContent": ""
+                        },
+                        {
+                            "label": "Deportivos TGR",
+                            "icon": "",
+                            "defaultContent": ""
                         }
                     ],
-                    "id": "MulipleMegaMenuItems-288795db-d950-4985-9def-66d4c4b21cb5"
+                    "activeTabIndex": 1,
+                    "className": "tab-content-00",
+                    "customCss": "",
+                    "id": "Tabs-6b3bb1fb-458a-4c27-98ef-65634bc99cd9"
                 }
             }
         ],
-        "MegaMenu-e4e353df-2f46-4f13-82da-042d46bc1acf:MegaMenu-e4e353df-2f46-4f13-82da-042d46bc1acf": [
+        "Tabs-6b3bb1fb-458a-4c27-98ef-65634bc99cd9:tab-0": [
             {
-                "type": "MulipleMegaMenuItems",
+                "type": "Container",
                 "props": {
-                    "className": "mega-menu",
+                    "className": "container-001",
                     "customCss": "",
-                    "columns": [
+                    "marginValue": 40,
+                    "paddingValue": 20,
+                    "backgroundColor": "#fff",
+                    "id": "Container-52210924-c8cf-466e-b043-1ea3d8eb148e"
+                }
+            }
+        ],
+        "Tabs-6b3bb1fb-458a-4c27-98ef-65634bc99cd9:tab-1": [
+            {
+                "type": "Container",
+                "props": {
+                    "className": "container-001",
+                    "customCss": "",
+                    "marginValue": 40,
+                    "paddingValue": 20,
+                    "backgroundColor": "#ffff",
+                    "id": "Container-4d73d8d3-6aea-419f-98c3-9a1cff84ae31"
+                }
+            }
+        ],
+        "Container-52210924-c8cf-466e-b043-1ea3d8eb148e:content": [
+            {
+                "type": "Flexbox",
+                "props": {
+                    "className": "flexbox-001",
+                    "customCss": "",
+                    "direction": "row",
+                    "justify": "center",
+                    "align": "center",
+                    "gap": 10,
+                    "items": [
                         {
-                            "title": "Cotiza tu Toyota",
-                            "links": [
-                                {
-                                    "label": "Vehículos nuevos",
-                                    "href": "/cotiza-tu-toyota/vehiculos-nuevos"
-                                },
-                                {
-                                    "label": "Flotas y ventas corporativas",
-                                    "href": "/cotiza-tu-toyota/flotas-y-ventas-corporativas"
-                                },
-                                {
-                                    "label": "Seguro Toyota",
-                                    "href": "/cotiza-tu-toyota/seguro-toyota"
-                                },
-                                {
-                                    "label": "Financiación Toyota",
-                                    "href": "/cotiza-tu-toyota/financiacion-toyota"
-                                }
-                            ],
-                            "showViewAll": false
+                            "type": "Text",
+                            "props": {
+                                "content": "Text 1",
+                                "level": "p"
+                            }
+                        },
+                        {
+                            "type": "Text",
+                            "props": {
+                                "content": "Text 2",
+                                "level": "p"
+                            }
+                        },
+                        {
+                            "type": "Text",
+                            "props": {
+                                "content": "Text 3",
+                                "level": "p"
+                            }
                         }
                     ],
-                    "id": "MulipleMegaMenuItems-37b09c94-c238-479c-81a5-308326e1912c"
+                    "id": "Flexbox-3fff56a6-312e-464e-ac59-380a65b9f1f4"
+                }
+            }
+        ],
+        "Flexbox-3fff56a6-312e-464e-ac59-380a65b9f1f4:flex-item-0": [
+            {
+                "type": "Text",
+                "props": {
+                    "content": "Yaris",
+                    "level": "h3",
+                    "size": "lg",
+                    "align": "left",
+                    "className": "text-001",
+                    "customCss": "",
+                    "widthUnit": "px",
+                    "maxWidthValue": 700,
+                    "maxWidthUnit": "px",
+                    "minWidthUnit": "px",
+                    "textColor": "#000000",
+                    "id": "Text-26b8851e-a0f6-4719-a759-3396ba86e8be"
+                }
+            },
+            {
+                "type": "Image",
+                "props": {
+                    "sourceType": "url",
+                    "className": "image-001",
+                    "customCss": "",
+                    "image": "https://toyota.com.co/images/seleccion-toyota-jun-Yaris.png",
+                    "alt": "Image",
+                    "align": "center",
+                    "widthUnit": "px",
+                    "maxWidthValue": 100,
+                    "maxWidthUnit": "%",
+                    "heightUnit": "px",
+                    "maxHeightUnit": "px",
+                    "objectFit": "contain",
+                    "objectPosition": "center",
+                    "overflow": "hidden",
+                    "borderRadius": 0,
+                    "id": "Image-a13fd339-464f-454d-b737-64456c70e40b"
+                }
+            },
+            {
+                "type": "Flex",
+                "props": {
+                    "direction": "row",
+                    "wrap": "nowrap",
+                    "justifyContent": "space-between",
+                    "alignItems": "stretch",
+                    "gap": 0,
+                    "flex": "",
+                    "className": "",
+                    "customCss": "",
+                    "id": "Flex-48153e6e-5544-4eee-babc-6e5c00f4f279"
+                }
+            }
+        ],
+        "Flexbox-3fff56a6-312e-464e-ac59-380a65b9f1f4:flex-item-1": [
+            {
+                "type": "Text",
+                "props": {
+                    "content": "Corolla",
+                    "level": "h3",
+                    "size": "lg",
+                    "align": "left",
+                    "className": "text-001",
+                    "customCss": "",
+                    "widthUnit": "px",
+                    "maxWidthValue": 700,
+                    "maxWidthUnit": "px",
+                    "minWidthUnit": "px",
+                    "textColor": "#000000",
+                    "id": "Text-33ee33de-dfd8-4e3f-8625-e6a7ae3c2f31"
+                }
+            },
+            {
+                "type": "Image",
+                "props": {
+                    "sourceType": "url",
+                    "className": "image-001",
+                    "customCss": "",
+                    "image": "https://toyota.com.co/images/seleccion-toyota-jun-Corolla.png",
+                    "alt": "Image",
+                    "align": "center",
+                    "widthUnit": "px",
+                    "maxWidthValue": 100,
+                    "maxWidthUnit": "%",
+                    "heightUnit": "px",
+                    "maxHeightUnit": "px",
+                    "objectFit": "contain",
+                    "objectPosition": "center",
+                    "overflow": "hidden",
+                    "borderRadius": 0,
+                    "id": "Image-cd6ec50b-4854-4005-b0cf-aae7f87f10d4"
+                }
+            },
+            {
+                "type": "Flex",
+                "props": {
+                    "direction": "row",
+                    "wrap": "nowrap",
+                    "justifyContent": "space-between",
+                    "alignItems": "stretch",
+                    "gap": 0,
+                    "flex": "",
+                    "className": "",
+                    "customCss": "",
+                    "id": "Flex-730c9fb2-c5fd-4e67-aae0-587f06a60218"
+                }
+            }
+        ],
+        "Flexbox-3fff56a6-312e-464e-ac59-380a65b9f1f4:flex-item-2": [
+            {
+                "type": "Text",
+                "props": {
+                    "content": "Corolla-GR",
+                    "level": "h3",
+                    "size": "lg",
+                    "align": "left",
+                    "className": "text-001",
+                    "customCss": "",
+                    "widthUnit": "px",
+                    "maxWidthValue": 700,
+                    "maxWidthUnit": "px",
+                    "minWidthUnit": "px",
+                    "textColor": "#000000",
+                    "id": "Text-a19d8539-11de-489f-a4bb-6ea802d5049d"
+                }
+            },
+            {
+                "type": "Image",
+                "props": {
+                    "sourceType": "url",
+                    "className": "image-001",
+                    "customCss": "",
+                    "image": "https://toyota.com.co/images/seleccion-toyota-jun-CorollaGR.png",
+                    "alt": "Image",
+                    "align": "center",
+                    "widthUnit": "px",
+                    "maxWidthValue": 100,
+                    "maxWidthUnit": "%",
+                    "heightUnit": "px",
+                    "maxHeightUnit": "px",
+                    "objectFit": "contain",
+                    "objectPosition": "center",
+                    "overflow": "hidden",
+                    "borderRadius": 0,
+                    "id": "Image-7f28d93a-f027-4a7f-9ec1-d08d522634ef"
+                }
+            },
+            {
+                "type": "Flex",
+                "props": {
+                    "direction": "row",
+                    "wrap": "nowrap",
+                    "justifyContent": "space-between",
+                    "alignItems": "stretch",
+                    "gap": 0,
+                    "flex": "",
+                    "className": "",
+                    "customCss": "",
+                    "id": "Flex-5d3f4fa5-3c9f-4f0b-a8f5-7bf4e9204cca"
+                }
+            }
+        ],
+        "Flexbox-41fba5d3-7d84-4221-b8f7-ba7fd670bb1e:flex-item-0": [
+            {
+                "type": "Text",
+                "props": {
+                    "content": "Yaris Cross",
+                    "level": "h3",
+                    "size": "lg",
+                    "align": "left",
+                    "className": "text-001",
+                    "customCss": "",
+                    "widthUnit": "px",
+                    "maxWidthValue": 700,
+                    "maxWidthUnit": "px",
+                    "minWidthUnit": "px",
+                    "textColor": "#000000",
+                    "id": "Text-a4ef6584-4952-4ef4-908a-f16c21355d91"
+                }
+            },
+            {
+                "type": "Image",
+                "props": {
+                    "sourceType": "url",
+                    "className": "image-001",
+                    "customCss": "",
+                    "image": "https://toyota.com.co/images/seleccion-toyota-jun-YarisCross.png",
+                    "alt": "Image",
+                    "align": "center",
+                    "widthUnit": "px",
+                    "maxWidthValue": 100,
+                    "maxWidthUnit": "%",
+                    "heightUnit": "px",
+                    "maxHeightUnit": "px",
+                    "objectFit": "contain",
+                    "objectPosition": "center",
+                    "overflow": "hidden",
+                    "borderRadius": 0,
+                    "id": "Image-24000ee1-2813-426d-855d-ed0cd139da10"
+                }
+            },
+            {
+                "type": "Flex",
+                "props": {
+                    "direction": "row",
+                    "wrap": "nowrap",
+                    "justifyContent": "space-between",
+                    "alignItems": "stretch",
+                    "gap": 0,
+                    "flex": "",
+                    "className": "",
+                    "customCss": "",
+                    "id": "Flex-d475a48b-2f0a-42f4-a932-c2f80dec9f57"
+                }
+            }
+        ],
+        "Flexbox-41fba5d3-7d84-4221-b8f7-ba7fd670bb1e:flex-item-1": [
+            {
+                "type": "Text",
+                "props": {
+                    "content": "Corolla Cross",
+                    "level": "h3",
+                    "size": "lg",
+                    "align": "center",
+                    "className": "text-001",
+                    "customCss": "",
+                    "widthUnit": "px",
+                    "maxWidthValue": 700,
+                    "maxWidthUnit": "px",
+                    "minWidthUnit": "px",
+                    "textColor": "#000000",
+                    "id": "Text-4a0da2ae-3e69-4fba-b56b-3f3c17bd0c0a"
+                }
+            },
+            {
+                "type": "Image",
+                "props": {
+                    "sourceType": "url",
+                    "className": "image-001",
+                    "customCss": "",
+                    "image": "https://toyota.com.co/images/seleccion-toyota-jun-CorollaCross.png",
+                    "alt": "Image",
+                    "align": "center",
+                    "widthUnit": "px",
+                    "maxWidthValue": 100,
+                    "maxWidthUnit": "%",
+                    "heightUnit": "px",
+                    "maxHeightUnit": "px",
+                    "objectFit": "contain",
+                    "objectPosition": "center",
+                    "overflow": "hidden",
+                    "borderRadius": 0,
+                    "id": "Image-10722756-3b24-40ed-8d42-9b6c7de266cf"
+                }
+            },
+            {
+                "type": "Flex",
+                "props": {
+                    "direction": "row",
+                    "wrap": "nowrap",
+                    "justifyContent": "space-between",
+                    "alignItems": "stretch",
+                    "gap": 0,
+                    "flex": "",
+                    "className": "",
+                    "customCss": "",
+                    "id": "Flex-1b0b3fab-65d4-4dbe-9afb-371948d2717b"
+                }
+            }
+        ],
+        "Flexbox-41fba5d3-7d84-4221-b8f7-ba7fd670bb1e:flex-item-2": [
+            {
+                "type": "Text",
+                "props": {
+                    "content": "Corolla Cross GR-S\n\n",
+                    "level": "h3",
+                    "size": "lg",
+                    "align": "center",
+                    "className": "text-001",
+                    "customCss": "",
+                    "widthUnit": "px",
+                    "maxWidthValue": 700,
+                    "maxWidthUnit": "px",
+                    "minWidthUnit": "px",
+                    "textColor": "#000000",
+                    "id": "Text-e6e9ff56-3d72-4593-aa41-1256c50a37db"
+                }
+            },
+            {
+                "type": "Image",
+                "props": {
+                    "sourceType": "url",
+                    "className": "image-001",
+                    "customCss": "",
+                    "image": "https://toyota.com.co/images/seleccion-toyota-jun-CorollaCrossGR.png",
+                    "alt": "Image",
+                    "align": "center",
+                    "widthUnit": "px",
+                    "maxWidthValue": 100,
+                    "maxWidthUnit": "%",
+                    "heightUnit": "px",
+                    "maxHeightUnit": "px",
+                    "objectFit": "contain",
+                    "objectPosition": "center",
+                    "overflow": "hidden",
+                    "borderRadius": 0,
+                    "id": "Image-60cc1f3b-ffd2-486b-b902-edd0dbbc202b"
+                }
+            },
+            {
+                "type": "Flex",
+                "props": {
+                    "direction": "row",
+                    "wrap": "nowrap",
+                    "justifyContent": "space-between",
+                    "alignItems": "stretch",
+                    "gap": 0,
+                    "flex": "",
+                    "className": "",
+                    "customCss": "",
+                    "id": "Flex-10c02fd2-3e54-43d2-9fa1-60b9ebc5532b"
+                }
+            }
+        ],
+        "Container-4d73d8d3-6aea-419f-98c3-9a1cff84ae31:content": [
+            {
+                "type": "Flexbox",
+                "props": {
+                    "className": "flexbox-001",
+                    "customCss": "margin-bottom:20px;",
+                    "direction": "row",
+                    "justify": "center",
+                    "align": "center",
+                    "gap": 42,
+                    "items": [
+                        {
+                            "type": "Text",
+                            "props": {
+                                "content": "Text 1",
+                                "level": "p"
+                            }
+                        },
+                        {
+                            "type": "Text",
+                            "props": {
+                                "content": "Text 2",
+                                "level": "p"
+                            }
+                        },
+                        {
+                            "type": "Text",
+                            "props": {
+                                "content": "Text 3",
+                                "level": "p"
+                            }
+                        }
+                    ],
+                    "id": "Flexbox-41fba5d3-7d84-4221-b8f7-ba7fd670bb1e"
+                }
+            },
+            {
+                "type": "Flexbox",
+                "props": {
+                    "className": "flexbox-001",
+                    "customCss": "margin-bottom:20px;",
+                    "direction": "row",
+                    "justify": "center",
+                    "align": "center",
+                    "gap": 42,
+                    "items": [
+                        {
+                            "type": "Text",
+                            "props": {
+                                "content": "Text 1",
+                                "level": "p"
+                            }
+                        },
+                        {
+                            "type": "Text",
+                            "props": {
+                                "content": "Text 2",
+                                "level": "p"
+                            }
+                        },
+                        {
+                            "type": "Text",
+                            "props": {
+                                "content": "Text 3",
+                                "level": "p"
+                            }
+                        }
+                    ],
+                    "id": "Flexbox-dbebcc14-5106-4fc5-9a51-4b4d61b2eca2"
+                }
+            },
+            {
+                "type": "Flexbox",
+                "props": {
+                    "className": "flexbox-001",
+                    "customCss": "margin-bottom:20px;",
+                    "direction": "row",
+                    "justify": "center",
+                    "align": "center",
+                    "gap": 42,
+                    "items": [
+                        {
+                            "type": "Text",
+                            "props": {
+                                "content": "Text 1",
+                                "level": "p"
+                            }
+                        },
+                        {
+                            "type": "Text",
+                            "props": {
+                                "content": "Text 2",
+                                "level": "p"
+                            }
+                        },
+                        {}
+                    ],
+                    "id": "Flexbox-6d0bdc34-a5df-4b65-afa7-01137a6d0f41"
+                }
+            }
+        ],
+        "Flexbox-dbebcc14-5106-4fc5-9a51-4b4d61b2eca2:flex-item-0": [
+            {
+                "type": "Text",
+                "props": {
+                    "content": "Fortuner",
+                    "level": "h3",
+                    "size": "lg",
+                    "align": "center",
+                    "className": "text-001",
+                    "customCss": "",
+                    "widthUnit": "px",
+                    "maxWidthValue": 700,
+                    "maxWidthUnit": "px",
+                    "minWidthUnit": "px",
+                    "textColor": "#000000",
+                    "id": "Text-0347fd52-1d14-425f-aa72-26158a425e4f"
+                }
+            },
+            {
+                "type": "Image",
+                "props": {
+                    "sourceType": "url",
+                    "className": "image-001",
+                    "customCss": "",
+                    "image": "https://toyota.com.co/images/seleccion-toyota-jun-Fortuner.png",
+                    "alt": "Image",
+                    "align": "center",
+                    "widthUnit": "px",
+                    "maxWidthValue": 100,
+                    "maxWidthUnit": "%",
+                    "heightUnit": "px",
+                    "maxHeightUnit": "px",
+                    "objectFit": "contain",
+                    "objectPosition": "center",
+                    "overflow": "hidden",
+                    "borderRadius": 0,
+                    "id": "Image-e7118487-0f1e-4ffb-89e6-fe516ecd59de"
+                }
+            },
+            {
+                "type": "Flex",
+                "props": {
+                    "direction": "row",
+                    "wrap": "nowrap",
+                    "justifyContent": "space-between",
+                    "alignItems": "stretch",
+                    "gap": 0,
+                    "flex": "",
+                    "className": "",
+                    "customCss": "",
+                    "id": "Flex-dc63fc7f-5797-428b-bb5f-10a1d99a9848"
+                }
+            }
+        ],
+        "Flexbox-dbebcc14-5106-4fc5-9a51-4b4d61b2eca2:flex-item-1": [
+            {
+                "type": "Text",
+                "props": {
+                    "content": "Land Cruiser Prado",
+                    "level": "h3",
+                    "size": "lg",
+                    "align": "center",
+                    "className": "text-001",
+                    "customCss": "",
+                    "widthUnit": "px",
+                    "maxWidthValue": 700,
+                    "maxWidthUnit": "px",
+                    "minWidthUnit": "px",
+                    "textColor": "#000000",
+                    "id": "Text-5041e7d8-0655-4c6a-a9da-cf35e639a4c1"
+                }
+            },
+            {
+                "type": "Image",
+                "props": {
+                    "sourceType": "url",
+                    "className": "image-001",
+                    "customCss": "",
+                    "image": "https://toyota.com.co/images/seleccion-toyota-jun-LCPrado.png",
+                    "alt": "Image",
+                    "align": "center",
+                    "widthUnit": "px",
+                    "maxWidthValue": 100,
+                    "maxWidthUnit": "%",
+                    "heightUnit": "px",
+                    "maxHeightUnit": "px",
+                    "objectFit": "contain",
+                    "objectPosition": "center",
+                    "overflow": "hidden",
+                    "borderRadius": 0,
+                    "id": "Image-45aa88ad-81d9-4b6a-a922-e32463f6087e"
+                }
+            },
+            {
+                "type": "Flex",
+                "props": {
+                    "direction": "row",
+                    "wrap": "nowrap",
+                    "justifyContent": "space-between",
+                    "alignItems": "stretch",
+                    "gap": 0,
+                    "flex": "",
+                    "className": "",
+                    "customCss": "",
+                    "id": "Flex-8eb6a835-7f37-45b4-b0ea-f6161e351e8d"
+                }
+            }
+        ],
+        "Flexbox-dbebcc14-5106-4fc5-9a51-4b4d61b2eca2:flex-item-2": [
+            {
+                "type": "Text",
+                "props": {
+                    "content": "Fortuner GR-S\n",
+                    "level": "h3",
+                    "size": "lg",
+                    "align": "center",
+                    "className": "text-001",
+                    "customCss": "",
+                    "widthUnit": "px",
+                    "maxWidthValue": 700,
+                    "maxWidthUnit": "px",
+                    "minWidthUnit": "px",
+                    "textColor": "#000000",
+                    "id": "Text-5d86fd0f-6044-4177-808a-629d3dbbb1ab"
+                }
+            },
+            {
+                "type": "Image",
+                "props": {
+                    "sourceType": "url",
+                    "className": "image-001",
+                    "customCss": "",
+                    "image": "https://toyota.com.co/images/seleccion-toyota-jun-FortunerGR.png",
+                    "alt": "Image",
+                    "align": "center",
+                    "widthUnit": "px",
+                    "maxWidthValue": 100,
+                    "maxWidthUnit": "%",
+                    "heightUnit": "px",
+                    "maxHeightUnit": "px",
+                    "objectFit": "contain",
+                    "objectPosition": "center",
+                    "overflow": "hidden",
+                    "borderRadius": 0,
+                    "id": "Image-0dae20d3-3530-4261-a526-7ec4e13b2972"
+                }
+            },
+            {
+                "type": "Flex",
+                "props": {
+                    "direction": "row",
+                    "wrap": "nowrap",
+                    "justifyContent": "space-between",
+                    "alignItems": "stretch",
+                    "gap": 0,
+                    "flex": "",
+                    "className": "",
+                    "customCss": "",
+                    "id": "Flex-4d945396-d525-42ca-acdd-36c660b48409"
+                }
+            }
+        ],
+        "Tabs-6b3bb1fb-458a-4c27-98ef-65634bc99cd9:tab-2": [
+            {
+                "type": "Flexbox",
+                "props": {
+                    "className": "flexbox-001",
+                    "customCss": "margin-bottom:20px;",
+                    "direction": "row",
+                    "justify": "center",
+                    "align": "center",
+                    "gap": 42,
+                    "items": [
+                        {
+                            "type": "Text",
+                            "props": {
+                                "content": "Text 1",
+                                "level": "p"
+                            }
+                        },
+                        {
+                            "type": "Text",
+                            "props": {
+                                "content": "Text 2",
+                                "level": "p"
+                            }
+                        },
+                        {
+                            "type": "Text",
+                            "props": {
+                                "content": "Text 3",
+                                "level": "p"
+                            }
+                        }
+                    ],
+                    "id": "Flexbox-ac368f3a-3b2d-41d7-9392-0b4b12fc1c90"
+                }
+            },
+            {
+                "type": "Flexbox",
+                "props": {
+                    "className": "flexbox-001",
+                    "customCss": "margin-bottom:20px;",
+                    "direction": "row",
+                    "justify": "center",
+                    "align": "center",
+                    "gap": 42,
+                    "items": [
+                        {
+                            "type": "Text",
+                            "props": {
+                                "content": "Text 1",
+                                "level": "p"
+                            }
+                        }
+                    ],
+                    "id": "Flexbox-eccae4f0-7b21-4170-a827-0917a1441d11"
+                }
+            }
+        ],
+        "Footer-aae00d06-d010-4ee4-933f-2cf9062eee3e:text-zone": [
+            {
+                "type": "Image",
+                "props": {
+                    "sourceType": "url",
+                    "className": "image-001",
+                    "customCss": "",
+                    "image": "https://toyota.com.co/images/Logo.png",
+                    "alt": "Image",
+                    "align": "center",
+                    "widthUnit": "px",
+                    "maxWidthValue": 100,
+                    "maxWidthUnit": "%",
+                    "heightUnit": "px",
+                    "maxHeightUnit": "px",
+                    "objectFit": "contain",
+                    "objectPosition": "center",
+                    "overflow": "hidden",
+                    "borderRadius": 0,
+                    "id": "Image-a15fcd51-0bc2-4b70-a46c-6e3bf98da31b"
+                }
+            },
+            {
+                "type": "Flexbox",
+                "props": {
+                    "className": "flexbox-001",
+                    "customCss": "",
+                    "direction": "row",
+                    "justify": "center",
+                    "align": "center",
+                    "gap": 10,
+                    "items": [
+                        {
+                            "type": "Text",
+                            "props": {
+                                "content": "Text 1",
+                                "level": "p"
+                            }
+                        },
+                        {
+                            "type": "Text",
+                            "props": {
+                                "content": "Text 2",
+                                "level": "p"
+                            }
+                        },
+                        {
+                            "type": "Text",
+                            "props": {
+                                "content": "Text 3",
+                                "level": "p"
+                            }
+                        }
+                    ],
+                    "id": "Flexbox-5013155d-2ddc-48b3-99d6-cb4cf22b42a7"
+                }
+            }
+        ],
+        "Flexbox-b6b089bf-41de-49e6-ac39-f0bb06e49f84:flex-item-0": [
+            {
+                "type": "Text",
+                "props": {
+                    "content": "Accesibilidad",
+                    "level": "h4",
+                    "size": "lg",
+                    "align": "left",
+                    "className": "text-001",
+                    "customCss": "font-size:14px;\nfont-weight:500 !important;",
+                    "widthUnit": "px",
+                    "maxWidthValue": 100,
+                    "maxWidthUnit": "%",
+                    "minWidthUnit": "px",
+                    "textColor": "#000000",
+                    "id": "Text-cb1deb87-2166-43b3-a344-eb0346dd0aaa"
+                }
+            }
+        ],
+        "Flexbox-b6b089bf-41de-49e6-ac39-f0bb06e49f84:flex-item-1": [
+            {
+                "type": "Text",
+                "props": {
+                    "content": "Opciones de Privacidad",
+                    "level": "h1",
+                    "size": "lg",
+                    "align": "left",
+                    "className": "text-001",
+                    "customCss": "font-size:14px;\nfont-weight:500 !important;",
+                    "widthValue": 174,
+                    "widthUnit": "px",
+                    "maxWidthValue": 100,
+                    "maxWidthUnit": "%",
+                    "minWidthUnit": "px",
+                    "textColor": "#000000",
+                    "id": "Text-36460621-658a-499c-a519-771836cff13a"
+                }
+            }
+        ],
+        "Flexbox-b6b089bf-41de-49e6-ac39-f0bb06e49f84:flex-item-2": [
+            {
+                "type": "Text",
+                "props": {
+                    "content": "Consentimiento de Cookies",
+                    "level": "h1",
+                    "size": "lg",
+                    "align": "left",
+                    "className": "text-001",
+                    "customCss": "font-size:14px;\nfont-weight:500 !important;",
+                    "widthValue": 200,
+                    "widthUnit": "px",
+                    "maxWidthValue": 100,
+                    "maxWidthUnit": "%",
+                    "minWidthUnit": "px",
+                    "textColor": "#000000",
+                    "id": "Text-d4099428-65f3-45e6-96b0-5ab88b3d4036"
+                }
+            }
+        ],
+        "Flexbox-fd761def-d548-4e92-9a38-3b1f19b8a6ed:flex-item-0": [
+            {
+                "type": "Image",
+                "props": {
+                    "sourceType": "url",
+                    "className": "image-001",
+                    "customCss": "",
+                    "image": "https://toyota.com.co/images/socialMedias/instagram.png",
+                    "alt": "Image",
+                    "align": "center",
+                    "widthUnit": "px",
+                    "maxWidthValue": 100,
+                    "maxWidthUnit": "%",
+                    "heightUnit": "px",
+                    "maxHeightUnit": "px",
+                    "objectFit": "contain",
+                    "objectPosition": "center",
+                    "overflow": "hidden",
+                    "borderRadius": 0,
+                    "id": "Image-a759dbca-b0c8-49df-8afc-3a9e816917ec"
+                }
+            }
+        ],
+        "Flexbox-fd761def-d548-4e92-9a38-3b1f19b8a6ed:flex-item-1": [
+            {
+                "type": "Image",
+                "props": {
+                    "sourceType": "url",
+                    "className": "image-001",
+                    "customCss": "",
+                    "image": "https://toyota.com.co/images/socialMedias/twitter.png",
+                    "alt": "Image",
+                    "align": "center",
+                    "widthUnit": "px",
+                    "maxWidthValue": 100,
+                    "maxWidthUnit": "%",
+                    "heightUnit": "px",
+                    "maxHeightUnit": "px",
+                    "objectFit": "contain",
+                    "objectPosition": "center",
+                    "overflow": "hidden",
+                    "borderRadius": 0,
+                    "id": "Image-acf0e21d-c5fe-4d1e-a0dc-caf998cda983"
+                }
+            }
+        ],
+        "Flexbox-fd761def-d548-4e92-9a38-3b1f19b8a6ed:flex-item-2": [
+            {
+                "type": "Image",
+                "props": {
+                    "sourceType": "url",
+                    "className": "image-001",
+                    "customCss": "",
+                    "image": "https://toyota.com.co/images/socialMedias/youtube.png",
+                    "alt": "Image",
+                    "align": "center",
+                    "widthUnit": "px",
+                    "maxWidthValue": 100,
+                    "maxWidthUnit": "%",
+                    "heightUnit": "px",
+                    "maxHeightUnit": "px",
+                    "objectFit": "contain",
+                    "objectPosition": "center",
+                    "overflow": "hidden",
+                    "borderRadius": 0,
+                    "id": "Image-8cbcb8d2-bfe6-4f47-8aad-1a2db3897918"
+                }
+            }
+        ],
+        "Grid-ffe70374-1966-401b-ba83-c6eb6a393a8c:grid-zone": [
+            {
+                "type": "Flexbox",
+                "props": {
+                    "className": "flexbox-001",
+                    "customCss": "",
+                    "direction": "row",
+                    "justify": "center",
+                    "align": "center",
+                    "gap": 10,
+                    "items": [
+                        {
+                            "type": "Text",
+                            "props": {
+                                "content": "Text 1",
+                                "level": "p"
+                            }
+                        },
+                        {
+                            "type": "Text",
+                            "props": {
+                                "content": "Text 2",
+                                "level": "p"
+                            }
+                        },
+                        {
+                            "type": "Text",
+                            "props": {
+                                "content": "Text 3",
+                                "level": "p"
+                            }
+                        }
+                    ],
+                    "id": "Flexbox-b6b089bf-41de-49e6-ac39-f0bb06e49f84"
+                }
+            },
+            {
+                "type": "Flexbox",
+                "props": {
+                    "className": "flexbox-001",
+                    "customCss": "",
+                    "direction": "row",
+                    "justify": "center",
+                    "align": "center",
+                    "gap": 30,
+                    "items": [
+                        {
+                            "type": "Text",
+                            "props": {
+                                "content": "Text 1",
+                                "level": "p"
+                            }
+                        },
+                        {
+                            "type": "Text",
+                            "props": {
+                                "content": "Text 2",
+                                "level": "p"
+                            }
+                        },
+                        {
+                            "type": "Text",
+                            "props": {
+                                "content": "Text 3",
+                                "level": "p"
+                            }
+                        },
+                        {
+                            "type": "Text",
+                            "props": {
+                                "content": "Text 3",
+                                "level": "p"
+                            }
+                        }
+                    ],
+                    "id": "Flexbox-fd761def-d548-4e92-9a38-3b1f19b8a6ed"
+                }
+            }
+        ],
+        "Flexbox-fd761def-d548-4e92-9a38-3b1f19b8a6ed:flex-item-3": [
+            {
+                "type": "Image",
+                "props": {
+                    "sourceType": "url",
+                    "className": "image-001",
+                    "customCss": "",
+                    "image": "https://toyota.com.co/images/socialMedias/facebook.png",
+                    "alt": "Image",
+                    "align": "center",
+                    "widthUnit": "px",
+                    "maxWidthValue": 100,
+                    "maxWidthUnit": "%",
+                    "heightUnit": "px",
+                    "maxHeightUnit": "px",
+                    "objectFit": "contain",
+                    "objectPosition": "center",
+                    "overflow": "hidden",
+                    "borderRadius": 0,
+                    "id": "Image-565293ef-b153-42af-935d-48bebeebdc66"
+                }
+            }
+        ],
+        "Flexbox-5013155d-2ddc-48b3-99d6-cb4cf22b42a7:flex-item-0": [
+            {
+                "type": "Text",
+                "props": {
+                    "content": "© 2025 Automotores Toyota Colombia S.A.S.",
+                    "level": "h4",
+                    "size": "lg",
+                    "align": "center",
+                    "className": "text-001",
+                    "customCss": "font-size:12px;\nfont-weight:500 !important;",
+                    "widthUnit": "px",
+                    "maxWidthValue": 100,
+                    "maxWidthUnit": "%",
+                    "minWidthUnit": "px",
+                    "textColor": "#000000",
+                    "id": "Text-1a75a365-b49b-4424-be1a-7f17ea63a3e8"
+                }
+            }
+        ],
+        "Flexbox-5013155d-2ddc-48b3-99d6-cb4cf22b42a7:flex-item-1": [
+            {
+                "type": "Text",
+                "props": {
+                    "content": "\nTodos los derechos reservados.",
+                    "level": "h1",
+                    "size": "lg",
+                    "align": "left",
+                    "className": "text-001",
+                    "customCss": "font-size:12px;\nfont-weight:500 !important;",
+                    "widthUnit": "px",
+                    "maxWidthValue": 700,
+                    "maxWidthUnit": "px",
+                    "minWidthUnit": "px",
+                    "textColor": "#000000",
+                    "id": "Text-e2bc0877-6844-4f84-b5b8-e40af6fde920"
+                }
+            }
+        ],
+        "Flexbox-5013155d-2ddc-48b3-99d6-cb4cf22b42a7:flex-item-2": [
+            {
+                "type": "Text",
+                "props": {
+                    "content": "La información aquí presente se aplica solo a vehículos en Colombia.",
+                    "level": "h1",
+                    "size": "lg",
+                    "align": "left",
+                    "className": "text-001",
+                    "customCss": "font-size:12px;\nfont-weight:500 !important;",
+                    "widthUnit": "px",
+                    "maxWidthValue": 700,
+                    "maxWidthUnit": "px",
+                    "minWidthUnit": "px",
+                    "textColor": "#000000",
+                    "id": "Text-aeb0e771-c348-4fef-a0b1-40a914ff0df3"
+                }
+            }
+        ],
+        "Flex-d475a48b-2f0a-42f4-a932-c2f80dec9f57:flex-zone": [
+            {
+                "type": "Button",
+                "props": {
+                    "text": "Ver detalles",
+                    "type": "default",
+                    "href": "",
+                    "external": false,
+                    "align": "left",
+                    "widthUnit": "px",
+                    "heightUnit": "px",
+                    "maxWidthUnit": "px",
+                    "maxHeightUnit": "px",
+                    "paddingX": 16,
+                    "paddingY": 10,
+                    "borderRadius": 6,
+                    "className": "button-001",
+                    "customCss": "background-color:#fff !important;\ntext-decoration:underline !important;",
+                    "id": "Button-59f4a911-280d-4254-8c02-e809f6ea2bb0"
+                }
+            },
+            {
+                "type": "Button",
+                "props": {
+                    "text": "Cotizar",
+                    "type": "default",
+                    "href": "",
+                    "external": false,
+                    "align": "left",
+                    "widthUnit": "px",
+                    "heightUnit": "px",
+                    "maxWidthUnit": "px",
+                    "maxHeightUnit": "px",
+                    "paddingX": 16,
+                    "paddingY": 10,
+                    "borderRadius": 6,
+                    "className": "button-001",
+                    "customCss": "background-color:#fff !important;\ntext-decoration:underline !important;",
+                    "id": "Button-c20518e6-7421-4cbe-8bc9-446163c2e67b"
+                }
+            }
+        ],
+        "Flex-1b0b3fab-65d4-4dbe-9afb-371948d2717b:flex-zone": [
+            {
+                "type": "Button",
+                "props": {
+                    "text": "Ver detalles",
+                    "type": "default",
+                    "href": "",
+                    "external": false,
+                    "align": "left",
+                    "widthUnit": "px",
+                    "heightUnit": "px",
+                    "maxWidthUnit": "px",
+                    "maxHeightUnit": "px",
+                    "paddingX": 16,
+                    "paddingY": 10,
+                    "borderRadius": 6,
+                    "className": "button-001",
+                    "customCss": "background-color:#fff !important;\ntext-decoration:underline !important;",
+                    "id": "Button-052d9cc8-cd74-48cb-8320-5a4ce5fab33e"
+                }
+            },
+            {
+                "type": "Button",
+                "props": {
+                    "text": "Cotizar",
+                    "type": "default",
+                    "href": "",
+                    "external": false,
+                    "align": "left",
+                    "widthUnit": "px",
+                    "heightUnit": "px",
+                    "maxWidthUnit": "px",
+                    "maxHeightUnit": "px",
+                    "paddingX": 16,
+                    "paddingY": 10,
+                    "borderRadius": 6,
+                    "className": "button-001",
+                    "customCss": "background-color:#fff !important;\ntext-decoration:underline !important;",
+                    "id": "Button-de3ce24d-98f3-4be7-ba65-3b4e1d8532b2"
+                }
+            }
+        ],
+        "Flex-10c02fd2-3e54-43d2-9fa1-60b9ebc5532b:flex-zone": [
+            {
+                "type": "Button",
+                "props": {
+                    "text": "Ver detalles",
+                    "type": "default",
+                    "href": "",
+                    "external": false,
+                    "align": "left",
+                    "widthUnit": "px",
+                    "heightUnit": "px",
+                    "maxWidthUnit": "px",
+                    "maxHeightUnit": "px",
+                    "paddingX": 16,
+                    "paddingY": 10,
+                    "borderRadius": 6,
+                    "className": "button-001",
+                    "customCss": "background-color:#fff !important;\ntext-decoration:underline !important;",
+                    "id": "Button-5195e1d6-f8ff-4a75-b477-53e3faf74aa8"
+                }
+            },
+            {
+                "type": "Button",
+                "props": {
+                    "text": "Cotizar",
+                    "type": "default",
+                    "href": "",
+                    "external": false,
+                    "align": "left",
+                    "widthUnit": "px",
+                    "heightUnit": "px",
+                    "maxWidthUnit": "px",
+                    "maxHeightUnit": "px",
+                    "paddingX": 16,
+                    "paddingY": 10,
+                    "borderRadius": 6,
+                    "className": "button-001",
+                    "customCss": "background-color:#fff !important;\ntext-decoration:underline !important;",
+                    "id": "Button-68986e33-957f-4e1e-a266-7437f9d4e703"
+                }
+            }
+        ],
+        "Flex-dc63fc7f-5797-428b-bb5f-10a1d99a9848:flex-zone": [
+            {
+                "type": "Button",
+                "props": {
+                    "text": "Ver detalles",
+                    "type": "default",
+                    "href": "",
+                    "external": false,
+                    "align": "left",
+                    "widthUnit": "px",
+                    "heightUnit": "px",
+                    "maxWidthUnit": "px",
+                    "maxHeightUnit": "px",
+                    "paddingX": 16,
+                    "paddingY": 10,
+                    "borderRadius": 6,
+                    "className": "button-001",
+                    "customCss": "background-color:#fff !important;\ntext-decoration:underline !important;",
+                    "id": "Button-480382ac-3265-469a-9e6d-53f6c8b1f314"
+                }
+            },
+            {
+                "type": "Button",
+                "props": {
+                    "text": "Cotizar",
+                    "type": "default",
+                    "href": "",
+                    "external": false,
+                    "align": "left",
+                    "widthUnit": "px",
+                    "heightUnit": "px",
+                    "maxWidthUnit": "px",
+                    "maxHeightUnit": "px",
+                    "paddingX": 16,
+                    "paddingY": 10,
+                    "borderRadius": 6,
+                    "className": "button-001",
+                    "customCss": "background-color:#fff !important;\ntext-decoration:underline !important;",
+                    "id": "Button-2ad10d85-297c-469a-b344-bc321314d0da"
+                }
+            }
+        ],
+        "Flex-8eb6a835-7f37-45b4-b0ea-f6161e351e8d:flex-zone": [
+            {
+                "type": "Button",
+                "props": {
+                    "text": "Ver detalles",
+                    "type": "default",
+                    "href": "",
+                    "external": false,
+                    "align": "left",
+                    "widthUnit": "px",
+                    "heightUnit": "px",
+                    "maxWidthUnit": "px",
+                    "maxHeightUnit": "px",
+                    "paddingX": 16,
+                    "paddingY": 10,
+                    "borderRadius": 6,
+                    "className": "button-001",
+                    "customCss": "background-color:#fff !important;\ntext-decoration:underline !important;",
+                    "id": "Button-3f11d90c-cd10-47cd-85f8-8942972372c0"
+                }
+            },
+            {
+                "type": "Button",
+                "props": {
+                    "text": "Cotizar",
+                    "type": "default",
+                    "href": "",
+                    "external": false,
+                    "align": "left",
+                    "widthUnit": "px",
+                    "heightUnit": "px",
+                    "maxWidthUnit": "px",
+                    "maxHeightUnit": "px",
+                    "paddingX": 16,
+                    "paddingY": 10,
+                    "borderRadius": 6,
+                    "className": "button-001",
+                    "customCss": "background-color:#fff !important;\ntext-decoration:underline !important;",
+                    "id": "Button-aaac3024-275f-4f1a-b6c5-03a7dc0fd320"
+                }
+            }
+        ],
+        "Flex-4d945396-d525-42ca-acdd-36c660b48409:flex-zone": [
+            {
+                "type": "Button",
+                "props": {
+                    "text": "Ver detalles",
+                    "type": "default",
+                    "href": "",
+                    "external": false,
+                    "align": "left",
+                    "widthUnit": "px",
+                    "heightUnit": "px",
+                    "maxWidthUnit": "px",
+                    "maxHeightUnit": "px",
+                    "paddingX": 16,
+                    "paddingY": 10,
+                    "borderRadius": 6,
+                    "className": "button-001",
+                    "customCss": "background-color:#fff !important;\ntext-decoration:underline !important;",
+                    "id": "Button-0968ee48-cb96-4b1a-a850-05ee95c2d034"
+                }
+            },
+            {
+                "type": "Button",
+                "props": {
+                    "text": "Cotizar",
+                    "type": "default",
+                    "href": "",
+                    "external": false,
+                    "align": "left",
+                    "widthUnit": "px",
+                    "heightUnit": "px",
+                    "maxWidthUnit": "px",
+                    "maxHeightUnit": "px",
+                    "paddingX": 16,
+                    "paddingY": 10,
+                    "borderRadius": 6,
+                    "className": "button-001",
+                    "customCss": "background-color:#fff !important;\ntext-decoration:underline !important;",
+                    "id": "Button-23f9d58b-12cd-4750-bb2c-7a440d146807"
+                }
+            }
+        ],
+        "Flex-48153e6e-5544-4eee-babc-6e5c00f4f279:flex-zone": [
+            {
+                "type": "Button",
+                "props": {
+                    "text": "Ver detalles",
+                    "type": "default",
+                    "href": "",
+                    "external": false,
+                    "align": "left",
+                    "widthUnit": "px",
+                    "heightUnit": "px",
+                    "maxWidthUnit": "px",
+                    "maxHeightUnit": "px",
+                    "paddingX": 16,
+                    "paddingY": 10,
+                    "borderRadius": 6,
+                    "className": "button-001",
+                    "customCss": "background-color:#fff !important;\ntext-decoration:underline !important;",
+                    "id": "Button-469ebb45-65b1-4ae6-9d06-8e1d764b9b3b"
+                }
+            },
+            {
+                "type": "Button",
+                "props": {
+                    "text": "Cotizar",
+                    "type": "default",
+                    "href": "",
+                    "external": false,
+                    "align": "left",
+                    "widthUnit": "px",
+                    "heightUnit": "px",
+                    "maxWidthUnit": "px",
+                    "maxHeightUnit": "px",
+                    "paddingX": 16,
+                    "paddingY": 10,
+                    "borderRadius": 6,
+                    "className": "button-001",
+                    "customCss": "background-color:#fff !important;\ntext-decoration:underline !important;",
+                    "id": "Button-d8bb5642-1fd1-49ed-b4b9-da4e0424361c"
+                }
+            }
+        ],
+        "Flex-730c9fb2-c5fd-4e67-aae0-587f06a60218:flex-zone": [
+            {
+                "type": "Button",
+                "props": {
+                    "text": "Ver detalles",
+                    "type": "default",
+                    "href": "",
+                    "external": false,
+                    "align": "left",
+                    "widthUnit": "px",
+                    "heightUnit": "px",
+                    "maxWidthUnit": "px",
+                    "maxHeightUnit": "px",
+                    "paddingX": 16,
+                    "paddingY": 10,
+                    "borderRadius": 6,
+                    "className": "button-001",
+                    "customCss": "background-color:#fff !important;\ntext-decoration:underline !important;",
+                    "id": "Button-0ac0bd9a-f5eb-4e32-9f6d-0779949d6a4d"
+                }
+            },
+            {
+                "type": "Button",
+                "props": {
+                    "text": "Cotizar",
+                    "type": "default",
+                    "href": "",
+                    "external": false,
+                    "align": "left",
+                    "widthUnit": "px",
+                    "heightUnit": "px",
+                    "maxWidthUnit": "px",
+                    "maxHeightUnit": "px",
+                    "paddingX": 16,
+                    "paddingY": 10,
+                    "borderRadius": 6,
+                    "className": "button-001",
+                    "customCss": "background-color:#fff !important;\ntext-decoration:underline !important;",
+                    "id": "Button-f84c11a2-ff66-48af-b239-fa1a73c31f51"
+                }
+            }
+        ],
+        "Flex-5d3f4fa5-3c9f-4f0b-a8f5-7bf4e9204cca:flex-zone": [
+            {
+                "type": "Button",
+                "props": {
+                    "text": "Ver detalles",
+                    "type": "default",
+                    "href": "",
+                    "external": false,
+                    "align": "left",
+                    "widthUnit": "px",
+                    "heightUnit": "px",
+                    "maxWidthUnit": "px",
+                    "maxHeightUnit": "px",
+                    "paddingX": 16,
+                    "paddingY": 10,
+                    "borderRadius": 6,
+                    "className": "button-001",
+                    "customCss": "background-color:#fff !important;\ntext-decoration:underline !important;",
+                    "id": "Button-fb43c0e9-ae0e-458f-bfaa-a3d0c402f6aa"
+                }
+            },
+            {
+                "type": "Button",
+                "props": {
+                    "text": "Cotizar",
+                    "type": "default",
+                    "href": "",
+                    "external": false,
+                    "align": "left",
+                    "widthUnit": "px",
+                    "heightUnit": "px",
+                    "maxWidthUnit": "px",
+                    "maxHeightUnit": "px",
+                    "paddingX": 16,
+                    "paddingY": 10,
+                    "borderRadius": 6,
+                    "className": "button-001",
+                    "customCss": "background-color:#fff !important;\ntext-decoration:underline !important;",
+                    "id": "Button-c38c5d29-8f8e-44b5-b2ea-5f0d798fbf8c"
+                }
+            }
+        ],
+        "Flex-2f4ecf24-43e9-489d-87a6-4dd021349ca3:flex-zone": [
+            {
+                "type": "Button",
+                "props": {
+                    "text": "Ver detalles",
+                    "type": "default",
+                    "href": "",
+                    "external": false,
+                    "align": "left",
+                    "widthUnit": "px",
+                    "heightUnit": "px",
+                    "maxWidthUnit": "px",
+                    "maxHeightUnit": "px",
+                    "paddingX": 16,
+                    "paddingY": 10,
+                    "borderRadius": 6,
+                    "className": "button-001",
+                    "customCss": "background-color:#fff !important;\ntext-decoration:underline !important;",
+                    "id": "Button-b117f6c7-4452-4d8f-92c5-60aa020ec0e2"
+                }
+            },
+            {
+                "type": "Button",
+                "props": {
+                    "text": "Cotizar",
+                    "type": "default",
+                    "href": "",
+                    "external": false,
+                    "align": "left",
+                    "widthUnit": "px",
+                    "heightUnit": "px",
+                    "maxWidthUnit": "px",
+                    "maxHeightUnit": "px",
+                    "paddingX": 16,
+                    "paddingY": 10,
+                    "borderRadius": 6,
+                    "className": "button-001",
+                    "customCss": "background-color:#fff !important;\ntext-decoration:underline !important;",
+                    "id": "Button-5a2d3a8d-525d-4ac9-8a91-d46cb5b286c6"
+                }
+            }
+        ],
+        "Flexbox-6d0bdc34-a5df-4b65-afa7-01137a6d0f41:flex-item-0": [
+            {
+                "type": "Text",
+                "props": {
+                    "content": "Land Cruiser 300\n\n",
+                    "level": "h3",
+                    "size": "lg",
+                    "align": "center",
+                    "className": "text-001",
+                    "customCss": "",
+                    "widthUnit": "px",
+                    "maxWidthValue": 700,
+                    "maxWidthUnit": "px",
+                    "minWidthUnit": "px",
+                    "textColor": "#000000",
+                    "id": "Text-76ff0081-40f3-4b45-8999-52a8e30dd415"
+                }
+            },
+            {
+                "type": "Image",
+                "props": {
+                    "sourceType": "url",
+                    "className": "image-001",
+                    "customCss": "",
+                    "image": "https://toyota.com.co/images/seleccion-toyota-jun-LC300.png",
+                    "alt": "Image",
+                    "align": "center",
+                    "widthUnit": "px",
+                    "maxWidthValue": 100,
+                    "maxWidthUnit": "%",
+                    "heightUnit": "px",
+                    "maxHeightUnit": "px",
+                    "objectFit": "contain",
+                    "objectPosition": "center",
+                    "overflow": "hidden",
+                    "borderRadius": 0,
+                    "id": "Image-8b9bf3a1-1fb8-4b50-a8c1-8547e456de14"
+                }
+            },
+            {
+                "type": "Flex",
+                "props": {
+                    "direction": "row",
+                    "wrap": "nowrap",
+                    "justifyContent": "space-between",
+                    "alignItems": "stretch",
+                    "gap": 0,
+                    "flex": "",
+                    "className": "",
+                    "customCss": "",
+                    "id": "Flex-2f4ecf24-43e9-489d-87a6-4dd021349ca3"
+                }
+            }
+        ],
+        "Flex-3d484c0d-5706-480b-ab25-34e30b88a4e2:flex-zone": [
+            {
+                "type": "Button",
+                "props": {
+                    "text": "Ver detalles",
+                    "type": "default",
+                    "href": "",
+                    "external": false,
+                    "align": "left",
+                    "widthUnit": "px",
+                    "heightUnit": "px",
+                    "maxWidthUnit": "px",
+                    "maxHeightUnit": "px",
+                    "paddingX": 16,
+                    "paddingY": 10,
+                    "borderRadius": 6,
+                    "className": "button-001",
+                    "customCss": "background-color:#fff !important;\ntext-decoration:underline !important;",
+                    "id": "Button-8ab4833e-91e9-4119-b6a8-f02665236688"
+                }
+            },
+            {
+                "type": "Button",
+                "props": {
+                    "text": "Cotizar",
+                    "type": "default",
+                    "href": "",
+                    "external": false,
+                    "align": "left",
+                    "widthUnit": "px",
+                    "heightUnit": "px",
+                    "maxWidthUnit": "px",
+                    "maxHeightUnit": "px",
+                    "paddingX": 16,
+                    "paddingY": 10,
+                    "borderRadius": 6,
+                    "className": "button-001",
+                    "customCss": "background-color:#fff !important;\ntext-decoration:underline !important;",
+                    "id": "Button-3e051abd-3397-4b89-9f63-8d39ff85a782"
+                }
+            }
+        ],
+        "Flexbox-6d0bdc34-a5df-4b65-afa7-01137a6d0f41:flex-item-1": [
+            {
+                "type": "Text",
+                "props": {
+                    "content": "Land Cruiser 300 GR-S",
+                    "level": "h3",
+                    "size": "lg",
+                    "align": "center",
+                    "className": "text-001",
+                    "customCss": "",
+                    "widthUnit": "px",
+                    "maxWidthValue": 700,
+                    "maxWidthUnit": "px",
+                    "minWidthUnit": "px",
+                    "textColor": "#000000",
+                    "id": "Text-e24956bf-d8c1-4b28-b17e-18363a92657a"
+                }
+            },
+            {
+                "type": "Image",
+                "props": {
+                    "sourceType": "url",
+                    "className": "image-001",
+                    "customCss": "",
+                    "image": "https://toyota.com.co/images/seleccion-toyota-jun-LC300GR.png",
+                    "alt": "Image",
+                    "align": "center",
+                    "widthUnit": "px",
+                    "maxWidthValue": 100,
+                    "maxWidthUnit": "%",
+                    "heightUnit": "px",
+                    "maxHeightUnit": "px",
+                    "objectFit": "contain",
+                    "objectPosition": "center",
+                    "overflow": "hidden",
+                    "borderRadius": 0,
+                    "id": "Image-e982b8be-233d-4fae-a2be-75024a32e6e2"
+                }
+            },
+            {
+                "type": "Flex",
+                "props": {
+                    "direction": "row",
+                    "wrap": "nowrap",
+                    "justifyContent": "space-between",
+                    "alignItems": "stretch",
+                    "gap": 0,
+                    "flex": "",
+                    "className": "",
+                    "customCss": "",
+                    "id": "Flex-3d484c0d-5706-480b-ab25-34e30b88a4e2"
+                }
+            }
+        ],
+        "Flexbox-6d0bdc34-a5df-4b65-afa7-01137a6d0f41:flex-item-2": [],
+        "Flex-fee20833-eb0b-4d7c-a7fa-f419c5bfa513:flex-zone": [
+            {
+                "type": "Button",
+                "props": {
+                    "text": "Ver detalles",
+                    "type": "default",
+                    "href": "",
+                    "external": false,
+                    "align": "left",
+                    "widthUnit": "px",
+                    "heightUnit": "px",
+                    "maxWidthUnit": "px",
+                    "maxHeightUnit": "px",
+                    "paddingX": 16,
+                    "paddingY": 10,
+                    "borderRadius": 6,
+                    "className": "button-001",
+                    "customCss": "background-color:#fff !important;\ntext-decoration:underline !important;",
+                    "id": "Button-5923b21d-d456-41a0-81fc-e584461f4a6a"
+                }
+            },
+            {
+                "type": "Button",
+                "props": {
+                    "text": "Cotizar",
+                    "type": "default",
+                    "href": "",
+                    "external": false,
+                    "align": "left",
+                    "widthUnit": "px",
+                    "heightUnit": "px",
+                    "maxWidthUnit": "px",
+                    "maxHeightUnit": "px",
+                    "paddingX": 16,
+                    "paddingY": 10,
+                    "borderRadius": 6,
+                    "className": "button-001",
+                    "customCss": "background-color:#fff !important;\ntext-decoration:underline !important;",
+                    "id": "Button-16fba6ca-c151-4eab-97e4-e90b9f18f7b5"
+                }
+            }
+        ],
+        "Flexbox-ac368f3a-3b2d-41d7-9392-0b4b12fc1c90:flex-item-0": [
+            {
+                "type": "Text",
+                "props": {
+                    "content": "Hilux",
+                    "level": "h3",
+                    "size": "lg",
+                    "align": "left",
+                    "className": "text-001",
+                    "customCss": "",
+                    "widthUnit": "px",
+                    "maxWidthValue": 700,
+                    "maxWidthUnit": "px",
+                    "minWidthUnit": "px",
+                    "textColor": "#000000",
+                    "id": "Text-3cbf537a-2836-44e4-82a6-e68efc1388f0"
+                }
+            },
+            {
+                "type": "Image",
+                "props": {
+                    "sourceType": "url",
+                    "className": "image-001",
+                    "customCss": "",
+                    "image": "https://toyota.com.co/images/seleccion-toyota-jun-Hilux.png",
+                    "alt": "Image",
+                    "align": "center",
+                    "widthUnit": "px",
+                    "maxWidthValue": 100,
+                    "maxWidthUnit": "%",
+                    "heightUnit": "px",
+                    "maxHeightUnit": "px",
+                    "objectFit": "contain",
+                    "objectPosition": "center",
+                    "overflow": "hidden",
+                    "borderRadius": 0,
+                    "id": "Image-6ccec6fa-bf35-4911-a50b-ee3c66c999ab"
+                }
+            },
+            {
+                "type": "Flex",
+                "props": {
+                    "direction": "row",
+                    "wrap": "nowrap",
+                    "justifyContent": "space-between",
+                    "alignItems": "stretch",
+                    "gap": 0,
+                    "flex": "",
+                    "className": "",
+                    "customCss": "",
+                    "id": "Flex-fee20833-eb0b-4d7c-a7fa-f419c5bfa513"
+                }
+            }
+        ],
+        "Flex-5e5edb92-40c2-4b1d-a595-d682d3234946:flex-zone": [
+            {
+                "type": "Button",
+                "props": {
+                    "text": "Ver detalles",
+                    "type": "default",
+                    "href": "",
+                    "external": false,
+                    "align": "left",
+                    "widthUnit": "px",
+                    "heightUnit": "px",
+                    "maxWidthUnit": "px",
+                    "maxHeightUnit": "px",
+                    "paddingX": 16,
+                    "paddingY": 10,
+                    "borderRadius": 6,
+                    "className": "button-001",
+                    "customCss": "background-color:#fff !important;\ntext-decoration:underline !important;",
+                    "id": "Button-95c0a772-d5e8-4d42-b303-072251034ebe"
+                }
+            },
+            {
+                "type": "Button",
+                "props": {
+                    "text": "Cotizar",
+                    "type": "default",
+                    "href": "",
+                    "external": false,
+                    "align": "left",
+                    "widthUnit": "px",
+                    "heightUnit": "px",
+                    "maxWidthUnit": "px",
+                    "maxHeightUnit": "px",
+                    "paddingX": 16,
+                    "paddingY": 10,
+                    "borderRadius": 6,
+                    "className": "button-001",
+                    "customCss": "background-color:#fff !important;\ntext-decoration:underline !important;",
+                    "id": "Button-1dec21d9-c1b7-4bea-833b-f520a906906e"
+                }
+            }
+        ],
+        "Flexbox-ac368f3a-3b2d-41d7-9392-0b4b12fc1c90:flex-item-1": [
+            {
+                "type": "Text",
+                "props": {
+                    "content": "Hilux Overlander",
+                    "level": "h3",
+                    "size": "lg",
+                    "align": "center",
+                    "className": "text-001",
+                    "customCss": "",
+                    "widthUnit": "px",
+                    "maxWidthValue": 700,
+                    "maxWidthUnit": "px",
+                    "minWidthUnit": "px",
+                    "textColor": "#000000",
+                    "id": "Text-cd85fc0b-e817-41e4-9f8a-92f30480d9cb"
+                }
+            },
+            {
+                "type": "Image",
+                "props": {
+                    "sourceType": "url",
+                    "className": "image-001",
+                    "customCss": "",
+                    "image": "https://toyota.com.co/images/hilux-overlander/preview.png",
+                    "alt": "Image",
+                    "align": "center",
+                    "widthUnit": "px",
+                    "maxWidthValue": 100,
+                    "maxWidthUnit": "%",
+                    "heightUnit": "px",
+                    "maxHeightUnit": "px",
+                    "objectFit": "contain",
+                    "objectPosition": "center",
+                    "overflow": "hidden",
+                    "borderRadius": 0,
+                    "id": "Image-b56c7081-2c61-4a83-8fc8-677e520b22ff"
+                }
+            },
+            {
+                "type": "Flex",
+                "props": {
+                    "direction": "row",
+                    "wrap": "nowrap",
+                    "justifyContent": "space-between",
+                    "alignItems": "stretch",
+                    "gap": 0,
+                    "flex": "",
+                    "className": "",
+                    "customCss": "",
+                    "id": "Flex-5e5edb92-40c2-4b1d-a595-d682d3234946"
+                }
+            }
+        ],
+        "Flex-29281eae-c17f-467e-9d7c-450ee1403be8:flex-zone": [
+            {
+                "type": "Button",
+                "props": {
+                    "text": "Ver detalles",
+                    "type": "default",
+                    "href": "",
+                    "external": false,
+                    "align": "left",
+                    "widthUnit": "px",
+                    "heightUnit": "px",
+                    "maxWidthUnit": "px",
+                    "maxHeightUnit": "px",
+                    "paddingX": 16,
+                    "paddingY": 10,
+                    "borderRadius": 6,
+                    "className": "button-001",
+                    "customCss": "background-color:#fff !important;\ntext-decoration:underline !important;",
+                    "id": "Button-c21e9026-e5ba-4436-a471-47d858fe15ea"
+                }
+            },
+            {
+                "type": "Button",
+                "props": {
+                    "text": "Cotizar",
+                    "type": "default",
+                    "href": "",
+                    "external": false,
+                    "align": "left",
+                    "widthUnit": "px",
+                    "heightUnit": "px",
+                    "maxWidthUnit": "px",
+                    "maxHeightUnit": "px",
+                    "paddingX": 16,
+                    "paddingY": 10,
+                    "borderRadius": 6,
+                    "className": "button-001",
+                    "customCss": "background-color:#fff !important;\ntext-decoration:underline !important;",
+                    "id": "Button-7292ce48-6282-4a0f-bd01-2793a5d08ffa"
+                }
+            }
+        ],
+        "Flexbox-ac368f3a-3b2d-41d7-9392-0b4b12fc1c90:flex-item-2": [
+            {
+                "type": "Text",
+                "props": {
+                    "content": "Land Cruiser 79\n",
+                    "level": "h3",
+                    "size": "lg",
+                    "align": "center",
+                    "className": "text-001",
+                    "customCss": "",
+                    "widthUnit": "px",
+                    "maxWidthValue": 700,
+                    "maxWidthUnit": "px",
+                    "minWidthUnit": "px",
+                    "textColor": "#000000",
+                    "id": "Text-d976953c-e076-4a10-b28a-0905349e8e1b"
+                }
+            },
+            {
+                "type": "Image",
+                "props": {
+                    "sourceType": "url",
+                    "className": "image-001",
+                    "customCss": "",
+                    "image": "https://toyota.com.co/images/seleccion-toyota-jun-LC79.png",
+                    "alt": "Image",
+                    "align": "center",
+                    "widthUnit": "px",
+                    "maxWidthValue": 100,
+                    "maxWidthUnit": "%",
+                    "heightUnit": "px",
+                    "maxHeightUnit": "px",
+                    "objectFit": "contain",
+                    "objectPosition": "center",
+                    "overflow": "hidden",
+                    "borderRadius": 0,
+                    "id": "Image-886fd2ba-0268-41d3-be7c-1b0118884e0e"
+                }
+            },
+            {
+                "type": "Flex",
+                "props": {
+                    "direction": "row",
+                    "wrap": "nowrap",
+                    "justifyContent": "space-between",
+                    "alignItems": "stretch",
+                    "gap": 0,
+                    "flex": "",
+                    "className": "",
+                    "customCss": "",
+                    "id": "Flex-29281eae-c17f-467e-9d7c-450ee1403be8"
+                }
+            }
+        ],
+        "Flex-8ae89750-afae-4b7b-9d77-748936a72c95:flex-zone": [
+            {
+                "type": "Button",
+                "props": {
+                    "text": "Ver detalles",
+                    "type": "default",
+                    "href": "",
+                    "external": false,
+                    "align": "left",
+                    "widthUnit": "px",
+                    "heightUnit": "px",
+                    "maxWidthUnit": "px",
+                    "maxHeightUnit": "px",
+                    "paddingX": 16,
+                    "paddingY": 10,
+                    "borderRadius": 6,
+                    "className": "button-001",
+                    "customCss": "background-color:#fff !important;\ntext-decoration:underline !important;",
+                    "id": "Button-85553035-3c13-4207-94ca-395dd8d24f4a"
+                }
+            },
+            {
+                "type": "Button",
+                "props": {
+                    "text": "Cotizar",
+                    "type": "default",
+                    "href": "",
+                    "external": false,
+                    "align": "left",
+                    "widthUnit": "px",
+                    "heightUnit": "px",
+                    "maxWidthUnit": "px",
+                    "maxHeightUnit": "px",
+                    "paddingX": 16,
+                    "paddingY": 10,
+                    "borderRadius": 6,
+                    "className": "button-001",
+                    "customCss": "background-color:#fff !important;\ntext-decoration:underline !important;",
+                    "id": "Button-a3437f23-72ee-4376-8373-81164b7b6578"
+                }
+            }
+        ],
+        "Flexbox-eccae4f0-7b21-4170-a827-0917a1441d11:flex-item-0": [
+            {
+                "type": "Text",
+                "props": {
+                    "content": "Hilux GR-S",
+                    "level": "h3",
+                    "size": "lg",
+                    "align": "left",
+                    "className": "text-001",
+                    "customCss": "",
+                    "widthUnit": "px",
+                    "maxWidthValue": 700,
+                    "maxWidthUnit": "px",
+                    "minWidthUnit": "px",
+                    "textColor": "#000000",
+                    "id": "Text-ffc9a318-560a-4b5a-a455-93ac311bf8de"
+                }
+            },
+            {
+                "type": "Image",
+                "props": {
+                    "sourceType": "url",
+                    "className": "image-001",
+                    "customCss": "",
+                    "image": "https://toyota.com.co/images/seleccion-toyota-jun-HiluxGR.png",
+                    "alt": "Image",
+                    "align": "center",
+                    "widthUnit": "px",
+                    "maxWidthValue": 100,
+                    "maxWidthUnit": "%",
+                    "heightUnit": "px",
+                    "maxHeightUnit": "px",
+                    "objectFit": "contain",
+                    "objectPosition": "center",
+                    "overflow": "hidden",
+                    "borderRadius": 0,
+                    "id": "Image-2e73c9ad-c84c-4fcd-9327-984b1b3833ce"
+                }
+            },
+            {
+                "type": "Flex",
+                "props": {
+                    "direction": "row",
+                    "wrap": "nowrap",
+                    "justifyContent": "space-between",
+                    "alignItems": "stretch",
+                    "gap": 0,
+                    "flex": "",
+                    "className": "",
+                    "customCss": "",
+                    "id": "Flex-8ae89750-afae-4b7b-9d77-748936a72c95"
+                }
+            }
+        ],
+        "Flexbox-eccae4f0-7b21-4170-a827-0917a1441d11:flex-item-1": [
+            {
+                "type": "Text",
+                "props": {
+                    "content": "Hilux Overlander",
+                    "level": "h3",
+                    "size": "lg",
+                    "align": "center",
+                    "className": "text-001",
+                    "customCss": "",
+                    "widthUnit": "px",
+                    "maxWidthValue": 700,
+                    "maxWidthUnit": "px",
+                    "minWidthUnit": "px",
+                    "textColor": "#000000",
+                    "id": "Text-3f7cee12-9bbd-4186-83e4-0c2408177db2"
+                }
+            }
+        ],
+        "Flex-178d39a7-bc95-4fa0-b418-98abfc503aed:flex-zone": [
+            {
+                "type": "Button",
+                "props": {
+                    "text": "Ver detalles",
+                    "type": "default",
+                    "href": "",
+                    "external": false,
+                    "align": "left",
+                    "widthUnit": "px",
+                    "heightUnit": "px",
+                    "maxWidthUnit": "px",
+                    "maxHeightUnit": "px",
+                    "paddingX": 16,
+                    "paddingY": 10,
+                    "borderRadius": 6,
+                    "className": "button-001",
+                    "customCss": "background-color:#fff !important;\ntext-decoration:underline !important;",
+                    "id": "Button-275d49a7-46db-4e32-a7aa-0df383ff130a"
+                }
+            },
+            {
+                "type": "Button",
+                "props": {
+                    "text": "Cotizar",
+                    "type": "default",
+                    "href": "",
+                    "external": false,
+                    "align": "left",
+                    "widthUnit": "px",
+                    "heightUnit": "px",
+                    "maxWidthUnit": "px",
+                    "maxHeightUnit": "px",
+                    "paddingX": 16,
+                    "paddingY": 10,
+                    "borderRadius": 6,
+                    "className": "button-001",
+                    "customCss": "background-color:#fff !important;\ntext-decoration:underline !important;",
+                    "id": "Button-967fd41a-e95b-4dd7-8845-b7e9949f2cd8"
+                }
+            }
+        ],
+        "Flexbox-eccae4f0-7b21-4170-a827-0917a1441d11:flex-item-2": [
+            {
+                "type": "Text",
+                "props": {
+                    "content": "Land Cruiser 79\n",
+                    "level": "h3",
+                    "size": "lg",
+                    "align": "center",
+                    "className": "text-001",
+                    "customCss": "",
+                    "widthUnit": "px",
+                    "maxWidthValue": 700,
+                    "maxWidthUnit": "px",
+                    "minWidthUnit": "px",
+                    "textColor": "#000000",
+                    "id": "Text-3c219eb5-69f8-49bb-bdbe-cf4b82503eda"
+                }
+            },
+            {
+                "type": "Image",
+                "props": {
+                    "sourceType": "url",
+                    "className": "image-001",
+                    "customCss": "",
+                    "image": "https://toyota.com.co/images/seleccion-toyota-jun-LC79.png",
+                    "alt": "Image",
+                    "align": "center",
+                    "widthUnit": "px",
+                    "maxWidthValue": 100,
+                    "maxWidthUnit": "%",
+                    "heightUnit": "px",
+                    "maxHeightUnit": "px",
+                    "objectFit": "contain",
+                    "objectPosition": "center",
+                    "overflow": "hidden",
+                    "borderRadius": 0,
+                    "id": "Image-83b63385-2219-4566-973e-a1cd5e87eadc"
+                }
+            },
+            {
+                "type": "Flex",
+                "props": {
+                    "direction": "row",
+                    "wrap": "nowrap",
+                    "justifyContent": "space-between",
+                    "alignItems": "stretch",
+                    "gap": 0,
+                    "flex": "",
+                    "className": "",
+                    "customCss": "",
+                    "id": "Flex-178d39a7-bc95-4fa0-b418-98abfc503aed"
+                }
+            }
+        ],
+        "Tabs-6b3bb1fb-458a-4c27-98ef-65634bc99cd9:tab-3": [
+            {
+                "type": "Flexbox",
+                "props": {
+                    "className": "flexbox-001",
+                    "customCss": "margin-bottom:20px;",
+                    "direction": "row",
+                    "justify": "center",
+                    "align": "center",
+                    "gap": 42,
+                    "items": [
+                        {
+                            "type": "Text",
+                            "props": {
+                                "content": "Text 1",
+                                "level": "p"
+                            }
+                        },
+                        {
+                            "type": "Text",
+                            "props": {
+                                "content": "Text 2",
+                                "level": "p"
+                            }
+                        },
+                        {
+                            "type": "Text",
+                            "props": {
+                                "content": "Text 3",
+                                "level": "p"
+                            }
+                        }
+                    ],
+                    "id": "Flexbox-d803c64c-5a49-4af0-afa4-f0fa9f29d372"
+                }
+            }
+        ],
+        "Flex-15203446-2249-48b8-aab0-31b7e9c57544:flex-zone": [
+            {
+                "type": "Button",
+                "props": {
+                    "text": "Ver detalles",
+                    "type": "default",
+                    "href": "",
+                    "external": false,
+                    "align": "left",
+                    "widthUnit": "px",
+                    "heightUnit": "px",
+                    "maxWidthUnit": "px",
+                    "maxHeightUnit": "px",
+                    "paddingX": 16,
+                    "paddingY": 10,
+                    "borderRadius": 6,
+                    "className": "button-001",
+                    "customCss": "background-color:#fff !important;\ntext-decoration:underline !important;",
+                    "id": "Button-2e73d837-ebad-4270-8c9d-00d3c05f9424"
+                }
+            },
+            {
+                "type": "Button",
+                "props": {
+                    "text": "Cotizar",
+                    "type": "default",
+                    "href": "",
+                    "external": false,
+                    "align": "left",
+                    "widthUnit": "px",
+                    "heightUnit": "px",
+                    "maxWidthUnit": "px",
+                    "maxHeightUnit": "px",
+                    "paddingX": 16,
+                    "paddingY": 10,
+                    "borderRadius": 6,
+                    "className": "button-001",
+                    "customCss": "background-color:#fff !important;\ntext-decoration:underline !important;",
+                    "id": "Button-0ac7344f-083a-4e9d-9aee-f94f558be866"
+                }
+            }
+        ],
+        "Flexbox-d803c64c-5a49-4af0-afa4-f0fa9f29d372:flex-item-0": [
+            {
+                "type": "Text",
+                "props": {
+                    "content": "Yaris Cross",
+                    "level": "h3",
+                    "size": "lg",
+                    "align": "left",
+                    "className": "text-001",
+                    "customCss": "",
+                    "widthUnit": "px",
+                    "maxWidthValue": 700,
+                    "maxWidthUnit": "px",
+                    "minWidthUnit": "px",
+                    "textColor": "#000000",
+                    "id": "Text-9548f9dd-f0fd-4a3e-823c-e0c7097083e8"
+                }
+            },
+            {
+                "type": "Image",
+                "props": {
+                    "sourceType": "url",
+                    "className": "image-001",
+                    "customCss": "",
+                    "image": "https://toyota.com.co/images/seleccion-toyota-jun-YarisCross.png",
+                    "alt": "Image",
+                    "align": "center",
+                    "widthUnit": "px",
+                    "maxWidthValue": 100,
+                    "maxWidthUnit": "%",
+                    "heightUnit": "px",
+                    "maxHeightUnit": "px",
+                    "objectFit": "contain",
+                    "objectPosition": "center",
+                    "overflow": "hidden",
+                    "borderRadius": 0,
+                    "id": "Image-3674c201-4db0-4904-aaaf-1bc96b0d00c5"
+                }
+            },
+            {
+                "type": "Flex",
+                "props": {
+                    "direction": "row",
+                    "wrap": "nowrap",
+                    "justifyContent": "space-between",
+                    "alignItems": "stretch",
+                    "gap": 0,
+                    "flex": "",
+                    "className": "",
+                    "customCss": "",
+                    "id": "Flex-15203446-2249-48b8-aab0-31b7e9c57544"
+                }
+            }
+        ],
+        "Flex-ae78baae-5ce6-4d89-bb01-19f50b8ca1a6:flex-zone": [
+            {
+                "type": "Button",
+                "props": {
+                    "text": "Ver detalles",
+                    "type": "default",
+                    "href": "",
+                    "external": false,
+                    "align": "left",
+                    "widthUnit": "px",
+                    "heightUnit": "px",
+                    "maxWidthUnit": "px",
+                    "maxHeightUnit": "px",
+                    "paddingX": 16,
+                    "paddingY": 10,
+                    "borderRadius": 6,
+                    "className": "button-001",
+                    "customCss": "background-color:#fff !important;\ntext-decoration:underline !important;",
+                    "id": "Button-bc29e208-dacf-47c9-98a2-62ac03faaabd"
+                }
+            },
+            {
+                "type": "Button",
+                "props": {
+                    "text": "Cotizar",
+                    "type": "default",
+                    "href": "",
+                    "external": false,
+                    "align": "left",
+                    "widthUnit": "px",
+                    "heightUnit": "px",
+                    "maxWidthUnit": "px",
+                    "maxHeightUnit": "px",
+                    "paddingX": 16,
+                    "paddingY": 10,
+                    "borderRadius": 6,
+                    "className": "button-001",
+                    "customCss": "background-color:#fff !important;\ntext-decoration:underline !important;",
+                    "id": "Button-01139909-3438-4bf0-97fe-88820d193fc7"
+                }
+            }
+        ],
+        "Flexbox-d803c64c-5a49-4af0-afa4-f0fa9f29d372:flex-item-1": [
+            {
+                "type": "Text",
+                "props": {
+                    "content": "Corolla Cross",
+                    "level": "h3",
+                    "size": "lg",
+                    "align": "center",
+                    "className": "text-001",
+                    "customCss": "",
+                    "widthUnit": "px",
+                    "maxWidthValue": 700,
+                    "maxWidthUnit": "px",
+                    "minWidthUnit": "px",
+                    "textColor": "#000000",
+                    "id": "Text-e3bf9551-8a98-42e2-a34f-442d5a293fbd"
+                }
+            },
+            {
+                "type": "Image",
+                "props": {
+                    "sourceType": "url",
+                    "className": "image-001",
+                    "customCss": "",
+                    "image": "https://toyota.com.co/images/seleccion-toyota-jun-CorollaCross.png",
+                    "alt": "Image",
+                    "align": "center",
+                    "widthUnit": "px",
+                    "maxWidthValue": 100,
+                    "maxWidthUnit": "%",
+                    "heightUnit": "px",
+                    "maxHeightUnit": "px",
+                    "objectFit": "contain",
+                    "objectPosition": "center",
+                    "overflow": "hidden",
+                    "borderRadius": 0,
+                    "id": "Image-b3b3d20b-c80d-460f-92fd-e439f008b29e"
+                }
+            },
+            {
+                "type": "Flex",
+                "props": {
+                    "direction": "row",
+                    "wrap": "nowrap",
+                    "justifyContent": "space-between",
+                    "alignItems": "stretch",
+                    "gap": 0,
+                    "flex": "",
+                    "className": "",
+                    "customCss": "",
+                    "id": "Flex-ae78baae-5ce6-4d89-bb01-19f50b8ca1a6"
+                }
+            }
+        ],
+        "Flex-4c37f6b8-394e-4b4f-a6b7-fa8a70aa59df:flex-zone": [
+            {
+                "type": "Button",
+                "props": {
+                    "text": "Ver detalles",
+                    "type": "default",
+                    "href": "",
+                    "external": false,
+                    "align": "left",
+                    "widthUnit": "px",
+                    "heightUnit": "px",
+                    "maxWidthUnit": "px",
+                    "maxHeightUnit": "px",
+                    "paddingX": 16,
+                    "paddingY": 10,
+                    "borderRadius": 6,
+                    "className": "button-001",
+                    "customCss": "background-color:#fff !important;\ntext-decoration:underline !important;",
+                    "id": "Button-ab361afa-2c41-47dc-b651-30c3bebb6ae4"
+                }
+            },
+            {
+                "type": "Button",
+                "props": {
+                    "text": "Cotizar",
+                    "type": "default",
+                    "href": "",
+                    "external": false,
+                    "align": "left",
+                    "widthUnit": "px",
+                    "heightUnit": "px",
+                    "maxWidthUnit": "px",
+                    "maxHeightUnit": "px",
+                    "paddingX": 16,
+                    "paddingY": 10,
+                    "borderRadius": 6,
+                    "className": "button-001",
+                    "customCss": "background-color:#fff !important;\ntext-decoration:underline !important;",
+                    "id": "Button-a845710c-c893-451c-98ed-8c921bebbfed"
+                }
+            }
+        ],
+        "Flexbox-d803c64c-5a49-4af0-afa4-f0fa9f29d372:flex-item-2": [
+            {
+                "type": "Text",
+                "props": {
+                    "content": "Corolla\n",
+                    "level": "h3",
+                    "size": "lg",
+                    "align": "center",
+                    "className": "text-001",
+                    "customCss": "",
+                    "widthUnit": "px",
+                    "maxWidthValue": 700,
+                    "maxWidthUnit": "px",
+                    "minWidthUnit": "px",
+                    "textColor": "#000000",
+                    "id": "Text-82da8a1b-067b-491c-8728-6c67d2470d3c"
+                }
+            },
+            {
+                "type": "Image",
+                "props": {
+                    "sourceType": "url",
+                    "className": "image-001",
+                    "customCss": "",
+                    "image": "https://toyota.com.co/images/seleccion-toyota-jun-Corolla.png",
+                    "alt": "Image",
+                    "align": "center",
+                    "widthUnit": "px",
+                    "maxWidthValue": 100,
+                    "maxWidthUnit": "%",
+                    "heightUnit": "px",
+                    "maxHeightUnit": "px",
+                    "objectFit": "contain",
+                    "objectPosition": "center",
+                    "overflow": "hidden",
+                    "borderRadius": 0,
+                    "id": "Image-71ac2c9a-ff02-4698-92f8-2df3a31423e2"
+                }
+            },
+            {
+                "type": "Flex",
+                "props": {
+                    "direction": "row",
+                    "wrap": "nowrap",
+                    "justifyContent": "space-between",
+                    "alignItems": "stretch",
+                    "gap": 0,
+                    "flex": "",
+                    "className": "",
+                    "customCss": "",
+                    "id": "Flex-4c37f6b8-394e-4b4f-a6b7-fa8a70aa59df"
+                }
+            }
+        ],
+        "Tabs-6b3bb1fb-458a-4c27-98ef-65634bc99cd9:tab-4": [
+            {
+                "type": "Flexbox",
+                "props": {
+                    "className": "flexbox-001",
+                    "customCss": "margin-bottom:20px;",
+                    "direction": "row",
+                    "justify": "center",
+                    "align": "center",
+                    "gap": 42,
+                    "items": [
+                        {
+                            "type": "Text",
+                            "props": {
+                                "content": "Text 1",
+                                "level": "p"
+                            }
+                        },
+                        {
+                            "type": "Text",
+                            "props": {
+                                "content": "Text 2",
+                                "level": "p"
+                            }
+                        },
+                        {
+                            "type": "Text",
+                            "props": {
+                                "content": "Text 3",
+                                "level": "p"
+                            }
+                        }
+                    ],
+                    "id": "Flexbox-b78990dd-6183-47bb-9c06-235f08b7e85b"
+                }
+            },
+            {
+                "type": "Flexbox",
+                "props": {
+                    "className": "flexbox-001",
+                    "customCss": "margin-bottom:20px;",
+                    "direction": "row",
+                    "justify": "center",
+                    "align": "center",
+                    "gap": 42,
+                    "items": [
+                        {
+                            "type": "Text",
+                            "props": {
+                                "content": "Text 1",
+                                "level": "p"
+                            }
+                        },
+                        {
+                            "type": "Text",
+                            "props": {
+                                "content": "Text 2",
+                                "level": "p"
+                            }
+                        },
+                        {
+                            "type": "Text",
+                            "props": {
+                                "content": "Text 3",
+                                "level": "p"
+                            }
+                        }
+                    ],
+                    "id": "Flexbox-7cbb0409-6955-4bb7-a911-b0e0f9454993"
+                }
+            }
+        ],
+        "Flex-22efad5e-06d2-4b23-a337-4ab039c9c9bc:flex-zone": [
+            {
+                "type": "Button",
+                "props": {
+                    "text": "Ver detalles",
+                    "type": "default",
+                    "href": "",
+                    "external": false,
+                    "align": "left",
+                    "widthUnit": "px",
+                    "heightUnit": "px",
+                    "maxWidthUnit": "px",
+                    "maxHeightUnit": "px",
+                    "paddingX": 16,
+                    "paddingY": 10,
+                    "borderRadius": 6,
+                    "className": "button-001",
+                    "customCss": "background-color:#fff !important;\ntext-decoration:underline !important;",
+                    "id": "Button-f4131ebc-6a47-44f6-8631-16e0b5cd558d"
+                }
+            },
+            {
+                "type": "Button",
+                "props": {
+                    "text": "Cotizar",
+                    "type": "default",
+                    "href": "",
+                    "external": false,
+                    "align": "left",
+                    "widthUnit": "px",
+                    "heightUnit": "px",
+                    "maxWidthUnit": "px",
+                    "maxHeightUnit": "px",
+                    "paddingX": 16,
+                    "paddingY": 10,
+                    "borderRadius": 6,
+                    "className": "button-001",
+                    "customCss": "background-color:#fff !important;\ntext-decoration:underline !important;",
+                    "id": "Button-17ce3738-e920-4371-a651-9afe8e934e0d"
+                }
+            }
+        ],
+        "Flexbox-b78990dd-6183-47bb-9c06-235f08b7e85b:flex-item-0": [
+            {
+                "type": "Text",
+                "props": {
+                    "content": "Corolla GR-S",
+                    "level": "h3",
+                    "size": "lg",
+                    "align": "left",
+                    "className": "text-001",
+                    "customCss": "",
+                    "widthUnit": "px",
+                    "maxWidthValue": 700,
+                    "maxWidthUnit": "px",
+                    "minWidthUnit": "px",
+                    "textColor": "#000000",
+                    "id": "Text-ab253a5f-f870-488f-a89f-fe4cd8fab7ba"
+                }
+            },
+            {
+                "type": "Image",
+                "props": {
+                    "sourceType": "url",
+                    "className": "image-001",
+                    "customCss": "",
+                    "image": "https://toyota.com.co/images/seleccion-toyota-jun-CorollaGR.png",
+                    "alt": "Image",
+                    "align": "center",
+                    "widthUnit": "px",
+                    "maxWidthValue": 100,
+                    "maxWidthUnit": "%",
+                    "heightUnit": "px",
+                    "maxHeightUnit": "px",
+                    "objectFit": "contain",
+                    "objectPosition": "center",
+                    "overflow": "hidden",
+                    "borderRadius": 0,
+                    "id": "Image-2ca9a27a-6141-4922-b94f-7540c419bca8"
+                }
+            },
+            {
+                "type": "Flex",
+                "props": {
+                    "direction": "row",
+                    "wrap": "nowrap",
+                    "justifyContent": "space-between",
+                    "alignItems": "stretch",
+                    "gap": 0,
+                    "flex": "",
+                    "className": "",
+                    "customCss": "",
+                    "id": "Flex-22efad5e-06d2-4b23-a337-4ab039c9c9bc"
+                }
+            }
+        ],
+        "Flex-a8c55af6-9a89-486c-b541-bc5828f67c03:flex-zone": [
+            {
+                "type": "Button",
+                "props": {
+                    "text": "Ver detalles",
+                    "type": "default",
+                    "href": "",
+                    "external": false,
+                    "align": "left",
+                    "widthUnit": "px",
+                    "heightUnit": "px",
+                    "maxWidthUnit": "px",
+                    "maxHeightUnit": "px",
+                    "paddingX": 16,
+                    "paddingY": 10,
+                    "borderRadius": 6,
+                    "className": "button-001",
+                    "customCss": "background-color:#fff !important;\ntext-decoration:underline !important;",
+                    "id": "Button-e5bea0d5-a72c-4e5b-9df3-99401039b433"
+                }
+            },
+            {
+                "type": "Button",
+                "props": {
+                    "text": "Cotizar",
+                    "type": "default",
+                    "href": "",
+                    "external": false,
+                    "align": "left",
+                    "widthUnit": "px",
+                    "heightUnit": "px",
+                    "maxWidthUnit": "px",
+                    "maxHeightUnit": "px",
+                    "paddingX": 16,
+                    "paddingY": 10,
+                    "borderRadius": 6,
+                    "className": "button-001",
+                    "customCss": "background-color:#fff !important;\ntext-decoration:underline !important;",
+                    "id": "Button-71bd2342-ddd8-46ab-b561-c7928d2a42aa"
+                }
+            }
+        ],
+        "Flexbox-b78990dd-6183-47bb-9c06-235f08b7e85b:flex-item-1": [
+            {
+                "type": "Text",
+                "props": {
+                    "content": "Corolla Cross GR-S",
+                    "level": "h3",
+                    "size": "lg",
+                    "align": "center",
+                    "className": "text-001",
+                    "customCss": "",
+                    "widthUnit": "px",
+                    "maxWidthValue": 700,
+                    "maxWidthUnit": "px",
+                    "minWidthUnit": "px",
+                    "textColor": "#000000",
+                    "id": "Text-92a44c16-fe95-4d83-9453-e7cc45e257c1"
+                }
+            },
+            {
+                "type": "Image",
+                "props": {
+                    "sourceType": "url",
+                    "className": "image-001",
+                    "customCss": "",
+                    "image": "https://toyota.com.co/images/seleccion-toyota-jun-CorollaCross.png",
+                    "alt": "Image",
+                    "align": "center",
+                    "widthUnit": "px",
+                    "maxWidthValue": 100,
+                    "maxWidthUnit": "%",
+                    "heightUnit": "px",
+                    "maxHeightUnit": "px",
+                    "objectFit": "contain",
+                    "objectPosition": "center",
+                    "overflow": "hidden",
+                    "borderRadius": 0,
+                    "id": "Image-a5c83c90-bc53-41d9-8aba-83c045da5517"
+                }
+            },
+            {
+                "type": "Flex",
+                "props": {
+                    "direction": "row",
+                    "wrap": "nowrap",
+                    "justifyContent": "space-between",
+                    "alignItems": "stretch",
+                    "gap": 0,
+                    "flex": "",
+                    "className": "",
+                    "customCss": "",
+                    "id": "Flex-a8c55af6-9a89-486c-b541-bc5828f67c03"
+                }
+            }
+        ],
+        "Flex-dc4d6bcd-a8d5-4ce6-9eb1-c6e6fcb300b6:flex-zone": [
+            {
+                "type": "Button",
+                "props": {
+                    "text": "Ver detalles",
+                    "type": "default",
+                    "href": "",
+                    "external": false,
+                    "align": "left",
+                    "widthUnit": "px",
+                    "heightUnit": "px",
+                    "maxWidthUnit": "px",
+                    "maxHeightUnit": "px",
+                    "paddingX": 16,
+                    "paddingY": 10,
+                    "borderRadius": 6,
+                    "className": "button-001",
+                    "customCss": "background-color:#fff !important;\ntext-decoration:underline !important;",
+                    "id": "Button-37ab7fd9-f060-491a-b16e-d5b8237ad04a"
+                }
+            },
+            {
+                "type": "Button",
+                "props": {
+                    "text": "Cotizar",
+                    "type": "default",
+                    "href": "",
+                    "external": false,
+                    "align": "left",
+                    "widthUnit": "px",
+                    "heightUnit": "px",
+                    "maxWidthUnit": "px",
+                    "maxHeightUnit": "px",
+                    "paddingX": 16,
+                    "paddingY": 10,
+                    "borderRadius": 6,
+                    "className": "button-001",
+                    "customCss": "background-color:#fff !important;\ntext-decoration:underline !important;",
+                    "id": "Button-44da385d-aa1a-4cd0-b6c9-ebc61253b7ca"
+                }
+            }
+        ],
+        "Flexbox-b78990dd-6183-47bb-9c06-235f08b7e85b:flex-item-2": [
+            {
+                "type": "Text",
+                "props": {
+                    "content": "Hilux GR-S\n",
+                    "level": "h3",
+                    "size": "lg",
+                    "align": "center",
+                    "className": "text-001",
+                    "customCss": "",
+                    "widthUnit": "px",
+                    "maxWidthValue": 700,
+                    "maxWidthUnit": "px",
+                    "minWidthUnit": "px",
+                    "textColor": "#000000",
+                    "id": "Text-9d2ddd73-1556-4ab2-8d75-1ee6591e8d67"
+                }
+            },
+            {
+                "type": "Image",
+                "props": {
+                    "sourceType": "url",
+                    "className": "image-001",
+                    "customCss": "",
+                    "image": "https://toyota.com.co/images/seleccion-toyota-jun-HiluxGR.png",
+                    "alt": "Image",
+                    "align": "center",
+                    "widthUnit": "px",
+                    "maxWidthValue": 100,
+                    "maxWidthUnit": "%",
+                    "heightUnit": "px",
+                    "maxHeightUnit": "px",
+                    "objectFit": "contain",
+                    "objectPosition": "center",
+                    "overflow": "hidden",
+                    "borderRadius": 0,
+                    "id": "Image-581182c2-b4ca-438d-af4a-04d746a4dd42"
+                }
+            },
+            {
+                "type": "Flex",
+                "props": {
+                    "direction": "row",
+                    "wrap": "nowrap",
+                    "justifyContent": "space-between",
+                    "alignItems": "stretch",
+                    "gap": 0,
+                    "flex": "",
+                    "className": "",
+                    "customCss": "",
+                    "id": "Flex-dc4d6bcd-a8d5-4ce6-9eb1-c6e6fcb300b6"
+                }
+            }
+        ],
+        "Flex-f2ea1aa1-749b-4370-8dc3-33a0a5d1530e:flex-zone": [
+            {
+                "type": "Button",
+                "props": {
+                    "text": "Ver detalles",
+                    "type": "default",
+                    "href": "",
+                    "external": false,
+                    "align": "left",
+                    "widthUnit": "px",
+                    "heightUnit": "px",
+                    "maxWidthUnit": "px",
+                    "maxHeightUnit": "px",
+                    "paddingX": 16,
+                    "paddingY": 10,
+                    "borderRadius": 6,
+                    "className": "button-001",
+                    "customCss": "background-color:#fff !important;\ntext-decoration:underline !important;",
+                    "id": "Button-8c707bd0-d94f-4bd1-997f-52dff4e6bb40"
+                }
+            },
+            {
+                "type": "Button",
+                "props": {
+                    "text": "Cotizar",
+                    "type": "default",
+                    "href": "",
+                    "external": false,
+                    "align": "left",
+                    "widthUnit": "px",
+                    "heightUnit": "px",
+                    "maxWidthUnit": "px",
+                    "maxHeightUnit": "px",
+                    "paddingX": 16,
+                    "paddingY": 10,
+                    "borderRadius": 6,
+                    "className": "button-001",
+                    "customCss": "background-color:#fff !important;\ntext-decoration:underline !important;",
+                    "id": "Button-4907d252-3ecf-4868-8167-41c91b010018"
+                }
+            }
+        ],
+        "Flexbox-7cbb0409-6955-4bb7-a911-b0e0f9454993:flex-item-0": [
+            {
+                "type": "Text",
+                "props": {
+                    "content": "Fortuner GR-S",
+                    "level": "h3",
+                    "size": "lg",
+                    "align": "left",
+                    "className": "text-001",
+                    "customCss": "",
+                    "widthUnit": "px",
+                    "maxWidthValue": 700,
+                    "maxWidthUnit": "px",
+                    "minWidthUnit": "px",
+                    "textColor": "#000000",
+                    "id": "Text-f381c6c2-7200-4c8d-91c7-b62b1b1bc62a"
+                }
+            },
+            {
+                "type": "Image",
+                "props": {
+                    "sourceType": "url",
+                    "className": "image-001",
+                    "customCss": "",
+                    "image": "https://toyota.com.co/images/seleccion-toyota-jun-FortunerGR.png",
+                    "alt": "Image",
+                    "align": "center",
+                    "widthUnit": "px",
+                    "maxWidthValue": 100,
+                    "maxWidthUnit": "%",
+                    "heightUnit": "px",
+                    "maxHeightUnit": "px",
+                    "objectFit": "contain",
+                    "objectPosition": "center",
+                    "overflow": "hidden",
+                    "borderRadius": 0,
+                    "id": "Image-b9093564-01bf-46ae-bec7-0b74929c4913"
+                }
+            },
+            {
+                "type": "Flex",
+                "props": {
+                    "direction": "row",
+                    "wrap": "nowrap",
+                    "justifyContent": "space-between",
+                    "alignItems": "stretch",
+                    "gap": 0,
+                    "flex": "",
+                    "className": "",
+                    "customCss": "",
+                    "id": "Flex-f2ea1aa1-749b-4370-8dc3-33a0a5d1530e"
+                }
+            }
+        ],
+        "Flex-31bc3662-ced8-4ef8-a84b-97024836a44e:flex-zone": [
+            {
+                "type": "Button",
+                "props": {
+                    "text": "Ver detalles",
+                    "type": "default",
+                    "href": "",
+                    "external": false,
+                    "align": "left",
+                    "widthUnit": "px",
+                    "heightUnit": "px",
+                    "maxWidthUnit": "px",
+                    "maxHeightUnit": "px",
+                    "paddingX": 16,
+                    "paddingY": 10,
+                    "borderRadius": 6,
+                    "className": "button-001",
+                    "customCss": "background-color:#fff !important;\ntext-decoration:underline !important;",
+                    "id": "Button-0ff03036-ae04-422b-9f6b-640e3ca0ade2"
+                }
+            },
+            {
+                "type": "Button",
+                "props": {
+                    "text": "Cotizar",
+                    "type": "default",
+                    "href": "",
+                    "external": false,
+                    "align": "left",
+                    "widthUnit": "px",
+                    "heightUnit": "px",
+                    "maxWidthUnit": "px",
+                    "maxHeightUnit": "px",
+                    "paddingX": 16,
+                    "paddingY": 10,
+                    "borderRadius": 6,
+                    "className": "button-001",
+                    "customCss": "background-color:#fff !important;\ntext-decoration:underline !important;",
+                    "id": "Button-d376a1b1-7b2a-4ce9-962b-d96a7c12ef57"
+                }
+            }
+        ],
+        "Flexbox-7cbb0409-6955-4bb7-a911-b0e0f9454993:flex-item-1": [
+            {
+                "type": "Text",
+                "props": {
+                    "content": "Land Cruiser 300 GR-S\n\n",
+                    "level": "h3",
+                    "size": "lg",
+                    "align": "center",
+                    "className": "text-001",
+                    "customCss": "",
+                    "widthUnit": "px",
+                    "maxWidthValue": 700,
+                    "maxWidthUnit": "px",
+                    "minWidthUnit": "px",
+                    "textColor": "#000000",
+                    "id": "Text-8e44e4d1-6978-4c81-afbd-a0596cbe0a44"
+                }
+            },
+            {
+                "type": "Image",
+                "props": {
+                    "sourceType": "url",
+                    "className": "image-001",
+                    "customCss": "",
+                    "image": "https://toyota.com.co/images/seleccion-toyota-jun-LC300GR.png",
+                    "alt": "Image",
+                    "align": "center",
+                    "widthUnit": "px",
+                    "maxWidthValue": 100,
+                    "maxWidthUnit": "%",
+                    "heightUnit": "px",
+                    "maxHeightUnit": "px",
+                    "objectFit": "contain",
+                    "objectPosition": "center",
+                    "overflow": "hidden",
+                    "borderRadius": 0,
+                    "id": "Image-fd03a3e6-092b-45fc-8891-90bbf549ec61"
+                }
+            },
+            {
+                "type": "Flex",
+                "props": {
+                    "direction": "row",
+                    "wrap": "nowrap",
+                    "justifyContent": "space-between",
+                    "alignItems": "stretch",
+                    "gap": 0,
+                    "flex": "",
+                    "className": "",
+                    "customCss": "",
+                    "id": "Flex-31bc3662-ced8-4ef8-a84b-97024836a44e"
+                }
+            }
+        ],
+        "Flex-b0222f80-7403-4bca-be35-8f46d56aa018:flex-zone": [],
+        "Flexbox-7cbb0409-6955-4bb7-a911-b0e0f9454993:flex-item-2": [
+            {
+                "type": "Flex",
+                "props": {
+                    "direction": "row",
+                    "wrap": "nowrap",
+                    "justifyContent": "space-between",
+                    "alignItems": "stretch",
+                    "gap": 0,
+                    "flex": "",
+                    "className": "",
+                    "customCss": "",
+                    "id": "Flex-b0222f80-7403-4bca-be35-8f46d56aa018"
                 }
             }
         ]

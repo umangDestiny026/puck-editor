@@ -16,6 +16,7 @@ import React, { useEffect } from "react";
 import SubmenuDropdown from "./app/component/SubMenu";
 import { MegaMenu } from "./constant";
 import { megaMenuStore } from "./app/zone";
+import { SliderSection } from "./app/component/ImageTextSlider";
 
 export const config = {
   categories: {
@@ -28,9 +29,10 @@ export const config = {
     layout: {
       components: ["Grid", "Flex", "Flexbox", "Accordion", "Tabs"],
     },
+    Sliders: { components: ["SliderSection", "Carousel"] },
     Form: {
       components: ["Form", "Input", "Checkbox", "DatePicker", "Dropdown", "SearchableDropdown", "RadioGroup"],
-    }
+    },
   },
 
   components: {
@@ -511,8 +513,8 @@ export const config = {
                               {
                                 label: "sub item",
                                 href: "/#",
-                              },
-                            ],
+              },
+            ],
                           },
                         ],
                       },
@@ -805,6 +807,303 @@ export const config = {
           </View>
         );
       },
+    },
+
+    SliderSection: {
+      label: "🎞 Slider (Image + Text)",
+
+      fields: {
+        /* ---------- CORE ---------- */
+
+        theme: {
+          type: "text",
+          label: "Background Theme / Color",
+        },
+
+        color: {
+          type: "text",
+          label: "Heading Color",
+        },
+
+        title: {
+          type: "text",
+          label: "Section Title",
+        },
+
+        headingAs: {
+          type: "select",
+          label: "Heading Level",
+          options: [
+            { label: "H1", value: 1 },
+            { label: "H2", value: 2 },
+            { label: "H3", value: 3 },
+            { label: "H4", value: 4 },
+            { label: "H5", value: 5 },
+            { label: "H6", value: 6 },
+          ],
+        },
+
+        description: {
+          type: "textarea",
+          label: "Section Description",
+        },
+
+        subtitleAs: {
+          type: "select",
+          label: "Description Level",
+          options: [
+            { label: "H2", value: 2 },
+            { label: "H3", value: 3 },
+            { label: "H4", value: 4 },
+            { label: "H5", value: 5 },
+            { label: "H6", value: 6 },
+          ],
+        },
+
+        displayType: {
+          type: "select",
+          label: "Display Type",
+          options: [
+            { label: "Standard", value: "standard" },
+            { label: "Card", value: "card" },
+          ],
+        },
+
+        showImageReference: {
+          type: "radio",
+          label: "Show Image Reference",
+          options: [
+            { label: "Yes", value: true },
+            { label: "No", value: false },
+          ],
+        },
+
+        showPagination: {
+          type: "radio",
+          label: "Show Pagination",
+          options: [
+            { label: "Yes", value: true },
+            { label: "No", value: false },
+          ],
+        },
+
+        /* ---------- STYLING ---------- */
+
+        className: {
+          type: "text",
+          label: "Custom Class Name",
+        },
+
+
+        Headingpadding: {
+          type: "text",
+          label: "Heading Padding",
+        },
+
+        imagePadding: {
+          type: "text",
+          label: "Image Padding",
+        },
+
+        paddingBottom: {
+          type: "text",
+          label: "Padding Bottom (Desktop)",
+        },
+
+        minHeight: {
+          type: "text",
+          label: "Min Height",
+        },
+
+        Bgcolor: {
+          type: "text",
+          label: "Mobile Background Color",
+        },
+
+        paginationWidth: {
+          type: "text",
+          label: "Pagination Width",
+        },
+
+        paginationLeft: {
+          type: "text",
+          label: "Pagination Left",
+        },
+
+        paginationBottom: {
+          type: "text",
+          label: "Pagination Bottom",
+        },
+
+        SliderBgColor: {
+          type: "text",
+          label: "Slide bg color",
+        },
+        items: {
+          type: "array",
+          label: "Slides",
+          arrayFields: {
+            title: { type: "text", label: "Slide Title" },
+            description: {
+              type: "richtext",
+
+              // Add custom TipTap extension
+              tiptap: {
+                extensions: [Superscript],
+                selector: ({ editor }) => ({
+                  isSuperscript: editor?.isActive("superscript"),
+                  canSuperscript: editor
+                    ?.can()
+                    .chain()
+                    .toggleSuperscript()
+                    .run(),
+                }),
+              },
+
+              // Custom toolbar with a Superscript control
+              renderMenu: ({ children, editor, editorState }) => (
+                <RichTextMenu>
+                  {children}
+
+                  <RichTextMenu.Group>
+                    <RichTextMenu.Control
+                      title="Superscript"
+                      icon={< SuperscriptIcon size={16} />}
+                      onClick={() =>
+                        editor?.chain().focus().toggleSuperscript().run()
+                      }
+                      active={editorState?.isSuperscript}
+                      disabled={!editorState?.canSuperscript
+                      }
+                    />
+                  </RichTextMenu.Group>
+                </RichTextMenu>
+              ),
+            },
+
+            image: {
+              type: "object",
+              label: "Slide Image",
+              defaultProps: undefined,
+              objectFields: {
+                src: {
+                  type: "text",
+                  label: "Image URL",
+                },
+                alt: {
+                  type: "text",
+                  label: "Alt Text",
+                },
+                objectFit: {
+                  type: "select",
+                  label: "Object Fit",
+                  options: [
+                    { label: "Cover", value: "cover" },
+                    { label: "Contain", value: "contain" },
+                  ],
+                },
+              },
+            },
+
+            logos: {
+              type: "array",
+              label: "Logos",
+              defaultProps: [],
+              arrayFields: {
+                src: { type: "text", label: "Logo URL" },
+                alt: { type: "text", label: "Alt Text" },
+                height: { type: "text", label: "Height" },
+                width: { type: "text", label: "Width" },
+                objectFit: { type: "text", label: "Object Fit" },
+              },
+            },
+
+            mobileLogos: {
+              type: "array",
+              label: "Mobile Logos",
+              arrayFields: {
+                src: { type: "text", label: "Logo URL" },
+                alt: { type: "text", label: "Alt Text" },
+              },
+            },
+
+            desktopLogos: {
+              type: "array",
+              label: "Desktop Logos",
+              arrayFields: {
+                src: { type: "text", label: "Logo URL" },
+                alt: { type: "text", label: "Alt Text" },
+              },
+            },
+          },
+        },
+      },
+
+      defaultProps: {
+        theme: "#ffffff",
+        color: "#000",
+        headingAs: 2,
+        subtitleAs: 5,
+        displayType: "standard",
+        showImageReference: false,
+        showPagination: false,
+        paginationWidth: "auto",
+        paginationLeft: "0",
+        paginationBottom: "0",
+        SliderBgColor: "#000",
+        className: "",
+        // customStyles: {},
+        title: "Toyota Gazoo Racing",
+        description:
+          "¡Colombia le da la bienvenida a Toyota Gazoo Racing, el equipo de automovilismo y los vehículos ganadores de las competencias más retadoras del mundo!",
+        items: [
+          {
+            image: {
+              src: "https://toyota.com.co/images/TGR-cards-00103.png",
+              alt: "TGR-1",
+            },
+            title: "Toyota regresa al campeonato WRC.",
+            description:
+              "2018  El modelo Toyota Yaris WRC queda tercero en el campeonato WRC",
+          },
+          {
+            image: {
+              src: "https://toyota.com.co/images/TGR-cards-00102.png",
+              alt: "TGR-1",
+            },
+            title: ` 2022 `,
+            description:
+              "Se lanza en mayo la marca Toyota Gazoo Racing al mercado colombiano, con 5 líneas GR-S y el vehículo de alto desempeño para competencia, GR Yaris.",
+
+            SliderBgColor: "#d83b3b"
+          },
+          {
+            image: {
+              src: "https://toyota.com.co/images/TGR-cards-00103.png",
+              alt: "TGR-1",
+            },
+            title: "Toyota se inició en los deportes del motor en 1957",
+            description:
+              "Sus principales éxitos se obtuvieron en las condiciones más extremas que sirvieron como un gran desafío para construir los vehículos del futuro, brindando oportunidades de crecimiento para la marca y para las personas que día a día construyen, mantienen y conducen Toyota.",
+
+            SliderBgColor: "#3a0707"
+          },
+          {
+            image: {
+              src: "https://toyota.com.co/images/TGR-cards-00102.png",
+              alt: "TGR-1",
+            },
+            title:
+              "Los caminos construyen a la gente y la gente construye los vehículos.",
+            description:
+              "Esta filosofía está alineada con el pensamiento del fundador de Toyota, Kiichiro Toyoda, quien en 1952 dijo: “El automovilismo es más que un entretenimiento.",
+
+            SliderBgColor: "#000"
+          },
+        ],
+      },
+
+      render: (props: any) => <SliderSection {...props} />,
     },
 
     Flexbox: {

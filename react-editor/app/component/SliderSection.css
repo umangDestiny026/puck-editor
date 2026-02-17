@@ -1,0 +1,505 @@
+.slider-section {
+  position: relative;
+}
+
+/* =============== NAVIGATION ARROWS =============== */
+.slider-section .arrowCustom {
+  display: none;
+}
+
+@media (min-width: 1250px) {
+  .slider-section .arrowCustom {
+    display: block;
+    position: absolute;
+    width: 50px;
+    aspect-ratio: 1;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    background-color: rgba(0, 0, 0, 1);
+    color: #fff;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 24px;
+    border-radius: 50%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 25%;
+    margin: 0 auto;
+  }
+
+  .slider-section .arrowCustom--prev {
+    background-image: url("/images/arrow-simple-prev.svg");
+    left: 20px;
+  }
+
+  .slider-section .arrowCustom--next {
+    background-image: url("/images/arrow-simple-next.svg");
+    right: 20px;
+  }
+}
+
+@media (min-width: 90rem) {
+  .slider-section .arrowCustom--prev {
+    left: 50px;
+  }
+
+  .slider-section .arrowCustom--next {
+    right: 50px;
+  }
+}
+
+@media (min-width: 1441px) {
+  .slider-section .arrowCustom--prev {
+    left: 5%;
+  }
+
+  .slider-section .arrowCustom--next {
+    right: 5%;
+  }
+}
+
+@media (min-width: 1600px) {
+  .slider-section .arrowCustom--prev {
+    left: 4%;
+  }
+
+  .slider-section .arrowCustom--next {
+    right: 4%;
+  }
+}
+
+@media (min-width: 1700px) {
+  .slider-section .arrowCustom--prev {
+    left: 8%;
+  }
+
+  .slider-section .arrowCustom--next {
+    right: 8%;
+  }
+}
+
+@media (min-width: 1800px) {
+  .slider-section .arrowCustom--prev {
+    left: 10%;
+  }
+
+  .slider-section .arrowCustom--next {
+    right: 10%;
+  }
+}
+
+@media (min-width: 1900px) {
+  .slider-section .arrowCustom--prev {
+    left: 260px;
+  }
+
+  .slider-section .arrowCustom--next {
+    right: 260px;
+  }
+}
+
+@media (max-width: 1250px) {
+  .view-container-tgr-text {
+    flex-direction: column;
+  }
+}
+
+/* =============== PAGINATION BULLETS =============== */
+.slider-section .custom-pagination {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  bottom: 0;
+  left: 0px;
+  right: 0px;
+  padding: 0px 15px;
+  width: 100%;
+  height: 6px !important;
+  z-index: 10;
+  background: transparent;
+  overflow: hidden;
+  gap: 15px;
+  border: 0px !important;
+  box-sizing: border-box;
+}
+
+.slider-section .custom-pagination .swiper-pagination-bullet {
+  height: 6px !important;
+  flex: 1;
+  height: 100%;
+  background: #58595b;
+  transition: background 0.3s ease;
+  border-radius: 40px;
+  margin: 0px !important;
+  opacity: 1;
+  border: 0px !important;
+}
+
+.slider-section .custom-pagination .swiper-pagination-bullet-active {
+  background: #fff;
+  border: 0px !important;
+}
+
+/* =============== STANDARD LAYOUT STYLES =============== */
+/* Mobile fixes for standard layout */
+@media (max-width: 1249px) {
+  /* Black background container */
+  .slider-section .swiper-slide > .amplify-view {
+    min-height: 607px !important;
+  }
+
+  /* All inner containers need to maintain height */
+  .slider-section .swiper-slide > .amplify-view > div {
+    height: 100% !important;
+  }
+
+  /* The flex container wrapping the white box */
+  .slider-section .swiper-slide .amplify-flex {
+    height: 100% !important;
+  }
+
+  /* The white background box */
+  .slider-section .swiper-slide .amplify-flex > .amplify-flex {
+    height: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    overflow: hidden !important;
+  }
+
+  /* The image container */
+  .slider-section .swiper-slide .amplify-image {
+    width: 100% !important;
+    object-fit: contain !important;
+    flex: 0 0 auto !important;
+  }
+
+  /* The text content area */
+  .slider-section .swiper-slide .amplify-flex > .amplify-flex > .amplify-flex {
+    flex: 1 1 auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  /* The view containing title, description and button */
+  .slider-section .swiper-slide .amplify-view[style*="max-width"] {
+    flex: 1 1 auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+  }
+
+  /* Description text */
+  .slider-section .swiper-slide .amplify-text {
+    flex: 1 1 auto !important;
+    overflow-y: auto !important;
+  }
+
+  /* Button container */
+  .slider-section .swiper-slide .amplify-button {
+    margin-top: auto !important;
+  }
+}
+
+/* =============== CARD STYLE COMMON STYLES =============== */
+.slider-section.card-style {
+  position: relative;
+}
+
+/* Container styles */
+.slider-section.card-style .swiper,
+.slider-section.card-style .card-swiper {
+  width: 100% !important;
+  overflow: visible !important;
+  margin: 0 auto !important;
+  /* padding-bottom: 50px !important; */
+}
+
+/* Ensure the wrapper is properly aligned */
+.slider-section.card-style .swiper-wrapper {
+  display: flex !important;
+  align-items: stretch !important;
+}
+
+/* =============== CARD STYLE SLIDE STYLES =============== */
+/* Base slide styles for all views */
+.slider-section.card-style .swiper-slide {
+  /* opacity: 1 !important;
+  visibility: visible !important;
+  width: 100% !important;
+  margin: 0 auto !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  min-height: 607px !important;   */
+}
+
+
+.slider-section.card-style .swiper-slide {
+  width: 100%;
+  margin: 0 auto;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  min-height: 607px;
+}
+
+.slider-section.card-style .swiper-slide-active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.slider-section.card-style .swiper-slide:not(.swiper-slide-active) {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* Black outer container */
+.slider-section.card-style .swiper-slide > .amplify-view {
+  height: 607px !important;
+  min-height: 607px !important;
+  margin: 0 auto !important;
+  width: 85% !important;
+  max-width: 1200px !important;
+  box-sizing: border-box !important;
+  border: none !important;
+  outline: none !important;
+  background-color: #000 !important;
+}
+
+/* White inner container */
+.slider-section.card-style .swiper-slide > .amplify-view > .amplify-view {
+  height: 587px !important;
+  margin: 10px !important;
+  padding: 30px !important;
+  border: none !important;
+  outline: none !important;
+  background-color: #ffffff !important;
+  display: flex !important;
+  flex-direction: column !important;
+  overflow-y: auto !important; /* Allow scrolling if content is too tall */
+}
+
+/* =============== CARD STYLE PAGINATION =============== */
+.slider-section.card-style .custom-pagination {
+  display: flex !important;
+  justify-content: center !important;
+  bottom: 10px !important;
+  left: 0px;
+  right: 0px;
+  width: 100%;
+  height: 3px !important;
+  gap: 15px;
+  padding: 0 30px !important;
+  z-index: 20 !important;
+  margin-bottom: 15px !important;
+}
+
+.slider-section.card-style .custom-pagination .swiper-pagination-bullet {
+  width: 40px !important;
+  height: 3px !important;
+  flex: 0 0 40px !important;
+  border-radius: 4px !important;
+  background: #58595b;
+  opacity: 0.5;
+}
+
+.slider-section.card-style .custom-pagination .swiper-pagination-bullet-active {
+  /* background: #fff !important; */
+  opacity: 1;
+}
+
+/* =============== FADE EFFECT STYLES =============== */
+/* Fix for fade effect transitions */
+.slider-section.card-style .swiper-slide-active {
+  z-index: 2 !important;
+}
+
+.slider-section.card-style .swiper-slide-prev,
+.slider-section.card-style .swiper-slide-next {
+  pointer-events: none;
+}
+
+/* =============== ARROW NAVIGATION FOR CARD STYLE =============== */
+.slider-section.card-style .arrowCustom {
+  display: block !important;
+  position: absolute !important;
+  width: 50px !important;
+  height: 50px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  z-index: 100 !important;
+  background-color: rgba(0, 0, 0, 0.8) !important;
+  color: #fff !important;
+  padding: 10px !important;
+  cursor: pointer !important;
+  font-size: 24px !important;
+  border-radius: 50% !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  background-size: 25% !important;
+  border: none !important;
+  outline: none !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.slider-section.card-style .arrowCustom--prev {
+  background-image: url("/images/arrow-simple-prev.svg") !important;
+  left: 20px !important;
+}
+
+.slider-section.card-style .arrowCustom--next {
+  background-image: url("/images/arrow-simple-next.svg") !important;
+  right: 20px !important;
+}
+
+/* Arrow hover effect */
+.slider-section.card-style .arrowCustom:hover {
+  background-color: rgba(0, 0, 0, 1) !important;
+}
+
+/* Make sure navigation configuration is properly set */
+.slider-section.card-style .swiper-button-disabled {
+  opacity: 0.35 !important;
+  pointer-events: none !important;
+}
+
+/* =============== BULLET POINT STYLES =============== */
+/* Styling for bullet points in card-style */
+.slider-section.card-style .amplify-view[as="ul"] {
+  list-style-type: disc;
+  padding-left: 20px !important;
+}
+
+.slider-section.card-style .amplify-flex[direction="row"] > .amplify-view {
+  min-width: 8px !important;
+  display: block !important;
+  border-radius: 50% !important;
+}
+
+/* Ensure the list container has proper spacing */
+.slider-section.card-style .swiper-slide > .amplify-view > .amplify-view ul {
+  padding-left: 20px !important;
+}
+
+/* =============== LOGO STYLES =============== */
+/* Ensure logos display properly */
+.slider-section.card-style .amplify-flex[style*="flexWrap"] {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 15px !important;
+}
+
+.slider-section.card-style .amplify-flex[style*="flexWrap"] .amplify-image {
+  object-fit: contain !important;
+}
+
+/* =============== MOBILE SPECIFIC FIXES =============== */
+@media (max-width: 1249px) {
+  /* Ensure content is visible on mobile */
+  .slider-section.card-style {
+    overflow-x: hidden !important;
+  }
+
+  /* Make sure the swiper container has proper overflow */
+  .slider-section.card-style .swiper,
+  .slider-section.card-style .swiper-container {
+    overflow: hidden !important;
+  }
+
+  /* Make sure slides take full width on mobile */
+  .slider-section.card-style .swiper-slide {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  /* Remove any spacing between slides */
+  .slider-section.card-style .swiper-wrapper {
+    margin-right: 0 !important;
+  }
+
+  /* Adjust arrow size for mobile */
+  .slider-section.card-style .arrowCustom {
+    width: 40px !important;
+    height: 40px !important;
+  }
+
+  .slider-section.card-style .arrowCustom--prev {
+    left: 10px !important;
+  }
+
+  .slider-section.card-style .arrowCustom--next {
+    right: 10px !important;
+  }
+
+  /* Ensure button is visible and at the bottom on mobile */
+  .slider-section.card-style button {
+    margin-top: 20px !important;
+    position: relative !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  /* Adjust logo layout for mobile */
+  .slider-section.card-style .amplify-flex[style*="flexWrap"] {
+    justify-content: center !important;
+  }
+}
+
+/* =============== DESKTOP SPECIFIC FIXES =============== */
+@media (min-width: 1250px) {
+  /* On desktop, ensure inactive slides don't interfere with fade effect */
+  .slider-section.card-style .swiper-slide:not(.swiper-slide-active) {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    position: absolute !important;
+    left: 0 !important;
+    right: 0 !important;
+  }
+
+  /* Active slide styles for desktop */
+  .slider-section.card-style .swiper-slide-active {
+    opacity: 1 !important;
+    visibility: visible !important;
+    z-index: 10 !important;
+    position: relative !important;
+    width: 100% !important;
+    max-width: 1250px !important;
+    transform: none !important;
+    display: flex !important;
+    justify-content: center !important;
+  }
+
+  /* Logo layout for desktop */
+  .slider-section.card-style .amplify-flex[style*="flexWrap"] {
+    justify-content: space-between !important;
+  }
+}
+
+.swiper-wrapper > .swiper-slide {
+  height: auto;
+}
+
+@media (min-width: 1250px) {
+  .swiper-wrapper > .swiper-slide {
+    height: auto;
+  }
+}
+
+@media (max-width: 767px) {
+  /* The image container for mobile only */
+  .slider-section .swiper-slide .amplify-image {
+    width: 100% !important;
+    object-fit: cover !important;
+    flex: 0 0 auto !important;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+ .slider-section.card-style .arrowCustom--prev,  .slider-section.card-style .arrowCustom--next {
+    display: none !important;
+  } 
+}

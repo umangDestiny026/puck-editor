@@ -105,14 +105,75 @@ export default function Navbar({
                     <Flex className="desktop-nav" direction="row" gap="24px">
 
                         {menuItems.map((item, i) => {
-                            const hasDropdown =
+                            const isDropdown =
+                                item.menuMode === "dropdown" &&
                                 Array.isArray(item.dropdownItems) &&
-                                item.dropdownItems.length > 0 || menuMode === "dropdown";
+                                item.dropdownItems.length > 0;
+
+                            const isMegaMenu =
+                                item.menuMode === "megamenu" &&
+                                !!item.savedMegaMenu;
 
                             const isOpen = openIndex === i;
 
-                            // -------- SIMPLE LINK (NO DROPDOWN) --------
-                            if (!hasDropdown) {
+                            if (isMegaMenu && item.savedMegaMenu !== null) {
+                                const content = megaMenuStore.get(item.savedMegaMenu)?.content;
+                                const megaMenuData = megaMenuStore.get(item.savedMegaMenu);
+
+                                const formattedData = {
+                                    root: { props: {} },
+                                    content: megaMenuData?.content || [],
+                                    zones: puckData.zones || {},
+                                };
+                                return (
+                                    <View key={i} style={{ position: "relative" }}>
+                                        <Text
+                                            onClick={() => setOpenIndex(isOpen ? null : i)}
+                                            style={{
+                                                cursor: "pointer",
+                                                display: "flex",
+                                                alignItems: "center",
+                                                gap: "6px",
+                                            }}
+                                        >
+                                            {item.label}
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                width="12"
+                                                height="8"
+                                                viewBox="0 0 12 8"
+                                                fill="none"
+                                            >
+                                                <path
+                                                    d="M10.589 0.294922L5.99902 4.87492L1.40902 0.294922L-0.000976563 1.70492L5.99902 7.70492L11.999 1.70492L10.589 0.294922Z"
+                                                    fill="black"
+                                                />
+                                            </svg>
+                                        </Text>
+                                        {isOpen && isMegaMenu && content && (
+                                            <View
+                                                style={{
+                                                    // inset: "60px 0px 0px",
+                                                    // display: "flex",
+                                                    position: "fixed",
+                                                    top: "110px",
+                                                    left: 0,
+                                                    background: "#fff",
+                                                    width: "100vw",
+                                                    padding: "20px",
+                                                    height: "100%",
+                                                    zIndex: 999,
+                                                }}
+                                            >
+                                                <Render data={formattedData} config={config as any} />
+                                            </View>
+                                        )
+                                        }
+                                    </View>
+                                );
+                            }
+
+                            if (!isDropdown) {
                                 return (
                                     <Link key={i} href={item.href} color={textColor}>
                                         {item.label}
@@ -120,7 +181,6 @@ export default function Navbar({
                                 );
                             }
 
-                            // -------- DROPDOWN ITEM --------
                             return (
                                 <View key={i} style={{ position: "relative" }}>
 
@@ -135,7 +195,18 @@ export default function Navbar({
                                     >
                                         {item.label}
                                         <span style={{ fontSize: "12px" }}>
-                                            {isOpen ? "▲" : "▼"}
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                width="12"
+                                                height="8"
+                                                viewBox="0 0 12 8"
+                                                fill="none"
+                                            >
+                                                <path
+                                                    d="M10.589 0.294922L5.99902 4.87492L1.40902 0.294922L-0.000976563 1.70492L5.99902 7.70492L11.999 1.70492L10.589 0.294922Z"
+                                                    fill="black"
+                                                />
+                                            </svg>
                                         </span>
                                     </Text>
 
