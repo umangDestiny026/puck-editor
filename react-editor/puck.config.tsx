@@ -3508,8 +3508,10 @@ export const config = {
     },
 
     RichTextBlock: {
-      label: "Rich Text",
+      label: "Text Editor",
       fields: {
+        className: { type: "text", label: "Custom class" },
+        customCss: { type: "textarea", label: "Custom CSS" },
         content: {
           type: "richtext",
 
@@ -3546,11 +3548,22 @@ export const config = {
           ),
         },
       },
-      render: ({ content }) => (
-        <div style={{ padding: 64, maxWidth: 700, margin: "0 auto" }}>
-          {content}
-        </div>
-      ),
+      defaultProps: {
+        content: "Hello, world",
+        className: "text-001",
+        customCss: "",
+      },
+      render: ({ content, className, customCss }) => {
+        const wrapperClass = className || "";
+        const uniqueClass = `text-${Math.random().toString(36).substr(2, 9)}`;
+        return (
+          <div className={`${wrapperClass} ${uniqueClass}`}>
+            {customCss && <style>{`.${uniqueClass} { ${customCss} }`}</style>}
+
+            {content}
+          </div>
+        )
+      },
     },
   },
 };
