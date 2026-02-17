@@ -1,0 +1,132 @@
+.vehicle-card {
+  border-radius: 20px;
+  padding: 28px;
+  color: #fff;
+  height: 100%;
+  min-width: 380px;
+  max-width: 520px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+}
+
+.vehicle-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.vehicle-card-inner {
+  display: flex;
+  gap: 30px;
+  width: 100%;
+  align-items: center;
+}
+
+.vehicle-card-inner.row {
+  flex-direction: row;
+}
+
+.vehicle-card-inner.row-reverse {
+  flex-direction: row-reverse;
+}
+
+.vehicle-card-inner.column {
+  flex-direction: column;
+  text-align: center;
+}
+
+.vehicle-image img {
+  width: 220px;
+  height: auto;
+}
+
+.vehicle-content {
+  flex: 1;
+}
+
+.vehicle-meta {
+  font-size: 14px;
+  opacity: 0.7;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.vehicle-meta .dot {
+  width: 5px;
+  height: 5px;
+  background: #fff;
+  border-radius: 50%;
+}
+
+.vehicle-title {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.vehicle-description {
+  font-size: 15px;
+  opacity: 0.85;
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.vehicle-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.vehicle-price {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.vehicle-btn {
+  background: #fff;
+  color: #000;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 30px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.vehicle-btn:hover {
+  background: #ddd;
+}
+
+
+@media (max-width: 768px) {
+  .vehicle-card {
+    min-width: 100%;
+    padding: 20px;
+  }
+
+  .vehicle-card-inner {
+    flex-direction: column !important;
+    text-align: center;
+  }
+
+  .vehicle-image img {
+    width: 180px;
+  }
+
+  .vehicle-footer {
+    flex-direction: column;
+    gap: 15px;
+  }
+}
+
+.arrowCustom {
+  width: 3.4375rem;
+  padding: 10px 15px 18px;
+  border-radius: 20px;
+  background-color: #000000;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 15%;
+}

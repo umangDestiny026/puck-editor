@@ -17,6 +17,7 @@ import SubmenuDropdown from "./app/component/SubMenu";
 import { MegaMenu } from "./constant";
 import { megaMenuStore } from "./app/zone";
 import { SliderSection } from "./app/component/ImageTextSlider";
+import CardSlider from "./app/component/CardSlider";
 
 export const config = {
   categories: {
@@ -29,7 +30,7 @@ export const config = {
     layout: {
       components: ["Grid", "Flex", "Flexbox", "Accordion", "Tabs"],
     },
-    Sliders: { components: ["SliderSection", "Carousel"] },
+    Sliders: { components: ["SliderSection", "CardSliderBlock", "Carousel",] },
     Form: {
       components: ["Form", "Input", "Checkbox", "DatePicker", "Dropdown", "SearchableDropdown", "RadioGroup"],
     },
@@ -513,8 +514,8 @@ export const config = {
                               {
                                 label: "sub item",
                                 href: "/#",
-              },
-            ],
+                              },
+                            ],
                           },
                         ],
                       },
@@ -542,6 +543,127 @@ export const config = {
           />
         );
       },
+    },
+
+    CardSliderBlock: {
+      label: "🎞 Slider (Cards)",
+
+      fields: {
+        slidesPerViewMobile: {
+          type: "number",
+          label: "Mobile Cards",
+          min: 1,
+          max: 3,
+        },
+
+        slidesPerViewTablet: {
+          type: "number",
+          label: "Tablet Cards",
+          min: 1,
+          max: 4,
+        },
+
+        slidesPerViewDesktop: {
+          type: "number",
+          label: "Desktop Cards",
+          min: 1,
+          max: 6,
+        },
+
+        spaceBetween: {
+          type: "number",
+          label: "Space Between",
+        },
+        infinite: {
+          type: "radio",
+          label: "Infinite Scroll",
+          options: [
+            { label: "Yes", value: true },
+            { label: "No", value: false },
+          ],
+        },
+
+        centeredSlides: {
+          type: "radio",
+          label: "Center Slides",
+          options: [
+            { label: "Yes", value: true },
+            { label: "No", value: false },
+          ],
+        },
+
+        imagePosition: {
+          type: "select",
+          label: "Image Position",
+          options: [
+            { label: "Left", value: "left" },
+            { label: "Right", value: "right" },
+            { label: "Top (Mobile Style)", value: "top" },
+          ],
+        },
+
+        items: {
+          type: "array",
+          label: "Slides",
+          arrayFields: {
+            id: { type: "text", label: "ID" },
+            img: { type: "text", label: "Image URL" },
+            bgColor: { type: "text", label: "Background Color" },
+            objectFit: {
+              type: "select",
+              label: "Image Fit",
+              options: [
+                { label: "Contain (Show full image)", value: "contain" },
+                { label: "Cover (Fill & crop)", value: "cover" },
+                { label: "Fill (Stretch)", value: "fill" },
+                { label: "None (Original size)", value: "none" },
+                { label: "Scale Down", value: "scale-down" },
+              ],
+            },
+            content: {
+              type: "slot",
+            },
+          },
+        },
+      },
+
+      defaultProps: {
+        slidesPerViewMobile: 1,
+        slidesPerViewTablet: 2,
+        slidesPerViewDesktop: 3,
+        infinite: true,
+        spaceBetween: 30,
+        centeredSlides: false,
+        imagePosition: "left",
+        items: [
+          {
+            id: "1",
+            img: "https://static01.nyt.com/images/2020/01/28/multimedia/28xp-memekid3/28cp-memekid3-superJumbo.jpg",
+            objectFit: "contain",
+            bgColor: "#000000",
+          },
+          {
+            id: "2",
+            img: "https://cdn.britannica.com/19/213119-050-C81C786D/Grumpy-Cat-2015-memes.jpg",
+            objectFit: "contain",
+            bgColor: "#2d0404",
+          },
+          {
+            id: "3",
+            img: "https://static01.nyt.com/images/2020/01/28/multimedia/28xp-memekid3/28cp-memekid3-superJumbo.jpg",
+            objectFit: "contain",
+            bgColor: "#073e55",
+          },
+          {
+            id: "4",
+            img: "https://cdn.shopify.com/s/files/1/0069/9783/5833/files/Grumpy_Cat.png?v=1738071084",
+            objectFit: "contain",
+            bgColor: "#23353d",
+          },
+        ],
+      },
+
+      render: (props) => <CardSlider {...props} />,
     },
 
     Footer: {
@@ -2167,7 +2289,7 @@ export const config = {
     },
 
     Carousel: {
-      label: "🎞️ Carousel",
+      label: "🎞️ Slider (Image)",
 
       fields: {
         slides: {
