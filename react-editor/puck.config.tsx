@@ -11,7 +11,7 @@ import PuckSearchableDropdown from "./app/component/SearchDropdown";
 import PuckRadioGroup from "./app/component/RadioBtn";
 import PuckForm from "./app/component/Form";
 import TabsRenderer from "./app/component/Tab";
-import { Flex, Link, Text, View } from "@aws-amplify/ui-react";
+import { Divider, Flex, Link, Text, View } from "@aws-amplify/ui-react";
 import React, { useEffect } from "react";
 import SubmenuDropdown from "./app/component/SubMenu";
 import { MegaMenu } from "./constant";
@@ -2157,6 +2157,11 @@ export const config = {
           label: "Custom CSS",
         },
 
+        Title: {
+          type: "text",
+          label: "Tab Title",
+        },
+
         items: {
           type: "array",
           label: "Accordion items",
@@ -2181,108 +2186,97 @@ export const config = {
           type: "text",
           label: "Accordion icon (image URL)",
         },
-
-        iconPosition: {
-          type: "select",
-          label: "Icon position",
-          options: [
-            { label: "Left", value: "left" },
-            { label: "Right", value: "right" },
-          ],
-        },
       },
 
       // defaultProps: {
       //   className: "accordion-001",
       //   customCss: "",
       // },
-      render: ({ itemSpacing, iconPosition, items, iconImage, className,
-        customCss, }) => {
+      render: ({
+        items,
+        className,
+        customCss,
+        itemSpacing,
+        Title = "Title"
+      }) => {
+        const [openIndex, setOpenIndex] = React.useState<string | null>(null);
 
         const wrapperClass = className || "";
-        const uniqueClass = `accordion-${Math.random().toString(36).substr(2, 9)}`;
+        const uniqueClass = `accordion-${Math.random()
+          .toString(36)
+          .substr(2, 9)}`;
+
+        const toggleItem = (key: string) => {
+          setOpenIndex((prev) => (prev === key ? null : key));
+        };
+
         return (
-          <div
-            className={`${wrapperClass} ${uniqueClass}`}
-            style={{
-              padding: "10px",
-              borderRadius: "12px",
-            }}
-          >
-            {customCss && <style>{`.${uniqueClass} { ${customCss} }`}</style>}
+          <div className={`${wrapperClass} ${uniqueClass}`}>
+            {customCss && (
+              <style>{`.${uniqueClass} { ${customCss} }`}</style>
+            )}
+            <View
+              backgroundColor={{ base: "#fff", xl: "#F6F6F6" }}
+              as="section"
+              maxWidth={{ base: "100%", xl: "80%" }}
+              margin={{ base: "57px 0 42px", xl: "148px auto 82px" }}
+              padding={{ base: "57px 0 42px", xl: "78px 30px 82px" }}
+            >
+              <Text margin={{ base: "0 0 42px", xl: "0 0 40px" }} fontSize={{ base: "30px", xl: "40px" }}>{Title}</Text>
 
-            {items?.map((item, i) => (
-              <details
-                key={item.id || i}
-                style={{
-                  marginBottom: `${itemSpacing}px`,
-                  borderRadius: "10px",
-                  border: "1px solid #e5e7eb",
-                  background: "#ffffff",
-                  boxShadow: "0 1px 3px rgba(0,0,0,0.05)",
-                  overflow: "hidden",
-                }}
-              >
-                <summary
-                  style={{
-                    listStyle: "none",
-                    display: "flex",
-                    flexDirection: iconPosition === "left" ? "row-reverse" : "row",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                    cursor: "pointer",
-                    fontWeight: 600,
-                    fontSize: "16px",
-                    padding: "14px 16px",
-                    background: "#f8fafc",
-                    transition: "background 0.2s ease",
-                  }}
-                  onMouseOver={(e) =>
-                    (e.currentTarget.style.background = "#f1f5f9")
-                  }
-                  onMouseOut={(e) =>
-                    (e.currentTarget.style.background = "#f8fafc")
-                  }
-                >
-                  <span>{item.title}</span>
+              {items?.map((item, index) => {
+                const key = `${index}`;
+                const isOpen = openIndex === key;
 
-                  {iconImage ? (
-                    <img
-                      src={iconImage}
-                      alt="accordion icon"
+                return (
+                  <View
+                    key={item.id || index}
+                    border="1px solid #D9D9D9"
+                    borderWidth="0 0 1px 0"
+                    overflow="hidden"
+                    marginBottom={`${itemSpacing}px`}
+                  >
+                    {/* Header */}
+                    <View
+                      padding={{ base: "10px 0", xl: "1rem 0" }}
+                      display="flex"
                       style={{
-                        width: "18px",
-                        height: "18px",
-                        transition: "transform 0.2s ease",
-                        marginLeft: iconPosition === "right" ? "8px" : "0",
-                        marginRight: iconPosition === "left" ? "8px" : "0",
+                        alignItems: "center",
+                        cursor: "pointer",
+                        justifyContent: "space-between",
                       }}
-                      className="accordion-icon"
-                    />
-                  ) : (
-                    <span style={{ marginLeft: "8px" }}>▼</span>
-                  )}
-                </summary>
+                      onClick={() => toggleItem(key)}
+                    >
+                      <Text
+                        fontWeight="600"
+                        fontSize={{ base: "14px", xl: "1.125rem" }}
+                        color="#000"
+                      >
+                        {item.title}
+                      </Text>
 
-                <div
-                  style={{
-                    padding: "12px 16px",
-                    background: "#ffffff",
-                    color: "#374151",
-                    fontSize: "14px",
-                    lineHeight: "1.6",
-                  }}
-                >
-                  {item.description}
-                </div>
-              </details>
-            ))}
+                      <Text fontSize="1.5rem" fontWeight="bold">
+                        {isOpen ? "−" : "+"}
+                      </Text>
+                    </View>
 
-            <style>{`
-        details[open] summary .accordion-icon {
-          transform: rotate(180deg);
-        }
-      `}</style>
+                    {/* Content */}
+                    {isOpen && (
+                      <View padding="1rem 0">
+                        <Text
+                          fontSize="14px"
+                          color="#58595B"
+                          lineHeight="140%"
+                          dangerouslySetInnerHTML={{
+                            __html: item.description,
+                          }}
+                        />
+                      </View>
+                    )}
+                  </View>
+                );
+              })}
+            </View>
           </div>
         );
       },
