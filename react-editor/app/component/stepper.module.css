@@ -1,0 +1,171 @@
+.stepperContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 684px;
+  margin: 0 auto;
+
+  /* Default Fallbacks */
+  --active-color: #d42224;
+  --completed-color: #d42224;
+  --button-color: #d42224;
+  --connector-color: #ddd;
+}
+
+/* ---------------------------- */
+/* Step Indicators */
+/* ---------------------------- */
+
+.stepIndicators {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+
+  @media (max-width: 768px) {
+    margin-bottom: 0;
+  }
+}
+
+.stepIndicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  position: relative;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+
+  /* Connector Line */
+  &:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    top: 2rem;
+    left: 60%;
+    width: 80%;
+    height: 2px;
+    background-color: var(--connector-color);
+
+    @media (max-width: 768px) {
+      top: 1.5rem;
+    }
+  }
+}
+
+/* Active Step */
+.active .stepNumber {
+  background-color: var(--active-color);
+  color: white;
+}
+
+/* Completed Step */
+.completed .stepNumber {
+  background-color: var(--completed-color);
+  color: white;
+}
+
+/* ---------------------------- */
+/* Step Number */
+/* ---------------------------- */
+
+.stepNumber {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background-color: #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+  font-size: 24px;
+  z-index: 1;
+  border: 2px solid #000;
+  font-family: var(--font-ToyotaDisplay);
+  transition: all 0.3s ease;
+
+  @media (max-width: 768px) {
+    width: 50px;
+    height: 50px;
+    font-size: 18px;
+  }
+}
+
+/* ---------------------------- */
+/* Step Title */
+/* ---------------------------- */
+
+.stepTitle {
+  font-size: 0.875rem;
+  color: white;
+  text-align: center;
+  font-family: var(--font-ToyotaType-Regular);
+
+  @media (max-width: 768px) {
+    display: none;
+  }
+}
+
+/* ---------------------------- */
+/* Content */
+/* ---------------------------- */
+
+.stepContent {
+  min-height: 200px;
+}
+
+/* ---------------------------- */
+/* Actions */
+/* ---------------------------- */
+
+.stepperActions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+
+  @media (max-width: 768px) {
+    gap: 0.5rem;
+  }
+}
+
+.backButton,
+.nextButton {
+  padding: 0.75rem 1.5rem;
+  border-radius: 100px;
+  border: none;
+  cursor: pointer;
+  height: 50px;
+  width: 291px;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+/* Back Button */
+.backButton {
+  background-color: #f8f9fa;
+  color: #333;
+
+  &:hover {
+    background-color: #e2e6ea;
+  }
+}
+
+/* Next / Finish Button */
+.nextButton {
+  background-color: var(--button-color);
+  color: white;
+  margin-left: auto;
+
+  @media (max-width: 768px) {
+    margin-right: auto;
+  }
+
+  &:hover {
+    opacity: 0.9;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}

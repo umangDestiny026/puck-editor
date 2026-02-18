@@ -18,26 +18,36 @@ import { MegaMenu } from "./constant";
 import { megaMenuStore } from "./app/zone";
 import { SliderSection } from "./app/component/ImageTextSlider";
 import CardSlider from "./app/component/CardSlider";
+import PuckAmplifyButton from "./app/component/PuckAmplifyButton";
+import PuckStepper from "./app/component/PuckStepper";
 
 export const config = {
   categories: {
+    Layout: {
+      components: ["Container", "Grid", "Flex", "Flexbox"],
+    },
+
+    Sections: {
+      components: ["SliderSection", "CardSliderBlock", "Carousel", "ImageText", "Card"],
+    },
+
+    Content: {
+      components: ["Text", "RichTextBlock", "Button"],
+    },
+
+    Media: {
+      components: ["Image", "Video"],
+    },
+
+    Forms: {
+      components: ["Form", "Input", "Checkbox", "RadioGroup", "Dropdown", "SearchableDropdown", "DatePicker", "Stepper"],
+    },
+
     Navigation: {
-      components: ["Footer", "Header", "MegaMenu", "MulipleMegaMenuItems"],
-    },
-    typography: {
-      components: ["Text", "Image", "Video", "Button"],
-    },
-    layout: {
-      components: ["Grid", "Flex", "Flexbox", "Accordion", "Tabs"],
-    },
-    Sliders: { components: ["SliderSection", "CardSliderBlock", "Carousel",] },
-    Form: {
-      components: ["Form", "Input", "Checkbox", "DatePicker", "Dropdown", "SearchableDropdown", "RadioGroup"],
+      components: ["Header", "Footer", "MegaMenu", "MulipleMegaMenuItems", "Tabs", "Accordion"],
     },
   },
-
   components: {
-    // Simple text block (baseline comparison)
     Text: {
       label: "📝 Text",
       fields: {
@@ -1637,39 +1647,45 @@ export const config = {
       label: "🔘 Button",
       fields: {
         className: { type: "text", label: "Custom class" },
-        customCss: {
-          type: "textarea",
-          label: "Custom CSS",
-        },
-        text: {
-          type: "text",
-          label: "Button text",
-        },
+        customCss: { type: "textarea", label: "Custom CSS" },
+        text: { type: "text", label: "Button text" },
 
         type: {
           type: "select",
           label: "Button type",
           options: [
-            { label: "Default", value: "default" },
-            { label: "Primary", value: "primary" },
-            { label: "Basic", value: "basic" },
-            { label: "Success", value: "success" },
-            { label: "Info", value: "info" },
-            { label: "Danger", value: "danger" },
-            { label: "Link", value: "link" },
+            { label: "Button", value: "button" },
+            { label: "Submit", value: "submit" },
+            { label: "Reset", value: "reset" },
           ],
         },
 
-        /* -------- LINK -------- */
+        color: {
+          type: "select",
+          label: "Color Theme",
+          options: [
+            { label: "Red", value: "red" },
+            { label: "Deep Red", value: "deepred" },
+            { label: "White", value: "white" },
+            { label: "Black", value: "black" },
+            { label: "Transparent", value: "transparent" },
+            { label: "Transparent Black", value: "transparentBlack" },
+            { label: "Underlined", value: "underlined" },
+          ],
+        },
 
-        href: {
-          type: "text",
-          label: "Link URL",
+        size: {
+          type: "select",
+          label: "Size",
+          options: [
+            { label: "Small", value: "small" },
+            { label: "Large", value: "large" },
+          ],
         },
 
         align: {
           type: "radio",
-          label: "Align",
+          label: "Alignment",
           options: [
             { label: "Left", value: "left" },
             { label: "Center", value: "center" },
@@ -1677,210 +1693,63 @@ export const config = {
           ],
         },
 
-        widthValue: { type: "number", label: "Width" },
-        widthUnit: {
-          type: "select",
-          label: "Width unit",
+        isFullWidth: {
+          type: "radio",
+          label: "Full Width",
           options: [
-            { label: "px", value: "px" },
-            { label: "%", value: "%" },
+            { label: "Yes", value: true },
+            { label: "No", value: false },
           ],
         },
 
-        heightValue: { type: "number", label: "Height" },
-        heightUnit: {
-          type: "select",
-          label: "Height unit",
+        disabled: {
+          type: "radio",
+          label: "Disabled",
           options: [
-            { label: "px", value: "px" },
+            { label: "Yes", value: true },
+            { label: "No", value: false },
           ],
         },
 
-        maxWidthValue: { type: "number", label: "Max width" },
-        maxWidthUnit: {
-          type: "select",
-          label: "Max width unit",
+        isLoading: {
+          type: "radio",
+          label: "Loading State",
           options: [
-            { label: "px", value: "px" },
-            { label: "%", value: "%" },
+            { label: "Yes", value: true },
+            { label: "No", value: false },
           ],
         },
 
-        maxHeightValue: { type: "number", label: "Max height" },
-        maxHeightUnit: {
-          type: "select",
-          label: "Max height unit",
-          options: [
-            { label: "px", value: "px" },
-          ],
+        loadingText: { type: "text", label: "Loading text" },
+
+        onClickCode: {
+          type: "textarea",
+          label: "Custom onClick JS",
+          description: "Example: () => alert('Clicked')",
         },
-
-        paddingX: {
-          type: "number",
-          label: "Horizontal padding (px)",
-        },
-
-        paddingY: {
-          type: "number",
-          label: "Vertical padding (px)",
-        },
-
-        borderRadius: {
-          type: "number",
-          label: "Border radius (px)",
-        },
-
-
       },
 
       defaultProps: {
         text: "Click me",
-        type: "primary",
-
-        href: "",
-        external: false,
-
+        type: "button",
+        color: "red",
+        size: "large",
         align: "left",
-
-        widthValue: undefined,
-        widthUnit: "px",
-
-        heightValue: undefined,
-        heightUnit: "px",
-
-        maxWidthValue: undefined,
-        maxWidthUnit: "px",
-
-        maxHeightValue: undefined,
-        maxHeightUnit: "px",
-
-        paddingX: 16,
-        paddingY: 10,
-        borderRadius: 6,
-        className: "button-001",
+        isFullWidth: false,
+        disabled: false,
+        isLoading: false,
+        loadingText: "Loading...",
+        onClickCode: "() => console.log('Clicked')",
+        className: "",
         customCss: "",
       },
 
-      render: ({
-        text,
-        type,
-        href,
-        external,
-        align,
+      render: (props: any) => {
+        const uniqueClass = `amplify-button-${Math.random()
+          .toString(36)
+          .substr(2, 9)}`;
 
-        widthValue,
-        widthUnit,
-        heightValue,
-        heightUnit,
-        maxWidthValue,
-        maxWidthUnit,
-        maxHeightValue,
-        maxHeightUnit,
-
-        paddingX,
-        paddingY,
-        borderRadius,
-        className,
-        customCss,
-      }) => {
-        const typeStyles = {
-          default: {
-            background: "#e5e7eb",
-            color: "#111827",
-          },
-          primary: {
-            background: "#2563eb",
-            color: "#ffffff",
-          },
-          basic: {
-            background: "transparent",
-            color: "#111827",
-            border: "1px solid #d1d5db",
-          },
-          success: {
-            background: "#16a34a",
-            color: "#ffffff",
-          },
-          info: {
-            background: "#0284c7",
-            color: "#ffffff",
-          },
-          danger: {
-            background: "#dc2626",
-            color: "#ffffff",
-          },
-          link: {
-            background: "transparent",
-            color: "#2563eb",
-            padding: 0,
-          },
-        };
-
-        const wrapperStyle = {
-          textAlign: align,
-        };
-
-        const buttonStyle = {
-          display: "inline-block",
-          cursor: "pointer",
-          textDecoration: "none",
-
-          padding:
-            type === "link"
-              ? undefined
-              : `${paddingY}px ${paddingX}px`,
-
-          borderRadius:
-            type === "link" ? 0 : `${borderRadius}px`,
-
-          width:
-            widthValue != null
-              ? `${widthValue}${widthUnit}`
-              : undefined,
-
-          height:
-            heightValue != null
-              ? `${heightValue}${heightUnit}`
-              : undefined,
-
-          maxWidth:
-            maxWidthValue != null
-              ? `${maxWidthValue}${maxWidthUnit}`
-              : undefined,
-
-          maxHeight:
-            maxHeightValue != null
-              ? `${maxHeightValue}${maxHeightUnit}`
-              : undefined,
-
-          ...typeStyles[type],
-        };
-        const wrapperClass = className || "";
-        const uniqueClass = `button-${Math.random().toString(36).substr(2, 9)}`;
-
-        return (
-          <div style={wrapperStyle} className={`${wrapperClass}`}>
-            <a
-              href={href || "#"}
-              target={external ? "_blank" : undefined}
-              rel={external ? "noopener noreferrer" : undefined}
-              className={uniqueClass}
-              style={buttonStyle}
-            >
-              {text}
-
-              {customCss && (
-                <style>
-                  {`
-                .${uniqueClass} {
-                  ${customCss}
-                }
-              `}
-                </style>
-              )}
-            </a>
-          </div>
-        );
+        return <PuckAmplifyButton {...props} uniqueClass={uniqueClass} />;
       },
     },
 
@@ -2794,6 +2663,69 @@ export const config = {
       },
     },
 
+    Stepper: {
+      label: "🪜 Stepper",
+      fields: {
+        className: { type: "text", label: "Custom Class" },
+        customCss: { type: "textarea", label: "Custom CSS" },
+        maxWidth: { type: "text", label: "Container Max-Width" },
+        steps: {
+          type: "array",
+          label: "Steps",
+          arrayFields: {
+            title: { type: "text", label: "Step Title" },
+          },
+          getItemSummary: (item) =>
+            item?.title ? item.title : "New Step",
+        },
+
+        showStepNumbers: {
+          type: "radio",
+          label: "Show Step Numbers",
+          options: [
+            { label: "Yes", value: true },
+            { label: "No", value: false },
+          ],
+        },
+
+        nextLabel: { type: "text", label: "Next Button Label" },
+        backLabel: { type: "text", label: "Back Button Label" },
+        finishLabel: { type: "text", label: "Finish Button Label" },
+
+        activeColor: { type: "text", label: "Active Step Color" },
+        completedColor: { type: "text", label: "Completed Step Color" },
+        buttonColor: { type: "text", label: "Button Background Color" },
+
+
+      },
+
+      defaultProps: {
+        showStepNumbers: true,
+        nextLabel: "Next",
+        backLabel: "Back",
+        finishLabel: "Finish",
+        activeColor: "#2563eb",
+        completedColor: "#16a34a",
+        maxWidth: "684px",
+        buttonColor: "#111827",
+        className: "",
+        customCss: "",
+        steps: [
+          { title: "Step 1" },
+          { title: "Step 2" },
+          { title: "Step 3" },
+        ],
+      },
+
+      render: (props: any) => {
+        const uniqueClass = `stepper-${Math.random()
+          .toString(36)
+          .substr(2, 9)}`;
+
+        return <PuckStepper {...props} uniqueClass={uniqueClass} />;
+      },
+    },
+
     Card: {
       label: "🧱 Card",
       fields: {
@@ -3013,90 +2945,63 @@ export const config = {
       fields: {
         className: { type: "text", label: "Custom class" },
         customCss: { type: "textarea", label: "Custom CSS" },
-        name: { type: "text", label: "Field name (for form submit)" },
-        placeholder: { type: "text", label: "Placeholder" },
 
-        type: {
+        label: { type: "text", label: "Label" },
+        placeholder: { type: "text", label: "Placeholder" },
+        name: { type: "text", label: "Field ID / Name" },
+
+        labelColor: { type: "text", label: "Label Color" },
+        inputBackground: { type: "text", label: "Input Background" },
+        inputBorder: { type: "text", label: "Input Border" },
+
+        variant: {
           type: "select",
-          label: "Input type",
+          label: "Variant",
           options: [
-            { label: "Text", value: "text" },
-            { label: "Email", value: "email" },
-            { label: "Password", value: "password" },
-            { label: "Number", value: "number" },
-            { label: "Tel", value: "tel" },
-            { label: "URL", value: "url" },
-            { label: "Search", value: "search" },
-            { label: "Date", value: "date" },
-            { label: "Time", value: "time" },
+            { label: "Desktop", value: "desktop" },
+            { label: "Mobile (Tel)", value: "mobile" },
           ],
         },
 
-        /* ---------- LAYOUT ---------- */
-        width: { type: "number", label: "Width (px)" },
-        height: { type: "number", label: "Height (px)" },
-        padding: { type: "text", label: "Padding (CSS)" },
-        margin: { type: "text", label: "Margin (CSS)" },
-
-        /* ---------- VALIDATION ---------- */
-        required: {
-          type: "radio", label: "Required", options: [
-            { label: "Yes", value: true },
-            { label: "No", value: false },
-          ]
-        },
-
-        minLength: { type: "number", label: "Min length" },
-        maxLength: { type: "number", label: "Max length" },
-
         pattern: {
           type: "text",
-          label: "Regex pattern (optional)",
-          description: "Example: ^[A-Za-z]+$"
+          label: "Validation Regex",
+          description: "Example: ^[0-9]+$",
         },
 
         errorMessage: {
-          type: "textarea",
-          label: "Custom error message",
+          type: "text",
+          label: "Error Message",
         },
 
-        /* ---------- ONCHANGE EDITOR ---------- */
         onChangeCode: {
           type: "textarea",
           label: "Custom onChange logic (JS)",
-          description: "You can write: value => { your logic }",
+          description: "value => { console.log(value) }",
         },
       },
 
       defaultProps: {
-        type: "text",
-        placeholder: "Enter text...",
-        width: 320,
-        height: 40,
-        padding: "8px 10px",
+        label: "Full Name",
+        placeholder: "Enter value...",
         name: "input_1",
-        margin: "8px 0",
+        labelColor: "#ffffff",
+        inputBackground: "#ffffff",
+        inputBorder: "1px solid black",
+        variant: "desktop",
+        pattern: "",
+        errorMessage: "",
         className: "",
         customCss: "",
-        required: false,
-        minLength: undefined,
-        maxLength: undefined,
-        pattern: "",
-        errorMessage: "Invalid input",
         onChangeCode: "value => console.log(value)",
       },
 
       render: (props: any) => {
-        const uniqueClass = `input-${Math.random()
+        const uniqueClass = `amplify-input-${Math.random()
           .toString(36)
           .substr(2, 9)}`;
 
-        return (
-          <PuckInput
-            {...props}
-            uniqueClass={uniqueClass}
-          />
-        );
+        return <PuckInput {...props} uniqueClass={uniqueClass} />;
       },
     },
 
@@ -3236,8 +3141,28 @@ export const config = {
         className: { type: "text", label: "Custom class" },
         customCss: { type: "textarea", label: "Custom CSS" },
 
-        name: { type: "text", label: "Field name (for form submit)" },
-        label: { type: "text", label: "Field label" },
+        name: { type: "text", label: "Field name" },
+        placeholder: { type: "text", label: "Placeholder" },
+
+        theme: {
+          type: "select",
+          label: "Theme",
+          options: [
+            { label: "Light", value: "light" },
+            { label: "Dark", value: "dark" },
+            { label: "Light (No Border)", value: "light-no-border" },
+            { label: "Transparent", value: "transparent" },
+          ],
+        },
+
+        fixedPlaceholder: {
+          type: "radio",
+          label: "Fixed Placeholder",
+          options: [
+            { label: "Yes", value: true },
+            { label: "No", value: false },
+          ],
+        },
 
         options: {
           type: "array",
@@ -3256,18 +3181,9 @@ export const config = {
           description: "Must match one option value",
         },
 
-        required: {
-          type: "radio",
-          label: "Required",
-          options: [
-            { label: "Yes", value: true },
-            { label: "No", value: false },
-          ],
-        },
-
-        errorMessage: {
-          type: "textarea",
-          label: "Custom error message",
+        noOptionsMessage: {
+          type: "text",
+          label: "No options message",
         },
 
         onChangeCode: {
@@ -3278,12 +3194,13 @@ export const config = {
       },
 
       defaultProps: {
-        label: "Choose an option",
         className: "",
         customCss: "",
-        required: false,
-        name: "dropdown_1",
-        errorMessage: "Please select an option",
+        theme: "light",
+        name: "select_1",
+        placeholder: "Select an option",
+        fixedPlaceholder: false,
+        noOptionsMessage: "No Options",
         onChangeCode: "value => console.log(value)",
 
         options: [
@@ -3296,7 +3213,7 @@ export const config = {
       },
 
       render: (props: any) => {
-        const uniqueClass = `dropdown-${Math.random()
+        const uniqueClass = `select-${Math.random()
           .toString(36)
           .substr(2, 9)}`;
 

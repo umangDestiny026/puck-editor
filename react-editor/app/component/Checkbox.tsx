@@ -1,4 +1,7 @@
+"use client";
+
 import React, { useState } from "react";
+import { CheckboxField, Flex, Text } from "@aws-amplify/ui-react";
 
 export default function PuckCheckbox({
   label,
@@ -11,11 +14,27 @@ export default function PuckCheckbox({
   onChangeCode,
   uniqueClass,
 }) {
+  const [checked, setChecked] = useState(defaultChecked ?? false);
   const [touched, setTouched] = useState(false);
-  const [checked, setChecked] = useState(defaultChecked);
+
+  const handleChange = (value: boolean) => {
+    setChecked(value);
+
+    try {
+      const fn = new Function(
+        "checked",
+        `return (${onChangeCode})(checked)`
+      );
+      fn(value);
+    } catch (err) {
+      console.warn("Invalid onChange code", err);
+    }
+  };
+
+  const showError = touched && required && !checked;
 
   return (
-    <div style={{ margin: "8px 0" }}>
+    <Flex direction="column" margin="8px 0">
       {customCss && (
         <style>{`
           .${uniqueClass} {
@@ -24,53 +43,25 @@ export default function PuckCheckbox({
         `}</style>
       )}
 
-      <label
+      <CheckboxField
+        label={label}
+        name={name}
+        checked={checked}
+        isRequired={required}
+        onChange={(e) => handleChange(e.target.checked)}
+        onBlur={() => setTouched(true)}
         className={`${className} ${uniqueClass}`}
-        style={{
-          display: "flex",
-          alignItems: "center",
-          gap: "8px",
-          cursor: "pointer",
-        }}
-      >
-        <input
-          type="checkbox"
-          checked={checked}
-          name={name}
-          required={required}
-          onBlur={() => setTouched(true)}
-          onChange={(e) => {
-            const isChecked = e.target.checked;
-            setChecked(isChecked);
+      />
 
-            try {
-              const fn = new Function(
-                "checked",
-                `return (${onChangeCode})(checked)`
-              );
-              fn(isChecked);
-            } catch (err) {
-              console.warn("Invalid onChange code", err);
-            }
-          }}
-        />
-
-        <span>{label}</span>
-      </label>
-
-      {/* Show error only after touch */}
-      {touched && required && !checked && (
-        <span
-          style={{
-            color: "red",
-            fontSize: "12px",
-            marginTop: "4px",
-            display: "block",
-          }}
+      {showError && (
+        <Text
+          color="red"
+          fontSize="12px"
+          marginTop="4px"
         >
           {errorMessage}
-        </span>
+        </Text>
       )}
-    </div>
+    </Flex>
   );
 }

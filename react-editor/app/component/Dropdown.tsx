@@ -1,19 +1,42 @@
-import React, { useState } from "react";
+"use client";
+import React, { useState, useEffect } from "react";
+import { Select, SelectTheme, Option } from "./select";
 
-export default function PuckDropdown({
-  label,
+export default function PuckSelect({
   options = [],
   defaultValue,
-  required,
+  theme,
   className,
-  name,
   customCss,
-  errorMessage,
+  placeholder,
+  noOptionsMessage,
+  fixedPlaceholder,
   onChangeCode,
   uniqueClass,
 }) {
-  const [touched, setTouched] = useState(false);
-  const [value, setValue] = useState(defaultValue || "");
+  const [selectedOption, setSelectedOption] = useState<Option | null>(null);
+
+  // Apply default value
+  useEffect(() => {
+    if (defaultValue) {
+      const found = options.find((opt) => opt.value === defaultValue);
+      if (found) setSelectedOption(found);
+    }
+  }, [defaultValue, options]);
+
+  const handleSelect = (option: Option | null) => {
+    setSelectedOption(option);
+
+    try {
+      const fn = new Function(
+        "value",
+        `return (${onChangeCode})(value)`
+      );
+      fn(option?.value ?? null);
+    } catch (err) {
+      console.warn("Invalid onChange code", err);
+    }
+  };
 
   return (
     <div style={{ margin: "10px 0" }}>
@@ -25,60 +48,16 @@ export default function PuckDropdown({
         `}</style>
       )}
 
-      <label style={{ fontWeight: 500, display: "block", marginBottom: "6px" }}>
-        {label}
-      </label>
-
-      <select
-        value={value}
-        required={required}
-        name={name}
+      <Select
+        theme={theme as SelectTheme}
+        options={options}
+        selectedOption={selectedOption}
+        onSelect={handleSelect}
+        placeholder={placeholder}
         className={`${className} ${uniqueClass}`}
-        style={{
-          padding: "8px 10px",
-          border: "1px solid #ddd",
-          borderRadius: "6px",
-          fontSize: "14px",
-          width: "240px",
-          background: "white",
-        }}
-        onBlur={() => setTouched(true)}
-        onChange={(e) => {
-          const newValue = e.target.value;
-          setValue(newValue);
-
-          try {
-            const fn = new Function(
-              "value",
-              `return (${onChangeCode})(value)`
-            );
-            fn(newValue);
-          } catch (err) {
-            console.warn("Invalid onChange code", err);
-          }
-        }}
-      >
-        <option value="">Select...</option>
-
-        {options.map((opt, idx) => (
-          <option key={idx} value={opt.value}>
-            {opt.label}
-          </option>
-        ))}
-      </select>
-
-      {touched && required && !value && (
-        <span
-          style={{
-            color: "red",
-            fontSize: "12px",
-            marginTop: "4px",
-            display: "block",
-          }}
-        >
-          {errorMessage}
-        </span>
-      )}
+        noOptionsMessage={noOptionsMessage}
+        fixedPlaceholder={fixedPlaceholder}
+      />
     </div>
   );
 }

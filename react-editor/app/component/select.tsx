@@ -23,6 +23,7 @@ export interface Option {
 export enum SelectTheme {
   Dark = "dark",
   Light = "light",
+  LightNoBorder = "light-no-border",
   Transparent = "transparent",
 }
 
@@ -38,6 +39,8 @@ interface SelectProps {
   className?: string;
   noOptionsMessage?: string;
   fixedPlaceholder?: boolean;
+  CustomDropdownIndicator?: React.ComponentType<any>;
+
 }
 
 export function Select({
@@ -51,6 +54,7 @@ export function Select({
   className,
   noOptionsMessage,
   fixedPlaceholder,
+  CustomDropdownIndicator
 }: SelectProps) {
   const isMobile = useBreakpointValue({ base: true, xl: false });
   const selectRef = useRef<HTMLDivElement>(null);
@@ -58,6 +62,7 @@ export function Select({
   const getBorder = () => {
     if (theme === SelectTheme.Dark) return "1px solid #ffffff";
     if (theme === SelectTheme.Light) return "1px solid #000000";
+    if (theme === SelectTheme.LightNoBorder) return "none";
     if (theme === SelectTheme.Transparent) return "none";
   };
 
@@ -151,6 +156,7 @@ export function Select({
         onChange={(option) => onSelect(option as Option)}
         components={{
           IndicatorSeparator: null,
+          ...(CustomDropdownIndicator && {DropdownIndicator:CustomDropdownIndicator}),
           ...(fixedPlaceholder ? { SingleValue: CustomSingleValue } : {}),
         }}
         backspaceRemovesValue={false}
