@@ -85,8 +85,6 @@ export function Client() {
     reader.readAsText(file);
   };
 
-  // console.log("DATAAAA", puckData);
-
   return (
     <>
       {

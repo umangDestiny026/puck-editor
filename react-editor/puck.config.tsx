@@ -20,6 +20,7 @@ import { SliderSection } from "./app/component/ImageTextSlider";
 import CardSlider from "./app/component/CardSlider";
 import PuckAmplifyButton from "./app/component/PuckAmplifyButton";
 import PuckStepper from "./app/component/PuckStepper";
+import { ModalBlock } from "./app/component/ModalBlock";
 
 export const config = {
   categories: {
@@ -1236,6 +1237,153 @@ export const config = {
       },
 
       render: (props: any) => <SliderSection {...props} />,
+    },
+
+    ModalBlock: {
+      label: "🪟 Modal",
+
+      fields: {
+        title: {
+          type: "text",
+          label: "Modal Title",
+        },
+
+        description: {
+          type: "textarea",
+          label: "Modal Description",
+        },
+        showModalButton: {
+          type: "radio",
+          label: "Want to see Modal ?",
+          options: [
+            { label: "Yes", value: true },
+            { label: "No", value: false },
+          ],
+        },
+        showOpenButton: {
+          type: "radio",
+          label: "Show Open Button",
+          options: [
+            { label: "Yes", value: true },
+            { label: "No", value: false },
+          ],
+        },
+
+        openButtonLabel: {
+          type: "text",
+          label: "Open Button Label",
+        },
+
+        openType: {
+          type: "select",
+          label: "Open Modal Trigger",
+          options: [
+            { label: "Button Click", value: "button" },
+            { label: "Auto Open (On Load)", value: "auto" },
+            { label: "Dropdown Toggle", value: "dropdown" },
+          ],
+        },
+
+        modalSize: {
+          type: "select",
+          label: "Modal Width",
+          options: [
+            { label: "Full Screen", value: "full" },
+            { label: "Large Center (80%)", value: "large" },
+            { label: "Medium Center (60%)", value: "medium" },
+            { label: "Half Screen Center", value: "half" },
+            { label: "Small Center (400px)", value: "small" },
+            { label: "Fixed Width (600px)", value: "fixed" },
+          ],
+        },
+
+        closeOnOverlay: {
+          type: "radio",
+          label: "Close On Overlay Click",
+          options: [
+            { label: "Yes", value: true },
+            { label: "No", value: false },
+          ],
+        },
+
+
+        showCloseButton: {
+          type: "radio",
+          label: "Show Close Button (X)",
+          options: [
+            { label: "Yes", value: true },
+            { label: "No", value: false },
+          ],
+        },
+
+        modalBackground: {
+          type: "text",
+          label: "Modal Background Color",
+        },
+
+        modalTextColor: {
+          type: "text",
+          label: "Modal Text Color",
+        },
+
+        overlayColor: {
+          type: "text",
+          label: "Overlay Background Color",
+        },
+
+        buttonBackground: {
+          type: "text",
+          label: "Button Background Color",
+        },
+
+        buttonTextColor: {
+          type: "text",
+          label: "Button Text Color",
+        },
+
+        borderRadius: {
+          type: "text",
+          label: "Modal Border Radius",
+        },
+
+        dropdownWidth: {
+          type: "select",
+          label: "Dropdown Width",
+          options: [
+            { label: "Full Width", value: "100%" },
+            { label: "Half Width (50%)", value: "50%" },
+            { label: "Fixed 300px", value: "300px" },
+            { label: "Auto", value: "auto" },
+          ],
+        },
+
+        className: {
+          type: "text",
+          label: "Custom Class Name",
+        },
+      },
+
+      defaultProps: {
+        title: "Modal Title",
+        description: "This is a modal description.",
+        showOpenButton: true,
+        openButtonLabel: "Open Modal",
+        openType: "button",
+        modalSize: "medium",
+        closeOnOverlay: true,
+        showCloseButton: true,
+        modalBackground: "#ffffff",
+        modalTextColor: "#000000",
+        showModalButton: true,
+        overlayColor: "rgba(0,0,0,0.6)",
+        buttonBackground: "#d42224",
+        buttonTextColor: "#ffffff",
+        borderRadius: "12px",
+        dropdownWidth: "100%",
+        className: "",
+      },
+
+      render: (props: any) => <ModalBlock {...props} />,
     },
 
     Flexbox: {
