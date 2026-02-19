@@ -14,6 +14,7 @@
     "@puckeditor/plugin-ai": "^0.5.0",
     "@tiptap/extension-superscript": "^3.17.1",
     "classnames": "^2.3.2",
+    "lodash": "^4.17.23",
     "lucide-react": "^0.563.0",
     "next": "^16.0.8",
     "react": "^19.2.1",
