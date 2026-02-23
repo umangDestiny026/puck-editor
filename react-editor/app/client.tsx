@@ -51,9 +51,11 @@ export function Client() {
       label.className = "custom-import-json-btn";
       label.style.padding = "9px 12px";
       label.style.borderRadius = "6px";
-      label.style.border = "1px solid #000000";
-      // label.style.background = "#2563eb";
+      label.style.border = "none";
+      label.style.background = "#ffffff00";
       label.style.color = "#fff";
+      label.style.display = "flex";
+      label.style.alignItems = "center"
       label.style.cursor = "pointer";
       label.style.fontSize = "13px";
       label.style.marginLeft = "10px";
@@ -61,8 +63,8 @@ export function Client() {
       label.innerHTML = `
          <svg 
             xmlns="http://www.w3.org/2000/svg" 
-            width="18" 
-            height="18" 
+            width="16" 
+            height="16" 
             viewBox="0 0 24 24" 
             fill="none" 
             stroke="#000" 
@@ -93,10 +95,12 @@ export function Client() {
 
       const exportBtn = document.createElement("button");
       exportBtn.className = "custom-export-json-btn";
-      exportBtn.style.padding = "9px 12px";
+      exportBtn.style.padding = "0";
       exportBtn.style.borderRadius = "6px";
-      exportBtn.style.border = "1px solid #000000";
-      // exportBtn.style.background = "#16a34a";
+      exportBtn.style.border = "none";
+      exportBtn.style.display = "flex";
+      exportBtn.style.alignItems = "center";
+      exportBtn.style.background = "#ffffff00";
       exportBtn.style.color = "#fff";
       exportBtn.style.cursor = "pointer";
       exportBtn.style.fontSize = "13px";
@@ -105,8 +109,8 @@ export function Client() {
       exportBtn.innerHTML = `
         <svg 
           xmlns="http://www.w3.org/2000/svg" 
-          width="18" 
-          height="18" 
+          width="16" 
+          height="16" 
           viewBox="0 0 24 24" 
           fill="none" 
           stroke="#000" 
@@ -197,25 +201,6 @@ export function Client() {
         li.appendChild(wrapper);
 
         // Default active state for Page
-        // const setActive = (active: boolean) => {
-        //   if (active) {
-        //     li.classList.add("custom-tab-active");
-        //     li.style.color = "#0158ad";
-        //     li.style.borderRight = "4px solid #0158ad";
-        //     li.querySelectorAll("path").forEach((p: any) => {
-        //       p.setAttribute("stroke", "#0158ad");
-        //       p.setAttribute("fill", "#0158ad");
-        //     });
-        //   } else {
-        //     li.classList.remove("custom-tab-active");
-        //     li.style.background = "#ffffff00";
-        //     li.style.color = "#111827";
-        //     li.querySelectorAll("path").forEach((p: any) => {
-        //       p.setAttribute("stroke", "#868686");
-        //       p.setAttribute("fill", "#868686");
-        //     });
-        //   }
-        // };
         const setActive = (active: boolean) => {
           if (active) {
             li.classList.add("custom-tab-active");
@@ -260,7 +245,7 @@ export function Client() {
         "Page",
         "PAGE_PANEL_CLICKED",
         "custom-page-tab",
-        `<img alt="page" src="https://app.genera.sh/assets/images/icon-pages.svg" />`
+        `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none"><script xmlns="" id="eppiocemhmnlbhjplcgkofciiegomcon"/><script xmlns=""/><script xmlns=""/><g clip-path="url(#clip0_3_49195)"><path d="M10.834 2.66699H5.00065C4.55862 2.66699 4.1347 2.84259 3.82214 3.15515C3.50958 3.46771 3.33398 3.89163 3.33398 4.33366V17.667C3.33398 18.109 3.50958 18.5329 3.82214 18.8455C4.1347 19.1581 4.55862 19.3337 5.00065 19.3337H15.0007C15.4427 19.3337 15.8666 19.1581 16.1792 18.8455C16.4917 18.5329 16.6673 18.109 16.6673 17.667V8.50033L10.834 2.66699Z" stroke="#868686" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M10.834 2.66699V8.50033H16.6673" stroke="#868686" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></g><defs><clipPath id="clip0_3_49195"><rect width="20" height="20" fill="white"/></clipPath></defs></svg>`
       );
 
       const componentTab = createTab(
@@ -296,6 +281,13 @@ export function Client() {
         console.log("REACT APP:Received from Angular:", event.data.payload);
         setPuckData(event.data.payload);
         rebuildMegaMenuStore(event.data.payload);
+        window.parent.postMessage(
+          {
+            type: "PUCK_PUBLISHED_PANEL",
+            payload: "PANEL_CLOSED",
+          },
+          "*"
+        );
         setMode("preview");
       }
     };
@@ -385,6 +377,11 @@ export function Client() {
 
           item.addEventListener("click", () => {
             console.log("PANEL_CLOSED triggered from:", text);
+            document
+              .querySelectorAll(".custom-page-tab, .custom-component-tab")
+              .forEach((el: any) => {
+                el.classList.remove("custom-tab-active");
+              });
 
             window.parent.postMessage(
               {
@@ -469,7 +466,17 @@ export function Client() {
                     </div>
                     <div style={{ display: "flex", alignItems: "center", maxHeight: "66px" }}>
                       <button
-                        onClick={() => setMode("preview")}
+                        onClick={() => {
+                          setMode("preview")
+
+                          window.parent.postMessage(
+                            {
+                              type: "PUCK_PUBLISHED_PANEL",
+                              payload: "PANEL_CLOSED",
+                            },
+                            "*"
+                          );
+                        }}
                         style={{
                           padding: "5px 12px", marginRight: "10px", borderRadius: "6px", border: "1px solid #000000", background: "#ffffff", color: "#000000", cursor: "pointer",
                         }}
