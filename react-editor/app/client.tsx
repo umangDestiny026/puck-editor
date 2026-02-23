@@ -8,7 +8,7 @@ import config from "../puck.config";
 import { Render } from "@puckeditor/core";
 import { megaMenuStore } from "./zone";
 import { usePuck } from "./PuckContext";
-
+import './client.css'
 // const aiPlugin = createAiPlugin();
 const initialData = { content: [] };
 
@@ -164,7 +164,7 @@ export function Client() {
         li.className = className;
         li.style.cursor = "pointer";
         li.style.padding = "8px 4px";
-        li.style.borderRadius = "6px";
+        // li.style.borderRadius = "6px";
         li.style.marginBottom = "6px";
         li.style.display = "flex";
         li.style.justifyContent = "center";
@@ -197,29 +197,38 @@ export function Client() {
         li.appendChild(wrapper);
 
         // Default active state for Page
+        // const setActive = (active: boolean) => {
+        //   if (active) {
+        //     li.classList.add("custom-tab-active");
+        //     li.style.color = "#0158ad";
+        //     li.style.borderRight = "4px solid #0158ad";
+        //     li.querySelectorAll("path").forEach((p: any) => {
+        //       p.setAttribute("stroke", "#0158ad");
+        //       p.setAttribute("fill", "#0158ad");
+        //     });
+        //   } else {
+        //     li.classList.remove("custom-tab-active");
+        //     li.style.background = "#ffffff00";
+        //     li.style.color = "#111827";
+        //     li.querySelectorAll("path").forEach((p: any) => {
+        //       p.setAttribute("stroke", "#868686");
+        //       p.setAttribute("fill", "#868686");
+        //     });
+        //   }
+        // };
         const setActive = (active: boolean) => {
           if (active) {
-            // li.style.background = "#2563eb";
-            li.style.color = "#000000";
-            li.querySelectorAll("path").forEach((p: any) => {
-              p.setAttribute("stroke", "#ffffff");
-              p.setAttribute("fill", "#ffffff");
-            });
+            li.classList.add("custom-tab-active");
           } else {
-            li.style.background = "#f3f4f6";
-            li.style.color = "#111827";
-            li.querySelectorAll("path").forEach((p: any) => {
-              p.setAttribute("stroke", "#868686");
-              p.setAttribute("fill", "#868686");
-            });
+            li.classList.remove("custom-tab-active");
           }
         };
 
-        if (label === "Page") {
-          setActive(true);
-        } else {
-          setActive(false);
-        }
+        // if (label === "Page") {
+        //   setActive(true);
+        // } else {
+        //   setActive(false);
+        // }
 
         li.onclick = () => {
           console.log("PUCK_PUBLISHED_PANEL =>", payload);
@@ -231,17 +240,14 @@ export function Client() {
             },
             "*"
           );
+          // 🔥 1. Reset native Puck tabs
+          resetNativeNavActive();
 
           // Reset all
           navList
             .querySelectorAll(".custom-page-tab, .custom-component-tab")
             .forEach((el: any) => {
-              el.style.background = "#f3f4f6";
-              el.style.color = "#111827";
-              el.querySelectorAll("path").forEach((p: any) => {
-                p.setAttribute("stroke", "#868686");
-                p.setAttribute("fill", "#868686");
-              });
+              el.classList.remove("custom-tab-active");
             });
 
           setActive(true);
@@ -359,6 +365,72 @@ export function Client() {
     } catch (error) {
       alert("Failed to export JSON");
     }
+  };
+
+  useEffect(() => {
+    const attachPanelListeners = () => {
+      // Select native nav items (Blocks + Outline)
+      const navItems = document.querySelectorAll(
+        'li[class*="NavItem"]'
+      );
+
+      if (!navItems.length) return;
+
+      navItems.forEach((item) => {
+        const text = item.textContent?.trim();
+
+        if (text === "Blocks" || text === "Outline") {
+          // Avoid duplicate binding
+          if ((item as any)._panelListenerAttached) return;
+
+          item.addEventListener("click", () => {
+            console.log("PANEL_CLOSED triggered from:", text);
+
+            window.parent.postMessage(
+              {
+                type: "PUCK_PUBLISHED_PANEL",
+                payload: "PANEL_CLOSED",
+              },
+              "*"
+            );
+          });
+
+          (item as any)._panelListenerAttached = true;
+        }
+      });
+    };
+
+
+    // Run initially
+    attachPanelListeners();
+
+    // Observe sidebar rebuild (Puck re-renders often)
+    const observer = new MutationObserver(() => {
+      attachPanelListeners();
+    });
+
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  const resetNativeNavActive = () => {
+    setTimeout(() => {
+      const nativeItems = document.querySelectorAll(
+        'li[class*="_NavItem_"]'
+      );
+
+      nativeItems.forEach((item: any) => {
+        item.classList.forEach((cls: string) => {
+          if (cls.includes("_NavItem--active_")) {
+            item.classList.remove(cls);
+          }
+        });
+      });
+    }, 0);
   };
 
   return (

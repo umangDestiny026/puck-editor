@@ -1,0 +1,22 @@
+.custom-page-tab,
+.custom-component-tab {
+  color: #111827;
+  border-right: 4px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.custom-page-tab svg path,
+.custom-component-tab svg path {
+  stroke: #868686;
+  fill: #868686;
+}
+
+.custom-tab-active {
+  color: #0158ad !important;
+  border-right: 4px solid #0158ad !important;
+}
+
+.custom-tab-active svg path {
+  stroke: #0158ad !important;
+  fill: #0158ad !important;
+}
