@@ -25,7 +25,7 @@ import { ModalBlock } from "./app/component/ModalBlock";
 export const config = {
   categories: {
     Layout: {
-      components: ["Container", "Grid", "Flex", "Flexbox"],
+      components: ["Container", "Grid", "Flex", "Flexbox", "GridZone"],
     },
 
     Sections: {
@@ -1901,8 +1901,8 @@ export const config = {
       },
     },
 
-    Grid: {
-      label: "🧱 Grid",
+    GridZone: {
+      label: "🧱 Multi Content - Grid",
       fields: {
         className: {
           type: "text",
@@ -1974,7 +1974,7 @@ export const config = {
       render: (props) => {
         const { columns, rows, gap, alignItems, justifyItems, maxWidth, padding, className, customCss, id } = props
         const gridId = `grid-${id}`;
-        
+
         return (
           <>
             <style>
@@ -2015,6 +2015,126 @@ export const config = {
                 />
               ))}
             </div>
+          </>
+        );
+      },
+    },
+    
+    Grid: {
+      label: "🧱 Grid",
+      fields: {
+        className: {
+          type: "text",
+          label: "Custom class",
+        },
+        columns: {
+          type: "number",
+          label: "Columns",
+        },
+
+        rows: {
+          type: "number",
+          label: "Rows",
+        },
+
+        gap: {
+          type: "number",
+          label: "Gap (px)",
+        },
+        customCss: {
+          type: "textarea",
+          label: "Custom CSS",
+        },
+        alignItems: {
+          type: "select",
+          label: "Align items",
+          options: [
+            { label: "Stretch", value: "stretch" },
+            { label: "Start", value: "start" },
+            { label: "Center", value: "center" },
+            { label: "End", value: "end" },
+          ],
+        },
+
+        justifyItems: {
+          type: "select",
+          label: "Justify items",
+          options: [
+            { label: "Start", value: "start" },
+            { label: "Center", value: "center" },
+            { label: "End", value: "end" },
+            { label: "Stretch", value: "stretch" },
+          ],
+        },
+        maxWidth: {
+          type: "number",
+          label: "Max width (px)",
+        },
+
+        padding: {
+          type: "number",
+          label: "Padding (px)",
+        },
+
+      },
+
+      defaultProps: {
+        columns: 2,
+        rows: undefined,
+        gap: 16,
+        alignItems: "",
+        justifyItems: "",
+        maxWidth: 1200,
+        padding: 0,
+        className: "",
+        customCss: "",
+      },
+
+      render: ({
+        columns,
+        rows,
+        gap,
+        alignItems,
+        justifyItems,
+        maxWidth,
+        padding,
+        className,
+        customCss,
+      }) => {
+        const gridId = `grid-${Math.random().toString(36).slice(2)}`;
+
+        return (
+          <>
+            <style>
+              {`
+          /* Base grid styles */
+          .${gridId} {
+            gap: ${gap}px;
+            align-items: ${alignItems};
+            justify-items: ${justifyItems};
+            max-width: ${maxWidth}px;
+            padding: ${padding}px;
+            margin: 0 auto;
+          }
+
+          /* Custom user CSS attached to class */
+            ${className && customCss
+                  ? `.${className} { ${customCss} }`
+                  : ""
+                }
+            `}
+            </style>
+
+            <DropZone
+              // id={gridId}
+              style={{
+                display: "grid",
+                gridTemplateColumns: `repeat(${columns || 1}, 1fr)`,
+                gridTemplateRows: `repeat(${rows || 1}, auto)`,
+              }}
+              zone="grid-zone"
+              className={`${className} ${gridId}`}
+            />
           </>
         );
       },

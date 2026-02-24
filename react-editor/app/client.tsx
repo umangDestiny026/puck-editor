@@ -311,19 +311,24 @@ export function Client() {
         const importedData = JSON.parse(e.target?.result as string);
 
         const mergedData = {
-          ...puckData, // start from existing state
-          ...importedData, // override top-level if needed
-          content: [
-            ...(puckData.content || []),
-            ...(importedData.content || []),
-          ],
-          zones: {
-            ...(puckData.zones || {}),
-            ...(importedData.zones || {}),
+          root: {
+            ...puckData.root,
+            ...importedData.root,
           },
+
+          content: mergeUniqueContent(
+            puckData.content,
+            importedData.content
+          ),
+
+          zones: mergeUniqueZones(
+            puckData.zones,
+            importedData.zones
+          ),
         };
 
-        console.log("Merged data:", mergedData);
+        console.log("Merged unique data:", mergedData);
+
         setPuckData(mergedData);
         rebuildMegaMenuStore(mergedData);
         setMode("preview");
@@ -589,4 +594,38 @@ const rebuildMegaMenuStore = (data: any) => {
       });
     }
   });
+};
+
+
+const mergeUniqueContent = (existing: any[] = [], incoming: any[] = []) => {
+  const map = new Map();
+
+  [...existing, ...incoming].forEach((item) => {
+    if (item?.props?.id) {
+      map.set(item.props.id, item);
+    }
+  });
+
+  return Array.from(map.values());
+};
+
+const mergeUniqueZones = (existing: any = {}, incoming: any = {}) => {
+  const mergedZones: any = { ...existing };
+
+  Object.keys(incoming).forEach((zoneKey) => {
+    const existingZoneItems = existing[zoneKey] || [];
+    const incomingZoneItems = incoming[zoneKey] || [];
+
+    const map = new Map();
+
+    [...existingZoneItems, ...incomingZoneItems].forEach((item) => {
+      if (item?.props?.id) {
+        map.set(item.props.id, item);
+      }
+    });
+
+    mergedZones[zoneKey] = Array.from(map.values());
+  });
+
+  return mergedZones;
 };
