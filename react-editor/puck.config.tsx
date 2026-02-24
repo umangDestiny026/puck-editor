@@ -1963,27 +1963,18 @@ export const config = {
         columns: 2,
         rows: undefined,
         gap: 16,
-        alignItems: "start",
-        justifyItems: "center",
+        alignItems: "",
+        justifyItems: "",
         maxWidth: 1200,
         padding: 0,
         className: "",
         customCss: "",
       },
 
-      render: ({
-        columns,
-        rows,
-        gap,
-        alignItems,
-        justifyItems,
-        maxWidth,
-        padding,
-        className,
-        customCss,
-      }) => {
-        const gridId = `grid-${Math.random().toString(36).slice(2)}`;
-
+      render: (props) => {
+        const { columns, rows, gap, alignItems, justifyItems, maxWidth, padding, className, customCss, id } = props
+        const gridId = `grid-${id}`;
+        
         return (
           <>
             <style>
@@ -2006,16 +1997,24 @@ export const config = {
             `}
             </style>
 
-            <DropZone
-              // id={gridId}
+            <div
+              className={`${className} ${gridId}`}
               style={{
                 display: "grid",
                 gridTemplateColumns: `repeat(${columns || 1}, 1fr)`,
-                gridTemplateRows: `repeat(${rows || 1}, auto)`,
+                gridTemplateRows: rows
+                  ? `repeat(${rows}, auto)`
+                  : undefined,
               }}
-              zone="grid-zone"
-              className={`${className} ${gridId}`}
-            />
+            >
+              {Array.from({ length: columns || 1 }).map((_, index) => (
+                <DropZone
+                  key={index}
+                  zone={`grid-zone-${gridId}-${index}`}
+                  style={{ minHeight: "50px" }}
+                />
+              ))}
+            </div>
           </>
         );
       },
