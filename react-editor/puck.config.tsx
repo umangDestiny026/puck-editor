@@ -25,11 +25,11 @@ import { ModalBlock } from "./app/component/ModalBlock";
 export const config = {
   categories: {
     Layout: {
-      components: ["Container", "Grid", "Flex", "Flexbox", "GridZone"],
+      components: ["Container", , "Flex", "Flexbox", "Grid", "GridZone", "ThreeNineGrid"],
     },
 
     Sections: {
-      components: ["SliderSection", "CardSliderBlock", "Carousel", "ImageText", "Card"],
+      components: ["SliderSection", "CardSliderBlock", "Carousel", "ImageText", "Card", "CardCustom"],
     },
 
     Content: {
@@ -1901,6 +1901,228 @@ export const config = {
       },
     },
 
+    ThreeNineGrid: {
+      label: "🧱 3 / 9 Grid",
+
+      fields: {
+        className: {
+          type: "text",
+          label: "Custom class",
+        },
+
+        customCss: {
+          type: "textarea",
+          label: "Custom CSS",
+        },
+
+        gap: {
+          type: "number",
+          label: "Gap (px)",
+        },
+
+        stackOnMobile: {
+          type: "select",
+          label: "Mobile layout",
+          options: [
+            { label: "Stack (default)", value: "stack" },
+            { label: "Keep 3/9", value: "inline" },
+          ],
+        },
+
+        padding: {
+          type: "number",
+          label: "Padding (px)",
+        },
+      },
+
+      defaultProps: {
+        gap: 24,
+        stackOnMobile: "stack",
+        padding: 0,
+        className: "",
+        customCss: "",
+      },
+
+      render: (props) => {
+        const {
+          gap,
+          stackOnMobile,
+          padding,
+          className,
+          customCss,
+          id,
+        } = props;
+
+        const gridId = `three-nine-${id}`;
+
+        return (
+          <>
+            <style>
+              {`
+          .${gridId} {
+            display: grid;
+            grid-template-columns: 3fr 9fr;
+            gap: ${gap}px;
+            padding: ${padding}px;
+            margin: 0 auto;
+          }
+
+          /* Tablet */
+          @media (max-width: 1024px) {
+            .${gridId} {
+              grid-template-columns: 1fr;
+            }
+          }
+
+          /* Mobile behavior */
+          @media (max-width: 768px) {
+            .${gridId} {
+              ${stackOnMobile === "stack"
+                  ? "grid-template-columns: 1fr;"
+                  : "grid-template-columns: 3fr 9fr;"
+                }
+            }
+          }
+
+          ${className && customCss
+                  ? `.${className} { ${customCss} }`
+                  : ""}
+          `}
+            </style>
+
+            <div className={`${gridId} ${className || ""}`}>
+              {/* Left 3 column */}
+              <DropZone
+                zone={`three-nine-left-${id}`}
+                style={{ minHeight: "80px" }}
+              />
+
+              {/* Right 9 column */}
+              <DropZone
+                zone={`three-nine-right-${id}`}
+                style={{ minHeight: "80px" }}
+              />
+            </div>
+          </>
+        );
+      },
+    },
+    CardCustom: {
+      label: "🃏 Custom Card",
+
+      fields: {
+        className: {
+          type: "text",
+          label: "Custom class",
+        },
+
+        customCss: {
+          type: "textarea",
+          label: "Custom CSS",
+        },
+
+        borderRadius: {
+          type: "number",
+          label: "Border radius (px)",
+        },
+
+        boxShadow: {
+          type: "text",
+          label: "Box shadow (CSS value)",
+        },
+
+        width: {
+          type: "text",
+          label: "Width (e.g. 100%, 300px)",
+        },
+
+        maxWidth: {
+          type: "number",
+          label: "Max width (px)",
+        },
+
+        height: {
+          type: "text",
+          label: "Height (e.g. auto, 400px)",
+        },
+
+        padding: {
+          type: "number",
+          label: "Padding (px)",
+        },
+
+        backgroundColor: {
+          type: "text",
+          label: "Background color",
+        },
+
+        border: {
+          type: "text",
+          label: "Border (CSS value)",
+        },
+      },
+
+      defaultProps: {
+        borderRadius: 12,
+        boxShadow: "0 4px 20px rgba(0,0,0,0.08)",
+        width: "100%",
+        maxWidth: 400,
+        height: "auto",
+        padding: 20,
+        backgroundColor: "#ffffff",
+        border: "1px solid #eee",
+        className: "",
+        customCss: "",
+      },
+
+      render: (props) => {
+        const {
+          borderRadius,
+          boxShadow,
+          width,
+          maxWidth,
+          height,
+          padding,
+          backgroundColor,
+          border,
+          className,
+          customCss,
+          id,
+        } = props;
+
+        const cardId = `card-${id}`;
+
+        return (
+          <>
+            <style>
+              {`
+            .${cardId} {
+              border-radius: ${borderRadius}px;
+              box-shadow: ${boxShadow};
+              width: ${width};
+              max-width: ${maxWidth}px;
+              height: ${height};
+              padding: ${padding}px;
+              background-color: ${backgroundColor};
+              border: ${border};
+              box-sizing: border-box;
+              margin: 0 auto;
+              transition: all 0.3s ease;
+            }
+
+            ${className && customCss
+                  ? `.${className} { ${customCss} }`
+                  : ""}
+          `}
+            </style>
+
+            <div className={`${cardId} ${className || ""}`}>
+              <DropZone zone={`card-content-${id}`} />
+            </div>
+          </>
+        );
+      },
+    },
     GridZone: {
       label: "🧱 Multi Content - Grid",
       fields: {
@@ -2019,7 +2241,7 @@ export const config = {
         );
       },
     },
-    
+
     Grid: {
       label: "🧱 Grid",
       fields: {
@@ -2273,125 +2495,153 @@ export const config = {
     Accordion: {
       label: "🧷 Accordion",
 
+      resolveFields: (data: any) => {
+        const items = data.props?.items || [];
+
+        const baseFields: any = {
+          className: { type: "text", label: "Custom class" },
+          customCss: { type: "textarea", label: "Custom CSS" },
+
+          title: {
+            type: "text",
+            label: "Section Title",
+          },
+
+          backgroundColor: {
+            type: "text",
+            label: "Background color (CSS value)",
+          },
+
+          itemSpacing: {
+            type: "number",
+            label: "Vertical spacing (px)",
+          },
+
+          iconImage: {
+            type: "text",
+            label: "Accordion icon (image URL)",
+          },
+
+          items: {
+            type: "array",
+            label: "Accordion items",
+            arrayFields: {
+              title: { type: "text", label: "Title" },
+              description: {
+                type: "textarea",
+                label: "Description",
+              },
+            },
+            defaultItemProps: {
+              title: "Accordion Item",
+              description: "Accordion description...",
+            },
+          },
+        };
+
+        if (items.length > 0) {
+          return {
+            ...baseFields,
+            activeItemIndex: {
+              type: "select",
+              label: "Active accordion (for editing)",
+              options: items.map((item: any, index: number) => ({
+                label: item.title || `Item ${index + 1}`,
+                value: index,
+              })),
+            },
+          };
+        }
+
+        return baseFields;
+      },
+
       defaultProps: {
+        title: "Accordion Title",
         backgroundColor: "#ffffff",
         itemSpacing: 12,
-        iconPosition: "right",
+        activeItemIndex: 0,
         items: [
           {
-            id: "acc-1",
             title: "First accordion item",
             description: "Click here to edit description...",
+          },
+          {
+            title: "Second accordion item",
+            description: "Another description...",
           },
         ],
       },
 
-      fields: {
-        className: { type: "text", label: "Custom class" },
-        customCss: {
-          type: "textarea",
-          label: "Custom CSS",
-        },
+      render: (props: any) => {
+        const {
+          items,
+          className,
+          customCss,
+          itemSpacing,
+          title,
+          backgroundColor,
+          activeItemIndex = 0,
+        } = props;
 
-        Title: {
-          type: "text",
-          label: "Tab Title",
-        },
+        const [openIndex, setOpenIndex] = React.useState<number | null>(
+          activeItemIndex ?? 0
+        );
 
-        items: {
-          type: "array",
-          label: "Accordion items",
-          arrayFields: {
-            title: { type: "text", label: "Title" },
+        React.useEffect(() => {
+          setOpenIndex(activeItemIndex ?? 0);
+        }, [activeItemIndex]);
 
-            description: {
-              type: "textarea",
-              label: "Description",
-              contentEditable: true,
-            },
-          },
-
-          getItemSummary: (item) => item.title || "Accordion item",
-        },
-
-        itemSpacing: {
-          type: "number",
-          label: "Vertical spacing (px)",
-        },
-        iconImage: {
-          type: "text",
-          label: "Accordion icon (image URL)",
-        },
-      },
-
-      // defaultProps: {
-      //   className: "accordion-001",
-      //   customCss: "",
-      // },
-      render: ({
-        items,
-        className,
-        customCss,
-        itemSpacing,
-        Title = "Title"
-      }) => {
-        const [openIndex, setOpenIndex] = React.useState<string | null>(null);
-
-        const wrapperClass = className || "";
         const uniqueClass = `accordion-${Math.random()
           .toString(36)
           .substr(2, 9)}`;
 
-        const toggleItem = (key: string) => {
-          setOpenIndex((prev) => (prev === key ? null : key));
-        };
-
         return (
-          <div className={`${wrapperClass} ${uniqueClass}`}>
+          <div className={`${className || ""} ${uniqueClass}`}>
             {customCss && (
               <style>{`.${uniqueClass} { ${customCss} }`}</style>
             )}
-            <View
-              backgroundColor={{ base: "#fff", xl: "#F6F6F6" }}
-              as="section"
-              maxWidth={{ base: "100%", xl: "80%" }}
-              margin={{ base: "57px 0 42px", xl: "148px auto 82px" }}
-              padding={{ base: "57px 0 42px", xl: "78px 30px 82px" }}
-            >
-              <Text margin={{ base: "0 0 42px", xl: "0 0 40px" }} fontSize={{ base: "30px", xl: "40px" }}>{Title}</Text>
 
-              {items?.map((item, index) => {
-                const key = `${index}`;
-                const isOpen = openIndex === key;
+            <View
+              as="section"
+              backgroundColor={backgroundColor}
+              padding={{ base: "40px 20px", xl: "80px 40px" }}
+            >
+              {title && (
+                <Text
+                  margin={{ base: "0 0 30px", xl: "0 0 40px" }}
+                  fontSize={{ base: "24px", xl: "36px" }}
+                >
+                  {title}
+                </Text>
+              )}
+
+              {items?.map((item: any, index: number) => {
+                const isOpen = openIndex === index;
 
                 return (
                   <View
-                    key={item.id || index}
-                    border="1px solid #D9D9D9"
-                    borderWidth="0 0 1px 0"
-                    overflow="hidden"
+                    key={index}
+                    // borderBottom="1px solid #D9D9D9"
+                    style={{
+                      borderBottom: "1px solid #D9D9D9"
+                    }}
                     marginBottom={`${itemSpacing}px`}
                   >
                     {/* Header */}
                     <View
-                      padding={{ base: "10px 0", xl: "1rem 0" }}
+                      padding="1rem 0"
                       display="flex"
                       style={{
-                        alignItems: "center",
-                        cursor: "pointer",
                         justifyContent: "space-between",
+                        cursor: "pointer",
                       }}
-                      onClick={() => toggleItem(key)}
+                      onClick={() =>
+                        setOpenIndex(isOpen ? null : index)
+                      }
                     >
-                      <Text
-                        fontWeight="600"
-                        fontSize={{ base: "14px", xl: "1.125rem" }}
-                        color="#000"
-                      >
-                        {item.title}
-                      </Text>
-
-                      <Text fontSize="1.5rem" fontWeight="bold">
+                      <Text fontWeight="600">{item.title}</Text>
+                      <Text fontSize="20px">
                         {isOpen ? "−" : "+"}
                       </Text>
                     </View>
@@ -2399,14 +2649,17 @@ export const config = {
                     {/* Content */}
                     {isOpen && (
                       <View padding="1rem 0">
-                        <Text
-                          fontSize="14px"
-                          color="#58595B"
-                          lineHeight="140%"
-                          dangerouslySetInnerHTML={{
-                            __html: item.description,
-                          }}
-                        />
+                        {item.description && (
+                          <div
+                            style={{ marginBottom: "10px" }}
+                            dangerouslySetInnerHTML={{
+                              __html: item.description,
+                            }}
+                          />
+                        )}
+
+                        {/* ✅ DropZone per accordion item */}
+                        <DropZone zone={`accordion-${index}`} />
                       </View>
                     )}
                   </View>
