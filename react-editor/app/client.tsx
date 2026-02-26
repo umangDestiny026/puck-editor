@@ -281,14 +281,14 @@ export function Client() {
         console.log("REACT APP:Received from Angular:", event.data.payload);
         setPuckData(event.data.payload);
         rebuildMegaMenuStore(event.data.payload);
-        window.parent.postMessage(
-          {
-            type: "PUCK_PUBLISHED_PANEL",
-            payload: "PANEL_CLOSED",
-          },
-          "*"
-        );
-        setMode("preview");
+        // window.parent.postMessage(
+        //   {
+        //     type: "PUCK_PUBLISHED_PANEL",
+        //     payload: "PANEL_CLOSED",
+        //   },
+        //   "*"
+        // );
+        // setMode("preview");
       }
     };
 
