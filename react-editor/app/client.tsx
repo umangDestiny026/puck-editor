@@ -15,6 +15,7 @@ const initialData = { content: [] };
 export function Client() {
   const { puckData, setPuckData } = usePuck();
   const [mode, setMode] = useState("edit");
+  const [editorKey, setEditorKey] = useState(0);
 
   const debouncedPublish = useMemo(
     () =>
@@ -280,6 +281,7 @@ export function Client() {
       if (event.data?.type === "LOAD_PUCK_DATA") {
         console.log("REACT APP:Received from Angular:", event.data.payload);
         setPuckData(event.data.payload);
+        setEditorKey(prev => prev + 1);
         rebuildMegaMenuStore(event.data.payload);
         // window.parent.postMessage(
         //   {
@@ -447,6 +449,7 @@ export function Client() {
       {
         mode === "edit" ? (
           <Puck
+            key={editorKey}
             plugins={[]}
             config={config as any}
             onChange={(updatedData) => {
@@ -489,53 +492,10 @@ export function Client() {
                         Preview
                       </button>
                     </div>
-                    {/* <div style={{ display: "flex", alignItems: "center" }}>
-                      <label
-                        style={{
-                          width: "120px",
-                          display: "inline-flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          padding: "8px 16px",
-                          backgroundColor: "#0158ad",
-                          color: "#ffffff",
-                          borderRadius: "6px",
-                          cursor: "pointer",
-                          fontSize: "14px",
-                          fontWeight: 500,
-                          border: "1px solid #2563eb",
-                          transition: "all 0.2s ease",
-                          height: "36px",
-                        }}
-                        onMouseEnter={(e) =>
-                          (e.currentTarget.style.backgroundColor = "#1d4ed8")
-                        }
-                        onMouseLeave={(e) =>
-                          (e.currentTarget.style.backgroundColor = "#2563eb")
-                        }
-                      >
-                        Import JSON
-                        <input
-                          type="file"
-                          accept=".json"
-                          onChange={handleImportJSON}
-                          style={{ display: "none" }}
-                        />
-                      </label>
-                    </div> */}
                   </div>
                 );
               },
             }}
-          // onPublish={(data) => {
-          //   setPuckData(data);
-          //   console.log("Page save data =>", data);
-
-          //   window.parent.postMessage(
-          //     { type: "PUCK_PUBLISHED", payload: data },
-          //     "*"
-          //   );
-          // }}
           />) : (
           <>
             <div
