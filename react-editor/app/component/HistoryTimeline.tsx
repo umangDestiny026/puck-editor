@@ -94,7 +94,7 @@ const styles = {
     },
 }
 
-const HistoryTimeline: React.FC<ToyotaHistoryTimelineProps> = (
+export const HistoryTimeline: React.FC<ToyotaHistoryTimelineProps> = (
     props
 ) => {
 
@@ -569,6 +569,3 @@ const HistoryTimeline: React.FC<ToyotaHistoryTimelineProps> = (
         </View>
     );
 };
-
-
-export default HistoryTimeline;

@@ -64,7 +64,7 @@ const getYouTubeId = (url: string) => {
     return match ? match[1] : "";
 };
 
-const Carousel: React.FC<MainSliderProps> = ({
+const MainSlider: React.FC<MainSliderProps> = ({
     slides = [],
     alignBottom = false,
     isPlayicon = true,
@@ -321,4 +321,4 @@ const Carousel: React.FC<MainSliderProps> = ({
     );
 };
 
-export default Carousel;
+export default MainSlider;
