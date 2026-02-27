@@ -36,6 +36,7 @@ import Container from "./app/component/ContainerBlock";
 import ImageTextSection from "./app/component/ImageTextSectionBlock";
 import Card from "./app/component/Card";
 import TextEditor from "./app/component/TextEditor";
+import TableBlock from "./app/component/Table";
 
 export const config = {
   categories: {
@@ -2114,6 +2115,80 @@ export const config = {
       render: (props) => {
         return <Flexs {...props} />;
       }
+    },
+
+    Table: {
+      label: "📊 Table",
+      fields: {
+        rows: {
+          type: "number",
+          label: "Rows",
+          min: 1,
+          defaultValue: 3,
+        },
+
+        columns: {
+          type: "number",
+          label: "Columns",
+          min: 1,
+          defaultValue: 3,
+        },
+
+        hasHeader: {
+          type: "radio",
+          label: "Header Row",
+          options: [
+            { label: "Yes", value: true },
+            { label: "No", value: false },
+          ],
+        },
+
+        bordered: {
+          type: "radio",
+          label: "Table Border",
+          options: [
+            { label: "Bordered", value: "bordered" },
+            { label: "Default", value: undefined },
+          ],
+        },
+
+        highlightOnHover: {
+          type: "radio",
+          label: "Highlight on hover",
+          options: [
+            { label: "Yes", value: true },
+            { label: "No", value: false },
+          ],
+        },
+
+        className: {
+          type: "text",
+          label: "Class name",
+        },
+
+        uniqueClass: {
+          type: "text",
+          label: "Unique class",
+        },
+
+        customCss: {
+          type: "textarea",
+          label: "Custom CSS",
+        },
+      },
+
+      defaultProps: {
+        rows: 3,
+        columns: 3,
+        hasHeader: true,
+        bordered: "bordered",
+        highlightOnHover: false,
+        className: "",
+        uniqueClass: "",
+        customCss: "",
+      },
+
+      render: (props) => <TableBlock {...props} />,
     },
 
     Accordion: {
