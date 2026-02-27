@@ -75,7 +75,7 @@ interface MenuProps {
     linkStyle?: React.CSSProperties; // Add this new prop
 }
 
-const SubmenuDropdown: React.FC<MenuProps> = ({
+const MulipleMegaMenuItems: React.FC<MenuProps> = ({
     columns,
     isMobile = false,
     onClose,
@@ -587,4 +587,4 @@ const MenuColumn: React.FC<{
         );
     };
 
-export default SubmenuDropdown;
+export default MulipleMegaMenuItems;

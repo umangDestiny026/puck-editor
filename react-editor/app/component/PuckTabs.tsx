@@ -5,7 +5,7 @@ import { Heading, Tabs, Text, View } from "@aws-amplify/ui-react";
 import "@aws-amplify/ui-react/styles.css";
 import { Select } from "./select";
 
-const TabsRenderer = ({
+const PuckTabs = ({
     tabs,
     activeTabIndex,
     className,
@@ -162,4 +162,4 @@ const TabsRenderer = ({
     );
 };
 
-export default TabsRenderer;
+export default PuckTabs;

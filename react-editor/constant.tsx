@@ -1,6 +1,6 @@
 'use client';
 
-import MegaMenuRenderer from "./app/component/MegaMenu";
+import MegaMenuRenderer  from "./app/component/MegaMenu";
 
 export const MegaMenu = {
   label: "🧾 Mega Menu",

@@ -1,28 +1,25 @@
 import { RichTextMenu } from "@puckeditor/core";
 import Superscript from "@tiptap/extension-superscript";
 import { Superscript as SuperscriptIcon } from "lucide-react";
-import MainSlider from "./app/component/MainSlider";
-import PuckInput from "./app/component/Input";
-import PuckCheckbox from "./app/component/Checkbox";
+import MainSlider from "./app/component/Carousel";
+import PuckInput from "./app/component/PuckInput";
+import PuckCheckbox from "./app/component/PuckCheckbox";
 import Navbar from "./app/component/Navbar";
-import PuckDatePicker from "./app/component/DatePicker";
-import PuckDropdown from "./app/component/Dropdown";
-import PuckSearchableDropdown from "./app/component/SearchDropdown";
-import PuckRadioGroup from "./app/component/RadioBtn";
-import PuckForm from "./app/component/Form";
-import TabsRenderer from "./app/component/Tab";
+import PuckDatePicker from "./app/component/PuckDatePicker";
+import PuckDropdown from "./app/component/PuckDropdown";
+import PuckSearchableDropdown from "./app/component/PuckSearchableDropdown";
+import PuckRadioGroup from "./app/component/PuckRadioGroup";
+import PuckForm from "./app/component/PuckForm";
 import React, { useEffect } from "react";
-import SubmenuDropdown from "./app/component/SubMenu";
 import { MegaMenu } from "./constant";
 import { megaMenuStore } from "./app/zone";
-import { SliderSection } from "./app/component/ImageTextSlider";
+import { SliderSection } from "./app/component/SliderSection";
 import CardSlider from "./app/component/CardSlider";
 import PuckAmplifyButton from "./app/component/PuckAmplifyButton";
 import PuckStepper from "./app/component/PuckStepper";
-import { ModalBlock } from "./app/component/ModalBlock";
-import { HistoryTimeline } from "./app/component/HistoryTimeline";
-import TextBlock from "./app/component/Text";
-import FooterBlock from "./app/component/Footer";
+import HistoryTimeline from "./app/component/HistoryTimeline";
+import TextBlock from "./app/component/TextBlock";
+import FooterBlock from "./app/component/FooterBlock";
 import FlexBlock from "./app/component/FlexBlock";
 import ImageBlock from "./app/component/ImageBlock";
 import VideoBlock from "./app/component/VideoBlock";
@@ -30,42 +27,46 @@ import ThreeNineGridBlock from "./app/component/ThreeNineGridBlock";
 import CardBlock from "./app/component/CardBlock";
 import GridBlock from "./app/component/GridBlock";
 import Grid from "./app/component/Grid";
-import Flexs from "./app/component/Flex";
-import Accordion from "./app/component/AccordionBlock";
-import Container from "./app/component/ContainerBlock";
-import ImageTextSection from "./app/component/ImageTextSectionBlock";
+import Flexs from "./app/component/Flexs";
+import Accordion from "./app/component/Accordion";
+import Container from "./app/component/Container";
+import ImageTextSection from "./app/component/ImageTextSection";
 import Card from "./app/component/Card";
-import TextEditor from "./app/component/TextEditor";
-import TableBlock from "./app/component/Table";
+import RichTextBlock from "./app/component/RichTextBlock";
+import TableBlock from "./app/component/TableBlock";
+import MulipleMegaMenuItems from "./app/component/MulipleMegaMenuItems";
+import ModalBlock from "./app/component/ModalBlock";
+import Carousel from "./app/component/Carousel";
+import PuckTabs from "./app/component/PuckTabs";
 
 export const config = {
   categories: {
     Layout: {
-      components: ["Container", , "Flex", "Flexbox", "Grid", "GridZone", "ThreeNineGrid"],
+      components: ["Container", , "Flexs", "Flexbox", "Grid", "GridBlock", "ThreeNineGridBlock"],
     },
 
     Sections: {
-      components: ["SliderSection", "CardSliderBlock", "Carousel", "ImageText", "Card", "CardCustom"],
+      components: ["SliderSection", "CardSlider", "Carousel", "ImageTextSection", "Card", "CardBlock"],
     },
 
     Content: {
-      components: ["Text", "RichTextBlock", "Button"],
+      components: ["TextBlock", "RichTextBlock", "PuckAmplifyButton"],
     },
 
     Media: {
-      components: ["Image", "Video"],
+      components: ["ImageBlock", "VideoBlock"],
     },
 
     Forms: {
-      components: ["Form", "Input", "Checkbox", "RadioGroup", "Dropdown", "SearchableDropdown", "DatePicker", "Stepper"],
+      components: ["PuckForm", "PuckInput", "PuckCheckbox", "PuckRadioGroup", "PuckDropdown", "PuckSearchableDropdown", "PuckDatePicker", "PuckStepper"],
     },
 
     Navigation: {
-      components: ["Header", "Footer", "MegaMenu", "MulipleMegaMenuItems", "Tabs", "Accordion"],
+      components: ["Navbar", "FooterBlock", "MegaMenu", "MulipleMegaMenuItems", "PuckTabs", "Accordion"],
     },
   },
   components: {
-    Text: {
+    TextBlock: {
       label: "📝 Text",
       fields: {
         className: { type: "text", label: "Custom class" },
@@ -180,7 +181,7 @@ export const config = {
       },
     },
 
-    Header: {
+    Navbar: {
       label: "🚗 Header",
       resolveFields: (data: any) => {
 
@@ -375,7 +376,7 @@ export const config = {
     MegaMenu,
 
     // history timeline block
-    HistoryTimelineConfig: {
+    HistoryTimeline: {
       label: "History Timeline",
 
       fields: {
@@ -494,7 +495,7 @@ export const config = {
         ],
       },
 
-      render: (props) => <HistoryTimeline {...props} />,
+      render: (props: any) => <HistoryTimeline {...props} />,
     },
 
     MulipleMegaMenuItems: {
@@ -626,7 +627,7 @@ export const config = {
 
       render: (props: any) => {
         return (
-          <SubmenuDropdown
+          <MulipleMegaMenuItems
             columns={props.columns}
             titleStyle={{
               fontWeight: 600,
@@ -637,7 +638,7 @@ export const config = {
       },
     },
 
-    CardSliderBlock: {
+    CardSlider: {
       label: "🎞 Slider (Cards)",
 
       fields: {
@@ -758,7 +759,7 @@ export const config = {
       render: (props) => <CardSlider {...props} />,
     },
 
-    Footer: {
+    FooterBlock: {
       label: "🦶 Footer",
 
       resolveFields: (data: any) => {
@@ -1218,15 +1219,6 @@ export const config = {
       label: "🪟 Modal",
 
       fields: {
-        title: {
-          type: "text",
-          label: "Modal Title",
-        },
-
-        description: {
-          type: "textarea",
-          label: "Modal Description",
-        },
         showModalButton: {
           type: "radio",
           label: "Want to see Modal ?",
@@ -1235,28 +1227,14 @@ export const config = {
             { label: "No", value: false },
           ],
         },
-        showOpenButton: {
-          type: "radio",
-          label: "Show Open Button",
-          options: [
-            { label: "Yes", value: true },
-            { label: "No", value: false },
-          ],
-        },
-
-        openButtonLabel: {
+        title: {
           type: "text",
-          label: "Open Button Label",
+          label: "Modal Title",
         },
 
-        openType: {
-          type: "select",
-          label: "Open Modal Trigger",
-          options: [
-            { label: "Button Click", value: "button" },
-            { label: "Auto Open (On Load)", value: "auto" },
-            { label: "Dropdown Toggle", value: "dropdown" },
-          ],
+        description: {
+          type: "textarea",
+          label: "Modal Description",
         },
 
         modalSize: {
@@ -1281,7 +1259,6 @@ export const config = {
           ],
         },
 
-
         showCloseButton: {
           type: "radio",
           label: "Show Close Button (X)",
@@ -1304,6 +1281,30 @@ export const config = {
         overlayColor: {
           type: "text",
           label: "Overlay Background Color",
+        },
+
+        openButtonLabel: {
+          type: "text",
+          label: "Open Button Label",
+        },
+
+        openType: {
+          type: "select",
+          label: "Open Modal Trigger",
+          options: [
+            { label: "Button Click", value: "button" },
+            { label: "Auto Open (On Load)", value: "auto" },
+            { label: "Dropdown Toggle", value: "dropdown" },
+          ],
+        },
+        customButtonCss: {
+          type: "textarea",
+          label: "Custom Button CSS",
+        },
+
+        openButtonIcon: {
+          type: "text",
+          label: "Button Icon URL",
         },
 
         buttonBackground: {
@@ -1346,10 +1347,12 @@ export const config = {
         openType: "button",
         modalSize: "medium",
         closeOnOverlay: true,
+        customButtonCss: "",
         showCloseButton: true,
         modalBackground: "#ffffff",
         modalTextColor: "#000000",
         showModalButton: true,
+        openButtonIcon: "",
         overlayColor: "rgba(0,0,0,0.6)",
         buttonBackground: "#d42224",
         buttonTextColor: "#ffffff",
@@ -1442,7 +1445,7 @@ export const config = {
       },
     },
 
-    Image: {
+    ImageBlock: {
       label: "🖼️ Image",
       category: "Typography",
       fields: {
@@ -1595,7 +1598,7 @@ export const config = {
       },
     },
 
-    Video: {
+    VideoBlock: {
       label: "🎬 Video",
 
       fields: {
@@ -1665,7 +1668,7 @@ export const config = {
       }
     },
 
-    Button: {
+    PuckAmplifyButton: {
       label: "🔘 Button",
       fields: {
         className: { type: "text", label: "Custom class" },
@@ -1772,7 +1775,7 @@ export const config = {
       },
     },
 
-    ThreeNineGrid: {
+    ThreeNineGridBlock: {
       label: "🧱 3 / 9 Grid",
 
       fields: {
@@ -1819,7 +1822,7 @@ export const config = {
       }
     },
 
-    CardCustom: {
+    CardBlock: {
       label: "🃏 Custom Card",
 
       fields: {
@@ -1891,7 +1894,8 @@ export const config = {
         return <CardBlock {...props} />;
       }
     },
-    GridZone: {
+
+    GridBlock: {
       label: "🧱 Multi Content - Grid",
       fields: {
         className: {
@@ -2041,7 +2045,7 @@ export const config = {
       }
     },
 
-    Flex: {
+    Flexs: {
       label: "🧷 Flex",
       fields: {
         className: {
@@ -2129,7 +2133,7 @@ export const config = {
       }
     },
 
-    Table: {
+    TableBlock: {
       label: "📊 Table",
       fields: {
         rows: {
@@ -2406,14 +2410,14 @@ export const config = {
 
       render: (props) => {
         return (
-          <MainSlider
+          <Carousel
             {...props}
           />
         );
       },
     },
 
-    Tabs: {
+    PuckTabs: {
       label: "🏷️ Tabs",
 
       resolveFields: (data: any) => {
@@ -2519,7 +2523,7 @@ export const config = {
       },
 
       render: (props: any) => {
-        return <TabsRenderer {...props} />;
+        return <PuckTabs {...props} />;
       },
     },
 
@@ -2552,7 +2556,7 @@ export const config = {
       },
     },
 
-    ImageText: {
+    ImageTextSection: {
       label: "🖼️ Image + Text",
       fields: {
         className: {
@@ -2681,7 +2685,7 @@ export const config = {
       }
     },
 
-    Stepper: {
+    PuckStepper: {
       label: "🪜 Stepper",
       fields: {
         className: { type: "text", label: "Custom Class" },
@@ -2850,7 +2854,7 @@ export const config = {
       }
     },
 
-    Input: {
+    PuckInput: {
       label: "✏️ Input",
       fields: {
         className: { type: "text", label: "Custom class" },
@@ -2912,7 +2916,7 @@ export const config = {
       },
     },
 
-    Checkbox: {
+    PuckCheckbox: {
       label: "☑️ Checkbox",
       fields: {
         className: { type: "text", label: "Custom class" },
@@ -2969,7 +2973,7 @@ export const config = {
       },
     },
 
-    DatePicker: {
+    PuckDatePicker: {
       label: "📅 Date Picker",
       fields: {
         className: { type: "text", label: "Custom class" },
@@ -3030,13 +3034,11 @@ export const config = {
       },
 
       render: (props: any) => {
-
-
         return <PuckDatePicker {...props} />;
       },
     },
 
-    Dropdown: {
+    PuckDropdown: {
       label: "📥 Dropdown",
       fields: {
         className: { type: "text", label: "Custom class" },
@@ -3114,12 +3116,11 @@ export const config = {
       },
 
       render: (props: any) => {
-
         return <PuckDropdown {...props} />;
       },
     },
 
-    SearchableDropdown: {
+    PuckSearchableDropdown: {
       label: "📥 Searchable Dropdown",
       fields: {
         className: { type: "text", label: "Custom class" },
@@ -3190,7 +3191,7 @@ export const config = {
       },
     },
 
-    RadioGroup: {
+    PuckRadioGroup: {
       label: "🔘 Radio Group",
       fields: {
         className: { type: "text", label: "Custom class" },
@@ -3262,7 +3263,7 @@ export const config = {
       },
     },
 
-    Form: {
+    PuckForm: {
       label: "📝 Form",
       fields: {
         className: { type: "text", label: "Custom class" },
@@ -3355,7 +3356,7 @@ export const config = {
       },
 
       render: (props) => {
-        return <TextEditor {...props} />;
+        return <RichTextBlock {...props} />;
       }
     },
   },

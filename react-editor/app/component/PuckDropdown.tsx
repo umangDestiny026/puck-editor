@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { Select, SelectTheme, Option } from "./select";
 
-export default function PuckSelect({
+export default function PuckDropdown({
   options = [],
   defaultValue,
   theme,

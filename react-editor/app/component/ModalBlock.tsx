@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { DropZone } from "@puckeditor/core";
 import styles from "./modal.module.css";
 
-export const ModalBlock = ({
+const ModalBlock = ({
     title,
     description,
     showOpenButton,
@@ -17,7 +17,9 @@ export const ModalBlock = ({
     modalBackground,
     modalTextColor,
     overlayColor,
+    customButtonCss,
     buttonBackground,
+    openButtonIcon,
     buttonTextColor,
     borderRadius,
     dropdownWidth,
@@ -50,16 +52,41 @@ export const ModalBlock = ({
 
     return (
         <>
+            {customButtonCss && (
+                <style>
+                    {`
+    .modal-open-button {
+    ${customButtonCss}
+    }
+`}
+                </style>
+            )}
             {showOpenButton && openType === "button" && (
                 <button
+                    className="modal-open-button"
                     style={{
                         background: buttonBackground,
                         color: buttonTextColor,
                         padding: "10px 20px",
                         borderRadius: "6px",
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "8px",
                     }}
                     onClick={() => setOpen(true)}
                 >
+                    {openButtonIcon && (
+                        <img
+                            src={openButtonIcon}
+                            alt="button-icon"
+                            style={{
+                                width: "20px",
+                                height: "20px",
+                                objectFit: "contain",
+                            }}
+                        />
+                    )}
+
                     {openButtonLabel}
                 </button>
             )}
@@ -122,3 +149,6 @@ export const ModalBlock = ({
         </>
     );
 };
+
+
+export default ModalBlock;
