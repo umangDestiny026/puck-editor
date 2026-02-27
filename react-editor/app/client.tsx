@@ -26,7 +26,7 @@ export function Client() {
           { type: "PUCK_PUBLISHED", payload: data },
           "*"
         );
-      }, 500),
+      }, 3000),
     []
   );
 
