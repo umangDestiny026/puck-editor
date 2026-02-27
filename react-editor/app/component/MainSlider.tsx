@@ -49,6 +49,13 @@ interface MainSliderProps {
     alignBottom?: boolean;
     isPlayicon?: boolean;
     showNavigationArrows?: boolean;
+    slidesPerView: any;
+    spaceBetween: any;
+    loop: any;
+    autoplayDelay: any;
+    paginationClickable: any;
+    height: any;
+    minHeight: any;
     containerProps?: ContainerProps | null;
 }
 
@@ -59,12 +66,26 @@ const getYouTubeId = (url: string) => {
 
 const MainSlider: React.FC<MainSliderProps> = ({
     slides = [],
-    sliderConfig,
     alignBottom = false,
     isPlayicon = true,
     showNavigationArrows = false,
     containerProps = null,
+    slidesPerView,
+    spaceBetween,
+    loop,
+    autoplayDelay,
+    paginationClickable,
+    height,
+    minHeight,
 }) => {
+    const sliderConfig = {
+        slidesPerView,
+        spaceBetween,
+        loop,
+        autoplay: { delay: autoplayDelay },
+        pagination: { clickable: paginationClickable },
+        navigation: true,
+    };
     const [isPlaying, setIsPlaying] = useState(true);
     const swiperRef = useRef<SwiperType | null>(null);
 

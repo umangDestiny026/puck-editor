@@ -62,7 +62,7 @@ const CardBlock: React.FC<CardBlockProps> = ({
       </style>
 
       <div className={`${cardId} ${className}`}>
-        <DropZone zone={`card-content-${id}`} />
+        <DropZone zone={"card-content"} />
       </div>
     </>
   );

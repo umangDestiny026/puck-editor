@@ -2404,39 +2404,10 @@ export const config = {
         minHeight: "400px",
       },
 
-      render: ({
-        slides,
-        slidesPerView,
-        spaceBetween,
-        loop,
-        autoplayDelay,
-        paginationClickable,
-        showNavigationArrows,
-        isPlayicon,
-        alignBottom,
-        height,
-        minHeight,
-      }) => {
-        const sliderConfig = {
-          slidesPerView,
-          spaceBetween,
-          loop,
-          autoplay: { delay: autoplayDelay },
-          pagination: { clickable: paginationClickable },
-          navigation: true,
-        };
-
+      render: (props) => {
         return (
           <MainSlider
-            slides={slides}
-            sliderConfig={sliderConfig}
-            alignBottom={alignBottom}
-            isPlayicon={isPlayicon}
-            showNavigationArrows={showNavigationArrows}
-            containerProps={{
-              height,
-              minHeight,
-            }}
+            {...props}
           />
         );
       },
