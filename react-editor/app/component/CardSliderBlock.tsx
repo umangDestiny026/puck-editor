@@ -7,7 +7,7 @@ import { Image, Button as AmplifyButton, View, Flex, Text } from '@aws-amplify/u
 import { DropZone } from '@puckeditor/core';
 
 
-export default function CardSlider({
+export default function CardSliderBlock({
     items,
     slidesPerViewMobile = 1,
     slidesPerViewTablet = 2,

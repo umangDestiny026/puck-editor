@@ -20,7 +20,7 @@ type CardBlockProps = {
   customCss?: string;
 };
 
-const CardBlock: React.FC<CardBlockProps> = ({
+const CardCustom: React.FC<CardBlockProps> = ({
   id,
   borderRadius = 8,
   boxShadow = "0 4px 12px rgba(0,0,0,0.1)",
@@ -68,4 +68,4 @@ const CardBlock: React.FC<CardBlockProps> = ({
   );
 };
 
-export default CardBlock;
+export default CardCustom;

@@ -1,6 +1,6 @@
 "use client";
 
-import { Flex, Input, Label } from "@aws-amplify/ui-react";
+import { Flex, Input as AmplifyImput, Label } from "@aws-amplify/ui-react";
 import "@aws-amplify/ui-react/styles.css";
 import React, { useState, useMemo } from "react";
 
@@ -18,7 +18,7 @@ type TestDriveInputProps = {
 };
 
 
-export default function PuckInput({
+export default function Input({
   label,
   placeholder,
   name,
@@ -136,7 +136,7 @@ const AmplifyInput = ({
       >
         {label}
       </Label>
-      <Input
+      <AmplifyImput
         backgroundColor={inputBackground ?? "#fff"}
         borderRadius={"80px"}
         border={inputBorder ?? "none"}
@@ -202,7 +202,7 @@ const AmplifyMobileInput = ({
         {label}
       </Label>
       <Flex alignItems="center" gap="0">
-        <Input
+        <AmplifyImput
           type="tel"
           backgroundColor={"#fff"}
           borderRadius={"80px"}

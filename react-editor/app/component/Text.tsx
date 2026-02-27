@@ -26,7 +26,7 @@ type TextBlockProps = {
   customCss?: string;
 };
 
-const TextBlock: React.FC<TextBlockProps> = ({
+const Text: React.FC<TextBlockProps> = ({
   content,
   level: Level = "p",
   size = "md",
@@ -72,4 +72,4 @@ const TextBlock: React.FC<TextBlockProps> = ({
   );
 };
 
-export default TextBlock;
+export default Text;

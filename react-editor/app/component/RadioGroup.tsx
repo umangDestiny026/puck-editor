@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function PuckRadioGroup({
+export default function RadioGroup({
   label,
   options = [],
   defaultValue,

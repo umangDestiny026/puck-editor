@@ -105,7 +105,7 @@ export interface SliderSectionProps {
   className?: string;
 }
 
-export function SliderSection({
+export default function SliderSection({
   theme = "ffffff",
   color = "#000",
   title,

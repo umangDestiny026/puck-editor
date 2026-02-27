@@ -1,7 +1,7 @@
 import { DropZone } from "@puckeditor/core";
 import React from "react";
 import {
-    Table,
+    Table as AmplifyTable,
     TableBody,
     TableHead,
     TableRow,
@@ -9,7 +9,7 @@ import {
     View,
 } from "@aws-amplify/ui-react";
 
-const TableBlock = ({
+const Table = ({
     rows = 3,
     columns = 3,
     hasHeader = true,
@@ -65,7 +65,7 @@ const TableBlock = ({
                 maxWidth="1105px"
                 padding="1rem 0"
             >
-                <Table
+                <AmplifyTable
                     className={tableClass}
                     highlightOnHover={highlightOnHover}
                     variation={bordered}
@@ -73,7 +73,7 @@ const TableBlock = ({
                 >
                     {renderHeader()}
                     {renderBody()}
-                </Table>
+                </AmplifyTable>
             </View>
 
             {customCss && (
@@ -90,4 +90,4 @@ const TableBlock = ({
     );
 };
 
-export default TableBlock;
+export default Table;

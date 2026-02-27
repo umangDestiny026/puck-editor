@@ -32,7 +32,7 @@ type FooterBlockProps = {
     gap?: string;
 };
 
-const FooterBlock: React.FC<FooterBlockProps> = ({
+const Footer: React.FC<FooterBlockProps> = ({
     layout = "linksOnly",
     columns = [],
     infoTitle,
@@ -145,4 +145,4 @@ const FooterBlock: React.FC<FooterBlockProps> = ({
     );
 };
 
-export default FooterBlock;
+export default Footer;

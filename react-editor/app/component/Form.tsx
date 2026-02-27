@@ -1,7 +1,7 @@
 import { DropZone } from "@puckeditor/core";
 import React from "react";
 
-export default function PuckForm({
+export default function Form({
   submitLabel,
   className,
   customCss,

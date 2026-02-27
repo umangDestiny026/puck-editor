@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function PuckSearchableDropdown({
+export default function SearchableDropdown({
   label,
   options = [],
   placeholder,

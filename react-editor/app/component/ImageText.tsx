@@ -24,7 +24,7 @@ type ImageTextSectionProps = {
     customCss?: string;
 };
 
-const ImageTextSection: React.FC<ImageTextSectionProps> = ({
+const ImageText: React.FC<ImageTextSectionProps> = ({
     imagePosition = "left",
     gap = 40,
     paddingY = 60,
@@ -111,4 +111,4 @@ const ImageTextSection: React.FC<ImageTextSectionProps> = ({
     );
 };
 
-export default ImageTextSection;
+export default ImageText;

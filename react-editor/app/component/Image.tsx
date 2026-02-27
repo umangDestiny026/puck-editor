@@ -24,7 +24,7 @@ type ImageBlockProps = {
   borderRadius?: string;
 };
 
-const ImageBlock: React.FC<ImageBlockProps> = ({
+const Image: React.FC<ImageBlockProps> = ({
   sourceType = "image",
   image,
   alt = "",
@@ -103,4 +103,4 @@ const ImageBlock: React.FC<ImageBlockProps> = ({
   );
 };
 
-export default ImageBlock;
+export default Image;

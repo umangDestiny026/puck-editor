@@ -39,7 +39,7 @@ export interface ButtonProps {
     border?: string | object;
 }
 
-export default function PuckAmplifyButton({
+export default function Button({
     text,
     type,
     color,

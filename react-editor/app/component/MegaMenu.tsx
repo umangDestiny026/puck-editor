@@ -2,7 +2,7 @@ import { DropZone } from "@puckeditor/core";
 import { useEffect } from "react";
 import { megaMenuStore } from "../zone";
 
-const MegaMenuRenderer = (props: any) => {
+const MegaMenu = (props: any) => {
   const {
     id,
     isOpen,
@@ -56,4 +56,4 @@ const MegaMenuRenderer = (props: any) => {
 }
 
 
-export default MegaMenuRenderer;
+export default MegaMenu;

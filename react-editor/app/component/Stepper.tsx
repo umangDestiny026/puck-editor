@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { DropZone } from "@puckeditor/core";
 import styles from "./stepper.module.css";
 
-export default function PuckStepper({
+export default function Stepper({
   steps = [],
   showStepNumbers,
   nextLabel,

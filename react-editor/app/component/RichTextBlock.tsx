@@ -6,7 +6,7 @@ type TextEditorProps = {
     customCss?: string;
 };
 
-const TextEditor: React.FC<TextEditorProps> = ({
+const RichTextBlock: React.FC<TextEditorProps> = ({
     content,
     className = "",
     customCss,
@@ -31,4 +31,4 @@ const TextEditor: React.FC<TextEditorProps> = ({
     );
 };
 
-export default TextEditor;
+export default RichTextBlock;

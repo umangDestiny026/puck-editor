@@ -1,42 +1,60 @@
 import { RichTextMenu } from "@puckeditor/core";
 import Superscript from "@tiptap/extension-superscript";
 import { Superscript as SuperscriptIcon } from "lucide-react";
-import MainSlider from "./app/component/MainSlider";
+import MainSlider from "./app/component/Carousel";
 import PuckInput from "./app/component/Input";
 import PuckCheckbox from "./app/component/Checkbox";
-import Navbar from "./app/component/Navbar";
 import PuckDatePicker from "./app/component/DatePicker";
 import PuckDropdown from "./app/component/Dropdown";
-import PuckSearchableDropdown from "./app/component/SearchDropdown";
-import PuckRadioGroup from "./app/component/RadioBtn";
+import PuckSearchableDropdown from "./app/component/SearchableDropdown";
+import PuckRadioGroup from "./app/component/RadioGroup";
 import PuckForm from "./app/component/Form";
-import TabsRenderer from "./app/component/Tab";
+import TabsRenderer from "./app/component/Tabs";
 import React, { useEffect } from "react";
-import SubmenuDropdown from "./app/component/SubMenu";
 import { MegaMenu } from "./constant";
 import { megaMenuStore } from "./app/zone";
-import { SliderSection } from "./app/component/ImageTextSlider";
-import CardSlider from "./app/component/CardSlider";
-import PuckAmplifyButton from "./app/component/PuckAmplifyButton";
-import PuckStepper from "./app/component/PuckStepper";
-import { ModalBlock } from "./app/component/ModalBlock";
-import { HistoryTimeline } from "./app/component/HistoryTimeline";
-import TextBlock from "./app/component/Text";
+import SliderSection from "./app/component/SliderSection";
+import PuckAmplifyButton from "./app/component/Button";
+import PuckStepper from "./app/component/Stepper";
+import ModalBlock from "./app/component/ModalBlock";
+import HistoryTimelineConfig from "./app/component/HistoryTimeline";
 import FooterBlock from "./app/component/Footer";
 import FlexBlock from "./app/component/FlexBlock";
-import ImageBlock from "./app/component/ImageBlock";
-import VideoBlock from "./app/component/VideoBlock";
-import ThreeNineGridBlock from "./app/component/ThreeNineGridBlock";
-import CardBlock from "./app/component/CardBlock";
-import GridBlock from "./app/component/GridBlock";
+import ThreeNineGridBlock from "./app/component/ThreeNineGrid";
+import CardBlock from "./app/component/CardCustom";
+import GridBlock from "./app/component/GridZone";
 import Grid from "./app/component/Grid";
 import Flexs from "./app/component/Flex";
-import Accordion from "./app/component/AccordionBlock";
-import Container from "./app/component/ContainerBlock";
-import ImageTextSection from "./app/component/ImageTextSectionBlock";
+import Accordion from "./app/component/Accordion";
+import Container from "./app/component/Container";
+import ImageTextSection from "./app/component/ImageText";
 import Card from "./app/component/Card";
-import TextEditor from "./app/component/TextEditor";
+import TextEditor from "./app/component/RichTextBlock";
 import TableBlock from "./app/component/Table";
+import Text from "./app/component/Text";
+import Header from "./app/component/Header";
+import MulipleMegaMenuItems from "./app/component/MulipleMegaMenuItems";
+import CardSliderBlock from "./app/component/CardSliderBlock";
+import Image from "./app/component/Image";
+import Video from "./app/component/Video";
+import Button from "./app/component/Button";
+import ThreeNineGrid from "./app/component/ThreeNineGrid";
+import CardCustom from "./app/component/CardCustom";
+import GridZone from "./app/component/GridZone";
+import Flex from "./app/component/Flex";
+import Table from "./app/component/Table";
+import Carousel from "./app/component/Carousel";
+import Tabs from "./app/component/Tabs";
+import ImageText from "./app/component/ImageText";
+import Stepper from "./app/component/Stepper";
+import Input from "./app/component/Input";
+import Checkbox from "./app/component/Checkbox";
+import DatePicker from "./app/component/DatePicker";
+import Dropdown from "./app/component/Dropdown";
+import SearchableDropdown from "./app/component/SearchableDropdown";
+import RadioGroup from "./app/component/RadioGroup";
+import Form from "./app/component/Form";
+import RichTextBlock from "./app/component/RichTextBlock";
 
 export const config = {
   categories: {
@@ -176,7 +194,7 @@ export const config = {
       },
 
       render: (props) => {
-        return <TextBlock {...props} />;
+        return <Text {...props} />;
       },
     },
 
@@ -368,7 +386,7 @@ export const config = {
       },
 
       render: (props: any) => {
-        return <Navbar {...props} />;
+        return <Header {...props} />;
       },
     },
 
@@ -494,7 +512,7 @@ export const config = {
         ],
       },
 
-      render: (props) => <HistoryTimeline {...props} />,
+      render: (props) => <HistoryTimelineConfig {...props} />,
     },
 
     MulipleMegaMenuItems: {
@@ -626,7 +644,7 @@ export const config = {
 
       render: (props: any) => {
         return (
-          <SubmenuDropdown
+          <MulipleMegaMenuItems
             columns={props.columns}
             titleStyle={{
               fontWeight: 600,
@@ -755,7 +773,7 @@ export const config = {
         ],
       },
 
-      render: (props) => <CardSlider {...props} />,
+      render: (props) => <CardSliderBlock {...props} />,
     },
 
     Footer: {
@@ -1218,15 +1236,6 @@ export const config = {
       label: "🪟 Modal",
 
       fields: {
-        title: {
-          type: "text",
-          label: "Modal Title",
-        },
-
-        description: {
-          type: "textarea",
-          label: "Modal Description",
-        },
         showModalButton: {
           type: "radio",
           label: "Want to see Modal ?",
@@ -1235,28 +1244,14 @@ export const config = {
             { label: "No", value: false },
           ],
         },
-        showOpenButton: {
-          type: "radio",
-          label: "Show Open Button",
-          options: [
-            { label: "Yes", value: true },
-            { label: "No", value: false },
-          ],
-        },
-
-        openButtonLabel: {
+        title: {
           type: "text",
-          label: "Open Button Label",
+          label: "Modal Title",
         },
 
-        openType: {
-          type: "select",
-          label: "Open Modal Trigger",
-          options: [
-            { label: "Button Click", value: "button" },
-            { label: "Auto Open (On Load)", value: "auto" },
-            { label: "Dropdown Toggle", value: "dropdown" },
-          ],
+        description: {
+          type: "textarea",
+          label: "Modal Description",
         },
 
         modalSize: {
@@ -1281,7 +1276,6 @@ export const config = {
           ],
         },
 
-
         showCloseButton: {
           type: "radio",
           label: "Show Close Button (X)",
@@ -1304,6 +1298,30 @@ export const config = {
         overlayColor: {
           type: "text",
           label: "Overlay Background Color",
+        },
+
+        openButtonLabel: {
+          type: "text",
+          label: "Open Button Label",
+        },
+
+        openType: {
+          type: "select",
+          label: "Open Modal Trigger",
+          options: [
+            { label: "Button Click", value: "button" },
+            { label: "Auto Open (On Load)", value: "auto" },
+            { label: "Dropdown Toggle", value: "dropdown" },
+          ],
+        },
+        customButtonCss: {
+          type: "textarea",
+          label: "Custom Button CSS",
+        },
+
+        openButtonIcon: {
+          type: "text",
+          label: "Button Icon URL",
         },
 
         buttonBackground: {
@@ -1346,10 +1364,12 @@ export const config = {
         openType: "button",
         modalSize: "medium",
         closeOnOverlay: true,
+        customButtonCss: "",
         showCloseButton: true,
         modalBackground: "#ffffff",
         modalTextColor: "#000000",
         showModalButton: true,
+        openButtonIcon: "",
         overlayColor: "rgba(0,0,0,0.6)",
         buttonBackground: "#d42224",
         buttonTextColor: "#ffffff",
@@ -1590,7 +1610,7 @@ export const config = {
       render: (props) => {
 
         return (
-          <ImageBlock {...props} />
+          <Image {...props} />
         );
       },
     },
@@ -1661,7 +1681,7 @@ export const config = {
       },
 
       render: (props) => {
-        return <VideoBlock {...props} />;
+        return <Video {...props} />;
       }
     },
 
@@ -1768,7 +1788,7 @@ export const config = {
 
       render: (props: any) => {
 
-        return <PuckAmplifyButton {...props} />;
+        return <Button {...props} />;
       },
     },
 
@@ -1815,7 +1835,7 @@ export const config = {
       },
 
       render: (props) => {
-        return <ThreeNineGridBlock {...props} />;
+        return <ThreeNineGrid {...props} />;
       }
     },
 
@@ -1888,7 +1908,7 @@ export const config = {
       },
 
       render: (props) => {
-        return <CardBlock {...props} />;
+        return <CardCustom {...props} />;
       }
     },
     GridZone: {
@@ -1962,7 +1982,7 @@ export const config = {
       },
 
       render: (props) => {
-        return <GridBlock {...props} />;
+        return <GridZone {...props} />;
       }
     },
 
@@ -2125,7 +2145,7 @@ export const config = {
       },
 
       render: (props) => {
-        return <Flexs {...props} />;
+        return <Flex {...props} />;
       }
     },
 
@@ -2200,7 +2220,7 @@ export const config = {
         customCss: "",
       },
 
-      render: (props) => <TableBlock {...props} />,
+      render: (props) => <Table {...props} />,
     },
 
     Accordion: {
@@ -2406,7 +2426,7 @@ export const config = {
 
       render: (props) => {
         return (
-          <MainSlider
+          <Carousel
             {...props}
           />
         );
@@ -2519,7 +2539,7 @@ export const config = {
       },
 
       render: (props: any) => {
-        return <TabsRenderer {...props} />;
+        return <Tabs {...props} />;
       },
     },
 
@@ -2677,7 +2697,7 @@ export const config = {
       },
 
       render: (props) => {
-        return <ImageTextSection {...props} />;
+        return <ImageText {...props} />;
       }
     },
 
@@ -2737,7 +2757,7 @@ export const config = {
 
       render: (props: any) => {
 
-        return <PuckStepper {...props} />;
+        return <Stepper {...props} />;
       },
     },
 
@@ -2908,7 +2928,7 @@ export const config = {
 
       render: (props: any) => {
 
-        return <PuckInput {...props} />;
+        return <Input {...props} />;
       },
     },
 
@@ -2965,7 +2985,7 @@ export const config = {
       },
 
       render: (props: any) => {
-        return <PuckCheckbox {...props} />;
+        return <Checkbox {...props} />;
       },
     },
 
@@ -3032,7 +3052,7 @@ export const config = {
       render: (props: any) => {
 
 
-        return <PuckDatePicker {...props} />;
+        return <DatePicker {...props} />;
       },
     },
 
@@ -3115,7 +3135,7 @@ export const config = {
 
       render: (props: any) => {
 
-        return <PuckDropdown {...props} />;
+        return <Dropdown {...props} />;
       },
     },
 
@@ -3186,7 +3206,7 @@ export const config = {
 
       render: (props: any) => {
 
-        return <PuckSearchableDropdown {...props} />;
+        return <SearchableDropdown {...props} />;
       },
     },
 
@@ -3258,7 +3278,7 @@ export const config = {
 
       render: (props: any) => {
 
-        return <PuckRadioGroup {...props} />;
+        return <RadioGroup {...props} />;
       },
     },
 
@@ -3302,7 +3322,7 @@ export const config = {
       render: (props: any) => {
 
         return (
-          <PuckForm {...props} />
+          <Form {...props} />
         );
       },
     },
@@ -3355,7 +3375,7 @@ export const config = {
       },
 
       render: (props) => {
-        return <TextEditor {...props} />;
+        return <RichTextBlock {...props} />;
       }
     },
   },

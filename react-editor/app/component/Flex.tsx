@@ -13,7 +13,7 @@ type FlexProps = {
   customCss?: string;
 };
 
-const Flexs: React.FC<FlexProps> = ({
+const Flex: React.FC<FlexProps> = ({
   direction = "row",
   wrap = "nowrap",
   justifyContent = "flex-start",
@@ -58,4 +58,4 @@ const Flexs: React.FC<FlexProps> = ({
   );
 };
 
-export default Flexs;
+export default Flex;

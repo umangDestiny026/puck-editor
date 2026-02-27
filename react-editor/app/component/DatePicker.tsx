@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function PuckDatePicker({
+export default function DatePicker({
   label,
   defaultValue,
   minDate,

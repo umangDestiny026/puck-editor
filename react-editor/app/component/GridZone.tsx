@@ -18,7 +18,7 @@ type GridBlockProps = {
   customCss?: string;
 };
 
-const GridBlock: React.FC<GridBlockProps> = ({
+const GridZone: React.FC<GridBlockProps> = ({
   id,
   columns = 1,
   rows,
@@ -72,4 +72,4 @@ const GridBlock: React.FC<GridBlockProps> = ({
   );
 };
 
-export default GridBlock;
+export default GridZone;

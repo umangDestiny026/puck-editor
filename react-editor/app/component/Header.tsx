@@ -5,7 +5,7 @@ import { Render } from "@puckeditor/core";
 import config from '../../puck.config';
 import { usePuck } from '../PuckContext';
 
-export default function Navbar({
+export default function Header({
     backgroundColor,
     textColor,
     logoUrl,

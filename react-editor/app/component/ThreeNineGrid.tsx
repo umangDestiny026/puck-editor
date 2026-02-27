@@ -10,7 +10,7 @@ type ThreeNineGridBlockProps = {
   customCss?: string;
 };
 
-const ThreeNineGridBlock: React.FC<ThreeNineGridBlockProps> = ({
+const ThreeNineGrid: React.FC<ThreeNineGridBlockProps> = ({
   id,
   gap = 20,
   stackOnMobile = "stack",
@@ -75,4 +75,4 @@ const ThreeNineGridBlock: React.FC<ThreeNineGridBlockProps> = ({
   );
 };
 
-export default ThreeNineGridBlock;
+export default ThreeNineGrid;

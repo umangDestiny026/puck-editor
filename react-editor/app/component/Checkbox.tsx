@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { CheckboxField, Flex, Text } from "@aws-amplify/ui-react";
 
-export default function PuckCheckbox({
+export default function Checkbox({
   label,
   defaultChecked,
   required,

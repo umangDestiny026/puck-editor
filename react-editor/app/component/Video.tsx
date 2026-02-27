@@ -15,7 +15,7 @@ type VideoBlockProps = {
   customCss?: string;
 };
 
-const VideoBlock: React.FC<VideoBlockProps> = ({
+const Video: React.FC<VideoBlockProps> = ({
   url,
   width,
   widthUnit = "%",
@@ -69,4 +69,4 @@ const VideoBlock: React.FC<VideoBlockProps> = ({
   );
 };
 
-export default VideoBlock;
+export default Video;

@@ -1,11 +1,11 @@
 'use client';
 import { DropZone } from "@puckeditor/core";
 import { useEffect, useMemo, useState } from "react";
-import { Heading, Tabs, Text, View } from "@aws-amplify/ui-react";
+import { Heading, Tabs as AmplifyTab, Text, View } from "@aws-amplify/ui-react";
 import "@aws-amplify/ui-react/styles.css";
 import { Select } from "./select";
 
-const TabsRenderer = ({
+const Tabs = ({
     tabs,
     activeTabIndex,
     className,
@@ -72,7 +72,7 @@ const TabsRenderer = ({
                 </Heading>
             )}
 
-            <Tabs.Container
+            <AmplifyTab.Container
                 value={activeTab}
                 onValueChange={(value) => setActiveTab(value)}
             >
@@ -108,7 +108,7 @@ const TabsRenderer = ({
                 </View>
 
                 {/* ✅ Desktop Tabs */}
-                <Tabs.List
+                <AmplifyTab.List
                     justifyContent={TabItemPosition}
                     width="max-content"
                     direction={{ base: "column", xl: "row" }}
@@ -119,7 +119,7 @@ const TabsRenderer = ({
                         const isActive = tab.label === activeTab;
 
                         return (
-                            <Tabs.Item
+                            <AmplifyTab.Item
                                 key={index}
                                 value={tab.label}
                                 color={isDark ? "#FFFFFF" : "#000000"}
@@ -135,14 +135,14 @@ const TabsRenderer = ({
                                 }}
                             >
                                 {tab.label}
-                            </Tabs.Item>
+                            </AmplifyTab.Item>
                         );
                     })}
-                </Tabs.List>
+                </AmplifyTab.List>
 
                 {/* ✅ Panels */}
                 {tabs.map((tab: any, index: number) => (
-                    <Tabs.Panel
+                    <AmplifyTab.Panel
                         key={index}
                         value={tab.label}
                         padding={{ base: "1rem 0", xl: "1.5rem 0" }}
@@ -155,11 +155,11 @@ const TabsRenderer = ({
                         )}
 
                         <DropZone zone={`tab-${index}`} />
-                    </Tabs.Panel>
+                    </AmplifyTab.Panel>
                 ))}
-            </Tabs.Container>
+            </AmplifyTab.Container>
         </View>
     );
 };
 
-export default TabsRenderer;
+export default Tabs;
