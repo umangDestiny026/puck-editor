@@ -1,4 +1,4 @@
-import { DropZone, Render, RichTextMenu } from "@puckeditor/core";
+import { RichTextMenu } from "@puckeditor/core";
 import Superscript from "@tiptap/extension-superscript";
 import { Superscript as SuperscriptIcon } from "lucide-react";
 import MainSlider from "./app/component/MainSlider";
@@ -11,7 +11,6 @@ import PuckSearchableDropdown from "./app/component/SearchDropdown";
 import PuckRadioGroup from "./app/component/RadioBtn";
 import PuckForm from "./app/component/Form";
 import TabsRenderer from "./app/component/Tab";
-import { Divider, Flex, Link, Text, View } from "@aws-amplify/ui-react";
 import React, { useEffect } from "react";
 import SubmenuDropdown from "./app/component/SubMenu";
 import { MegaMenu } from "./constant";
@@ -21,6 +20,22 @@ import CardSlider from "./app/component/CardSlider";
 import PuckAmplifyButton from "./app/component/PuckAmplifyButton";
 import PuckStepper from "./app/component/PuckStepper";
 import { ModalBlock } from "./app/component/ModalBlock";
+import { HistoryTimeline } from "./app/component/HistoryTimeline";
+import TextBlock from "./app/component/Text";
+import FooterBlock from "./app/component/Footer";
+import FlexBlock from "./app/component/FlexBlock";
+import ImageBlock from "./app/component/ImageBlock";
+import VideoBlock from "./app/component/VideoBlock";
+import ThreeNineGridBlock from "./app/component/ThreeNineGridBlock";
+import CardBlock from "./app/component/CardBlock";
+import GridBlock from "./app/component/GridBlock";
+import Grid from "./app/component/Grid";
+import Flexs from "./app/component/Flex";
+import Accordion from "./app/component/AccordionBlock";
+import Container from "./app/component/ContainerBlock";
+import ImageTextSection from "./app/component/ImageTextSectionBlock";
+import Card from "./app/component/Card";
+import TextEditor from "./app/component/TextEditor";
 
 export const config = {
   categories: {
@@ -94,8 +109,6 @@ export const config = {
           ],
         },
 
-        /* -------- WIDTH CONTROLS -------- */
-
         widthValue: { type: "number", label: "Width" },
         widthUnit: {
           type: "select",
@@ -161,64 +174,8 @@ export const config = {
         backgroundColor: undefined,
       },
 
-      render: ({
-        content,
-        level: Level,
-        size,
-        align,
-
-        widthValue,
-        widthUnit,
-        maxWidthValue,
-        maxWidthUnit,
-        minWidthValue,
-        minWidthUnit,
-
-        textColor,
-        backgroundColor,
-        className,
-        customCss,
-      }) => {
-        const fontSizeMap = {
-          sm: 14,
-          md: 16,
-          lg: 22,
-          xl: 32,
-        };
-
-        const style = {
-          textAlign: align,
-          margin: align === "center" ? "0 auto" : undefined,
-
-          fontSize:
-            Level === "p" ? fontSizeMap[size] : undefined,
-
-          color: textColor || undefined,
-          backgroundColor: backgroundColor || undefined,
-
-          width:
-            widthValue != null
-              ? `${widthValue}${widthUnit}`
-              : undefined,
-
-          maxWidth:
-            maxWidthValue != null
-              ? `${maxWidthValue}${maxWidthUnit}`
-              : undefined,
-
-          minWidth:
-            minWidthValue != null
-              ? `${minWidthValue}${minWidthUnit}`
-              : undefined,
-        };
-
-        const wrapperClass = className || "";
-        const uniqueClass = `text-${Math.random().toString(36).substr(2, 9)}`;
-
-        return (<Level style={style} className={`${wrapperClass} ${uniqueClass}`}>
-          {customCss && <style>{`.${uniqueClass} { ${customCss} }`}</style>}
-          {content}
-        </Level>);
+      render: (props) => {
+        return <TextBlock {...props} />;
       },
     },
 
@@ -415,6 +372,117 @@ export const config = {
     },
 
     MegaMenu,
+
+    // history timeline block
+    HistoryTimelineBlock: {
+      label: "History Timeline",
+
+      fields: {
+        title: { type: "text" },
+        subtitle: { type: "text" },
+
+        bgColor: { type: "text" },
+        textColor: { type: "text" },
+        accentColor: { type: "text" },
+
+        periodStartYear: { type: "text" },
+        periodEndYear: { type: "text" },
+        periodSummary: { type: "textarea" },
+        periodIcon: { type: "text" },
+
+        // ITEMS ARRAY
+        items: {
+          type: "array",
+          // getItemSummary: (item) => item.year || "Timeline Item",
+          fields: {
+            year: { type: "text" },
+            title: { type: "text" },
+            description: { type: "textarea" },
+            icon: { type: "text" },
+
+            images: {
+              type: "array",
+              // getItemSummary: (item) => item?.src || "Image",
+              fields: {
+                src: { type: "text" },
+                alt: { type: "text" },
+              },
+            },
+          },
+        },
+      },
+
+      defaultProps: {
+        title: "Historia",
+        subtitle: "Toyota en Colombia",
+        bgColor: "#000000",
+        textColor: "#ffffff",
+        accentColor: "#c8312b",
+
+        periodStartYear: "1990",
+        periodEndYear: "1999",
+        periodSummary:
+          "En la cima del WRC: En los 90’s, Toyota alcanzó una gran racha ganadora",
+        periodIcon: "/images/cup.svg",
+        items: [
+          {
+            year: "1990",
+            title: "Mobilgas Rally",
+            icon: "/images/building-icon.svg", // Replace with your actual icon path
+            description:
+              "El corredor Carlos Sainz, se coronó campeón del WRC con el modelo Celica GT-FOUR ST165, convirtiéndose en el primer título en competición.",
+            images: [
+              {
+                src: "/images/1990-tgr-item.jpg", // Replace with your actual image path
+                alt: "Distribuidora Toyota Colombia",
+              },
+            ],
+          },
+          {
+            year: "1993",
+            title: "Toyota gana el WRC",
+            icon: "/images/rally.svg", // Replace with your actual icon path
+            description:
+              "Toyota gana el WRC por segunda vez gracias al corredor Juha Kankkunen.",
+            images: [
+              {
+                src: "/images/1993-tgr-item.jpg", // Replace with your actual image path
+                alt: "Toyota ensamblados en Colombia",
+              },
+            ],
+          },
+          {
+            year: "1994",
+            title: "",
+            icon: "/images/rally.svg", // Replace with your actual icon path
+            description:
+              "Toyota se corona por tercera vez en la WRC con el corredor Didier Auriol.",
+            images: [
+              {
+                src: "/images/1994-tgr-item.jpg", // Replace with your actual image path
+                alt: "Toyota ensamblados en Colombia",
+              },
+            ],
+          },
+          {
+            year: "1999",
+            title: "",
+            icon: "/images/rally.svg", // Replace with your actual icon path
+            description: "Toyota vuelve a coronarse campeón del WRC.",
+            images: [
+              {
+                src: "/images/1999-tgr-item.jpg", // Replace with your actual image path
+                alt: "Toyota ensamblados en Colombia",
+                width: { base: "100%" },
+                height: { base: "auto" },
+              },
+            ],
+          },
+        ],
+      },
+
+      render: (props) => <HistoryTimeline {...props} />,
+    },
 
     MulipleMegaMenuItems: {
       label: "🍔 Multiple Menu Items",
@@ -829,115 +897,9 @@ export const config = {
         customCss: "",
       },
 
-      render: ({
-        layout,
-        columns = [],
-        infoTitle,
-        socialLinks = [],
-        infoText,
-        backgroundColor,
-        textColor,
-        className,
-        customCss,
-        gap
-      }) => {
-        const uniqueClass = `footer-${Math.random()
-          .toString(36)
-          .substr(2, 9)}`;
-
+      render: (props) => {
         return (
-          <View
-            backgroundColor={backgroundColor}
-            color={textColor}
-            className={`${className || ""} ${uniqueClass}`}
-            padding="40px"
-          >
-            {customCss && (
-              <style>{`.${uniqueClass} { ${customCss} }`}</style>
-            )}
-
-            <Flex
-              direction="row"
-              wrap="wrap"
-              gap={gap || "40px"}
-              marginBottom={"30px"}
-              justifyContent={layout === "linksOnly" ? "center" : "space-between"}
-            >
-              {(layout === "infoAndLinks" ||
-                layout === "infoAndLinksSocial") && (
-                  <View maxWidth="300px">
-                    <>
-                      {infoTitle && (
-                        <Text fontSize="20px" fontWeight="bold">
-                          {infoTitle}
-                        </Text>
-                      )}
-
-                      {infoText && (
-                        <Text fontSize="14px" marginTop="8px">
-                          {infoText}
-                        </Text>
-                      )}
-                    </>
-                    {/* <DropZone zone="text-zone" /> */}
-                  </View>
-                )}
-
-              {/* LINKS SECTION */}
-              <Flex direction="row" gap={gap || "40px"} wrap="wrap">
-                {columns.map((col, i) => (
-                  <View key={i}>
-                    {col.title && (
-                      <Text fontWeight="bold" marginBottom="8px">
-                        {col.title}
-                      </Text>
-                    )}
-
-                    <Flex direction="column" gap="6px">
-                      {(col.links || []).map((link: any, j: any) => (
-                        <Link
-                          key={j}
-                          href={link.href || "#"}
-                          color={textColor}
-                        >
-                          {link.label}
-                        </Link>
-                      ))}
-                    </Flex>
-                  </View>
-                ))}
-              </Flex>
-              {layout === "infoAndLinksSocial" && socialLinks.length > 0 && (
-                <View minWidth="160px">
-                  <Text fontWeight="bold" marginBottom="8px">
-                    Social
-                  </Text>
-
-                  <Flex direction="column" gap="8px">
-                    {socialLinks.map((social, i) => (
-                      <Link
-                        key={i}
-                        href={social.href || "#"}
-                        color={textColor}
-                        display="flex"
-                        style={{
-                          alignItems: "center",
-                          gap: "8px"
-                        }}
-                      >
-                        {social.icon && (
-                          <img src={social.icon} className={`icon-${social.label}`} />
-                        )}
-                        {social.label}
-                      </Link>
-                    ))}
-                  </Flex>
-                </View>
-              )}
-
-            </Flex>
-            <DropZone zone="text-zone" />
-          </View>
+          <FooterBlock {...props} />
         );
       },
     },
@@ -1459,26 +1421,10 @@ export const config = {
         ],
       },
 
-      render: ({ direction, justify, align, gap, items, className, customCss }) => {
-        const style = {
-          display: "flex",
-          flexDirection: direction,
-          justifyContent: justify,
-          alignItems: align,
-          gap: `${gap}px`,
-        };
-        const uniqueClass = `flexbox-${Math.random().toString(36).substr(2, 9)}`;
+      render: (props) => {
 
         return (
-          <div style={style} className={`${className || ""} ${uniqueClass}`}>
-            {customCss && <style>{`.${uniqueClass} { ${customCss} }`}</style>}
-
-            {items?.map((item: any, index: number) => (
-              <>
-                <DropZone zone={`flex-item-${index}`} />
-              </>
-            ))}
-          </div>
+          <FlexBlock  {...props} />
         );
       },
     },
@@ -1628,58 +1574,10 @@ export const config = {
         borderRadius: 0,
       },
 
-      render: ({ sourceType, image, alt, align, className, customCss,
-        widthValue, widthUnit, maxWidthValue, maxWidthUnit, heightValue, heightUnit, maxHeightValue, maxHeightUnit,
-        objectFit, objectPosition, overflow, borderRadius,
-      }) => {
-        const wrapperStyle = {
-          textAlign: align,
-          overflow,
-        };
-
-        const imgStyle = {
-          display: "inline-block",
-
-          width:
-            widthValue != null
-              ? `${widthValue}${widthUnit}`
-              : undefined,
-
-          maxWidth:
-            maxWidthValue != null
-              ? `${maxWidthValue}${maxWidthUnit}`
-              : undefined,
-
-          height:
-            heightValue != null
-              ? `${heightValue}${heightUnit}`
-              : undefined,
-
-          maxHeight:
-            maxHeightValue != null
-              ? `${maxHeightValue}${maxHeightUnit}`
-              : undefined,
-
-          objectFit,
-          objectPosition,
-          borderRadius,
-        };
-
-        if (sourceType === "gallery") {
-          return (
-            <div style={{ padding: 16, border: "1px dashed #ccc" }}>
-              Gallery integration placeholder
-            </div>
-          );
-        }
-        const wrapperClass = className || "";
-        const uniqueClass = `image-${Math.random().toString(36).substr(2, 9)}`;
+      render: (props) => {
 
         return (
-          <div style={wrapperStyle} className={`${wrapperClass} ${uniqueClass}`}>
-            {customCss && <style>{`.${uniqueClass} { ${customCss} }`}</style>}
-            <img src={image} alt={alt} style={imgStyle} />
-          </div>
+          <ImageBlock {...props} />
         );
       },
     },
@@ -1749,46 +1647,9 @@ export const config = {
         customCss: "",
       },
 
-      render: ({
-        url,
-        width,
-        widthUnit,
-        maxWidth,
-        height,
-        maxHeight,
-        className,
-        customCss,
-      }) => {
-        const wrapperStyle = {
-          width: `${width}${widthUnit}`,
-          maxWidth: `${maxWidth}px`,
-          margin: "0 auto",
-        };
-
-        const iframeStyle = {
-          width: "100%",
-          height: `${height}px`,
-          maxHeight: `${maxHeight}px`,
-          maxWidth: `${maxWidth}px`,
-          borderRadius: 8,
-          display: "block",
-        };
-
-        const wrapperClass = className || "";
-        const uniqueClass = `video-${Math.random().toString(36).substr(2, 9)}`;
-
-        return (
-          <div className={`video-wrapper ${wrapperClass} ${uniqueClass}`} style={wrapperStyle}>
-            {customCss && <style>{`.${uniqueClass} { ${customCss} }`}</style>}
-            <iframe
-              src={url}
-              title="Video"
-              allowFullScreen
-              style={iframeStyle}
-            />
-          </div>
-        );
-      },
+      render: (props) => {
+        return <VideoBlock {...props} />;
+      }
     },
 
     Button: {
@@ -1893,11 +1754,8 @@ export const config = {
       },
 
       render: (props: any) => {
-        const uniqueClass = `amplify-button-${Math.random()
-          .toString(36)
-          .substr(2, 9)}`;
 
-        return <PuckAmplifyButton {...props} uniqueClass={uniqueClass} />;
+        return <PuckAmplifyButton {...props} />;
       },
     },
 
@@ -1944,69 +1802,10 @@ export const config = {
       },
 
       render: (props) => {
-        const {
-          gap,
-          stackOnMobile,
-          padding,
-          className,
-          customCss,
-          id,
-        } = props;
-
-        const gridId = `three-nine-${id}`;
-
-        return (
-          <>
-            <style>
-              {`
-          .${gridId} {
-            display: grid;
-            grid-template-columns: 3fr 9fr;
-            gap: ${gap}px;
-            padding: ${padding}px;
-            margin: 0 auto;
-          }
-
-          /* Tablet */
-          @media (max-width: 1024px) {
-            .${gridId} {
-              grid-template-columns: 1fr;
-            }
-          }
-
-          /* Mobile behavior */
-          @media (max-width: 768px) {
-            .${gridId} {
-              ${stackOnMobile === "stack"
-                  ? "grid-template-columns: 1fr;"
-                  : "grid-template-columns: 3fr 9fr;"
-                }
-            }
-          }
-
-          ${className && customCss
-                  ? `.${className} { ${customCss} }`
-                  : ""}
-          `}
-            </style>
-
-            <div className={`${gridId} ${className || ""}`}>
-              {/* Left 3 column */}
-              <DropZone
-                zone={`three-nine-left-${id}`}
-                style={{ minHeight: "80px" }}
-              />
-
-              {/* Right 9 column */}
-              <DropZone
-                zone={`three-nine-right-${id}`}
-                style={{ minHeight: "80px" }}
-              />
-            </div>
-          </>
-        );
-      },
+        return <ThreeNineGridBlock {...props} />;
+      }
     },
+
     CardCustom: {
       label: "🃏 Custom Card",
 
@@ -2076,52 +1875,8 @@ export const config = {
       },
 
       render: (props) => {
-        const {
-          borderRadius,
-          boxShadow,
-          width,
-          maxWidth,
-          height,
-          padding,
-          backgroundColor,
-          border,
-          className,
-          customCss,
-          id,
-        } = props;
-
-        const cardId = `card-${id}`;
-
-        return (
-          <>
-            <style>
-              {`
-            .${cardId} {
-              border-radius: ${borderRadius}px;
-              box-shadow: ${boxShadow};
-              width: ${width};
-              max-width: ${maxWidth}px;
-              height: ${height};
-              padding: ${padding}px;
-              background-color: ${backgroundColor};
-              border: ${border};
-              box-sizing: border-box;
-              margin: 0 auto;
-              transition: all 0.3s ease;
-            }
-
-            ${className && customCss
-                  ? `.${className} { ${customCss} }`
-                  : ""}
-          `}
-            </style>
-
-            <div className={`${cardId} ${className || ""}`}>
-             <DropZone zone="card-content" />
-            </div>
-          </>
-        );
-      },
+        return <CardBlock {...props} />;
+      }
     },
     GridZone: {
       label: "🧱 Multi Content - Grid",
@@ -2194,52 +1949,8 @@ export const config = {
       },
 
       render: (props) => {
-        const { columns, rows, gap, alignItems, justifyItems, maxWidth, padding, className, customCss, id } = props
-        const gridId = `grid-${id}`;
-
-        return (
-          <>
-            <style>
-              {`
-          /* Base grid styles */
-          .${gridId} {
-            gap: ${gap}px;
-            align-items: ${alignItems};
-            justify-items: ${justifyItems};
-            max-width: ${maxWidth}px;
-            padding: ${padding}px;
-            margin: 0 auto;
-          }
-
-          /* Custom user CSS attached to class */
-            ${className && customCss
-                  ? `.${className} { ${customCss} }`
-                  : ""
-                }
-            `}
-            </style>
-
-            <div
-              className={`${className} ${gridId}`}
-              style={{
-                display: "grid",
-                gridTemplateColumns: `repeat(${columns || 1}, 1fr)`,
-                gridTemplateRows: rows
-                  ? `repeat(${rows}, auto)`
-                  : undefined,
-              }}
-            >
-              {Array.from({ length: columns || 1 }).map((_, index) => (
-                <DropZone
-                  key={index}
-                  zone={`grid-zone-${gridId}-${index}`}
-                  style={{ minHeight: "50px" }}
-                />
-              ))}
-            </div>
-          </>
-        );
-      },
+        return <GridBlock {...props} />;
+      }
     },
 
     Grid: {
@@ -2312,54 +2023,9 @@ export const config = {
         customCss: "",
       },
 
-      render: ({
-        columns,
-        rows,
-        gap,
-        alignItems,
-        justifyItems,
-        maxWidth,
-        padding,
-        className,
-        customCss,
-      }) => {
-        const gridId = `grid-${Math.random().toString(36).slice(2)}`;
-
-        return (
-          <>
-            <style>
-              {`
-          /* Base grid styles */
-          .${gridId} {
-            gap: ${gap}px;
-            align-items: ${alignItems};
-            justify-items: ${justifyItems};
-            max-width: ${maxWidth}px;
-            padding: ${padding}px;
-            margin: 0 auto;
-          }
-
-          /* Custom user CSS attached to class */
-            ${className && customCss
-                  ? `.${className} { ${customCss} }`
-                  : ""
-                }
-            `}
-            </style>
-
-            <DropZone
-              // id={gridId}
-              style={{
-                display: "grid",
-                gridTemplateColumns: `repeat(${columns || 1}, 1fr)`,
-                gridTemplateRows: `repeat(${rows || 1}, auto)`,
-              }}
-              zone="grid-zone"
-              className={`${className} ${gridId}`}
-            />
-          </>
-        );
-      },
+      render: (props) => {
+        return <Grid {...props} />;
+      }
     },
 
     Flex: {
@@ -2445,51 +2111,9 @@ export const config = {
         customCss: "",
       },
 
-      render: ({
-        direction,
-        wrap,
-        justifyContent,
-        alignItems,
-        gap,
-        flex,
-        className,
-        customCss,
-      }) => {
-        const flexId = `flex-${Math.random().toString(36).slice(2)}`;
-
-        return (
-          <>
-            <style>
-              {`
-            /* Base flex styles */
-            .${flexId} {
-              ${flex ? `flex: ${flex};` : ""}
-            }
-
-            /* Custom user CSS attached to class */
-            ${className && customCss
-                  ? `.${className} { ${customCss} }`
-                  : ""
-                }
-          `}
-            </style>
-
-            <DropZone
-              // id={flexId}
-              zone="flex-zone"
-              className={`${className} ${flexId}`}
-              style={{
-                display: "flex",
-                gap: `${gap}px`,
-                flexDirection: direction,
-                flexWrap: wrap,
-                alignItems: alignItems,
-                justifyContent: justifyContent,
-              }}
-            />
-          </>
-        );
-      },
+      render: (props) => {
+        return <Flexs {...props} />;
+      }
     },
 
     Accordion: {
@@ -2573,102 +2197,9 @@ export const config = {
         ],
       },
 
-      render: (props: any) => {
-        const {
-          items,
-          className,
-          customCss,
-          itemSpacing,
-          title,
-          backgroundColor,
-          activeItemIndex = 0,
-        } = props;
-
-        const [openIndex, setOpenIndex] = React.useState<number | null>(
-          activeItemIndex ?? 0
-        );
-
-        React.useEffect(() => {
-          setOpenIndex(activeItemIndex ?? 0);
-        }, [activeItemIndex]);
-
-        const uniqueClass = `accordion-${Math.random()
-          .toString(36)
-          .substr(2, 9)}`;
-
-        return (
-          <div className={`${className || ""} ${uniqueClass}`}>
-            {customCss && (
-              <style>{`.${uniqueClass} { ${customCss} }`}</style>
-            )}
-
-            <View
-              as="section"
-              backgroundColor={backgroundColor}
-              padding={{ base: "40px 20px", xl: "80px 40px" }}
-            >
-              {title && (
-                <Text
-                  margin={{ base: "0 0 30px", xl: "0 0 40px" }}
-                  fontSize={{ base: "24px", xl: "36px" }}
-                >
-                  {title}
-                </Text>
-              )}
-
-              {items?.map((item: any, index: number) => {
-                const isOpen = openIndex === index;
-
-                return (
-                  <View
-                    key={index}
-                    // borderBottom="1px solid #D9D9D9"
-                    style={{
-                      borderBottom: "1px solid #D9D9D9"
-                    }}
-                    marginBottom={`${itemSpacing}px`}
-                  >
-                    {/* Header */}
-                    <View
-                      padding="1rem 0"
-                      display="flex"
-                      style={{
-                        justifyContent: "space-between",
-                        cursor: "pointer",
-                      }}
-                      onClick={() =>
-                        setOpenIndex(isOpen ? null : index)
-                      }
-                    >
-                      <Text fontWeight="600">{item.title}</Text>
-                      <Text fontSize="20px">
-                        {isOpen ? "−" : "+"}
-                      </Text>
-                    </View>
-
-                    {/* Content */}
-                    {isOpen && (
-                      <View padding="1rem 0">
-                        {item.description && (
-                          <div
-                            style={{ marginBottom: "10px" }}
-                            dangerouslySetInnerHTML={{
-                              __html: item.description,
-                            }}
-                          />
-                        )}
-
-                        {/* ✅ DropZone per accordion item */}
-                        <DropZone zone={`accordion-${index}`} />
-                      </View>
-                    )}
-                  </View>
-                );
-              })}
-            </View>
-          </div>
-        );
-      },
+      render: (props) => {
+        return <Accordion {...props} />;
+      }
     },
 
     Carousel: {
@@ -2930,9 +2461,6 @@ export const config = {
       },
 
       render: (props: any) => {
-        const uniqueClass = `tab-${Math.random()
-          .toString(36)
-          .substr(2, 9)}`;
         return <TabsRenderer {...props} />;
       },
     },
@@ -2959,37 +2487,9 @@ export const config = {
         backgroundColor: "#f5f5f5",
       },
 
-      render: ({
-        className,
-        customCss,
-        marginValue,
-        paddingValue,
-        backgroundColor,
-      }) => {
-        const uniqueClass = `container-${Math.random()
-          .toString(36)
-          .substr(2, 9)}`;
-
-        const style = {
-          margin: marginValue != null ? `0 ${marginValue}px` : "0 auto",
-          padding: paddingValue != null ? `${paddingValue}px` : undefined,
-          backgroundColor: backgroundColor || undefined,
-          minHeight: "120px",
-        };
-
+      render: (props) => {
         return (
-          <div className={`${className} ${uniqueClass}`} style={style}>
-            {customCss && (
-              <style>{`
-            .${uniqueClass} {
-              ${customCss}
-            }
-          `}</style>
-            )}
-
-            {/* THIS IS YOUR DROPZONE */}
-            <DropZone zone="content" />
-          </div>
+          <Container {...props} />
         );
       },
     },
@@ -3118,69 +2618,9 @@ export const config = {
         customCss: "",
       },
 
-      render: ({
-        imagePosition,
-        gap,
-        paddingY,
-
-        image,
-        imageWidth,
-        imageHeight,
-        imageMaxWidth,
-        imageMaxHeight,
-        imageBorderRadius,
-        imageObjectFit,
-
-        title,
-        subtitle,
-        titleColor,
-        subtitleColor,
-        textAlign,
-        textMaxWidth,
-        className,
-        customCss,
-      }) => {
-        const isLeft = imagePosition === "left";
-        const wrapperClass = className || "";
-        const uniqueClass = `section-${Math.random().toString(36).substr(2, 9)}`;
-
-        const containerStyle: React.CSSProperties = {
-          display: "flex",
-          flexDirection: (isLeft ? "row" : "row-reverse") as React.CSSProperties["flexDirection"],
-          alignItems: "center",
-          gap: `${gap}px`,
-          paddingTop: `${paddingY}px`,
-          paddingBottom: `${paddingY}px`,
-          flexWrap: "wrap",
-        };
-
-        const imgStyle = {
-          width: imageWidth ? `${imageWidth}` : "auto",
-          height: imageHeight ? `${imageHeight}px` : "auto",
-          maxWidth: imageMaxWidth ? `${imageMaxWidth}px` : "100%",
-          maxHeight: imageMaxHeight ? `${imageMaxHeight}px` : "none",
-          borderRadius: `${imageBorderRadius}px`,
-          objectFit: imageObjectFit,
-          flexShrink: 0,
-        };
-
-        const textStyle = {
-          maxWidth: textMaxWidth ? `${textMaxWidth}px` : "100%",
-          textAlign,
-        };
-
-        return (
-          <div className={wrapperClass + " " + uniqueClass} style={containerStyle}>
-            {customCss && <style>{`.${uniqueClass} { ${customCss} }`}</style>}
-
-            <img src={image} alt="Image" style={imgStyle} />
-            <div style={textStyle}>
-              <h2 style={{ color: titleColor, margin: 0 }}>{title}</h2>
-              <p style={{ color: subtitleColor, marginTop: 8 }}>{subtitle}</p>
-            </div>
-          </div>
-        );
-      },
+      render: (props) => {
+        return <ImageTextSection {...props} />;
+      }
     },
 
     Stepper: {
@@ -3238,11 +2678,8 @@ export const config = {
       },
 
       render: (props: any) => {
-        const uniqueClass = `stepper-${Math.random()
-          .toString(36)
-          .substr(2, 9)}`;
 
-        return <PuckStepper {...props} uniqueClass={uniqueClass} />;
+        return <PuckStepper {...props} />;
       },
     },
 
@@ -3350,114 +2787,9 @@ export const config = {
         cardShadow: "0 2px 8px rgba(0,0,0,0.1)",
       },
 
-      render: ({
-        image,
-        imageWidth,
-        imageHeight,
-        imageMaxWidth,
-        imageMaxHeight,
-        imageBorderRadius,
-        imageObjectFit,
-        imageAlign,
-
-        title,
-        titleColor,
-        description,
-        descriptionColor,
-        textAlign,
-
-        buttonText,
-        buttonType,
-        className,
-        customCss,
-        buttonHref,
-        buttonExternal,
-
-        cardWidth,
-        cardMaxWidth,
-        cardPadding,
-        cardBorderRadius,
-        cardShadow,
-      }) => {
-        const wrapperClass = className || "";
-        const uniqueClass = `card-${Math.random().toString(36).substr(2, 9)}`;
-        // image style
-        const imgStyle = {
-          width: imageWidth ? `${imageWidth}px` : "100%",
-          height: imageHeight ? `${imageHeight}px` : "auto",
-          maxWidth: imageMaxWidth ? `${imageMaxWidth}px` : "100%",
-          maxHeight: imageMaxHeight ? `${imageMaxHeight}px` : "none",
-          borderRadius: `${imageBorderRadius}px`,
-          objectFit: imageObjectFit,
-          display: "block",
-          marginBottom: imageAlign === "top" ? "12px" : undefined,
-          marginRight:
-            imageAlign === "left" ? "12px" : imageAlign === "right" ? "12px" : 0,
-          marginLeft: imageAlign === "right" ? "12px" : 0,
-        };
-
-        // button style (reuse type styles)
-        const buttonTypes = {
-          default: { background: "#e5e7eb", color: "#111827" },
-          primary: { background: "#2563eb", color: "#fff" },
-          basic: { background: "transparent", color: "#111827", border: "1px solid #d1d5db" },
-          success: { background: "#16a34a", color: "#fff" },
-          info: { background: "#0284c7", color: "#fff" },
-          danger: { background: "#dc2626", color: "#fff" },
-          link: { background: "transparent", color: "#2563eb", padding: 0 },
-        };
-
-        const buttonStyle = {
-          display: buttonText ? "inline-block" : "none",
-          cursor: "pointer",
-          textDecoration: "none",
-          padding: buttonType === "link" ? undefined : "8px 16px",
-          borderRadius: "6px",
-          ...buttonTypes[buttonType],
-          marginTop: "12px",
-        };
-
-        // text container style
-        const textStyle = {
-          textAlign,
-          flex: imageAlign === "left" || imageAlign === "right" ? 1 : "unset",
-        };
-
-        // card container flex
-        const isHorizontal = imageAlign === "left" || imageAlign === "right";
-        const containerStyle: React.CSSProperties = {
-          display: isHorizontal ? "flex" : "block",
-          flexDirection: (imageAlign === "right" ? "row-reverse" : "row") as React.CSSProperties['flexDirection'],
-          width: cardWidth ? `${cardWidth}px` : "100%",
-          maxWidth: cardMaxWidth ? `${cardMaxWidth}px` : "100%",
-          padding: `${cardPadding}px`,
-          borderRadius: `${cardBorderRadius}px`,
-          boxShadow: cardShadow,
-          alignItems: "flex-start",
-          gap: "12px",
-        };
-
-        return (
-          <div className={wrapperClass + " " + uniqueClass} style={containerStyle}>
-            {customCss && <style>{`.${uniqueClass} { ${customCss} }`}</style>}
-            {image && <img src={image} alt="Card image" style={imgStyle} />}
-            <div style={textStyle}>
-              {title && <h3 style={{ color: titleColor, margin: 0 }}>{title}</h3>}
-              {description && <p style={{ color: descriptionColor, marginTop: 6 }}>{description}</p>}
-              {buttonText && (
-                <a
-                  href={buttonHref || "#"}
-                  target={buttonExternal ? "_blank" : undefined}
-                  rel={buttonExternal ? "noopener noreferrer" : undefined}
-                  style={buttonStyle}
-                >
-                  {buttonText}
-                </a>
-              )}
-            </div>
-          </div>
-        );
-      },
+      render: (props) => {
+        return <Card {...props} />;
+      }
     },
 
     Input: {
@@ -3517,11 +2849,8 @@ export const config = {
       },
 
       render: (props: any) => {
-        const uniqueClass = `amplify-input-${Math.random()
-          .toString(36)
-          .substr(2, 9)}`;
 
-        return <PuckInput {...props} uniqueClass={uniqueClass} />;
+        return <PuckInput {...props} />;
       },
     },
 
@@ -3578,11 +2907,7 @@ export const config = {
       },
 
       render: (props: any) => {
-        const uniqueClass = `checkbox-${Math.random()
-          .toString(36)
-          .substr(2, 9)}`;
-
-        return <PuckCheckbox {...props} uniqueClass={uniqueClass} />;
+        return <PuckCheckbox {...props} />;
       },
     },
 
@@ -3647,11 +2972,9 @@ export const config = {
       },
 
       render: (props: any) => {
-        const uniqueClass = `datepicker-${Math.random()
-          .toString(36)
-          .substr(2, 9)}`;
 
-        return <PuckDatePicker {...props} uniqueClass={uniqueClass} />;
+
+        return <PuckDatePicker {...props} />;
       },
     },
 
@@ -3733,11 +3056,8 @@ export const config = {
       },
 
       render: (props: any) => {
-        const uniqueClass = `select-${Math.random()
-          .toString(36)
-          .substr(2, 9)}`;
 
-        return <PuckDropdown {...props} uniqueClass={uniqueClass} />;
+        return <PuckDropdown {...props} />;
       },
     },
 
@@ -3807,11 +3127,8 @@ export const config = {
       },
 
       render: (props: any) => {
-        const uniqueClass = `searchdd-${Math.random()
-          .toString(36)
-          .substr(2, 9)}`;
 
-        return <PuckSearchableDropdown {...props} uniqueClass={uniqueClass} />;
+        return <PuckSearchableDropdown {...props} />;
       },
     },
 
@@ -3882,11 +3199,8 @@ export const config = {
       },
 
       render: (props: any) => {
-        const uniqueClass = `radiogroup-${Math.random()
-          .toString(36)
-          .substr(2, 9)}`;
 
-        return <PuckRadioGroup {...props} uniqueClass={uniqueClass} />;
+        return <PuckRadioGroup {...props} />;
       },
     },
 
@@ -3928,12 +3242,9 @@ export const config = {
       },
 
       render: (props: any) => {
-        const uniqueClass = `form-${Math.random()
-          .toString(36)
-          .substr(2, 9)}`;
 
         return (
-          <PuckForm {...props} uniqueClass={uniqueClass} />
+          <PuckForm {...props} />
         );
       },
     },
@@ -3984,17 +3295,10 @@ export const config = {
         className: "text-001",
         customCss: "",
       },
-      render: ({ content, className, customCss }) => {
-        const wrapperClass = className || "";
-        const uniqueClass = `text-${Math.random().toString(36).substr(2, 9)}`;
-        return (
-          <div className={`${wrapperClass} ${uniqueClass}`}>
-            {customCss && <style>{`.${uniqueClass} { ${customCss} }`}</style>}
 
-            {content}
-          </div>
-        )
-      },
+      render: (props) => {
+        return <TextEditor {...props} />;
+      }
     },
   },
 };

@@ -10,8 +10,10 @@ export default function PuckRadioGroup({
   name,
   errorMessage,
   onChangeCode,
-  uniqueClass,
 }) {
+  const uniqueClass = `radiogroup-${Math.random()
+    .toString(36)
+    .substr(2, 9)}`;
   const [touched, setTouched] = useState(false);
   const [value, setValue] = useState(defaultValue || "");
 

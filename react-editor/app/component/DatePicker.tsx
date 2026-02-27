@@ -11,8 +11,10 @@ export default function PuckDatePicker({
   customCss,
   errorMessage,
   onChangeCode,
-  uniqueClass,
 }) {
+  const uniqueClass = `datepicker-${Math.random()
+    .toString(36)
+    .substr(2, 9)}`;
   const [touched, setTouched] = useState(false);
   const [value, setValue] = useState(defaultValue || "");
 

@@ -31,8 +31,10 @@ export default function PuckInput({
   className,
   customCss,
   onChangeCode,
-  uniqueClass,
 }) {
+  const uniqueClass = `amplify-input-${Math.random()
+    .toString(36)
+    .substr(2, 9)}`;
   const [value, setValue] = useState("");
   const [hasError, setHasError] = useState(false);
 

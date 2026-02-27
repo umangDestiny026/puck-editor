@@ -12,8 +12,10 @@ export default function PuckCheckbox({
   name,
   errorMessage,
   onChangeCode,
-  uniqueClass,
 }) {
+  const uniqueClass = `checkbox-${Math.random()
+    .toString(36)
+    .substr(2, 9)}`;
   const [checked, setChecked] = useState(defaultChecked ?? false);
   const [touched, setTouched] = useState(false);
 

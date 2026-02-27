@@ -1,6 +1,6 @@
 'use client';
 import { DropZone } from "@puckeditor/core";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Heading, Tabs, Text, View } from "@aws-amplify/ui-react";
 import "@aws-amplify/ui-react/styles.css";
 import { Select } from "./select";
@@ -9,7 +9,6 @@ const TabsRenderer = ({
     tabs,
     activeTabIndex,
     className,
-    uniqueClass,
     customCss,
     title,
     subTitle,
@@ -18,6 +17,10 @@ const TabsRenderer = ({
     backgroundImage,
     backgroundColor,
 }) => {
+    const uniqueClass = useMemo(
+        () => `tabs-${Math.random().toString(36).substr(2, 9)}`,
+        []
+    );
     const [activeTab, setActiveTab] = useState(
         tabs?.[activeTabIndex]?.label || tabs?.[0]?.label
     );

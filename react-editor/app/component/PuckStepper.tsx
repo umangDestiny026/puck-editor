@@ -19,8 +19,10 @@ export default function PuckStepper({
   className,
   maxWidth,
   customCss,
-  uniqueClass,
 }) {
+  const uniqueClass = `stepper-${Math.random()
+    .toString(36)
+    .substr(2, 9)}`;
   const [currentStep, setCurrentStep] = useState(0);
 
   const handleNext = () => {
@@ -53,7 +55,7 @@ export default function PuckStepper({
         ["--active-color" as any]: activeColor,
         ["--completed-color" as any]: completedColor,
         ["--button-color" as any]: buttonColor,
-        maxWidth:maxWidth,
+        maxWidth: maxWidth,
       }}
     >
       {customCss && (
@@ -69,9 +71,8 @@ export default function PuckStepper({
         {steps.map((step, index) => (
           <div
             key={index}
-            className={`${styles.stepIndicator} ${
-              index === currentStep ? styles.active : ""
-            } ${index < currentStep ? styles.completed : ""}`}
+            className={`${styles.stepIndicator} ${index === currentStep ? styles.active : ""
+              } ${index < currentStep ? styles.completed : ""}`}
           >
             {showStepNumbers && (
               <div className={styles.stepNumber}>{index + 1}</div>

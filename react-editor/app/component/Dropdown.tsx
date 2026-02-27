@@ -12,8 +12,10 @@ export default function PuckSelect({
   noOptionsMessage,
   fixedPlaceholder,
   onChangeCode,
-  uniqueClass,
 }) {
+  const uniqueClass = `select-${Math.random()
+    .toString(36)
+    .substr(2, 9)}`;
   const [selectedOption, setSelectedOption] = useState<Option | null>(null);
 
   // Apply default value

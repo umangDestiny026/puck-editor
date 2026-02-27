@@ -10,8 +10,10 @@ export default function PuckSearchableDropdown({
   name,
   errorMessage,
   onChangeCode,
-  uniqueClass,
 }) {
+  const uniqueClass = `searchdd-${Math.random()
+    .toString(36)
+    .substr(2, 9)}`;
   const [touched, setTouched] = useState(false);
   const [query, setQuery] = useState("");
   const [selected, setSelected] = useState("");

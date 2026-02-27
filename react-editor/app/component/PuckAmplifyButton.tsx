@@ -52,8 +52,10 @@ export default function PuckAmplifyButton({
     onClickCode,
     className,
     customCss,
-    uniqueClass,
 }) {
+    const uniqueClass = `amplify-button-${Math.random()
+        .toString(36)
+        .substr(2, 9)}`;
     const handleClick = () => {
         try {
             const fn = new Function(`return (${onClickCode})`)();

@@ -1,6 +1,6 @@
-import { DropZone } from "@puckeditor/core";
-import { megaMenuStore } from "./app/zone";
-import { useEffect } from "react";
+'use client';
+
+import MegaMenuRenderer from "./app/component/MegaMenu";
 
 export const MegaMenu = {
   label: "🧾 Mega Menu",
@@ -39,61 +39,3 @@ export const MegaMenu = {
   },
   render: (props: any) => <MegaMenuRenderer {...props} />,
 }
-
-const MegaMenuRenderer = (props: any) => {
-  const {
-    id,
-    isOpen,
-    backgroundColor,
-    className,
-    customCss,
-  } = props;
-
-
-
-  const uniqueClass = `id-${id}`;
-  const zoneKey = id;
-
-  useEffect(() => {
-    megaMenuStore.addOrUpdate({
-      id,
-      isOpen,
-      backgroundColor,
-      className,
-      customCss,
-      content: [],
-      zones: {}
-    });
-  }, [id]);
-
-  if (!isOpen) return null;
-  console.log("megamenu", megaMenuStore.items);
-
-
-  return (
-    <>
-      {customCss && (
-        <style>{`.${uniqueClass} { ${customCss} }`}</style>
-      )}
-
-      <div
-        className={`${className || ""} ${uniqueClass}`}
-        style={{
-          position: "relative",
-          inset: "60px 0px 0px",
-          paddingTop: "30px",
-          backgroundColor,
-          zIndex: 9999999,
-          display: "flex",
-          flexDirection: "column",
-          width: "100%",
-        }}
-      >
-        <DropZone zone={zoneKey} />
-      </div>
-    </>
-  );
-}
-
-
-export default MegaMenuRenderer;

@@ -7,15 +7,18 @@ export default function PuckForm({
   customCss,
   onSubmitCode,
   formLabel,
-  uniqueClass,
   puck, // IMPORTANT: Puck injects this automatically
 }) {
+  const uniqueClass = `form-${Math.random()
+    .toString(36)
+    .substr(2, 9)}`;
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
     const formData = new FormData(e.target);
     const values = {};
-    
+
     formData.forEach((value, key) => {
       values[key] = value;
     });
@@ -26,7 +29,7 @@ export default function PuckForm({
         `return (${onSubmitCode})(values)`
       );
       fn(values);
-    console.log("Umang onSubmitCode => ", onSubmitCode);
+      console.log("Umang onSubmitCode => ", onSubmitCode);
 
     } catch (err) {
       console.warn("Invalid onSubmit code", err);
