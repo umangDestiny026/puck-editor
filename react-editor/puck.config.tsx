@@ -375,38 +375,101 @@ export const config = {
     MegaMenu,
 
     // history timeline block
-    HistoryTimelineBlock: {
+    HistoryTimelineConfig: {
       label: "History Timeline",
 
       fields: {
-        title: { type: "text" },
-        subtitle: { type: "text" },
+        // ===== Section Content =====
+        title: {
+          type: "text",
+          label: "Title",
+        },
+        subtitle: {
+          type: "text",
+          label: "Subtitle",
+        },
 
-        bgColor: { type: "text" },
-        textColor: { type: "text" },
-        accentColor: { type: "text" },
+        // ===== Colors =====
+        bgColor: {
+          type: "text",
+          label: "Background Color",
+        },
+        textColor: {
+          type: "text",
+          label: "Text Color",
+        },
+        accentColor: {
+          type: "text",
+          label: "Accent Color (// separator)",
+        },
+        expandButtonColor: {
+          type: "text",
+          label: "Expand Button Color",
+        },
 
-        periodStartYear: { type: "text" },
-        periodEndYear: { type: "text" },
-        periodSummary: { type: "textarea" },
-        periodIcon: { type: "text" },
+        // ===== Period Settings =====
+        periodStartYear: {
+          type: "text",
+          label: "Period Start Year",
+        },
+        periodEndYear: {
+          type: "text",
+          label: "Period End Year",
+        },
+        periodSummary: {
+          type: "textarea",
+          label: "Period Summary",
+        },
+        periodIcon: {
+          type: "text",
+          label: "Period Icon URL",
+        },
+        periodIconAlt: {
+          type: "text",
+          label: "Period Icon Alt Text",
+        },
 
-        // ITEMS ARRAY
+        // ===== Timeline Items =====
         items: {
           type: "array",
-          // getItemSummary: (item) => item.year || "Timeline Item",
-          fields: {
-            year: { type: "text" },
-            title: { type: "text" },
-            description: { type: "textarea" },
-            icon: { type: "text" },
+          label: "Timeline Items",
+          getItemSummary: (item) =>
+            item?.year
+              ? `${item.year} — ${item.title || "Untitled"}`
+              : "New Timeline Item",
+
+          arrayFields: {
+            year: {
+              type: "text",
+              label: "Year",
+            },
+            title: {
+              type: "text",
+              label: "Title",
+            },
+            description: {
+              type: "textarea",
+              label: "Description",
+            },
+            icon: {
+              type: "text",
+              label: "Icon URL",
+            },
 
             images: {
               type: "array",
-              // getItemSummary: (item) => item?.src || "Image",
-              fields: {
-                src: { type: "text" },
-                alt: { type: "text" },
+              label: "Images",
+              getItemSummary: (img) =>
+                img?.alt ? img.alt : img?.src ? "Image" : "New Image",
+              arrayFields: {
+                src: {
+                  type: "text",
+                  label: "Image URL",
+                },
+                alt: {
+                  type: "text",
+                  label: "Alt Text",
+                },
               },
             },
           },
@@ -419,65 +482,14 @@ export const config = {
         bgColor: "#000000",
         textColor: "#ffffff",
         accentColor: "#c8312b",
+        expandButtonColor: "#ffffff",
 
-        periodStartYear: "1990",
-        periodEndYear: "1999",
-        periodSummary:
-          "En la cima del WRC: En los 90’s, Toyota alcanzó una gran racha ganadora",
-        periodIcon: "/images/cup.svg",
         items: [
           {
-            year: "1990",
-            title: "Mobilgas Rally",
-            icon: "/images/building-icon.svg", // Replace with your actual icon path
-            description:
-              "El corredor Carlos Sainz, se coronó campeón del WRC con el modelo Celica GT-FOUR ST165, convirtiéndose en el primer título en competición.",
-            images: [
-              {
-                src: "/images/1990-tgr-item.jpg", // Replace with your actual image path
-                alt: "Distribuidora Toyota Colombia",
-              },
-            ],
-          },
-          {
-            year: "1993",
-            title: "Toyota gana el WRC",
-            icon: "/images/rally.svg", // Replace with your actual icon path
-            description:
-              "Toyota gana el WRC por segunda vez gracias al corredor Juha Kankkunen.",
-            images: [
-              {
-                src: "/images/1993-tgr-item.jpg", // Replace with your actual image path
-                alt: "Toyota ensamblados en Colombia",
-              },
-            ],
-          },
-          {
-            year: "1994",
-            title: "",
-            icon: "/images/rally.svg", // Replace with your actual icon path
-            description:
-              "Toyota se corona por tercera vez en la WRC con el corredor Didier Auriol.",
-            images: [
-              {
-                src: "/images/1994-tgr-item.jpg", // Replace with your actual image path
-                alt: "Toyota ensamblados en Colombia",
-              },
-            ],
-          },
-          {
-            year: "1999",
-            title: "",
-            icon: "/images/rally.svg", // Replace with your actual icon path
-            description: "Toyota vuelve a coronarse campeón del WRC.",
-            images: [
-              {
-                src: "/images/1999-tgr-item.jpg", // Replace with your actual image path
-                alt: "Toyota ensamblados en Colombia",
-                width: { base: "100%" },
-                height: { base: "auto" },
-              },
-            ],
+            year: "1967",
+            title: "Inicio en Colombia",
+            description: "Toyota comienza operaciones en Colombia.",
+            images: [],
           },
         ],
       },

@@ -10,7 +10,6 @@ import { megaMenuStore } from "./zone";
 import { usePuck } from "./PuckContext";
 import './client.css'
 // const aiPlugin = createAiPlugin();
-const initialData = { content: [] };
 
 export function Client() {
   const { puckData, setPuckData } = usePuck();

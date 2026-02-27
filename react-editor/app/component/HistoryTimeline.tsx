@@ -202,7 +202,7 @@ export const HistoryTimeline: React.FC<ToyotaHistoryTimelineProps> = (
         return (
             <View marginBottom="3rem">
                 {/* Title */}
-                {title && (
+                {props.title && (
                     <Text
                         color={textColor}
                         fontSize={styles?.titleStyle?.fontSize}
@@ -211,12 +211,12 @@ export const HistoryTimeline: React.FC<ToyotaHistoryTimelineProps> = (
                         fontFamily={styles?.titleStyle?.fontFamily}
                         textAlign="center"
                     >
-                        {title}
+                        {props.title}
                     </Text>
                 )}
 
                 {/* Subtitle */}
-                {subtitle && (
+                {props.subtitle && (
                     <Text
                         color={textColor}
                         fontSize={styles?.subtitleStyle?.fontSize}
@@ -225,12 +225,12 @@ export const HistoryTimeline: React.FC<ToyotaHistoryTimelineProps> = (
                         fontFamily={styles?.subtitleStyle?.fontFamily}
                         textAlign="center"
                     >
-                        {subtitle}
+                        {props.subtitle}
                     </Text>
                 )}
 
                 {/* Year Range Header */}
-                {(startYear || endYear) && (
+                {(props.startYear || props.endYear) && (
                     <View
                         backgroundColor={bgColor}
                         padding="0.5rem 1rem"
@@ -243,16 +243,16 @@ export const HistoryTimeline: React.FC<ToyotaHistoryTimelineProps> = (
                             fontWeight={styles?.yearStyle?.fontWeight}
                             textAlign="center"
                         >
-                            {startYear}
-                            {startYear && endYear && (
+                            {props.startYear}
+                            {props.startYear && props.endYear && (
                                 <>
                                     {" "}
-                                    <Text as="span" color={accentColor}>
+                                    <Text as="span" color={props.accentColor}>
                                         {"//"}
                                     </Text>{" "}
                                 </>
                             )}
-                            {endYear}
+                            {props.endYear}
                         </Text>
                     </View>
                 )}
@@ -306,7 +306,7 @@ export const HistoryTimeline: React.FC<ToyotaHistoryTimelineProps> = (
                 >
                     <Button
                         backgroundColor="transparent"
-                        color={expandButtonColor}
+                        color={props.expandButtonColor}
                         onClick={togglePeriodExpand}
                         padding="0.25rem 0.5rem"
                         fontSize="0.75rem"
@@ -322,9 +322,9 @@ export const HistoryTimeline: React.FC<ToyotaHistoryTimelineProps> = (
     return (
         <View
             width="100%"
-            backgroundColor={bgColor}
+            backgroundColor={props.bgColor}
             padding="3rem 1rem"
-            color={textColor}
+            color={props.textColor}
         >
             <View
                 maxWidth="1200px"
