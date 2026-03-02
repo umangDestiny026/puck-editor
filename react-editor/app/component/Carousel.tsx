@@ -176,7 +176,7 @@ const Carousel: React.FC<MainSliderProps> = ({
                         : false
                 }
             >
-                {mergedSlides.map((slide, index) => (
+                {mergedSlides.map((slide: any, index: number) => (
                     <SwiperSlide key={index}>
                         <Link
                             href={slide.link ? slide.link.trim() : "#"}

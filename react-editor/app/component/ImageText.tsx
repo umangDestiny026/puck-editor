@@ -1,30 +1,8 @@
+'use client';
+
 import React, { useId } from "react";
 
-type ImageTextSectionProps = {
-    imagePosition?: "left" | "right";
-    gap?: number;
-    paddingY?: number;
-
-    image?: string;
-    imageWidth?: string;          // allow "300px" or "40%"
-    imageHeight?: number;
-    imageMaxWidth?: number;
-    imageMaxHeight?: number;
-    imageBorderRadius?: number;
-    imageObjectFit?: React.CSSProperties["objectFit"];
-
-    title?: string;
-    subtitle?: string;
-    titleColor?: string;
-    subtitleColor?: string;
-    textAlign?: React.CSSProperties["textAlign"];
-    textMaxWidth?: number;
-
-    className?: string;
-    customCss?: string;
-};
-
-const ImageText: React.FC<ImageTextSectionProps> = ({
+const ImageText: React.FC<any> = ({
     imagePosition = "left",
     gap = 40,
     paddingY = 60,

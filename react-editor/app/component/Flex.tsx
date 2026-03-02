@@ -1,19 +1,9 @@
+'use client';
+
 import { DropZone } from "@puckeditor/core";
 import React, { useId } from "react";
 
-type FlexProps = {
-  direction?: React.CSSProperties["flexDirection"];
-  wrap?: React.CSSProperties["flexWrap"];
-  justifyContent?: React.CSSProperties["justifyContent"];
-  alignItems?: React.CSSProperties["alignItems"];
-  gap?: number;
-  flex?: string;
-
-  className?: string;
-  customCss?: string;
-};
-
-const Flex: React.FC<FlexProps> = ({
+const Flex: React.FC<any> = ({
   direction = "row",
   wrap = "nowrap",
   justifyContent = "flex-start",

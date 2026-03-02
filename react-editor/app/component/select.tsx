@@ -55,7 +55,7 @@ export function Select({
   noOptionsMessage,
   fixedPlaceholder,
   CustomDropdownIndicator
-}: SelectProps) {
+}: any) {
   const isMobile = useBreakpointValue({ base: true, xl: false });
   const selectRef = useRef<HTMLDivElement>(null);
 
@@ -156,7 +156,7 @@ export function Select({
         onChange={(option) => onSelect(option as Option)}
         components={{
           IndicatorSeparator: null,
-          ...(CustomDropdownIndicator && {DropdownIndicator:CustomDropdownIndicator}),
+          ...(CustomDropdownIndicator && { DropdownIndicator: CustomDropdownIndicator }),
           ...(fixedPlaceholder ? { SingleValue: CustomSingleValue } : {}),
         }}
         backspaceRemovesValue={false}

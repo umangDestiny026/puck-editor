@@ -1,15 +1,9 @@
+'use client';
+
 import { DropZone } from "@puckeditor/core";
 import React, { useId } from "react";
 
-type ContainerProps = {
-  className?: string;
-  customCss?: string;
-  marginValue?: number;
-  paddingValue?: number;
-  backgroundColor?: string;
-};
-
-const Container: React.FC<ContainerProps> = ({
+const Container: React.FC<any> = ({
   className = "",
   customCss,
   marginValue,

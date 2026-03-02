@@ -4,20 +4,6 @@ import { Flex, Input as AmplifyImput, Label } from "@aws-amplify/ui-react";
 import "@aws-amplify/ui-react/styles.css";
 import React, { useState, useMemo } from "react";
 
-type TestDriveInputProps = {
-  label: string;
-  labelColor?: string;
-  inputBackground?: string;
-  inputBorder?: string;
-  placeholder: string;
-  id: string;
-  value: string;
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  errorMessage?: string;
-  validatePattern?: RegExp;
-};
-
-
 export default function Input({
   label,
   placeholder,
@@ -113,7 +99,7 @@ const AmplifyInput = ({
   onChange,
   errorMessage,
   validatePattern,
-}: TestDriveInputProps) => {
+}) => {
   const [inputValue, setInputValue] = useState(value);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -177,7 +163,7 @@ const AmplifyMobileInput = ({
   onChange,
   errorMessage,
   validatePattern,
-}: TestDriveInputProps) => {
+}) => {
   const [inputValue, setInputValue] = useState(value);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {

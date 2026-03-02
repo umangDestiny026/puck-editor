@@ -1,21 +1,8 @@
+'use client';
+
 import React, { useId } from "react";
 
-type VideoBlockProps = {
-  url?: string;
-
-  width?: number;
-  widthUnit?: string;
-
-  maxWidth?: number;
-
-  height?: number;
-  maxHeight?: number;
-
-  className?: string;
-  customCss?: string;
-};
-
-const Video: React.FC<VideoBlockProps> = ({
+const Video: React.FC<any> = ({
   url,
   width,
   widthUnit = "%",

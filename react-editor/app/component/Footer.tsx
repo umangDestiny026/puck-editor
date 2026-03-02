@@ -1,38 +1,10 @@
+'use client';
+
 import { Flex, Link, Text, View } from "@aws-amplify/ui-react";
 import { DropZone } from "@puckeditor/core";
 import React, { useMemo } from "react";
 
-
-type LinkItem = {
-    label: string;
-    href?: string;
-};
-
-type SocialItem = {
-    label: string;
-    href?: string;
-    icon?: string;
-};
-
-type Column = {
-    title?: string;
-    links?: LinkItem[];
-};
-
-type FooterBlockProps = {
-    layout?: "linksOnly" | "infoAndLinks" | "infoAndLinksSocial";
-    columns?: Column[];
-    infoTitle?: string;
-    infoText?: string;
-    socialLinks?: SocialItem[];
-    backgroundColor?: string;
-    textColor?: string;
-    className?: string;
-    customCss?: string;
-    gap?: string;
-};
-
-const Footer: React.FC<FooterBlockProps> = ({
+const Footer: React.FC<any> = ({
     layout = "linksOnly",
     columns = [],
     infoTitle,
@@ -89,7 +61,7 @@ const Footer: React.FC<FooterBlockProps> = ({
 
                 {/* LINKS SECTION */}
                 <Flex direction="row" gap={gap || "40px"} wrap="wrap">
-                    {columns.map((col, i) => (
+                    {columns.map((col: any, i: number) => (
                         <View key={i}>
                             {col.title && (
                                 <Text fontWeight="bold" marginBottom="8px">
@@ -118,7 +90,7 @@ const Footer: React.FC<FooterBlockProps> = ({
                         </Text>
 
                         <Flex direction="column" gap="8px">
-                            {socialLinks.map((social, i) => (
+                            {socialLinks.map((social: any, i: number) => (
                                 <Link
                                     key={i}
                                     href={social.href || "#"}

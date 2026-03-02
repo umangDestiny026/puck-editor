@@ -85,7 +85,7 @@ const Tabs = ({
                     maxHeight="48px"
                 >
                     <Select
-                        options={tabs.map((tab) => ({
+                        options={tabs.map((tab: any) => ({
                             value: tab.label,
                             label: tab.label,
                         }))}
@@ -115,7 +115,7 @@ const Tabs = ({
                     margin="32px auto 43px"
                     display={{ base: "none", xl: "flex" }}
                 >
-                    {tabs.map((tab, index) => {
+                    {tabs.map((tab: any, index: number) => {
                         const isActive = tab.label === activeTab;
 
                         return (
@@ -140,7 +140,6 @@ const Tabs = ({
                     })}
                 </AmplifyTab.List>
 
-                {/* ✅ Panels */}
                 {tabs.map((tab: any, index: number) => (
                     <AmplifyTab.Panel
                         key={index}

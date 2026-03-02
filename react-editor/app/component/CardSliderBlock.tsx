@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useId, useState } from 'react'
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -67,7 +69,7 @@ export default function CardSliderBlock({
                 }
                 modules={[Navigation]}
             >
-                {items.map((item, i) => (
+                {items.map((item: any, i: number) => (
                     <SwiperSlide
                         key={item.id}
                         className="vehicles-slide"
@@ -86,10 +88,10 @@ export default function CardSliderBlock({
                         >
                             <div
                                 className={`vehicle-card-inner ${imagePosition === "right"
-                                        ? "row-reverse"
-                                        : imagePosition === "top"
-                                            ? "column"
-                                            : "row"
+                                    ? "row-reverse"
+                                    : imagePosition === "top"
+                                        ? "column"
+                                        : "row"
                                     }`}
                                 style={{
                                     padding: cardPadding,

@@ -1,3 +1,5 @@
+'use client';
+
 import { DropZone } from "@puckeditor/core";
 import React from "react";
 
@@ -7,7 +9,7 @@ export default function Form({
   customCss,
   onSubmitCode,
   formLabel,
-  puck, // IMPORTANT: Puck injects this automatically
+  puck,
 }) {
   const uniqueClass = `form-${Math.random()
     .toString(36)

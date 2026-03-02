@@ -1,12 +1,8 @@
+'use client';
+
 import React, { useId } from "react";
 
-type TextEditorProps = {
-    content?: React.ReactNode;
-    className?: string;
-    customCss?: string;
-};
-
-const RichTextBlock: React.FC<TextEditorProps> = ({
+const RichTextBlock: React.FC<any> = ({
     content,
     className = "",
     customCss,

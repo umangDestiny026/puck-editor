@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState } from "react";
 
 export default function SearchableDropdown({
@@ -73,7 +75,7 @@ export default function SearchableDropdown({
             overflowY: "auto",
           }}
         >
-          {filteredOptions.map((opt, idx) => (
+          {filteredOptions.map((opt: any, idx: number) => (
             <div
               key={idx}
               style={{

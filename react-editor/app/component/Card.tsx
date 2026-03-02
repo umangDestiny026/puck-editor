@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useId } from "react";
 
 type ButtonType =
@@ -58,7 +60,7 @@ const buttonTypes: Record<ButtonType, React.CSSProperties> = {
     },
 };
 
-const Card: React.FC<CardBlockProps> = ({
+const Card: React.FC<any> = ({
     image,
     imageWidth,
     imageHeight,

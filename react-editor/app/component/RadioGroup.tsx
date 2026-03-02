@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState } from "react";
 
 export default function RadioGroup({
@@ -30,7 +32,7 @@ export default function RadioGroup({
       <div style={{ fontWeight: 500, marginBottom: "6px" }}>{label}</div>
 
       <div className={`${className} ${uniqueClass}`}>
-        {options.map((opt, idx) => (
+        {options.map((opt: any, idx: any) => (
           <label
             key={idx}
             style={{

@@ -1,30 +1,8 @@
+'use client';
+
 import React, { useId } from "react";
 
-type ImageBlockProps = {
-  sourceType?: "image" | "gallery";
-  image?: string;
-  alt?: string;
-  align?: React.CSSProperties["textAlign"];
-  className?: string;
-  customCss?: string;
-
-  widthValue?: number;
-  widthUnit?: string;
-  maxWidthValue?: number;
-  maxWidthUnit?: string;
-
-  heightValue?: number;
-  heightUnit?: string;
-  maxHeightValue?: number;
-  maxHeightUnit?: string;
-
-  objectFit?: React.CSSProperties["objectFit"];
-  objectPosition?: React.CSSProperties["objectPosition"];
-  overflow?: React.CSSProperties["overflow"];
-  borderRadius?: string;
-};
-
-const Image: React.FC<ImageBlockProps> = ({
+const Image: React.FC<any> = ({
   sourceType = "image",
   image,
   alt = "",

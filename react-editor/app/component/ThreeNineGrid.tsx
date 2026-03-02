@@ -1,3 +1,5 @@
+'use client';
+
 import { DropZone } from "@puckeditor/core";
 import React, { useMemo } from "react";
 

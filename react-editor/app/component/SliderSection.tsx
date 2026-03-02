@@ -135,7 +135,7 @@ export default function SliderSection({
   paddingBottom,
   minHeight,
   Bgcolor,
-}: SliderSectionProps): JSX.Element {
+}: any): JSX.Element {
   const containerRef = React.useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -371,7 +371,7 @@ export default function SliderSection({
           {/* Explicitly map over each item */}
           {items &&
             items.length > 0 &&
-            items.map((item, index) => (
+            items.map((item: any, index: number) => (
               <SwiperSlide key={`slide-${index}-${item.title}`}>
                 {displayType === "card" ? (
                   // Card style design
@@ -436,7 +436,7 @@ export default function SliderSection({
                             marginBottom: "20px",
                           }}
                         >
-                          {getLogos(item).map((logo, i) => (
+                          {getLogos(item).map((logo: any, i: number) => (
                             <Image
                               key={`logo-${i}`}
                               src={logo.src}
@@ -752,7 +752,7 @@ export default function SliderSection({
                                       marginBottom: "20px",
                                     }}
                                   >
-                                    {getLogos(item).map((logo, i) => (
+                                    {getLogos(item).map((logo: any, i: number) => (
                                       <Image
                                         key={`logo-${i}`}
                                         src={logo.src}

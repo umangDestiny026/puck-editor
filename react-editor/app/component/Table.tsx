@@ -1,3 +1,5 @@
+'use client';
+
 import { DropZone } from "@puckeditor/core";
 import React from "react";
 import {
@@ -28,7 +30,7 @@ const Table = ({
         return (
             <TableHead>
                 <TableRow>
-                    {Array.from({ length: columns }).map((_, colIndex) => (
+                    {Array.from({ length: columns }).map((_: any, colIndex: number) => (
                         <TableCell as="th" key={`header-${colIndex}`}>
                             <DropZone zone={`header-${colIndex}`} />
                         </TableCell>
@@ -40,7 +42,7 @@ const Table = ({
 
     const renderBody = () => (
         <TableBody>
-            {Array.from({ length: rows }).map((_, rowIndex) => (
+            {Array.from({ length: rows }).map((_: any, rowIndex: number) => (
                 <TableRow
                     key={`row-${rowIndex}`}
                     backgroundColor={rowIndex % 2 === 0 ? "#F7F7F7" : "transparent"}

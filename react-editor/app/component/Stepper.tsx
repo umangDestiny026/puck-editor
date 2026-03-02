@@ -68,7 +68,7 @@ export default function Stepper({
 
       {/* Step Indicators */}
       <div className={styles.stepIndicators}>
-        {steps.map((step, index) => (
+        {steps.map((step: any, index: number) => (
           <div
             key={index}
             className={`${styles.stepIndicator} ${index === currentStep ? styles.active : ""

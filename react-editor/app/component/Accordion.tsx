@@ -1,23 +1,10 @@
+'use client';
+
 import { Text, View } from "@aws-amplify/ui-react";
 import { DropZone } from "@puckeditor/core";
 import React, { useEffect, useId, useState } from "react";
 
-type AccordionItem = {
-  title: string;
-  description?: string;
-};
-
-type AccordionProps = {
-  items?: AccordionItem[];
-  className?: string;
-  customCss?: string;
-  itemSpacing?: number;
-  title?: string;
-  backgroundColor?: string;
-  activeItemIndex?: number | null;
-};
-
-const Accordion: React.FC<AccordionProps> = ({
+const Accordion: React.FC<any> = ({
   items = [],
   className = "",
   customCss,
@@ -58,7 +45,7 @@ const Accordion: React.FC<AccordionProps> = ({
           </Text>
         )}
 
-        {items.map((item, index) => {
+        {items.map((item: any, index: number) => {
           const isOpen = openIndex === index;
 
           return (

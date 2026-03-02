@@ -1,24 +1,9 @@
+'use client';
+
 import { DropZone } from "@puckeditor/core";
 import React, { useMemo } from "react";
 
-type GridBlockProps = {
-  id: string;
-
-  columns?: number;
-  rows?: number;
-
-  gap?: number;
-  alignItems?: React.CSSProperties["alignItems"];
-  justifyItems?: React.CSSProperties["justifyItems"];
-
-  maxWidth?: number;
-  padding?: number;
-
-  className?: string;
-  customCss?: string;
-};
-
-const GridZone: React.FC<GridBlockProps> = ({
+const GridZone: React.FC<any> = ({
   id,
   columns = 1,
   rows,
@@ -51,16 +36,15 @@ const GridZone: React.FC<GridBlockProps> = ({
             margin: 0 auto;
           }
 
-          ${
-            customCss
-              ? `.${gridId} { ${customCss} }`
-              : ""
+          ${customCss
+            ? `.${gridId} { ${customCss} }`
+            : ""
           }
         `}
       </style>
 
       <div className={`${gridId} ${className}`} style={containerStyle}>
-        {Array.from({ length: columns }).map((_, index) => (
+        {Array.from({ length: columns }).map((_: any, index: number) => (
           <DropZone
             key={index}
             zone={`grid-zone-${id}-${index}`}

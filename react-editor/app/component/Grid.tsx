@@ -1,22 +1,9 @@
+'use client';
+
 import { DropZone } from "@puckeditor/core";
 import React, { useId } from "react";
 
-type GridProps = {
-    columns?: number;
-    rows?: number;
-
-    gap?: number;
-    alignItems?: React.CSSProperties["alignItems"];
-    justifyItems?: React.CSSProperties["justifyItems"];
-
-    maxWidth?: number;
-    padding?: number;
-
-    className?: string;
-    customCss?: string;
-};
-
-const Grid: React.FC<GridProps> = ({
+const Grid: React.FC<any> = ({
     columns = 1,
     rows = 1,
     gap = 0,

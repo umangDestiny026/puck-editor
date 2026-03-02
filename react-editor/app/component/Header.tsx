@@ -1,3 +1,5 @@
+'use client';
+
 import { Flex, Link, Text, View } from '@aws-amplify/ui-react';
 import React from 'react'
 import { megaMenuStore } from '../zone';
@@ -104,7 +106,7 @@ export default function Header({
                 {layout === "LogoMenu" && (
                     <Flex className="desktop-nav" direction="row" gap="24px">
 
-                        {menuItems.map((item, i) => {
+                        {menuItems.map((item: any, i: number) => {
                             const isDropdown =
                                 item.menuMode === "dropdown" &&
                                 Array.isArray(item.dropdownItems) &&
@@ -251,7 +253,7 @@ export default function Header({
                         <>
                             <Flex className="desktop-nav" direction="row" gap="24px">
 
-                                {menuItems.map((item, i) => {
+                                {menuItems.map((item: any, i: number) => {
                                     const isDropdown =
                                         item.menuMode === "dropdown" &&
                                         Array.isArray(item.dropdownItems) &&
@@ -393,7 +395,7 @@ export default function Header({
                             </Flex>
 
                             <Flex className="desktop-nav" direction="row" gap="16px" alignItems="center">
-                                {rightLinks.map((r, i) => (
+                                {rightLinks.map((r: any, i: number) => (
                                     <Link
                                         key={i}
                                         href={r.href}
@@ -412,7 +414,7 @@ export default function Header({
                     layout === "LogoCTA" && (
                         <>
                             <Flex className="desktop-nav" direction="row" gap="16px" alignItems="center">
-                                {rightLinks.map((r, i) => (
+                                {rightLinks.map((r: any, i: number) => (
                                     <Link
                                         key={i}
                                         href={r.href}
@@ -477,7 +479,7 @@ export default function Header({
                 {
                     layout === "LogoMenu" && (
                         <View>
-                            {menuItems.map((item, i) => (
+                            {menuItems.map((item: any, i: number) => (
                                 <Link key={i} href={item.href} className="mobile-item" color={textColor}>
                                     <span>{item.label}</span>
                                     <span>›</span>
@@ -491,7 +493,7 @@ export default function Header({
                     layout === "LogoMenuCTA" && (
                         <>
                             <View>
-                                {menuItems.map((item, i) => (
+                                {menuItems.map((item: any, i: any) => (
                                     <Link key={i} href={item.href} className="mobile-item" color={textColor}>
                                         <span>{item.label}</span>
                                         <span>›</span>
@@ -500,13 +502,13 @@ export default function Header({
                             </View>
 
                             <View padding="20px">
-                                {rightLinks.map((r, i) => (
+                                {rightLinks.map((r: any, i: any) => (
                                     <Text key={i} fontWeight="bold" marginBottom="10px">
                                         {r.label}
                                     </Text>
                                 ))}
 
-                                {rightLinks.find((r) => r.icon) && (
+                                {rightLinks.find((r: any) => r.icon) && (
                                     <img
                                         src={rightLinks.find((r) => r.icon)?.icon}
                                         style={{ height: "28px", marginTop: "8px" }}
@@ -521,13 +523,13 @@ export default function Header({
                 {
                     layout === "LogoCTA" && (
                         <View padding="20px">
-                            {rightLinks.map((r, i) => (
+                            {rightLinks.map((r: any, i: any) => (
                                 <Text key={i} fontWeight="bold" marginBottom="10px">
                                     {r.label}
                                 </Text>
                             ))}
 
-                            {rightLinks.find((r) => r.icon) && (
+                            {rightLinks.find((r: any) => r.icon) && (
                                 <img
                                     src={rightLinks.find((r) => r.icon)?.icon}
                                     style={{ height: "28px", marginTop: "8px" }}

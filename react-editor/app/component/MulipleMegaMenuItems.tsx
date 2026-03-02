@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { Flex, Text, View, Divider, Icon } from "@aws-amplify/ui-react";
@@ -66,16 +68,7 @@ interface Column {
     viewAllLink?: string;
 }
 
-interface MenuProps {
-    columns: Column[];
-    isMobile?: boolean;
-    onClose?: () => void;
-    onBack?: () => void; // Para navegación en mobile
-    titleStyle?: React.CSSProperties; // Add this new prop
-    linkStyle?: React.CSSProperties; // Add this new prop
-}
-
-const MulipleMegaMenuItems: React.FC<MenuProps> = ({
+const MulipleMegaMenuItems: React.FC<any> = ({
     columns,
     isMobile = false,
     onClose,
@@ -84,10 +77,10 @@ const MulipleMegaMenuItems: React.FC<MenuProps> = ({
     linkStyle, // Add this,
 }) => {
     const [activeSubmenus, setActiveSubmenus] = useState<
-        { columns: Column[]; parentItem: LinkItem }[]
+        { columns: any[]; parentItem: any }[]
     >([]);
 
-    const handleItemClick = (link: LinkItem, level: number) => {
+    const handleItemClick = (link: any, level: number) => {
         // Si el item ya está abierto, lo cerramos
         if (activeSubmenus[level]?.parentItem === link) {
             setActiveSubmenus(activeSubmenus.slice(0, level));
@@ -129,7 +122,7 @@ const MulipleMegaMenuItems: React.FC<MenuProps> = ({
                 {(activeSubmenus.length > 0
                     ? activeSubmenus[activeSubmenus.length - 1].columns
                     : columns
-                ).map((column, columnIndex) => (
+                ).map((column: any, columnIndex: number) => (
                     <View key={columnIndex} style={{ marginBottom: "30px" }}>
                         {/* Botón de retroceso solo si hay submenús activos */}
                         {activeSubmenus.length > 0 && columnIndex === 0 && (
@@ -178,56 +171,7 @@ const MulipleMegaMenuItems: React.FC<MenuProps> = ({
                             </Text>
                         )}
                         <Flex direction="column" gap="15px">
-                            {column.links.map((link, linkIndex) => (
-                                // <Flex
-                                //   key={linkIndex}
-                                //   alignItems="center"
-                                //   justifyContent="space-between"
-                                //   onClick={() => {
-                                //     if (link.submenu) {
-                                //       handleItemClick(link, activeSubmenus.length);
-                                //     } else if (link.href) {
-                                //       onClose?.();
-                                //     }
-                                //   }}
-                                //   style={{
-                                //     cursor: "pointer",
-                                //     padding: "12px 0",
-                                //     borderBottom: "1px solid #f0f0f0",
-                                //   }}
-                                // >
-                                //   <Flex direction="column" gap="4px" style={{ flex: 1 }}>
-                                //     <Text
-                                //       fontSize={titleStyle?.fontSize || "18px"}
-                                //       fontWeight={500}
-                                //       fontFamily="var(--font-ToyotaType-Regular)"
-                                //       style={link.info ? { color: "#A0A0A0", padding: "8px" } : {}}
-                                //     >
-                                //       {link.label}
-                                //     </Text>
-                                //     {link.description && (
-                                //       <Text
-                                //         fontSize="14px"
-                                //         color="#58595B"
-                                //         fontFamily="var(--font-toyotaDisplay)"
-                                //         fontWeight={300}
-                                //       >
-                                //         {link.description}
-                                //       </Text>
-                                //     )}
-                                //   </Flex>
-                                //   {/* Only show right arrow for items with submenus */}
-                                //   {link.submenu && (
-                                //     <RightArrowIcon
-                                //       style={{
-                                //         opacity: activeSubmenus[activeSubmenus.length - 1]?.parentItem === link ? 1 : 0.6,
-                                //         transform: activeSubmenus[activeSubmenus.length - 1]?.parentItem === link ? "translateX(2px)" : "none",
-                                //         transition: "all 0.2s ease",
-                                //       }}
-                                //     />
-                                //   )}
-                                // </Flex>
-
+                            {column.links.map((link: any, linkIndex: number) => (
                                 <Flex
                                     key={linkIndex}
                                     alignItems="center"
@@ -349,7 +293,7 @@ const MulipleMegaMenuItems: React.FC<MenuProps> = ({
         >
             <Flex gap="0" alignItems="flex-start">
                 {/* Render each column separately */}
-                {columns.map((column, index) => (
+                {columns.map((column: any, index: number) => (
                     <React.Fragment key={index}>
                         {index > 0 && (
                             <Divider
@@ -374,7 +318,7 @@ const MulipleMegaMenuItems: React.FC<MenuProps> = ({
                 ))}
 
                 {/* Render submenus for the active column */}
-                {activeSubmenus.map((submenu, level) => (
+                {activeSubmenus.map((submenu: any, level: any) => (
                     <React.Fragment key={level}>
                         <Divider
                             orientation="vertical"
@@ -402,10 +346,10 @@ const MulipleMegaMenuItems: React.FC<MenuProps> = ({
 
 // Componente reutilizable para columnas del menú
 const MenuColumn: React.FC<{
-    columns: Column[];
+    columns: any[];
     level: number;
-    onItemClick: (link: LinkItem, level: number) => void;
-    activeSubmenus: { columns: Column[]; parentItem: LinkItem }[];
+    onItemClick: (link: any, level: number) => void;
+    activeSubmenus: { columns: any[]; parentItem: any }[];
     titleStyle?: React.CSSProperties; // Add this
     linkStyle?: React.CSSProperties; // Add this
     onClose?: () => void; // Pass onClose from parent
@@ -423,7 +367,7 @@ const MenuColumn: React.FC<{
 
         return (
             <View style={{ width: "280px" }}>
-                {columns.map((column, columnIndex) => (
+                {columns.map((column: any, columnIndex: number) => (
                     <React.Fragment key={columnIndex}>
                         <View marginTop={columnIndex > 0 ? "20px" : "0"}>
                             <Text
@@ -448,7 +392,7 @@ const MenuColumn: React.FC<{
                                 </Text>
                             )}
                             <Flex direction="column" gap="8px">
-                                {column.links.map((link, linkIndex) => {
+                                {column.links.map((link: any, linkIndex: number) => {
                                     const isActive = activeSubmenus[level]?.parentItem === link;
 
                                     return (

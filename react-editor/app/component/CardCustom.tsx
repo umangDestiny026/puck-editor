@@ -1,3 +1,5 @@
+'use client';
+
 import { DropZone } from "@puckeditor/core";
 import React, { useMemo } from "react";
 
@@ -20,7 +22,7 @@ type CardBlockProps = {
   customCss?: string;
 };
 
-const CardCustom: React.FC<CardBlockProps> = ({
+const CardCustom: React.FC<any> = ({
   id,
   borderRadius = 8,
   boxShadow = "0 4px 12px rgba(0,0,0,0.1)",

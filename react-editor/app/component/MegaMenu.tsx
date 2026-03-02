@@ -1,3 +1,5 @@
+'use client';
+
 import { DropZone } from "@puckeditor/core";
 import { useEffect } from "react";
 import { megaMenuStore } from "../zone";

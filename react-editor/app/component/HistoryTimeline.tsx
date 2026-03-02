@@ -12,56 +12,6 @@ import {
     Button,
 } from "@aws-amplify/ui-react";
 
-// Define types for timeline items
-interface TimelineItem {
-    year: string;
-    title: string;
-    description?: string;
-    icon?: string;
-    iconAlt?: string;
-    images?: Array<{
-        src: string;
-        alt: string;
-        width?: string | number | ResponsiveValue;
-        height?: string | number | ResponsiveValue;
-    }>;
-    expandedContent?: React.ReactNode;
-    initiallyExpanded?: boolean;
-}
-
-// Define responsive value type
-type ResponsiveValue = {
-    base?: string | number;
-    md?: string | number;
-    xl?: string | number;
-};
-
-// Define style props interface
-interface StyleProps {
-    [key: string]: string | number | ResponsiveValue | undefined;
-}
-
-// Main component props
-interface ToyotaHistoryTimelineProps {
-    title?: string;
-    subtitle?: string;
-    items: TimelineItem[];
-    bgColor?: string;
-    textColor?: string;
-    accentColor?: string;
-    expandButtonColor?: string;
-    titleStyle?: StyleProps;
-    subtitleStyle?: StyleProps;
-    itemStyle?: StyleProps;
-    yearStyle?: StyleProps;
-    containerStyle?: StyleProps;
-    periodStartYear?: string;
-    periodEndYear?: string;
-    periodSummary?: string;
-    periodIcon?: string;
-    periodIconAlt?: string;
-}
-
 const styles = {
     titleStyle: {
         fontSize: { base: "1rem", md: "1.125rem", xl: "1.25rem" },
@@ -94,7 +44,7 @@ const styles = {
     },
 }
 
-const HistoryTimelineConfig: React.FC<ToyotaHistoryTimelineProps> = (
+const HistoryTimelineConfig: React.FC<any> = (
     props
 ) => {
 
@@ -136,9 +86,8 @@ const HistoryTimelineConfig: React.FC<ToyotaHistoryTimelineProps> = (
     // State for period expanded status
     const [isPeriodExpanded, setIsPeriodExpanded] = useState<boolean>(true);
 
-    // Helper function to resolve responsive values
     const resolveResponsiveValue = (
-        value?: string | number | ResponsiveValue
+        value?: string | number
     ): string | number | undefined => {
         if (typeof value === "string" || typeof value === "number") return value;
         if (typeof value === "object" && value !== null) {
@@ -336,9 +285,6 @@ const HistoryTimelineConfig: React.FC<ToyotaHistoryTimelineProps> = (
 
                 {/* Timeline Items - Only show if period is expanded */}
                 {isPeriodExpanded && (
-                    // Modified Timeline Component with central timeline bar
-
-                    // Inside your component, update the Flex container that holds the two columns:
 
                     <Flex
                         direction={{ base: "column", medium: "row" }}
@@ -407,7 +353,7 @@ const HistoryTimelineConfig: React.FC<ToyotaHistoryTimelineProps> = (
                         {/* Left Column - 45% width */}
                         <View width={{ base: "100%", medium: "45%" }} position="relative">
                             {props.items?.filter((_, i) => i % 2 === 0)
-                                .map((item, index) => (
+                                .map((item: any, index: number) => (
                                     <View
                                         key={`left-${item.year}`}
                                         // marginTop={index === 0 ? "7rem" : "25rem"}
@@ -465,7 +411,7 @@ const HistoryTimelineConfig: React.FC<ToyotaHistoryTimelineProps> = (
                                         {/* Additional images */}
                                         {item.images && item.images.length > 1 && (
                                             <Flex direction="column" gap="1rem" marginTop="3rem">
-                                                {item.images.slice(1).map((img, imgIndex) => (
+                                                {item.images.slice(1).map((img: any, imgIndex: number) => (
                                                     <Image
                                                         key={`img-left-${index}-${imgIndex + 1}`}
                                                         src={img.src}
@@ -484,7 +430,7 @@ const HistoryTimelineConfig: React.FC<ToyotaHistoryTimelineProps> = (
                         <View width={{ base: "100%", medium: "45%" }} position="relative">
                             {props.items
                                 .filter((_, i) => i % 2 === 1)
-                                .map((item, index) => (
+                                .map((item: any, index: number) => (
                                     <View
                                         key={`right-${item.year}`}
                                         marginTop={index === 0 ? "25rem" : "25rem"}
@@ -548,7 +494,7 @@ const HistoryTimelineConfig: React.FC<ToyotaHistoryTimelineProps> = (
                                             {/* Additional images */}
                                             {item.images && item.images.length > 1 && (
                                                 <Flex direction="column" gap="1rem" marginTop="3rem">
-                                                    {item.images.slice(1).map((img, imgIndex) => (
+                                                    {item.images.slice(1).map((img: any, imgIndex: number) => (
                                                         <Image
                                                             key={`img-right-${index}-${imgIndex + 1}`}
                                                             src={img.src}
