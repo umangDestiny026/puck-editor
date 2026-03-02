@@ -735,9 +735,27 @@ export const config = {
             },
           },
         },
+
+        cardWidth: {
+          type: "text",
+          label: "Card Width (e.g. 320px or 100%)",
+        },
+
+        cardHeight: {
+          type: "text",
+          label: "Card Height (e.g. 400px)",
+        },
+
+        cardPadding: {
+          type: "text",
+          label: "Inner Padding (e.g. 20px)",
+        },
       },
 
       defaultProps: {
+        cardWidth: "100%",
+        cardHeight: "auto",
+        cardPadding: "20px",
         slidesPerViewMobile: 1,
         slidesPerViewTablet: 2,
         slidesPerViewDesktop: 3,

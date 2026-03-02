@@ -12,6 +12,9 @@ export default function CardSliderBlock({
     slidesPerViewMobile = 1,
     slidesPerViewTablet = 2,
     slidesPerViewDesktop = 3,
+    cardWidth = "100%",
+    cardHeight = "auto",
+    cardPadding = "20px",
     spaceBetween = 30,
     centeredSlides = false,
     infinite = true,
@@ -77,15 +80,21 @@ export default function CardSliderBlock({
                             className="vehicle-card"
                             style={{
                                 background: item.bgColor || "#111",
+                                width: cardWidth,
+                                height: cardHeight,
                             }}
                         >
                             <div
                                 className={`vehicle-card-inner ${imagePosition === "right"
-                                    ? "row-reverse"
-                                    : imagePosition === "top"
-                                        ? "column"
-                                        : "row"
+                                        ? "row-reverse"
+                                        : imagePosition === "top"
+                                            ? "column"
+                                            : "row"
                                     }`}
+                                style={{
+                                    padding: cardPadding,
+                                    height: "100%",
+                                }}
                             >
                                 {/* Image */}
                                 <div className="vehicle-image">

@@ -2,7 +2,7 @@
 
 import { Puck } from "@puckeditor/core";
 // import { createAiPlugin } from "@puckeditor/plugin-ai";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import debounce from "lodash/debounce";
 import config from "../puck.config";
 import { Render } from "@puckeditor/core";
@@ -14,6 +14,7 @@ import './client.css'
 export function Client() {
   const { puckData, setPuckData } = usePuck();
   const [mode, setMode] = useState("edit");
+  const latestDataRef = useRef(puckData);
   const [editorKey, setEditorKey] = useState(0);
 
   const debouncedPublish = useMemo(
@@ -344,7 +345,7 @@ export function Client() {
   // export json
   const handleExportJSON = () => {
     try {
-      const jsonString = JSON.stringify(puckData, null, 2);
+      const jsonString = JSON.stringify(latestDataRef.current, null, 2);
 
       const blob = new Blob([jsonString], {
         type: "application/json",
@@ -452,6 +453,7 @@ export function Client() {
             plugins={[]}
             config={config as any}
             onChange={(updatedData) => {
+              latestDataRef.current = updatedData;
               setPuckData(updatedData);
               rebuildMegaMenuStore(updatedData);
 
