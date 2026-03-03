@@ -2,7 +2,7 @@
 
 import { DropZone } from "@puckeditor/core";
 import { useEffect } from "react";
-import { megaMenuStore } from "../zone";
+import { megaMenuStore } from "./zone";
 
 const MegaMenu = (props: any) => {
   const {

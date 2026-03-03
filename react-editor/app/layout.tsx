@@ -1,4 +1,4 @@
-import { PuckProvider } from "./PuckContext";
+import { PuckProvider } from "./component/PuckContext";
 import "./styles.css";
 
 export default function RootLayout({

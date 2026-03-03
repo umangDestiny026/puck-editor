@@ -54,32 +54,3 @@ export const megaMenuStore: MegaMenuStore = {
         return this.items.find(i => i.id === id);
     }
 };
-
-export function getZone(newZone: any, content: any) {
-    zone = newZone;
-
-    if (!Array.isArray(content)) return zone;
-
-    const megaMenuBlock = content.find(
-        (item: any) => item.type === "MegaMenu"
-    );
-
-    if (!megaMenuBlock) return zone;
-
-    const saveAs = megaMenuBlock.props?.saveAs;
-    const saveAsID = megaMenuBlock.props?.id;
-
-    console.log("saveAs", saveAs, "saveAsID", saveAsID);
-    if (!saveAs || !saveAsID) return zone;
-
-    const zoneKey = `${saveAsID}:${saveAs}`;
-    const matchedZoneContent = newZone[zoneKey];
-
-    if (!matchedZoneContent) return zone;
-
-    // ✅ Always update safely via store
-    megaMenuStore.updateContent(saveAs, matchedZoneContent);
-    console.log("megaMenuStore.items", megaMenuStore.items);
-
-    return megaMenuStore.items;
-}

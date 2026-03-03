@@ -2,10 +2,10 @@
 
 import { Flex, Link, Text, View } from '@aws-amplify/ui-react';
 import React from 'react'
-import { megaMenuStore } from '../zone';
+import { megaMenuStore } from './zone';
 import { Render } from "@puckeditor/core";
-import config from '../../puck.config';
-import { usePuck } from '../PuckContext';
+import config from './puck.config';
+import { usePuck } from './PuckContext';
 
 export default function Header({
     backgroundColor,

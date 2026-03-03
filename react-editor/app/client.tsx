@@ -4,10 +4,10 @@ import { Puck } from "@puckeditor/core";
 // import { createAiPlugin } from "@puckeditor/plugin-ai";
 import { useEffect, useMemo, useRef, useState } from "react";
 import debounce from "lodash/debounce";
-import config from "../puck.config";
+import config from "./component/puck.config";
 import { Render } from "@puckeditor/core";
-import { megaMenuStore } from "./zone";
-import { usePuck } from "./PuckContext";
+import { megaMenuStore } from "./component/zone";
+import { usePuck } from "./component/PuckContext";
 import './client.css'
 // const aiPlugin = createAiPlugin();
 
