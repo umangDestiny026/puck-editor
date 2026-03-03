@@ -1,26 +1,44 @@
-'use client';
+"use client";
 
-import React, { useState } from "react";
+import React, { useId, useState, useEffect, CSSProperties } from "react";
+
+interface DatePickerProps {
+  label?: string;
+  defaultValue?: string;
+  minDate?: string;
+  maxDate?: string;
+  required?: boolean;
+  name?: string;
+  className?: string;
+  customCss?: string;
+  errorMessage?: string;
+  onChange?: (date: string) => void;
+}
 
 export default function DatePicker({
   label,
-  defaultValue,
+  defaultValue = "",
   minDate,
   maxDate,
-  required,
+  required = false,
   name,
-  className,
+  className = "",
   customCss,
-  errorMessage,
-  onChangeCode,
-}) {
-  const uniqueClass = `datepicker-${Math.random()
-    .toString(36)
-    .substr(2, 9)}`;
-  const [touched, setTouched] = useState(false);
-  const [value, setValue] = useState(defaultValue || "");
+  errorMessage = "This field is required",
+  onChange,
+}: DatePickerProps) {
+  const uniqueId = useId();
+  const uniqueClass = `datepicker-${uniqueId.replace(/:/g, "")}`;
 
-  const inputStyle = {
+  const [touched, setTouched] = useState<boolean>(false);
+  const [value, setValue] = useState<string>(defaultValue);
+
+  // Sync if defaultValue changes
+  useEffect(() => {
+    setValue(defaultValue);
+  }, [defaultValue]);
+
+  const inputStyle: CSSProperties = {
     padding: "8px 10px",
     border: "1px solid #ddd",
     borderRadius: "6px",
@@ -28,6 +46,14 @@ export default function DatePicker({
     display: "block",
     width: "220px",
     marginTop: "6px",
+  };
+
+  const showError = touched && required && !value;
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newDate = e.target.value;
+    setValue(newDate);
+    onChange?.(newDate);
   };
 
   return (
@@ -40,37 +66,27 @@ export default function DatePicker({
         `}</style>
       )}
 
-      <label style={{ fontWeight: 500 }}>
-        {label}
-      </label>
+      {label && (
+        <label htmlFor={uniqueId} style={{ fontWeight: 500 }}>
+          {label}
+        </label>
+      )}
 
       <input
+        id={uniqueId}
         type="date"
         value={value}
         name={name}
-        min={minDate || undefined}
-        max={maxDate || undefined}
+        min={minDate}
+        max={maxDate}
         required={required}
-        className={`${className} ${uniqueClass}`}
+        className={`${className} ${uniqueClass}`.trim()}
         style={inputStyle}
         onBlur={() => setTouched(true)}
-        onChange={(e) => {
-          const newDate = e.target.value;
-          setValue(newDate);
-
-          try {
-            const fn = new Function(
-              "date",
-              `return (${onChangeCode})(date)`
-            );
-            fn(newDate);
-          } catch (err) {
-            console.warn("Invalid onChange code", err);
-          }
-        }}
+        onChange={handleChange}
       />
 
-      {touched && required && !value && (
+      {showError && (
         <span
           style={{
             color: "red",

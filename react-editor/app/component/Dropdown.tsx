@@ -1,43 +1,50 @@
 "use client";
-import React, { useState, useEffect } from "react";
+
+import React, { useEffect, useId, useState } from "react";
 import { Select, SelectTheme, Option } from "./select";
 
+interface DropdownProps {
+  options: Option[];
+  defaultValue?: Option["value"];
+  theme?: SelectTheme;
+  className?: string;
+  customCss?: string;
+  placeholder?: string;
+  noOptionsMessage?: string;
+  fixedPlaceholder?: boolean;
+  onChange?: (value: Option["value"] | null) => void;
+}
+
 export default function Dropdown({
-  options = [],
+  options,
   defaultValue,
   theme,
-  className,
+  className = "",
   customCss,
-  placeholder,
-  noOptionsMessage,
-  fixedPlaceholder,
-  onChangeCode,
-}) {
-  const uniqueClass = `select-${Math.random()
-    .toString(36)
-    .substr(2, 9)}`;
+  placeholder = "Select an option",
+  noOptionsMessage = "No options available",
+  fixedPlaceholder = false,
+  onChange,
+}: DropdownProps) {
+  const uniqueId = useId();
+  const uniqueClass = `select-${uniqueId.replace(/:/g, "")}`;
+
   const [selectedOption, setSelectedOption] = useState<Option | null>(null);
 
-  // Apply default value
+  // Sync default value when options/defaultValue change
   useEffect(() => {
-    if (defaultValue) {
-      const found = options.find((opt) => opt.value === defaultValue);
-      if (found) setSelectedOption(found);
+    if (!defaultValue) {
+      setSelectedOption(null);
+      return;
     }
+
+    const found = options.find((opt) => opt.value === defaultValue) ?? null;
+    setSelectedOption(found);
   }, [defaultValue, options]);
 
   const handleSelect = (option: Option | null) => {
     setSelectedOption(option);
-
-    try {
-      const fn = new Function(
-        "value",
-        `return (${onChangeCode})(value)`
-      );
-      fn(option?.value ?? null);
-    } catch (err) {
-      console.warn("Invalid onChange code", err);
-    }
+    onChange?.(option?.value ?? null);
   };
 
   return (
@@ -51,12 +58,12 @@ export default function Dropdown({
       )}
 
       <Select
-        theme={theme as SelectTheme}
+        theme={theme}
         options={options}
         selectedOption={selectedOption}
         onSelect={handleSelect}
         placeholder={placeholder}
-        className={`${className} ${uniqueClass}`}
+        className={`${className} ${uniqueClass}`.trim()}
         noOptionsMessage={noOptionsMessage}
         fixedPlaceholder={fixedPlaceholder}
       />

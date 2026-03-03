@@ -1,23 +1,52 @@
-'use client';
+"use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useId, useState } from "react";
+
+interface RadioOption {
+  label: string;
+  value: string;
+}
+
+interface RadioGroupProps {
+  label?: string;
+  options: RadioOption[];
+  defaultValue?: string;
+  required?: boolean;
+  className?: string;
+  customCss?: string;
+  name: string;
+  errorMessage?: string;
+  onChange?: (value: string) => void;
+}
 
 export default function RadioGroup({
   label,
-  options = [],
-  defaultValue,
-  required,
-  className,
+  options,
+  defaultValue = "",
+  required = false,
+  className = "",
   customCss,
   name,
-  errorMessage,
-  onChangeCode,
-}) {
-  const uniqueClass = `radiogroup-${Math.random()
-    .toString(36)
-    .substr(2, 9)}`;
-  const [touched, setTouched] = useState(false);
-  const [value, setValue] = useState(defaultValue || "");
+  errorMessage = "This field is required",
+  onChange,
+}: RadioGroupProps) {
+  const uniqueId = useId();
+  const uniqueClass = `radiogroup-${uniqueId.replace(/:/g, "")}`;
+
+  const [value, setValue] = useState<string>(defaultValue);
+  const [touched, setTouched] = useState<boolean>(false);
+
+  // Sync if defaultValue changes
+  useEffect(() => {
+    setValue(defaultValue);
+  }, [defaultValue]);
+
+  const showError = touched && required && !value;
+
+  const handleChange = (newValue: string) => {
+    setValue(newValue);
+    onChange?.(newValue);
+  };
 
   return (
     <div style={{ margin: "12px 0" }}>
@@ -29,12 +58,23 @@ export default function RadioGroup({
         `}</style>
       )}
 
-      <div style={{ fontWeight: 500, marginBottom: "6px" }}>{label}</div>
+      {label && (
+        <div
+          style={{ fontWeight: 500, marginBottom: "6px" }}
+          id={`${uniqueId}-label`}
+        >
+          {label}
+        </div>
+      )}
 
-      <div className={`${className} ${uniqueClass}`}>
-        {options.map((opt: any, idx: any) => (
+      <div
+        role="radiogroup"
+        aria-labelledby={label ? `${uniqueId}-label` : undefined}
+        className={`${className} ${uniqueClass}`.trim()}
+      >
+        {options.map((opt) => (
           <label
-            key={idx}
+            key={opt.value}
             style={{
               display: "flex",
               alignItems: "center",
@@ -50,27 +90,14 @@ export default function RadioGroup({
               checked={value === opt.value}
               required={required}
               onBlur={() => setTouched(true)}
-              onChange={(e) => {
-                const newVal = e.target.value;
-                setValue(newVal);
-
-                try {
-                  const fn = new Function(
-                    "value",
-                    `return (${onChangeCode})(value)`
-                  );
-                  fn(newVal);
-                } catch (err) {
-                  console.warn("Invalid onChange code", err);
-                }
-              }}
+              onChange={() => handleChange(opt.value)}
             />
             <span>{opt.label}</span>
           </label>
         ))}
       </div>
 
-      {touched && required && !value && (
+      {showError && (
         <span
           style={{
             color: "red",

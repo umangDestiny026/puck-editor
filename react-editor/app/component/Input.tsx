@@ -1,31 +1,48 @@
 "use client";
 
-import { Flex, Input as AmplifyImput, Label } from "@aws-amplify/ui-react";
+import React, { useId, useMemo, useState, ChangeEvent } from "react";
+import { Flex, Input as AmplifyInputField, Label } from "@aws-amplify/ui-react";
 import "@aws-amplify/ui-react/styles.css";
-import React, { useState, useMemo } from "react";
+
+type Variant = "default" | "mobile";
+
+interface InputProps {
+  label?: string;
+  placeholder?: string;
+  name: string;
+  labelColor?: string;
+  inputBackground?: string;
+  inputBorder?: string;
+  variant?: Variant;
+  pattern?: string;
+  errorMessage?: string;
+  className?: string;
+  customCss?: string;
+  onChange?: (value: string) => void;
+}
 
 export default function Input({
   label,
   placeholder,
   name,
-  labelColor,
-  inputBackground,
-  inputBorder,
-  variant,
+  labelColor = "#ffffff",
+  inputBackground = "#fff",
+  inputBorder = "none",
+  variant = "default",
   pattern,
-  errorMessage,
-  className,
+  errorMessage = "Invalid value",
+  className = "",
   customCss,
-  onChangeCode,
-}) {
-  const uniqueClass = `amplify-input-${Math.random()
-    .toString(36)
-    .substr(2, 9)}`;
-  const [value, setValue] = useState("");
-  const [hasError, setHasError] = useState(false);
+  onChange,
+}: InputProps) {
+  const uniqueId = useId();
+  const uniqueClass = `amplify-input-${uniqueId.replace(/:/g, "")}`;
 
-  // Convert string pattern to RegExp safely
-  const validatePattern = useMemo(() => {
+  const [value, setValue] = useState("");
+  const [touched, setTouched] = useState(false);
+
+  // Safe pattern parsing
+  const regex = useMemo(() => {
     if (!pattern) return undefined;
     try {
       return new RegExp(pattern);
@@ -35,34 +52,27 @@ export default function Input({
     }
   }, [pattern]);
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = event.target.value;
+  const isInvalid = touched && !!regex && value !== "" && !regex.test(value);
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const newValue = e.target.value;
+
+    // For mobile variant, prevent invalid characters
+    if (
+      variant === "mobile" &&
+      regex &&
+      !regex.test(newValue) &&
+      newValue !== ""
+    ) {
+      return;
+    }
+
     setValue(newValue);
-
-    if (validatePattern && !validatePattern.test(newValue) && newValue !== "") {
-      setHasError(true);
-    } else {
-      setHasError(false);
-    }
-
-    try {
-      const fn = new Function(
-        "value",
-        `return (${onChangeCode})(value)`
-      );
-      fn(newValue);
-    } catch (err) {
-      console.warn("Invalid onChange code", err);
-    }
+    onChange?.(newValue);
   };
 
-  const InputComponent =
-    variant === "mobile"
-      ? AmplifyMobileInput
-      : AmplifyInput;
-
   return (
-    <div className={`${className} ${uniqueClass}`}>
+    <div className={`${className} ${uniqueClass}`.trim()}>
       {customCss && (
         <style>{`
           .${uniqueClass} {
@@ -71,152 +81,45 @@ export default function Input({
         `}</style>
       )}
 
-      <InputComponent
-        label={label}
-        placeholder={placeholder}
-        id={name}
-        value={value}
-        onChange={handleChange}
-        labelColor={labelColor}
-        inputBackground={inputBackground}
-        inputBorder={inputBorder}
-        validatePattern={validatePattern}
-        errorMessage={hasError ? errorMessage : ""}
-      />
+      <Flex direction="column" gap="8px">
+        {label && (
+          <Label
+            htmlFor={uniqueId}
+            color={labelColor}
+            fontSize={{ base: "14px", xl: "18px" }}
+          >
+            {label}
+          </Label>
+        )}
+
+        <AmplifyInputField
+          id={uniqueId}
+          name={name}
+          type={variant === "mobile" ? "tel" : "text"}
+          backgroundColor={inputBackground}
+          border={inputBorder}
+          borderRadius="80px"
+          placeholder={placeholder}
+          value={value}
+          maxLength={variant === "mobile" ? 10 : undefined}
+          fontSize={{ base: "12px", xl: "14px" }}
+          padding={{ base: "12px 23px", xl: "10px 23px" }}
+          onBlur={() => setTouched(true)}
+          onChange={handleChange}
+        />
+
+        {isInvalid && (
+          <span
+            style={{
+              color: "red",
+              fontSize: "12px",
+              marginTop: "4px",
+            }}
+          >
+            {errorMessage}
+          </span>
+        )}
+      </Flex>
     </div>
   );
 }
-
-// ==================
-const AmplifyInput = ({
-  label,
-  labelColor,
-  inputBackground,
-  inputBorder,
-  placeholder,
-  id,
-  value,
-  onChange,
-  errorMessage,
-  validatePattern,
-}) => {
-  const [inputValue, setInputValue] = useState(value);
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = event.target.value;
-    if (validatePattern && !validatePattern.test(newValue) && newValue !== "") {
-      return;
-    }
-
-    setInputValue(event.target.value);
-    onChange(event);
-  };
-
-  return (
-    <Flex direction="column" gap={{ base: "8px", xl: "8px" }}>
-      <Label
-        htmlFor={id}
-        color={labelColor ?? "#ffffff"}
-        fontSize={{ base: "14px", xl: "18px" }}
-        fontFamily="var(--font-ToyotaType-Regular)"
-      >
-        {label}
-      </Label>
-      <AmplifyImput
-        backgroundColor={inputBackground ?? "#fff"}
-        borderRadius={"80px"}
-        border={inputBorder ?? "none"}
-        id={id}
-        name={id}
-        placeholder={placeholder}
-        color="#58595B"
-        fontSize={{ base: "12px", xl: "14px" }}
-        fontFamily="var(--font-ToyotaDisplay)"
-        padding={{ base: "12px 23px", xl: "10px 23px" }}
-        value={inputValue}
-        onChange={handleChange}
-      />
-      {errorMessage && (
-        <span
-          style={{
-            color: "red",
-            fontSize: "12px",
-            fontFamily: "var(--font-ToyotaDisplay)",
-            marginTop: "4px",
-          }}
-        >
-          {errorMessage}
-        </span>
-      )}
-    </Flex>
-  );
-};
-
-const AmplifyMobileInput = ({
-  label,
-  labelColor,
-  inputBackground,
-  inputBorder,
-  placeholder,
-  id,
-  value,
-  onChange,
-  errorMessage,
-  validatePattern,
-}) => {
-  const [inputValue, setInputValue] = useState(value);
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = event.target.value;
-
-    // Prevent input if it doesn't match the numeric pattern
-    if (validatePattern && !validatePattern.test(newValue) && newValue !== "") {
-      return;
-    }
-    setInputValue(event.target.value);
-    onChange(event);
-  };
-
-  return (
-    <Flex direction="column" gap={{ base: "8px", xl: "8px" }}>
-      <Label
-        htmlFor={id}
-        color={labelColor ?? "#ffffff"}
-        fontSize={{ base: "14px", xl: "18px" }}
-        fontFamily="var(--font-ToyotaType-Regular)"
-      >
-        {label}
-      </Label>
-      <Flex alignItems="center" gap="0">
-        <AmplifyImput
-          type="tel"
-          backgroundColor={"#fff"}
-          borderRadius={"80px"}
-          border={inputBorder ?? "none"}
-          id={id}
-          name={id}
-          placeholder={placeholder}
-          color="#58595B"
-          fontSize={{ base: "12px", xl: "14px" }}
-          fontFamily="var(--font-ToyotaDisplay)"
-          padding={{ base: "12px 23px", xl: "10px 23px" }}
-          value={inputValue}
-          onChange={handleChange}
-          maxLength={10}
-        />
-      </Flex>
-      {errorMessage && (
-        <span
-          style={{
-            color: "red",
-            fontSize: "12px",
-            fontFamily: "var(--font-ToyotaDisplay)",
-            marginTop: "4px",
-          }}
-        >
-          {errorMessage}
-        </span>
-      )}
-    </Flex>
-  );
-};

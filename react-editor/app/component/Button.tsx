@@ -3,9 +3,13 @@
 import React from "react";
 import { Button as AmplifyButton } from "@aws-amplify/ui-react";
 
+/* ---------------------------------- */
+/* Base Button Props (AmpButton)     */
+/* ---------------------------------- */
+
 export interface ButtonProps {
-    type?: "button" | "submit" | "reset";
-    color?:
+  type?: "button" | "submit" | "reset";
+  color?:
     | "red"
     | "deepred"
     | "white"
@@ -13,176 +17,192 @@ export interface ButtonProps {
     | "black"
     | "underlined"
     | "transparentBlack";
-    size?: "small" | "large";
-    children: React.ReactNode;
-    onClick?: () => void;
-    disabled?: boolean;
-    className?: string;
-    style?: React.CSSProperties;
-    isFullWidth?: boolean;
-    isLoading?: boolean;
-    loadingText?: string;
-    textColor?: "white" | "black";
-    padding?: string | object;
-    margin?: string | object;
-    display?: string | object;
-    minWidth?: string | object;
-    maxHeight?: string | object;
-    fontSize?: string | object;
-    fontFamily?: string | object;
-    fontWeight?: string | object;
-    lineHeight?: string | object;
-    maxWidth?: string | object;
-    minHeight?: string | object;
-    letterSpacing?: string | object;
-    backgroundColor?: string | object;
-    border?: string | object;
+  size?: "small" | "large";
+  children: React.ReactNode;
+  onClick?: () => void;
+  disabled?: boolean;
+  className?: string;
+  style?: React.CSSProperties;
+  isFullWidth?: boolean;
+  isLoading?: boolean;
+  loadingText?: string;
+  textColor?: "white" | "black";
+
+  /* Style Props */
+  padding?: string;
+  margin?: string;
+  display?: string;
+  minWidth?: string;
+  maxHeight?: string;
+  fontSize?: string;
+  fontFamily?: string;
+  fontWeight?: string | number;
+  lineHeight?: string;
+  maxWidth?: string;
+  minHeight?: string;
+  letterSpacing?: string;
+  backgroundColor?: string;
+  border?: string;
 }
 
-export default function Button({
-    text,
-    type,
-    color,
-    size,
-    align,
-    isFullWidth,
-    disabled,
-    isLoading,
-    loadingText,
-    onClickCode,
-    className,
-    customCss,
-}) {
-    const uniqueClass = `amplify-button-${Math.random()
-        .toString(36)
-        .substr(2, 9)}`;
-    const handleClick = () => {
-        try {
-            const fn = new Function(`return (${onClickCode})`)();
-            if (typeof fn === "function") fn();
-        } catch (err) {
-            console.warn("Invalid onClick code", err);
-        }
-    };
+/* ---------------------------------- */
+/* Wrapper Button Props              */
+/* ---------------------------------- */
 
-    return (
-        <div style={{ textAlign: align }}>
-            {customCss && (
-                <style>{`
+export interface DynamicButtonProps extends Omit<
+  ButtonProps,
+  "children" | "onClick"
+> {
+  text: string;
+  align?: "left" | "center" | "right";
+  onClickCode?: string;
+  customCss?: string;
+}
+
+/* ---------------------------------- */
+/* Wrapper Component                 */
+/* ---------------------------------- */
+
+export default function Button({
+  text,
+  align = "left",
+  onClickCode,
+  customCss,
+  className,
+  ...rest
+}: DynamicButtonProps) {
+  const uniqueClass = React.useMemo(
+    () => `amplify-button-${Math.random().toString(36).substring(2, 9)}`,
+    []
+  );
+
+  const handleClick = React.useCallback(() => {
+    if (!onClickCode) return;
+
+    try {
+      const fn = new Function(`return (${onClickCode})`)();
+      if (typeof fn === "function") fn();
+    } catch (err) {
+      console.warn("Invalid onClick code", err);
+    }
+  }, [onClickCode]);
+
+  return (
+    <div style={{ textAlign: align }}>
+      {customCss && (
+        <style>{`
           .${uniqueClass} {
             ${customCss}
           }
         `}</style>
-            )}
+      )}
 
-            <AmpButton
-                type={type}
-                color={color}
-                size={size}
-                onClick={handleClick}
-                disabled={disabled}
-                isFullWidth={isFullWidth}
-                isLoading={isLoading}
-                loadingText={loadingText}
-                className={`${className} ${uniqueClass}`}
-            >
-                {text}
-            </AmpButton>
-        </div>
-    );
+      <AmpButton
+        {...rest}
+        onClick={handleClick}
+        className={`${className ?? ""} ${uniqueClass}`}
+      >
+        {text}
+      </AmpButton>
+    </div>
+  );
 }
 
+/* ---------------------------------- */
+/* Base Amplify Button Component     */
+/* ---------------------------------- */
+
 function AmpButton({
-    type,
-    color,
-    size,
-    children,
-    onClick,
-    disabled,
-    className,
-    style,
-    isFullWidth,
-    isLoading,
-    loadingText,
-    textColor,
-    padding,
-    margin,
-    display,
-    minWidth,
-    maxHeight,
-    fontSize,
-    fontFamily,
-    fontWeight,
-    lineHeight,
-    maxWidth,
-    minHeight,
-    letterSpacing,
-    backgroundColor,
-    border,
+  type = "button",
+  color = "red",
+  size = "large",
+  children,
+  onClick,
+  disabled,
+  className,
+  style,
+  isFullWidth,
+  isLoading,
+  loadingText,
+  textColor,
+  padding,
+  margin,
+  display,
+  minWidth,
+  maxHeight,
+  fontSize = "14px",
+  fontFamily,
+  fontWeight = 500,
+  lineHeight = "1.25rem",
+  maxWidth,
+  minHeight,
+  letterSpacing,
+  backgroundColor,
+  border,
 }: ButtonProps) {
-    const getVariation = () => {
-        if (color === "underlined") return "link";
-        if (color === "red" || color === "white" || color === "black")
-            return "primary";
-        return undefined;
-    };
+  const getVariation = () => {
+    if (color === "underlined") return "link";
+    if (["red", "white", "black"].includes(color)) return "primary";
+    return undefined;
+  };
 
-    const getColorTheme = () => {
-        if (color === "red") return "red";
-        if (color === "deepred") return "#D42224"; // Updated specific red hex
-        if (color === "white") return "white";
-        if (color === "black") return "black";
-        if (color === "underlined") return "transparent";
-        if (color === "transparent" || "transparentBlack") return "transparent";
-        return "white";
-    };
+  const getColorTheme = () => {
+    if (color === "red") return "red";
+    if (color === "deepred") return "#D42224";
+    if (color === "white") return "white";
+    if (color === "black") return "black";
+    if (color === "underlined") return "transparent";
+    if (color === "transparent" || color === "transparentBlack")
+      return "transparent";
+    return "white";
+  };
 
-    const getBorderColor = () => {
-        if (color === "transparent") return "white";
-        if (color === "transparentBlack") return "black";
-        return "transparent";
-    };
+  const getBorderColor = () => {
+    if (color === "transparent") return "white";
+    if (color === "transparentBlack") return "black";
+    return "transparent";
+  };
 
-    const getTextColor = () => {
-        if (textColor) return textColor;
-        if (color === "red") return "white";
-        if (color === "white") return "black";
-        if (color === "black") return "white";
-        if (color === "underlined") return "black";
-        if (color === "transparent") return "black";
-        return "white";
-    };
+  const getTextColor = () => {
+    if (textColor) return textColor;
+    if (color === "red") return "white";
+    if (color === "white") return "black";
+    if (color === "black") return "white";
+    if (color === "underlined") return "black";
+    if (color === "transparent") return "black";
+    return "white";
+  };
 
-    return (
-        <AmplifyButton
-            variation={getVariation()}
-            size={size}
-            isDisabled={disabled}
-            onClick={onClick}
-            backgroundColor={backgroundColor || getColorTheme()}
-            borderColor={textColor || getBorderColor()}
-            color={getTextColor()}
-            isFullWidth={isFullWidth}
-            isLoading={isLoading}
-            loadingText={loadingText}
-            type={type}
-            fontWeight={fontWeight ? fontWeight : 500}
-            padding={padding ?? (size == "small" ? "15px 20px" : padding)}
-            margin={margin}
-            display={display}
-            lineHeight={lineHeight ? lineHeight : "1.25rem"}
-            fontSize={fontSize ? fontSize : "14px"}
-            className={className}
-            style={style}
-            maxHeight={maxHeight}
-            minWidth={minWidth}
-            fontFamily={fontFamily}
-            maxWidth={maxWidth}
-            minHeight={minHeight}
-            letterSpacing={letterSpacing}
-            border={border}
-        >
-            {children}
-        </AmplifyButton>
-    );
+  return (
+    <AmplifyButton
+      variation={getVariation()}
+      size={size}
+      isDisabled={disabled}
+      onClick={onClick}
+      backgroundColor={backgroundColor ?? getColorTheme()}
+      borderColor={getBorderColor()}
+      color={getTextColor()}
+      isFullWidth={isFullWidth}
+      isLoading={isLoading}
+      loadingText={loadingText}
+      type={type}
+      fontWeight={fontWeight}
+      padding={padding ?? (size === "small" ? "15px 20px" : undefined)}
+      margin={margin}
+      display={display}
+      lineHeight={lineHeight}
+      fontSize={fontSize}
+      className={className}
+      style={style}
+      maxHeight={maxHeight}
+      minWidth={minWidth}
+      fontFamily={fontFamily}
+      maxWidth={maxWidth}
+      minHeight={minHeight}
+      letterSpacing={letterSpacing}
+      border={border}
+    >
+      {children}
+    </AmplifyButton>
+  );
 }

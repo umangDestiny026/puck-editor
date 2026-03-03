@@ -1,188 +1,172 @@
-'use client';
+"use client";
 
 import React, { useId } from "react";
 
-type ButtonType =
-    | "default"
-    | "primary"
-    | "basic"
-    | "success"
-    | "info"
-    | "danger"
-    | "link";
+export type ButtonType =
+  | "default"
+  | "primary"
+  | "basic"
+  | "success"
+  | "info"
+  | "danger"
+  | "link";
 
-type CardBlockProps = {
-    image?: string;
-    imageWidth?: number;
-    imageHeight?: number;
-    imageMaxWidth?: number;
-    imageMaxHeight?: number;
-    imageBorderRadius?: number;
-    imageObjectFit?: React.CSSProperties["objectFit"];
-    imageAlign?: "top" | "left" | "right";
+export interface CardBlockProps {
+  image?: string;
+  imageWidth?: number;
+  imageHeight?: number;
+  imageMaxWidth?: number;
+  imageMaxHeight?: number;
+  imageBorderRadius?: number;
+  imageObjectFit?: React.CSSProperties["objectFit"];
+  imageAlign?: "top" | "left" | "right";
 
-    title?: string;
-    titleColor?: string;
-    description?: string;
-    descriptionColor?: string;
-    textAlign?: React.CSSProperties["textAlign"];
+  title?: string;
+  titleColor?: string;
+  description?: string;
+  descriptionColor?: string;
+  textAlign?: React.CSSProperties["textAlign"];
 
-    buttonText?: string;
-    buttonType?: ButtonType;
-    buttonHref?: string;
-    buttonExternal?: boolean;
+  buttonText?: string;
+  buttonType?: ButtonType;
+  buttonHref?: string;
+  buttonExternal?: boolean;
 
-    className?: string;
-    customCss?: string;
+  className?: string;
+  customCss?: string;
 
-    cardWidth?: number;
-    cardMaxWidth?: number;
-    cardPadding?: number;
-    cardBorderRadius?: number;
-    cardShadow?: string;
-};
+  cardWidth?: number;
+  cardMaxWidth?: number;
+  cardPadding?: number;
+  cardBorderRadius?: number;
+  cardShadow?: string;
+}
 
 const buttonTypes: Record<ButtonType, React.CSSProperties> = {
-    default: { background: "#e5e7eb", color: "#111827" },
-    primary: { background: "#2563eb", color: "#fff" },
-    basic: {
-        background: "transparent",
-        color: "#111827",
-        border: "1px solid #d1d5db",
-    },
-    success: { background: "#16a34a", color: "#fff" },
-    info: { background: "#0284c7", color: "#fff" },
-    danger: { background: "#dc2626", color: "#fff" },
-    link: {
-        background: "transparent",
-        color: "#2563eb",
-        padding: 0,
-    },
+  default: { background: "#e5e7eb", color: "#111827" },
+  primary: { background: "#2563eb", color: "#fff" },
+  basic: {
+    background: "transparent",
+    color: "#111827",
+    border: "1px solid #d1d5db",
+  },
+  success: { background: "#16a34a", color: "#fff" },
+  info: { background: "#0284c7", color: "#fff" },
+  danger: { background: "#dc2626", color: "#fff" },
+  link: {
+    background: "transparent",
+    color: "#2563eb",
+    padding: 0,
+  },
 };
 
-const Card: React.FC<any> = ({
-    image,
-    imageWidth,
-    imageHeight,
-    imageMaxWidth,
-    imageMaxHeight,
-    imageBorderRadius = 0,
-    imageObjectFit = "cover",
-    imageAlign = "top",
+const Card = ({
+  image,
+  imageWidth,
+  imageHeight,
+  imageMaxWidth,
+  imageMaxHeight,
+  imageBorderRadius = 0,
+  imageObjectFit = "cover",
+  imageAlign = "top",
 
-    title,
-    titleColor,
-    description,
-    descriptionColor,
-    textAlign = "left",
+  title,
+  titleColor,
+  description,
+  descriptionColor,
+  textAlign = "left",
 
-    buttonText,
-    buttonType = "default",
-    buttonHref,
-    buttonExternal,
+  buttonText,
+  buttonType = "default",
+  buttonHref = "#",
+  buttonExternal = false,
 
-    className = "",
-    customCss,
+  className = "",
+  customCss,
 
-    cardWidth,
-    cardMaxWidth,
-    cardPadding = 16,
-    cardBorderRadius = 8,
-    cardShadow,
-}) => {
-    const id = useId();
-    const uniqueClass = `card-${id.replace(/:/g, "")}`;
+  cardWidth,
+  cardMaxWidth,
+  cardPadding = 16,
+  cardBorderRadius = 8,
+  cardShadow,
+}: CardBlockProps) => {
+  const id = useId();
+  const uniqueClass = `card-${id.replace(/:/g, "")}`;
 
-    const isHorizontal = imageAlign === "left" || imageAlign === "right";
+  const isHorizontal = imageAlign === "left" || imageAlign === "right";
 
-    const containerStyle: React.CSSProperties = {
-        display: isHorizontal ? "flex" : "block",
-        flexDirection: imageAlign === "right" ? "row-reverse" : "row",
-        width: cardWidth != null ? `${cardWidth}px` : "100%",
-        maxWidth: cardMaxWidth != null ? `${cardMaxWidth}px` : "100%",
-        padding: `${cardPadding}px`,
-        borderRadius: `${cardBorderRadius}px`,
-        boxShadow: cardShadow,
-        alignItems: "flex-start",
-        gap: isHorizontal ? "12px" : undefined,
-    };
+  const containerStyle: React.CSSProperties = {
+    display: isHorizontal ? "flex" : "block",
+    flexDirection: imageAlign === "right" ? "row-reverse" : "row",
+    width: cardWidth ? `${cardWidth}px` : "100%",
+    maxWidth: cardMaxWidth ? `${cardMaxWidth}px` : "100%",
+    padding: `${cardPadding}px`,
+    borderRadius: `${cardBorderRadius}px`,
+    boxShadow: cardShadow,
+    alignItems: "flex-start",
+    gap: isHorizontal ? "12px" : undefined,
+  };
 
-    const imgStyle: React.CSSProperties = {
-        width: imageWidth != null ? `${imageWidth}px` : "100%",
-        height: imageHeight != null ? `${imageHeight}px` : "auto",
-        maxWidth:
-            imageMaxWidth != null ? `${imageMaxWidth}px` : "100%",
-        maxHeight:
-            imageMaxHeight != null ? `${imageMaxHeight}px` : undefined,
-        borderRadius: `${imageBorderRadius}px`,
-        objectFit: imageObjectFit,
-        display: "block",
-    };
+  const imgStyle: React.CSSProperties = {
+    width: imageWidth ? `${imageWidth}px` : "100%",
+    height: imageHeight ? `${imageHeight}px` : "auto",
+    maxWidth: imageMaxWidth ? `${imageMaxWidth}px` : "100%",
+    maxHeight: imageMaxHeight ? `${imageMaxHeight}px` : undefined,
+    borderRadius: `${imageBorderRadius}px`,
+    objectFit: imageObjectFit,
+    display: "block",
+  };
 
-    const textStyle: React.CSSProperties = {
-        textAlign,
-        flex: isHorizontal ? 1 : undefined,
-    };
+  const textStyle: React.CSSProperties = {
+    textAlign,
+    flex: isHorizontal ? 1 : undefined,
+  };
 
-    const buttonStyle: React.CSSProperties = {
-        display: buttonText ? "inline-block" : "none",
-        cursor: "pointer",
-        textDecoration: "none",
-        padding: buttonType === "link" ? undefined : "8px 16px",
-        borderRadius: "6px",
-        marginTop: "12px",
-        ...buttonTypes[buttonType],
-    };
+  const buttonStyle: React.CSSProperties = {
+    display: buttonText ? "inline-block" : "none",
+    cursor: "pointer",
+    textDecoration: "none",
+    padding: buttonType === "link" ? undefined : "8px 16px",
+    borderRadius: "6px",
+    marginTop: "12px",
+    ...buttonTypes[buttonType],
+  };
 
-    return (
-        <div className={`${uniqueClass} ${className}`} style={containerStyle}>
-            {customCss && (
-                <style>{`.${uniqueClass} { ${customCss} }`}</style>
-            )}
+  return (
+    <div className={`${uniqueClass} ${className}`} style={containerStyle}>
+      {customCss && <style>{`.${uniqueClass} { ${customCss} }`}</style>}
 
-            {image && (
-                <img
-                    src={image}
-                    alt={title || "Card image"}
-                    style={imgStyle}
-                />
-            )}
+      {image && (
+        <img src={image} alt={title ?? "Card image"} style={imgStyle} />
+      )}
 
-            <div style={textStyle}>
-                {title && (
-                    <h3 style={{ color: titleColor, margin: 0 }}>
-                        {title}
-                    </h3>
-                )}
+      <div style={textStyle}>
+        {title && <h3 style={{ color: titleColor, margin: 0 }}>{title}</h3>}
 
-                {description && (
-                    <p
-                        style={{
-                            color: descriptionColor,
-                            marginTop: 6,
-                        }}
-                    >
-                        {description}
-                    </p>
-                )}
+        {description && (
+          <p
+            style={{
+              color: descriptionColor,
+              marginTop: 6,
+            }}
+          >
+            {description}
+          </p>
+        )}
 
-                {buttonText && (
-                    <a
-                        href={buttonHref || "#"}
-                        target={buttonExternal ? "_blank" : undefined}
-                        rel={
-                            buttonExternal
-                                ? "noopener noreferrer"
-                                : undefined
-                        }
-                        style={buttonStyle}
-                    >
-                        {buttonText}
-                    </a>
-                )}
-            </div>
-        </div>
-    );
+        {buttonText && (
+          <a
+            href={buttonHref}
+            target={buttonExternal ? "_blank" : undefined}
+            rel={buttonExternal ? "noopener noreferrer" : undefined}
+            style={buttonStyle}
+          >
+            {buttonText}
+          </a>
+        )}
+      </div>
+    </div>
+  );
 };
 
 export default Card;

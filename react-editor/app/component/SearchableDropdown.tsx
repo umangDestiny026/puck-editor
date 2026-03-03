@@ -1,32 +1,86 @@
-'use client';
+"use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useId, useRef, useState } from "react";
+
+interface DropdownOption {
+  label: string;
+  value: string;
+}
+
+interface SearchableDropdownProps {
+  label?: string;
+  options: DropdownOption[];
+  placeholder?: string;
+  required?: boolean;
+  className?: string;
+  customCss?: string;
+  name: string;
+  errorMessage?: string;
+  defaultValue?: string;
+  onChange?: (value: string) => void;
+}
 
 export default function SearchableDropdown({
   label,
-  options = [],
-  placeholder,
-  required,
-  className,
+  options,
+  placeholder = "Select...",
+  required = false,
+  className = "",
   customCss,
   name,
-  errorMessage,
-  onChangeCode,
-}) {
-  const uniqueClass = `searchdd-${Math.random()
-    .toString(36)
-    .substr(2, 9)}`;
-  const [touched, setTouched] = useState(false);
-  const [query, setQuery] = useState("");
-  const [selected, setSelected] = useState("");
-  const [open, setOpen] = useState(false);
+  errorMessage = "This field is required",
+  defaultValue = "",
+  onChange,
+}: SearchableDropdownProps) {
+  const uniqueId = useId();
+  const uniqueClass = `searchdd-${uniqueId.replace(/:/g, "")}`;
 
-  const filteredOptions = options.filter(opt =>
+  const wrapperRef = useRef<HTMLDivElement>(null);
+
+  const [query, setQuery] = useState("");
+  const [selected, setSelected] = useState<string>(defaultValue);
+  const [open, setOpen] = useState(false);
+  const [touched, setTouched] = useState(false);
+
+  // Sync default value
+  useEffect(() => {
+    setSelected(defaultValue);
+  }, [defaultValue]);
+
+  // Close on outside click
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        wrapperRef.current &&
+        !wrapperRef.current.contains(event.target as Node)
+      ) {
+        setOpen(false);
+        setTouched(true);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const filteredOptions = options.filter((opt) =>
     opt.label.toLowerCase().includes(query.toLowerCase())
   );
 
+  const handleSelect = (option: DropdownOption) => {
+    setSelected(option.label);
+    setQuery("");
+    setOpen(false);
+    onChange?.(option.value);
+  };
+
+  const showError = touched && required && !selected;
+
   return (
-    <div style={{ margin: "10px 0", position: "relative", width: "260px" }}>
+    <div
+      ref={wrapperRef}
+      style={{ margin: "10px 0", position: "relative", width: "260px" }}
+    >
       {customCss && (
         <style>{`
           .${uniqueClass} {
@@ -35,16 +89,22 @@ export default function SearchableDropdown({
         `}</style>
       )}
 
-      <label style={{ fontWeight: 500, display: "block", marginBottom: "6px" }}>
-        {label}
-      </label>
+      {label && (
+        <label
+          htmlFor={uniqueId}
+          style={{ fontWeight: 500, display: "block", marginBottom: "6px" }}
+        >
+          {label}
+        </label>
+      )}
 
       <input
+        id={uniqueId}
         type="text"
+        name={name}
         placeholder={placeholder}
         value={query || selected}
-        name={name}
-        className={`${className} ${uniqueClass}`}
+        className={`${className} ${uniqueClass}`.trim()}
         style={{
           width: "100%",
           padding: "8px 10px",
@@ -52,15 +112,18 @@ export default function SearchableDropdown({
           borderRadius: "6px",
         }}
         onFocus={() => setOpen(true)}
-        onBlur={() => setTouched(true)}
         onChange={(e) => {
           setQuery(e.target.value);
           setOpen(true);
         }}
+        role="combobox"
+        aria-expanded={open}
+        aria-autocomplete="list"
       />
 
       {open && filteredOptions.length > 0 && (
         <div
+          role="listbox"
           style={{
             position: "absolute",
             top: "100%",
@@ -75,29 +138,16 @@ export default function SearchableDropdown({
             overflowY: "auto",
           }}
         >
-          {filteredOptions.map((opt: any, idx: number) => (
+          {filteredOptions.map((opt) => (
             <div
-              key={idx}
+              key={opt.value}
+              role="option"
               style={{
                 padding: "8px 10px",
                 cursor: "pointer",
                 borderBottom: "1px solid #f0f0f0",
               }}
-              onMouseDown={() => {
-                setSelected(opt.label);
-                setQuery("");
-                setOpen(false);
-
-                try {
-                  const fn = new Function(
-                    "value",
-                    `return (${onChangeCode})(value)`
-                  );
-                  fn(opt.value);
-                } catch (err) {
-                  console.warn("Invalid onChange code", err);
-                }
-              }}
+              onMouseDown={() => handleSelect(opt)}
             >
               {opt.label}
             </div>
@@ -105,7 +155,7 @@ export default function SearchableDropdown({
         </div>
       )}
 
-      {touched && required && !selected && (
+      {showError && (
         <span
           style={{
             color: "red",
