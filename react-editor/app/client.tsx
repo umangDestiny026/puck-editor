@@ -473,8 +473,9 @@ export function Client() {
 
                       {children}
                     </div>
-                    <div style={{ display: "flex", alignItems: "center", maxHeight: "66px" }}>
+                    <div style={{ display: "flex", alignItems: "center", maxHeight: "67px", borderBottom: "1px solid #dcdcdc", }}>
                       <button
+                      className="preview-btn"
                         onClick={() => {
                           setMode("preview")
 
@@ -485,9 +486,6 @@ export function Client() {
                             },
                             "*"
                           );
-                        }}
-                        style={{
-                          padding: "5px 12px", marginRight: "10px", borderRadius: "6px", border: "1px solid #000000", background: "#ffffff", color: "#000000", cursor: "pointer",
                         }}
                       >
                         Preview
@@ -502,28 +500,22 @@ export function Client() {
             <div
               style={{
                 display: "flex",
-                justifyContent: "end"
+                justifyContent: "end",
+                borderBottom: "1px solid #dcdcdc",
+                minHeight: "67px",
               }}>
 
               <button
+              className="edit-btn"
                 onClick={() => setMode("edit")}
                 style={{
-                  padding: "8px 14px",
-                  marginTop: "8px",
-                  borderRadius: "8px",
-                  border: "1px solid #2563eb",
-                  background: "#2563eb",
-                  color: "white",
-                  fontWeight: 500,
-                  cursor: "pointer",
-                  transition: "all 0.2s ease",
                   boxShadow: mode === "edit" ? "0 1px 3px rgba(37,99,235,0.3)" : "none",
                 }}
               >
                 ← Edit page
               </button>
             </div>
-            <hr />
+            {/* <hr /> */}
 
             <div>
               <Render
