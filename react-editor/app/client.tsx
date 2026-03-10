@@ -20,12 +20,10 @@ export function Client() {
   const debouncedPublish = useMemo(
     () =>
       debounce((data) => {
-        console.log("Page save data =>", data);
-
         window.parent.postMessage(
           { type: "PUCK_PUBLISHED", payload: data },
           "*"
-        );
+        );        
       }, 3000),
     []
   );
@@ -148,7 +146,7 @@ export function Client() {
     return () => {
       observer.disconnect();
     }
-  }, [puckData]);
+  }, []);
 
   // inject buttons of page + component
   useEffect(() => {
@@ -210,15 +208,7 @@ export function Client() {
           }
         };
 
-        // if (label === "Page") {
-        //   setActive(true);
-        // } else {
-        //   setActive(false);
-        // }
-
         li.onclick = () => {
-          console.log("PUCK_PUBLISHED_PANEL =>", payload);
-
           window.parent.postMessage(
             {
               type: "PUCK_PUBLISHED_PANEL",
@@ -279,18 +269,9 @@ export function Client() {
   useEffect(() => {
     const handleMessage = (event: any) => {
       if (event.data?.type === "LOAD_PUCK_DATA") {
-        console.log("REACT APP:Received from Angular:", event.data.payload);
         setPuckData(event.data.payload);
         setEditorKey(prev => prev + 1);
         rebuildMegaMenuStore(event.data.payload);
-        // window.parent.postMessage(
-        //   {
-        //     type: "PUCK_PUBLISHED_PANEL",
-        //     payload: "PANEL_CLOSED",
-        //   },
-        //   "*"
-        // );
-        // setMode("preview");
       }
     };
 
@@ -329,11 +310,8 @@ export function Client() {
           ),
         };
 
-        console.log("Merged unique data:", mergedData);
-
         setPuckData(mergedData);
         rebuildMegaMenuStore(mergedData);
-        setMode("preview");
       } catch (err) {
         alert("Invalid JSON file");
       }
@@ -383,7 +361,6 @@ export function Client() {
           if ((item as any)._panelListenerAttached) return;
 
           item.addEventListener("click", () => {
-            console.log("PANEL_CLOSED triggered from:", text);
             document
               .querySelectorAll(".custom-page-tab, .custom-component-tab")
               .forEach((el: any) => {
@@ -454,9 +431,7 @@ export function Client() {
             config={config as any}
             onChange={(updatedData) => {
               latestDataRef.current = updatedData;
-              setPuckData(updatedData);
               rebuildMegaMenuStore(updatedData);
-
               debouncedPublish(updatedData);
             }}
             data={puckData}
