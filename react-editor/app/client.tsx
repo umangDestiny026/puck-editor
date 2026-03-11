@@ -24,6 +24,7 @@ export function Client() {
           { type: "PUCK_PUBLISHED", payload: data },
           "*"
         );        
+        setPuckData(data)
       }, 3000),
     []
   );
@@ -208,6 +209,12 @@ export function Client() {
           }
         };
 
+        // if (label === "Page") {
+        //   setActive(true);
+        // } else {
+        //   setActive(false);
+        // }
+
         li.onclick = () => {
           window.parent.postMessage(
             {
@@ -310,6 +317,7 @@ export function Client() {
           ),
         };
 
+        latestDataRef.current = mergedData;
         setPuckData(mergedData);
         rebuildMegaMenuStore(mergedData);
       } catch (err) {
@@ -494,7 +502,7 @@ export function Client() {
 
             <div>
               <Render
-                data={puckData}
+                data={latestDataRef.current}
                 config={config as any}
               />
             </div>
