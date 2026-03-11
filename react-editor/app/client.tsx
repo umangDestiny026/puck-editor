@@ -147,7 +147,7 @@ export function Client() {
     return () => {
       observer.disconnect();
     }
-  }, []);
+  }, [puckData]);
 
   // inject buttons of page + component
   useEffect(() => {
@@ -300,19 +300,19 @@ export function Client() {
       try {
         const importedData = JSON.parse(e.target?.result as string);
 
+        const currentData = latestDataRef.current;
+
         const mergedData = {
           root: {
-            ...puckData.root,
+            ...currentData.root,
             ...importedData.root,
           },
-
           content: mergeUniqueContent(
-            puckData.content,
+            currentData.content,
             importedData.content
           ),
-
           zones: mergeUniqueZones(
-            puckData.zones,
+            currentData.zones,
             importedData.zones
           ),
         };
@@ -320,6 +320,8 @@ export function Client() {
         latestDataRef.current = mergedData;
         setPuckData(mergedData);
         rebuildMegaMenuStore(mergedData);
+        setEditorKey((prev) => prev + 1);
+
       } catch (err) {
         alert("Invalid JSON file");
       }
