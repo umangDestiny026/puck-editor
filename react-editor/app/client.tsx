@@ -8,6 +8,8 @@ import config from "./component/puck.config";
 import { Render } from "@puckeditor/core";
 import { megaMenuStore } from "./component/zone";
 import { usePuck } from "./component/PuckContext";
+import "@puckeditor/core/puck.css";
+import "@puckeditor/plugin-ai/styles.css";
 import './client.css'
 // const aiPlugin = createAiPlugin();
 
@@ -19,11 +21,11 @@ export function Client() {
 
   const debouncedPublish = useMemo(
     () =>
-      debounce((data) => {
+      debounce((data: any) => {
         window.parent.postMessage(
           { type: "PUCK_PUBLISHED", payload: data },
           "*"
-        );        
+        );
         setPuckData(data)
       }, 3000),
     []
@@ -460,7 +462,7 @@ export function Client() {
                     </div>
                     <div style={{ display: "flex", alignItems: "center", maxHeight: "67px", borderBottom: "1px solid #dcdcdc", }}>
                       <button
-                      className="preview-btn"
+                        className="preview-btn"
                         onClick={() => {
                           setMode("preview")
 
@@ -491,7 +493,7 @@ export function Client() {
               }}>
 
               <button
-              className="edit-btn"
+                className="edit-btn"
                 onClick={() => setMode("edit")}
                 style={{
                   boxShadow: mode === "edit" ? "0 1px 3px rgba(37,99,235,0.3)" : "none",

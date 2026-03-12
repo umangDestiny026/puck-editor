@@ -565,7 +565,6 @@ export default function SliderSection({
                                     base: "",
                                     medium: "",
                                     xl: "440px",
-                                    xl: "495px",
                                   }}
                                   minHeight={{
                                     base: "250px",

@@ -1,3 +1,7 @@
+body {
+  margin: 0;
+}
+
 .custom-page-tab,
 .custom-component-tab {
   color: #111827;
@@ -19,4 +23,122 @@
 .custom-tab-active svg path {
   stroke: #0158ad !important;
   fill: #0158ad !important;
+}
+
+
+/* Genra css  */
+.preview-btn {
+  padding: 5px 12px;
+  margin-right: 10px;
+  border: 1px solid #2F2F2F;
+  border-radius: 14px;
+  background: #FFF;
+  color: #000000;
+  cursor: pointer;
+  font-size: 12px;
+  min-width: 95px;
+  height: 35px;
+}
+
+.preview-btn:hover {
+  background-color: #2f2f2f;
+  color: #FFF;
+}
+
+.edit-btn {
+  font-size: 12px;
+  min-width: 95px;
+  height: 35px;
+  margin-right: 10px;
+  background: #42A3F3;
+  border-radius: 15px;
+  border: 1px solid #42A3F3;
+  color: #FFF;
+  padding: 5px 12px;
+  margin-top: 15px;
+  cursor: pointer;
+}
+
+.edit-btn:hover {
+  background: #3B93DB;
+}
+
+
+
+[class*="Heading"][class*="Heading--xs"] {
+  font-weight: 600;
+  color: #959595;
+  font-size: 14px;
+}
+
+[class*="PuckHeader-inner"] {
+  border-left: transparent !important;
+}
+
+[class*="PuckHeader-toggle"] [class*="IconButton"] {
+  color: #959595;
+}
+
+[class*="PuckLayout-nav"] [class*="custom-tab-active"] {
+  color: #42A3F3 !important;
+  border-right: 4px solid #42A3F3 !important;
+}
+
+[class*="PuckLayout-nav"] [class*="custom-tab-active"] svg path {
+  stroke: #42A3F3 !important;
+  fill: #42A3F3 !important;
+}
+
+[class*="NavItem--active"] [class*="_NavItem-link_"] {
+  color: #42A3F3 !important;
+  border-right: 4px solid #42A3F3 !important;
+}
+
+[class*="NavItem--active"] [class*="_NavItem-link_"] svg path {
+  /* stroke: #42A3F3 !important;
+  fill: #42A3F3 !important; */
+}
+
+[class*="ComponentList"] [class*="_ComponentList-title_"] {
+  background-color: #f8f8f8;
+  border: 1px solid #d6d6d6;
+  font-weight: 600;
+  color: #959595;
+}
+
+[class*="Drawer-draggable"] [class*="_DrawerItem-draggable_"] {
+  padding: 2px 12px;
+  font-weight: 600;
+  color: #959595;
+  font-size: 12px;
+}
+
+[class*="Drawer-draggable"] [class*="_NavItem_"] {}
+
+
+[class*="_NavItem_"]:not([class*="_NavItem--active_"])>[class*="_NavItem-link_"]:hover {
+
+  color: #42A3F3 !important;
+}
+
+[class*="custom-component-tab"]:hover,
+[class*="custom-page-tab"]:hover {
+  background-color: #f3f6fb !important;
+  color: #42A3F3 !important;
+}
+
+[class*="custom-component-tab"]:hover svg path,
+[class*="custom-page-tab"]:hover svg path {
+  stroke: #42A3F3 !important;
+  fill: #42A3F3 !important;
+}
+
+[class*="_SidebarSection-content_"],
+[class*="_Input-input_"] {
+  padding: 5px 15px !important;
+}
+
+[class*="_SidebarSection-content_"],
+[class*="_Input-label_"] {
+  font-size: 12px !important;
 }
