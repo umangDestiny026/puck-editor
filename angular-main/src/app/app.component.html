@@ -1,12 +1,11 @@
 <router-outlet></router-outlet>
-<button (click)="sendToReact()">Send JSON to React</button>
+<div class="toolbar">
+  <button class="btn-load" (click)="loadDemoData()">⬆ Load Demo Data</button>
+  <button class="btn-clear" (click)="clearEditor()">✕ Clear Editor</button>
+  <span class="status" [style.color]="statusColor">{{ status }}</span>
+</div>
+<puck-editor></puck-editor>
 
-<iframe
-  id="puckFrame"
-  src="http://puck-editor-black.vercel.app/"
-  style="width: 100%; height: 100vh"
->
-</iframe>
 
 <!-- <h3>Data from React:</h3>
 
