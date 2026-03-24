@@ -1,25 +1,13 @@
-"use client";
+'use client';
 
 import React, { useId, useState, useMemo } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import type { Swiper as SwiperType } from "swiper";
 import "swiper/css";
 import { Navigation } from "swiper/modules";
-import "./Card.css";
+import './Card.css';
+import { Image, Button as AmplifyButton, View, Flex, Text } from '@aws-amplify/ui-react';
+import { DropZone } from '@puckeditor/core';
 
-import {
-  Image,
-  Button as AmplifyButton,
-  View,
-  Flex,
-  Text,
-} from "@aws-amplify/ui-react";
-
-import { DropZone } from "@puckeditor/core";
-
-/* ============================= */
-/*            TYPES              */
-/* ============================= */
 
 export type CardSliderItem = {
   id: string;
@@ -85,7 +73,7 @@ export default function CardSliderBlock({
         slidesPerView={slidesPerViewMobile}
         centeredSlides={centeredSlides}
         spaceBetween={spaceBetween}
-        modules={[Navigation]}
+        slidesOffsetAfter={0}
         breakpoints={{
           640: {
             slidesPerView: slidesPerViewMobile,
@@ -93,17 +81,20 @@ export default function CardSliderBlock({
             centeredSlides: false,
           },
           768: {
+            // Tablet landscape
             slidesPerView: slidesPerViewTablet,
             spaceBetween: 25,
             centeredSlides: false,
           },
           1024: {
+            // Small desktop
             slidesPerView: slidesPerViewTablet,
             spaceBetween: 30,
             centeredSlides: false,
           },
           1250: {
             slidesPerView: slidesPerViewDesktop,
+            // slidesPerView: 2,
             spaceBetween: 40,
             centeredSlides: false,
           },
@@ -111,21 +102,26 @@ export default function CardSliderBlock({
         navigation={{
           nextEl: `.vehicles-tabs-next-${sliderId}`,
           prevEl: `.vehicles-tabs-prev-${sliderId}`,
+
         }}
-        onSlideChange={(swiper: SwiperType) => {
-          setCurrentSlide(swiper.realIndex + 1);
-        }}
+        onSlideChange={(swiper: any) =>
+          setCurrentSlide(swiper.realIndex + 1)
+        }
+        modules={[Navigation]}
       >
-        {items.map((item, i) => (
+        {items.map((item: any, i: number) => (
           <SwiperSlide
             key={item.id}
             className="vehicles-slide"
-            style={{ width: "auto", flexShrink: 0 }}
+            style={{
+              width: "auto",
+              flexShrink: 0,
+            }}
           >
             <div
               className="vehicle-card"
               style={{
-                background: item.bgColor ?? "#111",
+                background: item.bgColor || "#111",
                 width: cardWidth,
                 height: cardHeight,
               }}
@@ -138,21 +134,13 @@ export default function CardSliderBlock({
                 }}
               >
                 {/* Image */}
-                {item.img && (
-                  <div className="vehicle-image">
-                    <img
-                      src={item.img}
-                      alt={item.name ?? "card-image"}
-                      style={{
-                        objectFit: item.objectFit ?? "contain",
-                        width: "100%",
-                        height: "100%",
-                      }}
-                    />
-                  </div>
-                )}
+                <div className="vehicle-image">
+                  <img src={item.img} alt={item.name} style={{
+                    objectFit: item.objectFit ?? "contain",
+                  }} />
+                </div>
 
-                {/* Puck Content */}
+                {/* Content */}
                 <div className="vehicle-content">
                   <DropZone zone={`items.${i}.content`} />
                 </div>
@@ -162,56 +150,59 @@ export default function CardSliderBlock({
         ))}
       </Swiper>
 
-      {/* Navigation */}
-      <View>
-        <Flex
-          justifyContent={{ base: "space-between", xl: "center" }}
-          alignItems="center"
-          width="100%"
-          maxWidth={{ base: "21.625rem", xl: "max-content" }}
-          gap={{ xl: "140px" }}
-          margin={{ base: "2.5rem auto 0", xl: "62px auto 0" }}
-        >
-          <AmplifyButton
-            className={`vehicles-tabs-prev-${sliderId} arrowCustom arrowCustom--prev`}
-            variation="link"
-            padding="0"
-            width="3.4375rem"
-            height="1.875rem"
+      {items.length > 0 && (
+        <View>
+          <Flex
+            justifyContent={{ base: "space-between", xl: "center" }}
+            alignItems={"center"}
+            width={"100%"}
+            maxWidth={{ base: "21.625rem", xl: "max-content" }}
+            gap={{ xl: "140px" }}
+            margin={{ base: "2.5rem auto 0", xl: "62px auto 0" }}
           >
-            <Image
-              src="/images/arrow-simple-prev.svg"
-              alt="Arrow prev"
-              width="1.3125rem"
-              height=".8125rem"
-            />
-          </AmplifyButton>
-
-          <Text
-            fontWeight={400}
-            fontSize={{ base: "18px" }}
-            margin="0 auto"
-            fontFamily="var(--font-ToyotaType-Regular)"
-          >
-            {currentSlide} de {totalPages}
-          </Text>
-
-          <AmplifyButton
-            className={`vehicles-tabs-next-${sliderId} arrowCustom arrowCustom--next`}
-            variation="link"
-            padding="0"
-            width="3.4375rem"
-            height="1.875rem"
-          >
-            <Image
-              src="/images/arrow-simple-next.svg"
-              alt="Arrow next"
-              width="1.3125rem"
-              height=".8125rem"
-            />
-          </AmplifyButton>
-        </Flex>
-      </View>
+            <AmplifyButton
+              className={`vehicles-tabs-prev-${sliderId} arrowCustom arrowCustom--prev`}
+              color={"transparent"}
+              padding={"0"}
+              width={"3.4375rem"}
+              height={"1.875rem"}
+            >
+              <Image
+                src="/images/arrow-simple-prev.svg"
+                alt="Arrow prev"
+                width={"1.3125rem"}
+                height={".8125rem"}
+                display={"flex"}
+              />
+            </AmplifyButton>
+            <Text
+              fontWeight={400}
+              fontSize={{ base: "18px", xl: "" }}
+              lineHeight={{ base: "normal", xl: "" }}
+              fontStyle={{ base: "normal", xl: "" }}
+              margin="0 auto"
+              fontFamily="var(--font-ToyotaType-Regular)"
+            >
+              {currentSlide} de {totalPages}
+            </Text>
+            <AmplifyButton
+              className={`vehicles-tabs-next-${sliderId} arrowCustom arrowCustom--next`}
+              color={"transparent"}
+              padding={"0"}
+              width={"3.4375rem"}
+              height={"1.875rem"}
+              display={"flex"}
+            >
+              <Image
+                src="/images/arrow-simple-next.svg"
+                alt="Arrow next"
+                width={"1.3125rem"}
+                height={".8125rem"}
+              />
+            </AmplifyButton>
+          </Flex>
+        </View>
+      )}
     </>
-  );
+  )
 }

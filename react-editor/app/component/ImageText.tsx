@@ -41,19 +41,16 @@ const ImageText: React.FC<any> = ({
 
     const imgStyle: React.CSSProperties = {
         width: imageWidth || "auto",
-        height: imageHeight != null ? `${imageHeight}px` : "auto",
-        maxWidth:
-            imageMaxWidth != null ? `${imageMaxWidth}px` : "100%",
-        maxHeight:
-            imageMaxHeight != null ? `${imageMaxHeight}px` : undefined,
+        height: imageHeight ? `${imageHeight}px` : "auto",
+        maxWidth: imageMaxWidth ? `${imageMaxWidth}px` : "100%",
+        maxHeight: imageMaxHeight ? `${imageMaxHeight}px` : undefined,
         borderRadius: `${imageBorderRadius}px`,
         objectFit: imageObjectFit,
         flexShrink: 0,
     };
 
     const textStyle: React.CSSProperties = {
-        maxWidth:
-            textMaxWidth != null ? `${textMaxWidth}px` : "100%",
+        maxWidth: textMaxWidth ? `${textMaxWidth}px` : "100%",
         textAlign,
     };
 

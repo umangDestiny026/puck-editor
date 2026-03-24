@@ -561,10 +561,14 @@ export default function SliderSection({
                                   style={{
                                     objectPosition: "center",
                                   }}
+                                  maxWidth={{
+                                    base: "none",
+                                    medium: "495px",
+                                    xl: "495px",
+                                  }}
                                   minWidth={{
                                     base: "",
                                     medium: "",
-                                    xl: "440px",
                                     xl: "495px",
                                   }}
                                   minHeight={{
