@@ -375,48 +375,24 @@ export const config = {
         menuMode: "linksonly",
         textColor: "#000000",
         navPosition: "static",
-        logoUrl: "https://toyota.com.co/images/Logo.svg",
+        logoUrl: "https://sso.genera.sh/assets/images/genera-logo.svg",
         hamburgerIcon: "https://toyota.com.co/images/menu.svg",
 
         menuItems: [
           {
-            label: "Vehículos",
+            label: "Home",
             menuMode: "",
             dropdownItems: [],
             savedMegaMenu: null,
           },
           {
-            label: "Cotiza tu Toyota",
+            label: "About",
             menuMode: "",
             dropdownItems: [],
             savedMegaMenu: null,
           },
           {
-            label: "Mi Toyota",
-            menuMode: "",
-            dropdownItems: [],
-            savedMegaMenu: null,
-          },
-          {
-            label: "Descubre Toyota",
-            menuMode: "",
-            dropdownItems: [],
-            savedMegaMenu: null,
-          },
-          {
-            label: "Alquila",
-            menuMode: "",
-            dropdownItems: [],
-            savedMegaMenu: null,
-          },
-          {
-            label: "Noticias",
-            menuMode: "",
-            dropdownItems: [],
-            savedMegaMenu: null,
-          },
-          {
-            label: "Deportivos TGR",
+            label: "Service",
             menuMode: "",
             dropdownItems: [],
             savedMegaMenu: null,
@@ -424,8 +400,7 @@ export const config = {
         ],
 
         rightLinks: [
-          { label: "Cotizador", href: "#" },
-          { label: "Concesionarios Toyota", href: "#" },
+          { label: "contact-us", href: "#" },
           {
             label: "WhatsApp",
             href: "#",
@@ -1490,7 +1465,7 @@ export const config = {
         direction: "row",
         justify: "flex-start",
         align: "center",
-        wrap: "no-wrap",
+        wrap: "nowrap",
         gap: 10,
 
         items: [
@@ -1636,7 +1611,7 @@ export const config = {
         className: "image-001",
         customCss: "",
         image:
-          "https://png.pngtree.com/thumb_back/fh260/background/20240522/pngtree-abstract-cloudy-background-beautiful-natural-streaks-of-sky-and-clouds-red-image_15684333.jpg",
+          "https://sso.genera.sh/assets/images/genera-logo.svg",
         alt: "Image",
 
         align: "center",

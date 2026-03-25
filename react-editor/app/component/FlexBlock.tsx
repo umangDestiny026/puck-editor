@@ -9,6 +9,7 @@ const FlexBlock: React.FC<any> = ({
   align = "stretch",
   gap = 0,
   items = [],
+  wrap = "nowrap",
   className = "",
   customCss,
 }) => {
@@ -23,13 +24,20 @@ const FlexBlock: React.FC<any> = ({
     justifyContent: justify,
     alignItems: align,
     gap: `${gap}px`,
+    flexWrap: "nowrap", // default: no wrap on desktop
   };
 
   return (
     <div style={style} className={`${className} ${uniqueClass}`}>
-      {customCss && (
-        <style>{`.${uniqueClass} { ${customCss} }`}</style>
-      )}
+      {/* Wrap only on mobile (< 768px) and tablet (768px - 1024px) */}
+      <style>{`
+        @media (max-width: 1024px) {
+          .${uniqueClass} {
+            flex-wrap: ${wrap} !important;
+          }
+        }
+        ${customCss ? `.${uniqueClass} { ${customCss} }` : ""}
+      `}</style>
 
       {items.map((_: any, index: any) => (
         <DropZone key={index} zone={`flex-item-${index}`} />

@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { Flex, Text, View, Divider, Icon } from "@aws-amplify/ui-react";
+import { Flex, Text, View, Divider, Icon, useBreakpointValue } from "@aws-amplify/ui-react";
 
 
 const ExternalLinkIcon = () => {
@@ -56,8 +56,8 @@ interface LinkItem {
     description?: string;
     href?: string;
     isExternal?: boolean;
-    submenu?: Column[]; // Para soportar múltiples niveles
-    info?: boolean; // Para textos informativos
+    submenu?: Column[];
+    info?: boolean;
 }
 
 interface Column {
@@ -68,26 +68,168 @@ interface Column {
     viewAllLink?: string;
 }
 
+/* ─── Accordion row — used ONLY in mobile ─── */
+const MobileAccordionLink: React.FC<{
+    link: LinkItem;
+    depth?: number;
+    titleStyle?: React.CSSProperties;
+    onClose?: () => void;
+}> = ({ link, depth = 0, titleStyle, onClose }) => {
+    const [open, setOpen] = useState(false);
+    const indent = depth * 16;
+
+    /* Has children → accordion */
+    if (link.submenu && link.submenu.length > 0) {
+        return (
+            <View>
+                <Flex
+                    alignItems="center"
+                    justifyContent="space-between"
+                    onClick={() => setOpen((p) => !p)}
+                    style={{
+                        cursor: "pointer",
+                        padding: "12px 0",
+                        paddingLeft: `${indent}px`,
+                        borderBottom: "1px solid #f0f0f0",
+                    }}
+                >
+                    <Flex direction="column" gap="4px" style={{ flex: 1 }}>
+                        <Text
+                            fontSize={titleStyle?.fontSize || "18px"}
+                            fontWeight={500}
+                            fontFamily="var(--font-ToyotaType-Regular)"
+                            style={link.info ? { color: "#A0A0A0", padding: "8px" } : {}}
+                        >
+                            {link.label}
+                        </Text>
+                        {link.description && (
+                            <Text fontSize="14px" color="#58595B" fontFamily="var(--font-toyotaDisplay)" fontWeight={300}>
+                                {link.description}
+                            </Text>
+                        )}
+                    </Flex>
+                    {/* Arrow rotates when open */}
+                    <Text
+                        style={{
+                            fontSize: "20px",
+                            lineHeight: 1,
+                            display: "inline-block",
+                            transition: "transform 0.2s ease",
+                            transform: open ? "rotate(90deg)" : "rotate(0deg)",
+                            flexShrink: 0,
+                        }}
+                    >
+                        ›
+                    </Text>
+                </Flex>
+
+                {/* Expanded sub-columns */}
+                {open && (
+                    <View style={{ background: depth === 0 ? "#fafafa" : "#f3f3f3" }}>
+                        {link.submenu.map((col, ci) => (
+                            <View key={ci}>
+                                {col.title && (
+                                    <Text
+                                        fontWeight="600"
+                                        fontSize="13px"
+                                        color="#58595B"
+                                        fontFamily="var(--font-toyotaDisplay)"
+                                        style={{ padding: `8px 0 4px ${indent + 16}px`, display: "block" }}
+                                    >
+                                        {col.title}
+                                    </Text>
+                                )}
+                                {col.links.map((subLink, li) => (
+                                    <MobileAccordionLink
+                                        key={li}
+                                        link={subLink}
+                                        depth={depth + 1}
+                                        titleStyle={titleStyle}
+                                        onClose={onClose}
+                                    />
+                                ))}
+                            </View>
+                        ))}
+                    </View>
+                )}
+            </View>
+        );
+    }
+
+    /* No children → plain link */
+    return (
+        <Flex
+            alignItems="center"
+            justifyContent="space-between"
+            style={{
+                padding: "12px 0",
+                paddingLeft: `${indent}px`,
+                borderBottom: "1px solid #f0f0f0",
+            }}
+        >
+            {link.href ? (
+                <Link href={link.href} legacyBehavior>
+                    <a
+                        style={{ textDecoration: "none", color: "inherit", width: "100%", display: "flex", justifyContent: "space-between", alignItems: "center" }}
+                        onClick={() => onClose?.()}
+                    >
+                        <Flex direction="column" gap="4px" style={{ flex: 1 }}>
+                            <Text
+                                fontSize={titleStyle?.fontSize || "18px"}
+                                fontWeight={500}
+                                fontFamily="var(--font-ToyotaType-Regular)"
+                                style={link.info ? { color: "#A0A0A0", padding: "8px" } : {}}
+                            >
+                                {link.label}
+                            </Text>
+                            {link.description && (
+                                <Text fontSize="14px" color="#58595B" fontFamily="var(--font-toyotaDisplay)" fontWeight={300}>
+                                    {link.description}
+                                </Text>
+                            )}
+                        </Flex>
+                        {link.isExternal && <ExternalLinkIcon />}
+                    </a>
+                </Link>
+            ) : (
+                <Flex direction="column" gap="4px" style={{ flex: 1 }}>
+                    <Text
+                        fontSize={titleStyle?.fontSize || "18px"}
+                        fontWeight={500}
+                        fontFamily="var(--font-ToyotaType-Regular)"
+                        style={link.info ? { color: "#A0A0A0", padding: "8px" } : {}}
+                    >
+                        {link.label}
+                    </Text>
+                    {link.description && (
+                        <Text fontSize="14px" color="#58595B" fontFamily="var(--font-toyotaDisplay)" fontWeight={300}>
+                            {link.description}
+                        </Text>
+                    )}
+                </Flex>
+            )}
+        </Flex>
+    );
+};
+
 const MulipleMegaMenuItems: React.FC<any> = ({
     columns,
-    isMobile = false,
+
     onClose,
     onBack,
-    titleStyle, // Added titleStyle here
-    linkStyle, // Add this,
+    titleStyle,
+    linkStyle,
 }) => {
     const [activeSubmenus, setActiveSubmenus] = useState<
         { columns: any[]; parentItem: any }[]
     >([]);
+    const isMobile = useBreakpointValue({ base: true, xl: false }) || false;
 
     const handleItemClick = (link: any, level: number) => {
-        // Si el item ya está abierto, lo cerramos
         if (activeSubmenus[level]?.parentItem === link) {
             setActiveSubmenus(activeSubmenus.slice(0, level));
             return;
         }
-
-        // Si tiene submenu, lo mostramos
         if (link.submenu) {
             setActiveSubmenus([
                 ...activeSubmenus.slice(0, level),
@@ -97,192 +239,72 @@ const MulipleMegaMenuItems: React.FC<any> = ({
     };
 
     useEffect(() => {
-        // Resetear submenús cuando cambian las columnas principales
         setActiveSubmenus([]);
     }, [columns]);
 
-    // Implementación para mobile
+    // ── MOBILE — accordion, no horizontal overflow ──
     if (isMobile) {
         return (
             <View
+                className="mobile-baddie"
                 style={{
-                    position: "fixed",
-                    top: "60px",
-                    padding: "20px",
+                    position: "relative",
+                    top: "10px",
                     left: 0,
                     right: 0,
                     bottom: 0,
-                    height: "100%",
+                    width: "100%",
+                    boxSizing: "border-box",
+                    padding: "20px",
                     backgroundColor: "white",
                     zIndex: 1000,
                     overflowY: "auto",
+                    overflowX: "hidden",
                 }}
             >
-                {/* Mostrar el submenú activo o el menú principal */}
-                {(activeSubmenus.length > 0
-                    ? activeSubmenus[activeSubmenus.length - 1].columns
-                    : columns
-                ).map((column: any, columnIndex: number) => (
-                    <View key={columnIndex} style={{ marginBottom: "30px" }}>
-                        {/* Botón de retroceso solo si hay submenús activos */}
-                        {activeSubmenus.length > 0 && columnIndex === 0 && (
-                            <Flex
-                                alignItems="center"
-                                gap="10px"
-                                marginBottom="20px"
-                                onClick={() => {
-                                    if (activeSubmenus.length === 1) {
-                                        onBack?.(); // Volver al menú principal
-                                    } else {
-                                        setActiveSubmenus(activeSubmenus.slice(0, -1)); // Retroceder un nivel
-                                    }
-                                }}
-                                style={{ cursor: "pointer" }}
-                            >
-                                <LeftArrowIcon />
-                                <Text
-                                    fontSize={titleStyle?.fontSize || "18px"}
-                                    color="#000"
-                                    fontFamily="var(--font-toyotaDisplay)"
-                                >
-                                    Volver
-                                </Text>
-                            </Flex>
-                        )}
-
-                        <Text
-                            fontWeight={titleStyle?.fontWeight || "600"}
-                            fontSize="18px"
-                            marginBottom="10px"
-                            color="#000"
-                            fontFamily="var(--font-toyotaDisplay)"
-                            marginTop={columnIndex > 0 ? "20px" : "0"}
-                        >
-                            {column.title}
-                        </Text>
-                        {column.subtitle && (
+                {columns.map((column: any, columnIndex: number) => (
+                    <View key={columnIndex} style={{ marginBottom: "24px" }}>
+                        {column.title && (
                             <Text
-                                fontSize="14px"
-                                color="#58595B"
-                                marginBottom="20px"
+                                fontWeight={titleStyle?.fontWeight || "600"}
+                                fontSize="18px"
+                                marginBottom="10px"
+                                color="#000"
                                 fontFamily="var(--font-toyotaDisplay)"
+                                marginTop={columnIndex > 0 ? "20px" : "0"}
                             >
+                                {column.title}
+                            </Text>
+                        )}
+                        {column.subtitle && (
+                            <Text fontSize="14px" color="#58595B" marginBottom="20px" fontFamily="var(--font-toyotaDisplay)">
                                 {column.subtitle}
                             </Text>
                         )}
-                        <Flex direction="column" gap="15px">
-                            {column.links.map((link: any, linkIndex: number) => (
-                                <Flex
-                                    key={linkIndex}
-                                    alignItems="center"
-                                    justifyContent="space-between"
-                                    onClick={() => {
-                                        if (link.submenu) {
-                                            handleItemClick(link, activeSubmenus.length);
-                                        }
-                                    }}
-                                    style={{
-                                        cursor: "pointer",
-                                        padding: "12px 0",
-                                        borderBottom: "1px solid #f0f0f0",
-                                    }}
-                                >
-                                    {link.href && !link.submenu ? (
-                                        <Link href={link.href} legacyBehavior>
-                                            <a
-                                                style={{
-                                                    textDecoration: "none",
-                                                    color: "inherit",
-                                                    width: "100%",
-                                                    display: "flex",
-                                                    justifyContent: "space-between",
-                                                    alignItems: "center",
-                                                }}
-                                                onClick={() => onClose?.()}
-                                            >
-                                                <Flex direction="column" gap="4px" style={{ flex: 1 }}>
-                                                    <Text
-                                                        fontSize={titleStyle?.fontSize || "18px"}
-                                                        fontWeight={500}
-                                                        fontFamily="var(--font-ToyotaType-Regular)"
-                                                        style={
-                                                            link.info
-                                                                ? { color: "#A0A0A0", padding: "8px" }
-                                                                : {}
-                                                        }
-                                                    >
-                                                        {link.label}
-                                                    </Text>
-                                                    {link.description && (
-                                                        <Text
-                                                            fontSize="14px"
-                                                            color="#58595B"
-                                                            fontFamily="var(--font-toyotaDisplay)"
-                                                            fontWeight={300}
-                                                        >
-                                                            {link.description}
-                                                        </Text>
-                                                    )}
-                                                </Flex>
-                                                {link.isExternal && <ExternalLinkIcon />}
-                                            </a>
-                                        </Link>
-                                    ) : (
-                                        <Flex direction="column" gap="4px" style={{ flex: 1 }}>
-                                            <Text
-                                                fontSize={titleStyle?.fontSize || "18px"}
-                                                fontWeight={500}
-                                                fontFamily="var(--font-ToyotaType-Regular)"
-                                                style={
-                                                    link.info ? { color: "#A0A0A0", padding: "8px" } : {}
-                                                }
-                                            >
-                                                {link.label}
-                                            </Text>
-                                            {link.description && (
-                                                <Text
-                                                    fontSize="14px"
-                                                    color="#58595B"
-                                                    fontFamily="var(--font-toyotaDisplay)"
-                                                    fontWeight={300}
-                                                >
-                                                    {link.description}
-                                                </Text>
-                                            )}
-                                        </Flex>
-                                    )}
-
-                                    {link.submenu && (
-                                        <RightArrowIcon
-                                            style={{
-                                                opacity:
-                                                    activeSubmenus[activeSubmenus.length - 1]
-                                                        ?.parentItem === link
-                                                        ? 1
-                                                        : 0.6,
-                                                transform:
-                                                    activeSubmenus[activeSubmenus.length - 1]
-                                                        ?.parentItem === link
-                                                        ? "translateX(2px)"
-                                                        : "none",
-                                                transition: "all 0.2s ease",
-                                            }}
-                                        />
-                                    )}
-                                </Flex>
-                            ))}
-                        </Flex>
+                        {column.links.map((link: any, linkIndex: number) => (
+                            <MobileAccordionLink
+                                key={linkIndex}
+                                link={link}
+                                depth={0}
+                                titleStyle={titleStyle}
+                                onClose={onClose}
+                            />
+                        ))}
                     </View>
                 ))}
             </View>
         );
     }
 
-    // Implementación para desktop
+    // ── DESKTOP — completely unchanged from your original ──
     return (
         <View
+            padding={{
+                xl: "60px",
+                medium: "30px",
+                base: "10px"
+            }}
             style={{
-                padding: "60px",
                 height: "100%",
                 backgroundColor: "white",
                 zIndex: 9999999,
@@ -299,20 +321,20 @@ const MulipleMegaMenuItems: React.FC<any> = ({
                             <Divider
                                 orientation="vertical"
                                 style={{
-                                    height: "298px", // Fixed height for the separator
+                                    height: "298px",
                                     margin: "0 20px",
                                     borderColor: "#E0E0E0",
                                 }}
                             />
                         )}
                         <MenuColumn
-                            columns={[column]} // Pass only one column at a time
+                            columns={[column]}
                             level={0}
                             onItemClick={handleItemClick}
                             activeSubmenus={activeSubmenus}
                             titleStyle={titleStyle}
                             linkStyle={linkStyle}
-                            onClose={onClose} // Pass onClose prop
+                            onClose={onClose}
                         />
                     </React.Fragment>
                 ))}
@@ -335,7 +357,7 @@ const MulipleMegaMenuItems: React.FC<any> = ({
                             activeSubmenus={activeSubmenus}
                             titleStyle={titleStyle}
                             linkStyle={linkStyle}
-                            onClose={onClose} // Pass onClose prop
+                            onClose={onClose}
                         />
                     </React.Fragment>
                 ))}
@@ -344,15 +366,15 @@ const MulipleMegaMenuItems: React.FC<any> = ({
     );
 };
 
-// Componente reutilizable para columnas del menú
+// Componente reutilizable para columnas del menú — UNCHANGED
 const MenuColumn: React.FC<{
     columns: any[];
     level: number;
     onItemClick: (link: any, level: number) => void;
     activeSubmenus: { columns: any[]; parentItem: any }[];
-    titleStyle?: React.CSSProperties; // Add this
-    linkStyle?: React.CSSProperties; // Add this
-    onClose?: () => void; // Pass onClose from parent
+    titleStyle?: React.CSSProperties;
+    linkStyle?: React.CSSProperties;
+    onClose?: () => void;
 }> = ({
     columns,
     level,
@@ -360,7 +382,7 @@ const MenuColumn: React.FC<{
     activeSubmenus,
     titleStyle,
     linkStyle,
-    onClose, // Receive onClose here
+    onClose,
 }) => {
         const resolvedTitleFontWeight = titleStyle?.fontWeight ?? "400";
         const resolvedTitleFontSize = titleStyle?.fontSize ?? "18px";
@@ -408,7 +430,6 @@ const MenuColumn: React.FC<{
                                                     onClose?.();
                                                 }
                                             }}
-                                            // className={isActive || level > 0 ? styles.active : ""}
                                             style={{
                                                 cursor: link.info ? "default" : "pointer",
                                                 padding: link.info ? "8px 0 0" : "8px 0px",
@@ -418,7 +439,6 @@ const MenuColumn: React.FC<{
                                                 transition: "background-color 0.2s ease",
                                             }}
                                             onMouseEnter={() => {
-                                                // Opcional: abrir al hover en desktop
                                                 if (link.submenu && !isActive) {
                                                     onItemClick(link, level);
                                                 }
@@ -440,7 +460,7 @@ const MenuColumn: React.FC<{
                                                         style={{ textDecoration: "none", color: "inherit" }}
                                                         onClick={(e) => {
                                                             if (link.submenu) {
-                                                                e.preventDefault(); // Evitar navegación si tiene submenu
+                                                                e.preventDefault();
                                                             }
                                                         }}
                                                     >
@@ -510,7 +530,6 @@ const MenuColumn: React.FC<{
                                                     </Text>
                                                 )}
                                             </Flex>
-                                            {/* Only show right arrow for items with submenus */}
                                             {link.submenu && (
                                                 <RightArrowIcon
                                                     style={{

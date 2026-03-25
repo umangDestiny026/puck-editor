@@ -20,6 +20,7 @@ export default function Header({
 }: any) {
   const [openIndex, setOpenIndex] = React.useState<number | null>(null);
   const { puckData, setPuckData } = usePuck();
+  const [mobileOpenIndex, setMobileOpenIndex] = React.useState<number | null>(null);
 
   const uniqueClass = `header-${Math.random().toString(36).slice(2, 9)}`;
   const defaultHamburger =
@@ -80,6 +81,7 @@ export default function Header({
         
                   .${uniqueClass} .mobile-panel.open {
                     transform: translateX(0);
+                    overflow-y: auto;
                   }
         
                   .${uniqueClass} .mobile-item {
@@ -475,34 +477,152 @@ export default function Header({
         {/* MENU ITEMS (VERTICAL LIKE YOUR IMAGE) */}
         {layout === "LogoMenu" && (
           <View>
-            {menuItems.map((item: any, i: number) => (
-              <Link
-                key={i}
-                href={item.href}
-                className="mobile-item"
-                color={textColor}
-              >
-                <span>{item.label}</span>
-                <span>›</span>
-              </Link>
-            ))}
+            {menuItems.map((item: any, i: number) => {
+              const isMegaMenu = item.menuMode === "megamenu" && !!item.savedMegaMenu;
+              const isDropdown =
+                item.menuMode === "dropdown" &&
+                Array.isArray(item.dropdownItems) &&
+                item.dropdownItems.length > 0;
+              const isOpen = mobileOpenIndex === i;
+
+              if (isMegaMenu) {
+                const megaMenuData = megaMenuStore.get(item.savedMegaMenu);
+                const content = megaMenuData?.content;
+                const formattedData = {
+                  root: { props: {} },
+                  content: megaMenuData?.content || [],
+                  zones: puckData.zones || {},
+                };
+                return (
+                  <View key={i}>
+                    <View
+                      className="mobile-item"
+                      onClick={() => setMobileOpenIndex(isOpen ? null : i)}
+                      style={{ cursor: "pointer" }}
+                    >
+                      <span style={{ color: textColor }}>{item.label}</span>
+                      <span style={{ display: "inline-block", transform: isOpen ? "rotate(90deg)" : "none", transition: "transform .2s" }}>›</span>
+                    </View>
+                    {isOpen && content && (
+                      <View style={{ borderBottom: "1px solid #eee", overflowY: "auto", maxHeight: "60vh" }}>
+                        <Render data={formattedData} config={config as any} />
+                      </View>
+                    )}
+                  </View>
+                );
+              }
+
+              if (isDropdown) {
+                return (
+                  <View key={i}>
+                    <View
+                      className="mobile-item"
+                      onClick={() => setMobileOpenIndex(isOpen ? null : i)}
+                      style={{ cursor: "pointer" }}
+                    >
+                      <span style={{ color: textColor }}>{item.label}</span>
+                      <span style={{ display: "inline-block", transform: isOpen ? "rotate(90deg)" : "none", transition: "transform .2s" }}>›</span>
+                    </View>
+                    {isOpen && (
+                      <View style={{ background: "#f9f9f9", borderBottom: "1px solid #eee" }}>
+                        {item.dropdownItems.map((d: any, j: number) => (
+                          <Link
+                            key={j}
+                            href={d.href}
+                            style={{ display: "block", padding: "10px 28px", borderBottom: "1px solid #eee" }}
+                          >
+                            {d.label}
+                          </Link>
+                        ))}
+                      </View>
+                    )}
+                  </View>
+                );
+              }
+
+              return (
+                <Link key={i} href={item.href} className="mobile-item" color={textColor}>
+                  <span>{item.label}</span>
+                  <span>›</span>
+                </Link>
+              );
+            })}
           </View>
         )}
 
         {layout === "LogoMenuCTA" && (
           <>
             <View>
-              {menuItems.map((item: any, i: any) => (
-                <Link
-                  key={i}
-                  href={item.href}
-                  className="mobile-item"
-                  color={textColor}
-                >
-                  <span>{item.label}</span>
-                  <span>›</span>
-                </Link>
-              ))}
+              {menuItems.map((item: any, i: any) => {
+                const isMegaMenu = item.menuMode === "megamenu" && !!item.savedMegaMenu;
+                const isDropdown =
+                  item.menuMode === "dropdown" &&
+                  Array.isArray(item.dropdownItems) &&
+                  item.dropdownItems.length > 0;
+                const isOpen = mobileOpenIndex === i;
+
+                if (isMegaMenu) {
+                  const megaMenuData = megaMenuStore.get(item.savedMegaMenu);
+                  const content = megaMenuData?.content;
+                  const formattedData = {
+                    root: { props: {} },
+                    content: megaMenuData?.content || [],
+                    zones: puckData.zones || {},
+                  };
+                  return (
+                    <View key={i}>
+                      <View
+                        className="mobile-item"
+                        onClick={() => setMobileOpenIndex(isOpen ? null : i)}
+                        style={{ cursor: "pointer" }}
+                      >
+                        <span style={{ color: textColor }}>{item.label}</span>
+                        <span style={{ display: "inline-block", transform: isOpen ? "rotate(90deg)" : "none", transition: "transform .2s" }}>›</span>
+                      </View>
+                      {isOpen && content && (
+                        <View style={{ padding: "12px 16px", borderBottom: "1px solid #eee", overflowY: "auto", maxHeight: "60vh" }}>
+                          <Render data={formattedData} config={config as any} />
+                        </View>
+                      )}
+                    </View>
+                  );
+                }
+
+                if (isDropdown) {
+                  return (
+                    <View key={i}>
+                      <View
+                        className="mobile-item"
+                        onClick={() => setMobileOpenIndex(isOpen ? null : i)}
+                        style={{ cursor: "pointer" }}
+                      >
+                        <span style={{ color: textColor }}>{item.label}</span>
+                        <span style={{ display: "inline-block", transform: isOpen ? "rotate(90deg)" : "none", transition: "transform .2s" }}>›</span>
+                      </View>
+                      {isOpen && (
+                        <View style={{ background: "#f9f9f9", borderBottom: "1px solid #eee" }}>
+                          {item.dropdownItems.map((d: any, j: number) => (
+                            <Link
+                              key={j}
+                              href={d.href}
+                              style={{ display: "block", padding: "10px 28px", borderBottom: "1px solid #eee" }}
+                            >
+                              {d.label}
+                            </Link>
+                          ))}
+                        </View>
+                      )}
+                    </View>
+                  );
+                }
+
+                return (
+                  <Link key={i} href={item.href} className="mobile-item" color={textColor}>
+                    <span>{item.label}</span>
+                    <span>›</span>
+                  </Link>
+                );
+              })}
             </View>
 
             <View padding="20px">
