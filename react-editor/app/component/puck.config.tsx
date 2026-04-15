@@ -37,6 +37,7 @@ import RadioGroup from "./RadioGroup";
 import Form from "./Form";
 import RichTextBlock from "./RichTextBlock";
 import { megaMenuStore } from "./zone";
+import LinkComponent from "./LinkComponent";
 
 export const config = {
   categories: {
@@ -63,7 +64,7 @@ export const config = {
     },
 
     Content: {
-      components: ["Text", "RichTextBlock", "Button"],
+      components: ["Text", "RichTextBlock", "Button", "Link"],
     },
 
     Media: {
@@ -1709,6 +1710,89 @@ export const config = {
         return <Video {...props} />;
       },
     },
+    Link: {
+      label: "🔗 Link",
+      fields: {
+        className: { type: "text", label: "Custom class" },
+        customCss: { type: "textarea", label: "Custom CSS" },
+
+        text: { type: "text", label: "Link text" },
+
+        href: {
+          type: "text",
+          label: "URL",
+          placeholder: "https://example.com",
+        },
+
+        target: {
+          type: "select",
+          label: "Open in",
+          options: [
+            { label: "Same Tab", value: "_self" },
+            { label: "New Tab", value: "_blank" },
+          ],
+        },
+
+        rel: {
+          type: "text",
+          label: "Rel attribute",
+          placeholder: "noopener noreferrer",
+        },
+
+        color: {
+          type: "select",
+          label: "Text Color",
+          options: [
+            { label: "Red", value: "red" },
+            { label: "Deep Red", value: "deepred" },
+            { label: "White", value: "white" },
+            { label: "Black", value: "black" },
+          ],
+        },
+
+        underline: {
+          type: "radio",
+          label: "Underline",
+          options: [
+            { label: "Yes", value: true },
+            { label: "No", value: false },
+          ],
+        },
+
+        align: {
+          type: "radio",
+          label: "Alignment",
+          options: [
+            { label: "Left", value: "left" },
+            { label: "Center", value: "center" },
+            { label: "Right", value: "right" },
+          ],
+        },
+
+        onClickCode: {
+          type: "textarea",
+          label: "Custom onClick JS",
+          description: "Example: () => console.log('Clicked')",
+        },
+      },
+
+      defaultProps: {
+        text: "Visit link",
+        href: "#",
+        target: "_self",
+        rel: "",
+        color: "black",
+        underline: true,
+        align: "left",
+        className: "",
+        customCss: "",
+        onClickCode: "",
+      },
+
+      render: (props: any) => {
+        return <LinkComponent {...props} />;
+      },
+    },
 
     Button: {
       label: "🔘 Button",
@@ -2467,6 +2551,26 @@ export const config = {
             label: "Section Title",
           },
 
+          activeTabColor: {
+            type: "text",
+            label: "Active Tab Color",
+            placeholder: "e.g. black, red, #000",
+          },
+          itemLabelColor: {
+            type: "text",
+            label: "Item Label Color",
+            placeholder: "e.g. black, red, #000",
+          },
+
+          tabitemType: {
+            type: "select",
+            label: "Tab item type",
+            options: [
+              { label: "Standard", value: "standard" },
+              { label: "Display", value: "display" },
+            ],
+          },
+
           theme: {
             type: "select",
             label: "Theme (Light / Dark)",
@@ -2515,7 +2619,7 @@ export const config = {
 
             activeTabIndex: {
               type: "select",
-              label: "Active tab (for editing)",
+              label: "Active tab",
               options: tabs.map((tab: any, index: any) => ({
                 label: tab.label || `Tab ${index + 1}`,
                 value: index,
@@ -2528,9 +2632,12 @@ export const config = {
       },
 
       defaultProps: {
-        title: "Descubre Toyota",
+        title: "Genera Tabs",
         subTitle: "Sub title",
         TabItemPosition: "center",
+        activeTabColor: "black",
+        tabitemType: "standard",
+        itemLabelColor: "black",
         theme: "light",
         backgroundColor: "#ffffff",
         tabs: [
@@ -3290,9 +3397,9 @@ export const config = {
           type: "text",
           label: "Form title",
         },
-        submitLabel: {
+        formPadding: {
           type: "text",
-          label: "Submit button text",
+          label: "Form padding (e.g. 24px or 1rem)",
         },
 
         /* ---------- ON SUBMIT EDITOR ---------- */
@@ -3315,6 +3422,7 @@ export const config = {
         className: "",
         formLabel: "Checkout form",
         customCss: "",
+        formPadding: "24px",
         onSubmitCode: "(values) => console.log(values)",
       },
 
