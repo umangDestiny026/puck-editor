@@ -1,41 +1,47 @@
-'use client';
-
-import MegaMenuRenderer from "./MegaMenu";
+import MegaMenuRenderer from './MegaMenu';
 
 export const MegaMenu = {
-  label: "🧾 Mega Menu",
+  label: 'Mega Menu',
 
-  resolveFields: (data: any) => ({
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  resolveFields: (_data: any) => ({
     isOpen: {
-      type: "radio",
-      label: "Mega menu state",
+      type: 'radio',
+      label: 'Mega menu state',
       options: [
-        { label: "Closed", value: false },
-        { label: "Open", value: true },
+        {
+          label: 'Closed',
+          value: false,
+        },
+        {
+          label: 'Open',
+          value: true,
+        },
       ],
     },
 
     backgroundColor: {
-      type: "text",
-      label: "Background color",
+      type: 'text',
+      label: 'Background color',
     },
 
     className: {
-      type: "text",
-      label: "Custom class",
+      type: 'text',
+      label: 'Custom class',
     },
 
     customCss: {
-      type: "textarea",
-      label: "Custom CSS",
+      type: 'textarea',
+      label: 'Custom CSS',
     },
   }),
 
   defaultProps: {
     isOpen: true,
-    backgroundColor: "#ffffff",
-    className: "mega-menu-001",
-    customCss: "",
+    backgroundColor: '#ffffff',
+    className: 'mega-menu-001',
+    customCss: '',
   },
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   render: (props: any) => <MegaMenuRenderer {...props} />,
-}
+};

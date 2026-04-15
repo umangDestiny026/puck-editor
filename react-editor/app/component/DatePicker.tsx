@@ -1,6 +1,4 @@
-"use client";
-
-import React, { useId, useState, useEffect, CSSProperties } from "react";
+import React, { useId, useState, useEffect, CSSProperties } from 'react';
 
 interface DatePickerProps {
   label?: string;
@@ -15,20 +13,34 @@ interface DatePickerProps {
   onChange?: (date: string) => void;
 }
 
+/**
+ *
+ * @param root0
+ * @param root0.label
+ * @param root0.defaultValue
+ * @param root0.minDate
+ * @param root0.maxDate
+ * @param root0.required
+ * @param root0.name
+ * @param root0.className
+ * @param root0.customCss
+ * @param root0.errorMessage
+ * @param root0.onChange
+ */
 export default function DatePicker({
   label,
-  defaultValue = "",
+  defaultValue = '',
   minDate,
   maxDate,
   required = false,
   name,
-  className = "",
+  className = '',
   customCss,
-  errorMessage = "This field is required",
+  errorMessage = 'This field is required',
   onChange,
 }: DatePickerProps) {
   const uniqueId = useId();
-  const uniqueClass = `datepicker-${uniqueId.replace(/:/g, "")}`;
+  const uniqueClass = `datepicker-${uniqueId.replace(/:/g, '')}`;
 
   const [touched, setTouched] = useState<boolean>(false);
   const [value, setValue] = useState<string>(defaultValue);
@@ -39,13 +51,13 @@ export default function DatePicker({
   }, [defaultValue]);
 
   const inputStyle: CSSProperties = {
-    padding: "8px 10px",
-    border: "1px solid #ddd",
-    borderRadius: "6px",
-    fontSize: "14px",
-    display: "block",
-    width: "220px",
-    marginTop: "6px",
+    padding: '8px 10px',
+    border: '1px solid #ddd',
+    borderRadius: '6px',
+    fontSize: '14px',
+    display: 'block',
+    width: '220px',
+    marginTop: '6px',
   };
 
   const showError = touched && required && !value;
@@ -57,7 +69,11 @@ export default function DatePicker({
   };
 
   return (
-    <div style={{ margin: "10px 0" }}>
+    <div
+      style={{
+        margin: '10px 0',
+      }}
+    >
       {customCss && (
         <style>{`
           .${uniqueClass} {
@@ -67,7 +83,12 @@ export default function DatePicker({
       )}
 
       {label && (
-        <label htmlFor={uniqueId} style={{ fontWeight: 500 }}>
+        <label
+          htmlFor={uniqueId}
+          style={{
+            fontWeight: 500,
+          }}
+        >
           {label}
         </label>
       )}
@@ -89,10 +110,10 @@ export default function DatePicker({
       {showError && (
         <span
           style={{
-            color: "red",
-            fontSize: "12px",
-            marginTop: "4px",
-            display: "block",
+            color: 'red',
+            fontSize: '12px',
+            marginTop: '4px',
+            display: 'block',
           }}
         >
           {errorMessage}

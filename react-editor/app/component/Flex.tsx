@@ -1,34 +1,29 @@
-'use client';
+import { DropZone } from '@puckeditor/core';
+import React, { useId } from 'react';
 
-import { DropZone } from "@puckeditor/core";
-import React, { useId } from "react";
-
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const Flex: React.FC<any> = ({
-  direction = "row",
-  wrap = "nowrap",
-  justifyContent = "flex-start",
-  alignItems = "stretch",
+  direction = 'row',
+  wrap = 'nowrap',
+  justifyContent = 'flex-start',
+  alignItems = 'stretch',
   gap = 0,
   flex,
-  className = "",
+  className = '',
   customCss,
 }) => {
   const id = useId();
-  const flexId = `flex-${id.replace(/:/g, "")}`;
+  const flexId = `flex-${id.replace(/:/g, '')}`;
 
   return (
     <>
       <style>
         {`
           .${flexId} {
-            ${flex ? `flex: ${flex};` : ""}
+            ${flex ? `flex: ${flex};` : ''}
           }
 
-          ${
-            customCss
-              ? `.${flexId} { ${customCss} }`
-              : ""
-          }
+          ${customCss ? `.${flexId} { ${customCss} }` : ''}
         `}
       </style>
 
@@ -36,7 +31,7 @@ const Flex: React.FC<any> = ({
         zone="flex-zone"
         className={`${flexId} ${className}`}
         style={{
-          display: "flex",
+          display: 'flex',
           gap: `${gap}px`,
           flexDirection: direction,
           flexWrap: wrap,

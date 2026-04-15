@@ -1,12 +1,11 @@
-'use client';
+import { Text, View } from '@aws-amplify/ui-react';
+import { DropZone } from '@puckeditor/core';
+import React, { useEffect, useId, useState } from 'react';
 
-import { Text, View } from "@aws-amplify/ui-react";
-import { DropZone } from "@puckeditor/core";
-import React, { useEffect, useId, useState } from "react";
-
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const Accordion: React.FC<any> = ({
   items = [],
-  className = "",
+  className = '',
   customCss,
   itemSpacing = 16,
   title,
@@ -14,7 +13,7 @@ const Accordion: React.FC<any> = ({
   activeItemIndex = 0,
 }) => {
   const id = useId();
-  const uniqueClass = `accordion-${id.replace(/:/g, "")}`;
+  const uniqueClass = `accordion-${id.replace(/:/g, '')}`;
 
   const [openIndex, setOpenIndex] = useState<number | null>(
     activeItemIndex ?? 0
@@ -27,73 +26,79 @@ const Accordion: React.FC<any> = ({
 
   return (
     <div className={`${uniqueClass} ${className}`}>
-      {customCss && (
-        <style>{`.${uniqueClass} { ${customCss} }`}</style>
-      )}
+      {customCss && <style>{`.${uniqueClass} { ${customCss} }`}</style>}
 
       <View
         as="section"
         backgroundColor={backgroundColor}
-        padding={{ base: "40px 20px", xl: "80px 40px" }}
+        padding={{
+          base: '40px 20px',
+          xl: '80px 40px',
+        }}
       >
         {title && (
           <Text
-            margin={{ base: "0 0 30px", xl: "0 0 40px" }}
-            fontSize={{ base: "24px", xl: "36px" }}
+            margin={{
+              base: '0 0 30px',
+              xl: '0 0 40px',
+            }}
+            fontSize={{
+              base: '24px',
+              xl: '36px',
+            }}
           >
             {title}
           </Text>
         )}
 
-        {items.map((item: any, index: number) => {
-          const isOpen = openIndex === index;
+        {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          items.map((item: any, index: number) => {
+            const isOpen = openIndex === index;
 
-          return (
-            <View
-              key={index}
-              style={{
-                borderBottom: "1px solid #D9D9D9",
-              }}
-              marginBottom={`${itemSpacing}px`}
-            >
-              {/* Header */}
+            return (
               <View
-                padding="1rem 0"
-                display="flex"
+                key={index}
                 style={{
-                  justifyContent: "space-between",
-                  cursor: "pointer",
+                  borderBottom: '1px solid #D9D9D9',
                 }}
-                onClick={() =>
-                  setOpenIndex(isOpen ? null : index)
-                }
+                marginBottom={`${itemSpacing}px`}
               >
-                <Text fontWeight="600">
-                  {item.title}
-                </Text>
-                <Text fontSize="20px">
-                  {isOpen ? "−" : "+"}
-                </Text>
-              </View>
-
-              {/* Content */}
-              {isOpen && (
-                <View padding="1rem 0">
-                  {item.description && (
-                    <div
-                      style={{ marginBottom: "10px" }}
-                      dangerouslySetInnerHTML={{
-                        __html: item.description,
-                      }}
-                    />
-                  )}
-
-                  <DropZone zone={`accordion-${index}`} />
+                {/* Header */}
+                <View
+                  padding="1rem 0"
+                  display="flex"
+                  style={{
+                    justifyContent: 'space-between',
+                    cursor: 'pointer',
+                  }}
+                  onClick={() => setOpenIndex(isOpen ? null : index)}
+                >
+                  <Text fontWeight="600">{item.title}</Text>
+                  <Text fontSize="20px">{isOpen ? '−' : '+'}</Text>
                 </View>
-              )}
-            </View>
-          );
-        })}
+
+                {/* Content */}
+                {isOpen && (
+                  <View padding="1rem 0">
+                    {item.description && (
+                      <div
+                        style={{
+                          marginBottom: '10px',
+                        }}
+                        dangerouslySetInnerHTML={{
+                          __html: item.description,
+                        }}
+                      />
+                    )}
+
+                    <DropZone zone={`accordion-${index}`} />
+                  </View>
+                )}
+              </View>
+            );
+          })
+        }
       </View>
     </div>
   );

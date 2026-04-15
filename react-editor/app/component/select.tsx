@@ -1,33 +1,32 @@
-"use client";
-import { Flex, Text, useBreakpointValue } from "@aws-amplify/ui-react";
+import { Flex, Text, useBreakpointValue } from '@aws-amplify/ui-react';
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useRef } from "react";
+import React, { useRef } from 'react';
 // Custom SingleValue component to show placeholder alongside selected value
 const CustomSingleValue = (props: any) => {
   const { selectProps } = props;
   const placeholder = selectProps.placeholder;
   return (
-    <Flex position={"absolute"} justifyContent={"center"} padding={"2px 8px"}>
-      <Text whiteSpace={"nowrap"} letterSpacing={"0.1px"} lineHeight={"20px"}>
+    <Flex position={'absolute'} justifyContent={'center'} padding={'2px 8px'}>
+      <Text whiteSpace={'nowrap'} letterSpacing={'0.1px'} lineHeight={'20px'}>
         {placeholder}
       </Text>
     </Flex>
   );
 };
-import { default as ReactSelect } from "react-select";
+import { default as ReactSelect } from 'react-select';
 
 export interface Option {
   value: string;
   label: string;
 }
 export enum SelectTheme {
-  Dark = "dark",
-  Light = "light",
-  LightNoBorder = "light-no-border",
-  Transparent = "transparent",
+  Dark = 'dark',
+  Light = 'light',
+  LightNoBorder = 'light-no-border',
+  Transparent = 'transparent',
 }
 
-interface SelectProps {
+interface _SelectProps {
   theme?: SelectTheme;
   options: Option[];
   onSelect: (selectedOption: Option | null) => void;
@@ -40,9 +39,23 @@ interface SelectProps {
   noOptionsMessage?: string;
   fixedPlaceholder?: boolean;
   CustomDropdownIndicator?: React.ComponentType<any>;
-
 }
 
+/**
+ *
+ * @param root0
+ * @param root0.theme
+ * @param root0.options
+ * @param root0.onSelect
+ * @param root0.selectedOption
+ * @param root0.placeholder
+ * @param root0.customControlStyles
+ * @param root0.minHeight
+ * @param root0.className
+ * @param root0.noOptionsMessage
+ * @param root0.fixedPlaceholder
+ * @param root0.CustomDropdownIndicator
+ */
 export function Select({
   theme = SelectTheme.Light,
   options,
@@ -54,95 +67,95 @@ export function Select({
   className,
   noOptionsMessage,
   fixedPlaceholder,
-  CustomDropdownIndicator
+  CustomDropdownIndicator,
 }: any) {
-  const isMobile = useBreakpointValue({ base: true, xl: false });
+  const isMobile = useBreakpointValue({
+    base: true,
+    xl: false,
+  });
   const selectRef = useRef<HTMLDivElement>(null);
 
   const getBorder = () => {
-    if (theme === SelectTheme.Dark) return "1px solid #ffffff";
-    if (theme === SelectTheme.Light) return "1px solid #000000";
-    if (theme === SelectTheme.LightNoBorder) return "none";
-    if (theme === SelectTheme.Transparent) return "none";
+    if (theme === SelectTheme.Dark) return '1px solid #ffffff';
+    if (theme === SelectTheme.Light) return '1px solid #000000';
+    if (theme === SelectTheme.LightNoBorder) return 'none';
+    if (theme === SelectTheme.Transparent) return 'none';
   };
 
   const getColor = () => {
-    if (theme === SelectTheme.Dark) return "white";
-    return "black";
+    if (theme === SelectTheme.Dark) return 'white';
+    return 'black';
   };
 
   const customStyles = {
     control: (provided: any) => ({
       ...provided,
-      fontFamily: "var(--font-toyotaDisplay)",
-      fontSize: "clamp(14px, 2vw, var(--amplify-font-sizes-small))",
-      lineHeight: "var(--amplify-line-heights-xs)",
+      fontFamily: 'var(--font-toyotaDisplay)',
+      fontSize: 'clamp(14px, 2vw, var(--amplify-font-sizes-small))',
+      lineHeight: 'var(--amplify-line-heights-xs)',
       backgroundColor:
         theme === SelectTheme.Transparent
-          ? "transparent"
+          ? 'transparent'
           : theme === SelectTheme.Dark
-            ? "#161B1E"
-            : "#FFFFFF",
-      borderRadius: "7.5rem",
+          ? '#161B1E'
+          : '#FFFFFF',
+      borderRadius: '7.5rem',
       border:
-        theme === SelectTheme.Transparent ? "1px solid white" : getBorder(),
-      boxShadow: "none",
-      color: theme === SelectTheme.Transparent ? "white" : getColor(),
-      padding: isMobile ? "0 16px" : "0 .625rem",
-      gap: "3.8px",
-      minHeight: minHeight || "40px",
-      "&:hover": {
-        borderColor: theme === SelectTheme.Transparent ? "white" : getBorder(),
+        theme === SelectTheme.Transparent ? '1px solid white' : getBorder(),
+      boxShadow: 'none',
+      color: theme === SelectTheme.Transparent ? 'white' : getColor(),
+      padding: isMobile ? '0 16px' : '0 .625rem',
+      gap: '3.8px',
+      minHeight: minHeight || '40px',
+      '&:hover': {
+        borderColor: theme === SelectTheme.Transparent ? 'white' : getBorder(),
       },
       ...customControlStyles, // Apply custom styles
     }),
     indicatorSeparator: (provided: any) => ({
       ...provided,
-      display: "none",
+      display: 'none',
     }),
     menu: (provided: any) => ({
       ...provided,
-      backgroundColor: "#FFFFFF",
-      boxShadow: "none",
-      border: "1px solid #000000",
-      // maxHeight: "none", // Desactiva el límite de altura
-      // overflowY: "visible", // Asegúrate de que se muestren todas las opciones
-      borderRadius: "24px",
-      zIndex: "999999999999999999",
+      backgroundColor: '#FFFFFF',
+      boxShadow: 'none',
+      border: '1px solid #000000',
+      borderRadius: '24px',
+      zIndex: '999999999999999999',
     }),
     menuList: (provided: any) => ({
       ...provided,
-      // maxHeight: "none",
-      padding: "0px",
-      borderRadius: "24px",
+      padding: '0px',
+      borderRadius: '24px',
     }),
     option: (provided: any, state: any) => ({
       ...provided,
-      fontFamily: "var(--font-toyotaDisplay)",
-      fontSize: "clamp(14px, 2vw, var(--amplify-font-sizes-small))",
-      lineHeight: "var(--amplify-line-heights-xs)",
-      backgroundColor: state.isFocused ? "#000000" : "#FFFFFF",
-      color: state.isFocused ? "#FFFFFF" : "#000000",
-      fontWeight: state.isSelected ? "bold" : "normal",
-      cursor: "pointer",
-      padding: "10px 30px",
+      fontFamily: 'var(--font-toyotaDisplay)',
+      fontSize: 'clamp(14px, 2vw, var(--amplify-font-sizes-small))',
+      lineHeight: 'var(--amplify-line-heights-xs)',
+      backgroundColor: state.isFocused ? '#000000' : '#FFFFFF',
+      color: state.isFocused ? '#FFFFFF' : '#000000',
+      fontWeight: state.isSelected ? 'bold' : 'normal',
+      cursor: 'pointer',
+      padding: '10px 30px',
     }),
     placeholder: (provided: any) => ({
       ...provided,
-      color: theme === SelectTheme.Transparent ? "white" : getColor(),
-      fontSize: "13px",
+      color: theme === SelectTheme.Transparent ? 'white' : getColor(),
+      fontSize: '13px',
     }),
-    dropdownIndicator: (provided: any) => ({
-      color: theme === SelectTheme.Transparent ? "white" : getColor(),
-      margin: "0",
-      padding: "0",
-      cursor: "pointer",
-      height: "20px",
-      paddingRight: fixedPlaceholder ? "8px" : undefined,
+    dropdownIndicator: (_provided: any) => ({
+      color: theme === SelectTheme.Transparent ? 'white' : getColor(),
+      margin: '0',
+      padding: '0',
+      cursor: 'pointer',
+      height: '20px',
+      paddingRight: fixedPlaceholder ? '8px' : undefined,
     }),
     singleValue: (provided: any) => ({
       ...provided,
-      color: theme === SelectTheme.Transparent ? "white" : getColor(),
+      color: theme === SelectTheme.Transparent ? 'white' : getColor(),
     }),
   };
 
@@ -156,14 +169,20 @@ export function Select({
         onChange={(option) => onSelect(option as Option)}
         components={{
           IndicatorSeparator: null,
-          ...(CustomDropdownIndicator && { DropdownIndicator: CustomDropdownIndicator }),
-          ...(fixedPlaceholder ? { SingleValue: CustomSingleValue } : {}),
+          ...(CustomDropdownIndicator && {
+            DropdownIndicator: CustomDropdownIndicator,
+          }),
+          ...(fixedPlaceholder
+            ? {
+                SingleValue: CustomSingleValue,
+              }
+            : {}),
         }}
         backspaceRemovesValue={false}
         styles={customStyles}
         isSearchable={false}
         placeholder={placeholder}
-        noOptionsMessage={() => noOptionsMessage || "No Options"}
+        noOptionsMessage={() => noOptionsMessage || 'No Options'}
       />
     </div>
   );

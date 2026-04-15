@@ -1,6 +1,4 @@
-"use client";
-
-import React, { useEffect, useId, useState } from "react";
+import React, { useEffect, useId, useState } from 'react';
 
 interface RadioOption {
   label: string;
@@ -19,19 +17,32 @@ interface RadioGroupProps {
   onChange?: (value: string) => void;
 }
 
+/**
+ *
+ * @param root0
+ * @param root0.label
+ * @param root0.options
+ * @param root0.defaultValue
+ * @param root0.required
+ * @param root0.className
+ * @param root0.customCss
+ * @param root0.name
+ * @param root0.errorMessage
+ * @param root0.onChange
+ */
 export default function RadioGroup({
   label,
   options,
-  defaultValue = "",
+  defaultValue = '',
   required = false,
-  className = "",
+  className = '',
   customCss,
   name,
-  errorMessage = "This field is required",
+  errorMessage = 'This field is required',
   onChange,
 }: RadioGroupProps) {
   const uniqueId = useId();
-  const uniqueClass = `radiogroup-${uniqueId.replace(/:/g, "")}`;
+  const uniqueClass = `radiogroup-${uniqueId.replace(/:/g, '')}`;
 
   const [value, setValue] = useState<string>(defaultValue);
   const [touched, setTouched] = useState<boolean>(false);
@@ -49,7 +60,11 @@ export default function RadioGroup({
   };
 
   return (
-    <div style={{ margin: "12px 0" }}>
+    <div
+      style={{
+        margin: '12px 0',
+      }}
+    >
       {customCss && (
         <style>{`
           .${uniqueClass} {
@@ -60,7 +75,10 @@ export default function RadioGroup({
 
       {label && (
         <div
-          style={{ fontWeight: 500, marginBottom: "6px" }}
+          style={{
+            fontWeight: 500,
+            marginBottom: '6px',
+          }}
           id={`${uniqueId}-label`}
         >
           {label}
@@ -76,11 +94,11 @@ export default function RadioGroup({
           <label
             key={opt.value}
             style={{
-              display: "flex",
-              alignItems: "center",
-              gap: "8px",
-              marginBottom: "6px",
-              cursor: "pointer",
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px',
+              marginBottom: '6px',
+              cursor: 'pointer',
             }}
           >
             <input
@@ -100,10 +118,10 @@ export default function RadioGroup({
       {showError && (
         <span
           style={{
-            color: "red",
-            fontSize: "12px",
-            marginTop: "4px",
-            display: "block",
+            color: 'red',
+            fontSize: '12px',
+            marginTop: '4px',
+            display: 'block',
           }}
         >
           {errorMessage}

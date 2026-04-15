@@ -1,23 +1,21 @@
-"use client";
-
-import React from "react";
-import { Button as AmplifyButton } from "@aws-amplify/ui-react";
+import React from 'react';
+import { Button as AmplifyButton } from '@aws-amplify/ui-react';
 
 /* ---------------------------------- */
 /* Base Button Props (AmpButton)     */
 /* ---------------------------------- */
 
 export interface ButtonProps {
-  type?: "button" | "submit" | "reset";
+  type?: 'button' | 'submit' | 'reset';
   color?:
-    | "red"
-    | "deepred"
-    | "white"
-    | "transparent"
-    | "black"
-    | "underlined"
-    | "transparentBlack";
-  size?: "small" | "large";
+    | 'red'
+    | 'deepred'
+    | 'white'
+    | 'transparent'
+    | 'black'
+    | 'underlined'
+    | 'transparentBlack';
+  size?: 'small' | 'large';
   children: React.ReactNode;
   onClick?: () => void;
   disabled?: boolean;
@@ -26,7 +24,7 @@ export interface ButtonProps {
   isFullWidth?: boolean;
   isLoading?: boolean;
   loadingText?: string;
-  textColor?: "white" | "black";
+  textColor?: 'white' | 'black';
 
   /* Style Props */
   padding?: string;
@@ -49,12 +47,10 @@ export interface ButtonProps {
 /* Wrapper Button Props              */
 /* ---------------------------------- */
 
-export interface DynamicButtonProps extends Omit<
-  ButtonProps,
-  "children" | "onClick"
-> {
+export interface DynamicButtonProps
+  extends Omit<ButtonProps, 'children' | 'onClick'> {
   text: string;
-  align?: "left" | "center" | "right";
+  align?: 'left' | 'center' | 'right';
   onClickCode?: string;
   customCss?: string;
 }
@@ -63,9 +59,18 @@ export interface DynamicButtonProps extends Omit<
 /* Wrapper Component                 */
 /* ---------------------------------- */
 
+/**
+ *
+ * @param root0
+ * @param root0.text
+ * @param root0.align
+ * @param root0.onClickCode
+ * @param root0.customCss
+ * @param root0.className
+ */
 export default function Button({
   text,
-  align = "left",
+  align = 'left',
   onClickCode,
   customCss,
   className,
@@ -81,14 +86,19 @@ export default function Button({
 
     try {
       const fn = new Function(`return (${onClickCode})`)();
-      if (typeof fn === "function") fn();
+      if (typeof fn === 'function') fn();
     } catch (err) {
-      console.warn("Invalid onClick code", err);
+      // eslint-disable-next-line no-console
+      console.warn('Invalid onClick code', err);
     }
   }, [onClickCode]);
 
   return (
-    <div style={{ textAlign: align }}>
+    <div
+      style={{
+        textAlign: align,
+      }}
+    >
       {customCss && (
         <style>{`
           .${uniqueClass} {
@@ -100,7 +110,7 @@ export default function Button({
       <AmpButton
         {...rest}
         onClick={handleClick}
-        className={`${className ?? ""} ${uniqueClass}`}
+        className={`${className ?? ''} ${uniqueClass}`}
       >
         {text}
       </AmpButton>
@@ -112,10 +122,40 @@ export default function Button({
 /* Base Amplify Button Component     */
 /* ---------------------------------- */
 
+/**
+ *
+ * @param root0
+ * @param root0.type
+ * @param root0.color
+ * @param root0.size
+ * @param root0.children
+ * @param root0.onClick
+ * @param root0.disabled
+ * @param root0.className
+ * @param root0.style
+ * @param root0.isFullWidth
+ * @param root0.isLoading
+ * @param root0.loadingText
+ * @param root0.textColor
+ * @param root0.padding
+ * @param root0.margin
+ * @param root0.display
+ * @param root0.minWidth
+ * @param root0.maxHeight
+ * @param root0.fontSize
+ * @param root0.fontFamily
+ * @param root0.fontWeight
+ * @param root0.lineHeight
+ * @param root0.maxWidth
+ * @param root0.minHeight
+ * @param root0.letterSpacing
+ * @param root0.backgroundColor
+ * @param root0.border
+ */
 function AmpButton({
-  type = "button",
-  color = "red",
-  size = "large",
+  type = 'button',
+  color = 'red',
+  size = 'large',
   children,
   onClick,
   disabled,
@@ -130,10 +170,10 @@ function AmpButton({
   display,
   minWidth,
   maxHeight,
-  fontSize = "14px",
+  fontSize = '14px',
   fontFamily,
   fontWeight = 500,
-  lineHeight = "1.25rem",
+  lineHeight = '1.25rem',
   maxWidth,
   minHeight,
   letterSpacing,
@@ -141,36 +181,36 @@ function AmpButton({
   border,
 }: ButtonProps) {
   const getVariation = () => {
-    if (color === "underlined") return "link";
-    if (["red", "white", "black"].includes(color)) return "primary";
+    if (color === 'underlined') return 'link';
+    if (['red', 'white', 'black'].includes(color)) return 'primary';
     return undefined;
   };
 
   const getColorTheme = () => {
-    if (color === "red") return "red";
-    if (color === "deepred") return "#D42224";
-    if (color === "white") return "white";
-    if (color === "black") return "black";
-    if (color === "underlined") return "transparent";
-    if (color === "transparent" || color === "transparentBlack")
-      return "transparent";
-    return "white";
+    if (color === 'red') return 'red';
+    if (color === 'deepred') return '#D42224';
+    if (color === 'white') return 'white';
+    if (color === 'black') return 'black';
+    if (color === 'underlined') return 'transparent';
+    if (color === 'transparent' || color === 'transparentBlack')
+      return 'transparent';
+    return 'white';
   };
 
   const getBorderColor = () => {
-    if (color === "transparent") return "white";
-    if (color === "transparentBlack") return "black";
-    return "transparent";
+    if (color === 'transparent') return 'white';
+    if (color === 'transparentBlack') return 'black';
+    return 'transparent';
   };
 
   const getTextColor = () => {
     if (textColor) return textColor;
-    if (color === "red") return "white";
-    if (color === "white") return "black";
-    if (color === "black") return "white";
-    if (color === "underlined") return "black";
-    if (color === "transparent") return "black";
-    return "white";
+    if (color === 'red') return 'white';
+    if (color === 'white') return 'black';
+    if (color === 'black') return 'white';
+    if (color === 'underlined') return 'black';
+    if (color === 'transparent') return 'black';
+    return 'white';
   };
 
   return (
@@ -187,7 +227,7 @@ function AmpButton({
       loadingText={loadingText}
       type={type}
       fontWeight={fontWeight}
-      padding={padding ?? (size === "small" ? "15px 20px" : undefined)}
+      padding={padding ?? (size === 'small' ? '15px 20px' : undefined)}
       margin={margin}
       display={display}
       lineHeight={lineHeight}

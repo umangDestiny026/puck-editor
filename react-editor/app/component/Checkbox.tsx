@@ -1,7 +1,5 @@
-"use client";
-
-import React, { useId, useState, useCallback } from "react";
-import { CheckboxField, Flex, Text } from "@aws-amplify/ui-react";
+import React, { useId, useState, useCallback } from 'react';
+import { CheckboxField, Flex, Text } from '@aws-amplify/ui-react';
 
 export interface CheckboxProps {
   label?: string;
@@ -19,19 +17,32 @@ export interface CheckboxProps {
   onChangeCode?: string;
 }
 
+/**
+ *
+ * @param root0
+ * @param root0.label
+ * @param root0.defaultChecked
+ * @param root0.required
+ * @param root0.className
+ * @param root0.customCss
+ * @param root0.name
+ * @param root0.errorMessage
+ * @param root0.onChange
+ * @param root0.onChangeCode
+ */
 export default function Checkbox({
-  label = "", // ✅ default fixes Amplify type issue
+  label = '', // default fixes Amplify type issue
   defaultChecked = false,
   required = false,
-  className = "",
+  className = '',
   customCss,
-  name = "", // ✅ default fixes Amplify type issue
-  errorMessage = "This field is required",
+  name = '', // default fixes Amplify type issue
+  errorMessage = 'This field is required',
   onChange,
   onChangeCode,
 }: CheckboxProps) {
   const id = useId();
-  const uniqueClass = `checkbox-${id.replace(/:/g, "")}`;
+  const uniqueClass = `checkbox-${id.replace(/:/g, '')}`;
 
   const [checked, setChecked] = useState<boolean>(defaultChecked);
   const [touched, setTouched] = useState<boolean>(false);
@@ -49,12 +60,13 @@ export default function Checkbox({
       if (onChangeCode) {
         try {
           const fn = new Function(
-            "checked",
+            'checked',
             `return (${onChangeCode})(checked)`
           );
           fn(value);
         } catch (err) {
-          console.warn("Invalid onChangeCode", err);
+          // eslint-disable-next-line no-console
+          console.warn('Invalid onChangeCode', err);
         }
       }
     },

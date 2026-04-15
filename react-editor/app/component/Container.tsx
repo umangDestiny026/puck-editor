@@ -1,29 +1,22 @@
-'use client';
+import { DropZone } from '@puckeditor/core';
+import React, { useId } from 'react';
 
-import { DropZone } from "@puckeditor/core";
-import React, { useId } from "react";
-
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const Container: React.FC<any> = ({
-  className = "",
+  className = '',
   customCss,
   marginValue,
   paddingValue,
   backgroundColor,
 }) => {
   const id = useId();
-  const uniqueClass = `container-${id.replace(/:/g, "")}`;
+  const uniqueClass = `container-${id.replace(/:/g, '')}`;
 
   const style: React.CSSProperties = {
-    margin:
-      marginValue != null
-        ? `0 ${marginValue}px`
-        : "0 auto",
-    padding:
-      paddingValue != null
-        ? `${paddingValue}px`
-        : undefined,
+    margin: marginValue != null ? `0 ${marginValue}px` : '0 auto',
+    padding: paddingValue != null ? `${paddingValue}px` : undefined,
     backgroundColor: backgroundColor || undefined,
-    minHeight: "120px",
+    minHeight: '120px',
   };
 
   return (

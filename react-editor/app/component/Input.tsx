@@ -1,10 +1,8 @@
-"use client";
+import React, { useId, useMemo, useState, ChangeEvent } from 'react';
+import { Flex, Input as AmplifyInputField, Label } from '@aws-amplify/ui-react';
+import '@aws-amplify/ui-react/styles.css';
 
-import React, { useId, useMemo, useState, ChangeEvent } from "react";
-import { Flex, Input as AmplifyInputField, Label } from "@aws-amplify/ui-react";
-import "@aws-amplify/ui-react/styles.css";
-
-type Variant = "default" | "mobile";
+type Variant = 'default' | 'mobile';
 
 interface InputProps {
   label?: string;
@@ -21,24 +19,40 @@ interface InputProps {
   onChange?: (value: string) => void;
 }
 
+/**
+ *
+ * @param root0
+ * @param root0.label
+ * @param root0.placeholder
+ * @param root0.name
+ * @param root0.labelColor
+ * @param root0.inputBackground
+ * @param root0.inputBorder
+ * @param root0.variant
+ * @param root0.pattern
+ * @param root0.errorMessage
+ * @param root0.className
+ * @param root0.customCss
+ * @param root0.onChange
+ */
 export default function Input({
   label,
   placeholder,
   name,
-  labelColor = "#ffffff",
-  inputBackground = "#fff",
-  inputBorder = "none",
-  variant = "default",
+  labelColor = '#ffffff',
+  inputBackground = '#fff',
+  inputBorder = 'none',
+  variant = 'default',
   pattern,
-  errorMessage = "Invalid value",
-  className = "",
+  errorMessage = 'Invalid value',
+  className = '',
   customCss,
   onChange,
 }: InputProps) {
   const uniqueId = useId();
-  const uniqueClass = `amplify-input-${uniqueId.replace(/:/g, "")}`;
+  const uniqueClass = `amplify-input-${uniqueId.replace(/:/g, '')}`;
 
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState('');
   const [touched, setTouched] = useState(false);
 
   // Safe pattern parsing
@@ -47,22 +61,23 @@ export default function Input({
     try {
       return new RegExp(pattern);
     } catch {
-      console.warn("Invalid regex pattern");
+      // eslint-disable-next-line no-console
+      console.warn('Invalid regex pattern');
       return undefined;
     }
   }, [pattern]);
 
-  const isInvalid = touched && !!regex && value !== "" && !regex.test(value);
+  const isInvalid = touched && !!regex && value !== '' && !regex.test(value);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value;
 
     // For mobile variant, prevent invalid characters
     if (
-      variant === "mobile" &&
+      variant === 'mobile' &&
       regex &&
       !regex.test(newValue) &&
-      newValue !== ""
+      newValue !== ''
     ) {
       return;
     }
@@ -86,7 +101,10 @@ export default function Input({
           <Label
             htmlFor={uniqueId}
             color={labelColor}
-            fontSize={{ base: "14px", xl: "18px" }}
+            fontSize={{
+              base: '14px',
+              xl: '18px',
+            }}
           >
             {label}
           </Label>
@@ -95,15 +113,21 @@ export default function Input({
         <AmplifyInputField
           id={uniqueId}
           name={name}
-          type={variant === "mobile" ? "tel" : "text"}
+          type={variant === 'mobile' ? 'tel' : 'text'}
           backgroundColor={inputBackground}
           border={inputBorder}
           borderRadius="80px"
           placeholder={placeholder}
           value={value}
-          maxLength={variant === "mobile" ? 10 : undefined}
-          fontSize={{ base: "12px", xl: "14px" }}
-          padding={{ base: "12px 23px", xl: "10px 23px" }}
+          maxLength={variant === 'mobile' ? 10 : undefined}
+          fontSize={{
+            base: '12px',
+            xl: '14px',
+          }}
+          padding={{
+            base: '12px 23px',
+            xl: '10px 23px',
+          }}
           onBlur={() => setTouched(true)}
           onChange={handleChange}
         />
@@ -111,9 +135,9 @@ export default function Input({
         {isInvalid && (
           <span
             style={{
-              color: "red",
-              fontSize: "12px",
-              marginTop: "4px",
+              color: 'red',
+              fontSize: '12px',
+              marginTop: '4px',
             }}
           >
             {errorMessage}

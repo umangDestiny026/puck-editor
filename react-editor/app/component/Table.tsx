@@ -1,7 +1,5 @@
-"use client";
-
-import React, { useId } from "react";
-import { DropZone } from "@puckeditor/core";
+import React, { useId } from 'react';
+import { DropZone } from '@puckeditor/core';
 import {
   Table as AmplifyTable,
   TableBody,
@@ -9,7 +7,7 @@ import {
   TableRow,
   TableCell,
   View,
-} from "@aws-amplify/ui-react";
+} from '@aws-amplify/ui-react';
 
 interface TableProps {
   rows?: number;
@@ -19,21 +17,33 @@ interface TableProps {
   highlightOnHover?: boolean;
   className?: string;
   customCss?: string;
-  margin?: React.CSSProperties["margin"];
+  margin?: React.CSSProperties['margin'];
 }
 
+/**
+ *
+ * @param root0
+ * @param root0.rows
+ * @param root0.columns
+ * @param root0.hasHeader
+ * @param root0.bordered
+ * @param root0.highlightOnHover
+ * @param root0.className
+ * @param root0.customCss
+ * @param root0.margin
+ */
 export default function Table({
   rows = 3,
   columns = 3,
   hasHeader = true,
   bordered = false,
   highlightOnHover = false,
-  className = "",
+  className = '',
   customCss,
   margin,
 }: TableProps) {
   const uniqueId = useId();
-  const uniqueClass = `table-${uniqueId.replace(/:/g, "")}`;
+  const uniqueClass = `table-${uniqueId.replace(/:/g, '')}`;
 
   const tableClass = `${className} ${uniqueClass}`.trim();
 
@@ -43,11 +53,16 @@ export default function Table({
     return (
       <TableHead>
         <TableRow>
-          {Array.from({ length: columns }, (_, colIndex) => (
-            <TableCell as="th" key={`header-${colIndex}`}>
-              <DropZone zone={`header-${colIndex}`} />
-            </TableCell>
-          ))}
+          {Array.from(
+            {
+              length: columns,
+            },
+            (_, colIndex) => (
+              <TableCell as="th" key={`header-${colIndex}`}>
+                <DropZone zone={`header-${colIndex}`} />
+              </TableCell>
+            )
+          )}
         </TableRow>
       </TableHead>
     );
@@ -55,18 +70,28 @@ export default function Table({
 
   const renderBody = () => (
     <TableBody>
-      {Array.from({ length: rows }, (_, rowIndex) => (
-        <TableRow
-          key={`row-${rowIndex}`}
-          backgroundColor={rowIndex % 2 === 0 ? "#F7F7F7" : "transparent"}
-        >
-          {Array.from({ length: columns }, (_, colIndex) => (
-            <TableCell key={`cell-${rowIndex}-${colIndex}`}>
-              <DropZone zone={`cell-${rowIndex}-${colIndex}`} />
-            </TableCell>
-          ))}
-        </TableRow>
-      ))}
+      {Array.from(
+        {
+          length: rows,
+        },
+        (_, rowIndex) => (
+          <TableRow
+            key={`row-${rowIndex}`}
+            backgroundColor={rowIndex % 2 === 0 ? '#F7F7F7' : 'transparent'}
+          >
+            {Array.from(
+              {
+                length: columns,
+              },
+              (_, colIndex) => (
+                <TableCell key={`cell-${rowIndex}-${colIndex}`}>
+                  <DropZone zone={`cell-${rowIndex}-${colIndex}`} />
+                </TableCell>
+              )
+            )}
+          </TableRow>
+        )
+      )}
     </TableBody>
   );
 
@@ -83,7 +108,7 @@ export default function Table({
         <AmplifyTable
           className={tableClass}
           highlightOnHover={highlightOnHover}
-          variation={bordered ? "bordered" : undefined}
+          variation={bordered ? 'bordered' : undefined}
           width="100%"
         >
           {renderHeader()}

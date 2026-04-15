@@ -1,6 +1,4 @@
-'use client';
-
-import React, { useMemo } from "react";
+import React, { useMemo } from 'react';
 
 const fontSizeMap = {
   sm: 14,
@@ -12,8 +10,8 @@ const fontSizeMap = {
 type TextBlockProps = {
   content?: React.ReactNode;
   level?: React.ElementType;
-  size?: "sm" | "md" | "lg" | "xl";
-  align?: "left" | "center" | "right";
+  size?: 'sm' | 'md' | 'lg' | 'xl';
+  align?: 'left' | 'center' | 'right';
 
   widthValue?: number;
   widthUnit?: string;
@@ -30,9 +28,9 @@ type TextBlockProps = {
 
 const Text: React.FC<TextBlockProps> = ({
   content,
-  level: Level = "p",
-  size = "md",
-  align = "left",
+  level: Level = 'p',
+  size = 'md',
+  align = 'left',
 
   widthValue,
   widthUnit,
@@ -43,7 +41,7 @@ const Text: React.FC<TextBlockProps> = ({
 
   textColor,
   backgroundColor,
-  className = "",
+  className = '',
   customCss,
 }) => {
   const uniqueClass = useMemo(
@@ -53,8 +51,8 @@ const Text: React.FC<TextBlockProps> = ({
 
   const style: React.CSSProperties = {
     textAlign: align,
-    margin: align === "center" ? "0 auto" : undefined,
-    fontSize: Level === "p" ? fontSizeMap[size] : undefined,
+    margin: align === 'center' ? '0 auto' : undefined,
+    fontSize: Level === 'p' ? fontSizeMap[size] : undefined,
     color: textColor,
     backgroundColor,
     width: widthValue != null ? `${widthValue}${widthUnit}` : undefined,
@@ -66,9 +64,7 @@ const Text: React.FC<TextBlockProps> = ({
 
   return (
     <Level style={style} className={`${className} ${uniqueClass}`}>
-      {customCss && (
-        <style>{`.${uniqueClass} { ${customCss} }`}</style>
-      )}
+      {customCss && <style>{`.${uniqueClass} { ${customCss} }`}</style>}
       {content}
     </Level>
   );

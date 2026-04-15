@@ -1,19 +1,17 @@
-'use client';
+import { DropZone } from '@puckeditor/core';
+import { useEffect } from 'react';
+import { megaMenuStore } from './zone';
 
-import { DropZone } from "@puckeditor/core";
-import { useEffect } from "react";
-import { megaMenuStore } from "./zone";
+interface MegaMenuProps {
+  id: string;
+  isOpen?: boolean;
+  backgroundColor?: string;
+  className?: string;
+  customCss?: string;
+}
 
-const MegaMenu = (props: any) => {
-  const {
-    id,
-    isOpen,
-    backgroundColor,
-    className,
-    customCss,
-  } = props;
-
-
+const MegaMenu = (props: MegaMenuProps) => {
+  const { id, isOpen, backgroundColor, className, customCss } = props;
 
   const uniqueClass = `id-${id}`;
   const zoneKey = id;
@@ -26,7 +24,7 @@ const MegaMenu = (props: any) => {
       className,
       customCss,
       content: [],
-      zones: {}
+      zones: {},
     });
   }, [id]);
 
@@ -34,28 +32,25 @@ const MegaMenu = (props: any) => {
 
   return (
     <>
-      {customCss && (
-        <style>{`.${uniqueClass} { ${customCss} }`}</style>
-      )}
+      {customCss && <style>{`.${uniqueClass} { ${customCss} }`}</style>}
 
       <div
-        className={`${className || ""} ${uniqueClass}`}
+        className={`${className || ''} ${uniqueClass}`}
         style={{
-          position: "relative",
-          inset: "60px 0px 0px",
-          paddingTop: "30px",
+          position: 'relative',
+          inset: '60px 0px 0px',
+          paddingTop: '30px',
           backgroundColor,
           zIndex: 9999999,
-          display: "flex",
-          flexDirection: "column",
-          width: "100%",
+          display: 'flex',
+          flexDirection: 'column',
+          width: '100%',
         }}
       >
         <DropZone zone={zoneKey} />
       </div>
     </>
   );
-}
-
+};
 
 export default MegaMenu;

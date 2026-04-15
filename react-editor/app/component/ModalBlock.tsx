@@ -1,11 +1,9 @@
-"use client";
+import React, { useEffect, useMemo, useState } from 'react';
+import { DropZone } from '@puckeditor/core';
+import styles from './modal.module.css';
 
-import React, { useEffect, useMemo, useState } from "react";
-import { DropZone } from "@puckeditor/core";
-import styles from "./modal.module.css";
-
-type OpenType = "button" | "dropdown";
-type ModalSize = "full" | "large" | "medium" | "half" | "small" | "fixed";
+type OpenType = 'button' | 'dropdown';
+type ModalSize = 'full' | 'large' | 'medium' | 'half' | 'small' | 'fixed';
 
 interface ModalBlockProps {
   title?: string;
@@ -30,33 +28,56 @@ interface ModalBlockProps {
 }
 
 const MODAL_WIDTHS: Record<ModalSize, string> = {
-  full: "100vw",
-  large: "80%",
-  medium: "60%",
-  half: "50%",
-  small: "400px",
-  fixed: "600px",
+  full: '100vw',
+  large: '80%',
+  medium: '60%',
+  half: '50%',
+  small: '400px',
+  fixed: '600px',
 };
 
+/**
+ *
+ * @param root0
+ * @param root0.title
+ * @param root0.description
+ * @param root0.showOpenButton
+ * @param root0.openButtonLabel
+ * @param root0.openType
+ * @param root0.modalSize
+ * @param root0.showCloseButton
+ * @param root0.closeOnOverlay
+ * @param root0.showModalButton
+ * @param root0.modalBackground
+ * @param root0.modalTextColor
+ * @param root0.overlayColor
+ * @param root0.customButtonCss
+ * @param root0.buttonBackground
+ * @param root0.buttonTextColor
+ * @param root0.openButtonIcon
+ * @param root0.borderRadius
+ * @param root0.dropdownWidth
+ * @param root0.className
+ */
 export default function ModalBlock({
   title,
   description,
   showOpenButton = true,
-  openButtonLabel = "Open Modal",
-  openType = "button",
-  modalSize = "medium",
+  openButtonLabel = 'Open Modal',
+  openType = 'button',
+  modalSize = 'medium',
   showCloseButton = true,
   closeOnOverlay = true,
   showModalButton = false,
-  modalBackground = "#ffffff",
-  modalTextColor = "#000000",
-  overlayColor = "rgba(0,0,0,0.5)",
+  modalBackground = '#ffffff',
+  modalTextColor = '#000000',
+  overlayColor = 'rgba(0,0,0,0.5)',
   customButtonCss,
-  buttonBackground = "#2563eb",
-  buttonTextColor = "#ffffff",
+  buttonBackground = '#2563eb',
+  buttonTextColor = '#ffffff',
   openButtonIcon,
-  borderRadius = "12px",
-  dropdownWidth = "200px",
+  borderRadius = '12px',
+  dropdownWidth = '200px',
   className,
 }: ModalBlockProps) {
   const [open, setOpen] = useState<boolean>(showModalButton);
@@ -69,22 +90,22 @@ export default function ModalBlock({
   // Lock body scroll when open
   useEffect(() => {
     if (open) {
-      document.body.style.overflow = "hidden";
+      document.body.style.overflow = 'hidden';
     } else {
-      document.body.style.overflow = "";
+      document.body.style.overflow = '';
     }
     return () => {
-      document.body.style.overflow = "";
+      document.body.style.overflow = '';
     };
   }, [open]);
 
   // ESC key support
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setOpen(false);
+      if (e.key === 'Escape') setOpen(false);
     };
-    if (open) window.addEventListener("keydown", handleKey);
-    return () => window.removeEventListener("keydown", handleKey);
+    if (open) window.addEventListener('keydown', handleKey);
+    return () => window.removeEventListener('keydown', handleKey);
   }, [open]);
 
   const modalWidth = useMemo(() => MODAL_WIDTHS[modalSize], [modalSize]);
@@ -102,19 +123,19 @@ export default function ModalBlock({
       )}
 
       {/* OPEN BUTTON */}
-      {showOpenButton && openType === "button" && (
+      {showOpenButton && openType === 'button' && (
         <button
           className="modal-open-button"
           style={{
             background: buttonBackground,
             color: buttonTextColor,
-            padding: "10px 20px",
-            borderRadius: "6px",
-            display: "flex",
-            alignItems: "center",
-            gap: "8px",
-            border: "none",
-            cursor: "pointer",
+            padding: '10px 20px',
+            borderRadius: '6px',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '8px',
+            border: 'none',
+            cursor: 'pointer',
           }}
           onClick={() => setOpen(true)}
         >
@@ -130,15 +151,15 @@ export default function ModalBlock({
         </button>
       )}
 
-      {showOpenButton && openType === "dropdown" && (
+      {showOpenButton && openType === 'dropdown' && (
         <button
           style={{
             width: dropdownWidth,
             background: buttonBackground,
             color: buttonTextColor,
-            padding: "10px",
-            border: "none",
-            cursor: "pointer",
+            padding: '10px',
+            border: 'none',
+            cursor: 'pointer',
           }}
           onClick={() => setOpen((prev) => !prev)}
         >
@@ -151,12 +172,12 @@ export default function ModalBlock({
         <div
           onClick={() => closeOnOverlay && setOpen(false)}
           style={{
-            position: "fixed",
+            position: 'fixed',
             inset: 0,
             background: overlayColor,
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
             zIndex: 999,
           }}
         >
@@ -167,10 +188,10 @@ export default function ModalBlock({
               background: modalBackground,
               color: modalTextColor,
               borderRadius,
-              padding: "40px",
-              position: "relative",
-              maxHeight: "90vh",
-              overflowY: "auto",
+              padding: '40px',
+              position: 'relative',
+              maxHeight: '90vh',
+              overflowY: 'auto',
             }}
             className={className}
           >

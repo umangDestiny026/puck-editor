@@ -1,15 +1,13 @@
-'use client';
+import { DropZone } from '@puckeditor/core';
+import React, { useMemo } from 'react';
 
-import { DropZone } from "@puckeditor/core";
-import React, { useMemo } from "react";
-
-type CardBlockProps = {
+type _CardBlockProps = {
   id: string;
 
   borderRadius?: number;
   boxShadow?: string;
 
-  width?: string;          // allow "100%" or "300px"
+  width?: string; // allow "100%" or "300px"
   maxWidth?: number;
 
   height?: string;
@@ -22,17 +20,18 @@ type CardBlockProps = {
   customCss?: string;
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const CardCustom: React.FC<any> = ({
   id,
   borderRadius = 8,
-  boxShadow = "0 4px 12px rgba(0,0,0,0.1)",
-  width = "100%",
+  boxShadow = '0 4px 12px rgba(0,0,0,0.1)',
+  width = '100%',
   maxWidth,
   height,
   padding = 16,
-  backgroundColor = "#ffffff",
-  border = "none",
-  className = "",
+  backgroundColor = '#ffffff',
+  border = 'none',
+  className = '',
   customCss,
 }) => {
   const cardId = useMemo(() => `card-${id}`, [id]);
@@ -45,8 +44,8 @@ const CardCustom: React.FC<any> = ({
             border-radius: ${borderRadius}px;
             box-shadow: ${boxShadow};
             width: ${width};
-            ${maxWidth != null ? `max-width: ${maxWidth}px;` : ""}
-            ${height ? `height: ${height};` : ""}
+            ${maxWidth != null ? `max-width: ${maxWidth}px;` : ''}
+            ${height ? `height: ${height};` : ''}
             padding: ${padding}px;
             background-color: ${backgroundColor};
             border: ${border};
@@ -55,16 +54,12 @@ const CardCustom: React.FC<any> = ({
             transition: all 0.3s ease;
           }
 
-          ${
-            customCss
-              ? `.${cardId} { ${customCss} }`
-              : ""
-          }
+          ${customCss ? `.${cardId} { ${customCss} }` : ''}
         `}
       </style>
 
       <div className={`${cardId} ${className}`}>
-        <DropZone zone={"card-content"} />
+        <DropZone zone={'card-content'} />
       </div>
     </>
   );

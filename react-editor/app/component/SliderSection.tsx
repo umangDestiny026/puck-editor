@@ -1,6 +1,5 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
-"use client";
 import {
   Grid,
   View,
@@ -9,24 +8,23 @@ import {
   Image,
   Heading,
   Button as AmplifyButton,
-} from "@aws-amplify/ui-react";
-import "@aws-amplify/ui-react/styles.css";
-import "./SliderSection.css";
-import Button from "../Layout/Button/Button";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Navigation, Autoplay } from "swiper/modules";
-import React, { useEffect, useState } from "react";
-import { EffectFade } from "swiper/modules";
+} from '@aws-amplify/ui-react';
+import '@aws-amplify/ui-react/styles.css';
+import './SliderSection.css';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Pagination, Navigation, Autoplay } from 'swiper/modules';
+import React, { useEffect, useState } from 'react';
+import { EffectFade } from 'swiper/modules';
 
 // Import Swiper styles
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
-import "swiper/css/effect-fade";
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
+import 'swiper/css/effect-fade';
 
 export enum SliderSectionTheme {
-  Dark = "dark",
-  Light = "light",
+  Dark = 'dark',
+  Light = 'light',
 }
 
 // Updated logo interface to support responsive properties
@@ -35,14 +33,14 @@ export interface LogoImage {
   alt: string;
   width?: string | number;
   height?: string | number;
-  objectFit?: "contain" | "cover" | "fill" | "none" | "scale-down";
+  objectFit?: 'contain' | 'cover' | 'fill' | 'none' | 'scale-down';
 }
 
 export interface SliderSectionItem {
   image?: {
     src: string;
     alt: string;
-    objectFit?: "contain" | "cover" | "fill" | "none" | "scale-down";
+    objectFit?: 'contain' | 'cover' | 'fill' | 'none' | 'scale-down';
   };
   title: string;
   description: string;
@@ -68,7 +66,7 @@ export interface SliderSectionProps {
   paginationWidth?: string;
   paginationLeft?: string;
   paginationBottom?: string;
-  displayType?: "card" | "standard";
+  displayType?: 'card' | 'standard';
   showButton?: boolean;
   paginationClassName?: string;
   showImageReference?: boolean;
@@ -105,58 +103,98 @@ export interface SliderSectionProps {
   className?: string;
 }
 
+/**
+ *
+ * @param root0
+ * @param root0.theme
+ * @param root0.color
+ * @param root0.title
+ * @param root0.headingAs
+ * @param root0.description
+ * @param root0.subtitleAs
+ * @param root0.textAlignment
+ * @param root0.items
+ * @param root0.displayType
+ * @param root0._showButton
+ * @param root0.showImageReference
+ * @param root0.showPagination
+ * @param root0.SliderBgColor
+ * @param root0.customStyles
+ * @param root0.className
+ * @param root0._customButtonWidth
+ * @param root0._customButtonPadding
+ * @param root0._customDescriptionPadding
+ * @param root0.customFontHeading
+ * @param root0._customPaddingDesc
+ * @param root0._paginationWidth
+ * @param root0.paginationLeft
+ * @param root0.paginationBottom
+ * @param root0.paginationClassName
+ * @param root0._Headingpadding
+ * @param root0.imagePadding
+ * @param root0.paddingBottom
+ * @param root0.minHeight
+ * @param root0._Bgcolor
+ */
 export default function SliderSection({
-  theme = "ffffff",
-  color = "#000",
+  theme = 'ffffff',
+  color = '#000',
   title,
   headingAs = 2,
   description,
   subtitleAs = 5,
   textAlignment,
   items,
-  displayType = "standard",
-  showButton = false,
+  displayType = 'standard',
+  _showButton = false,
   showImageReference = false,
   showPagination = false,
-  SliderBgColor = "#000",
+  SliderBgColor = '#000',
   customStyles = {},
-  className = "",
-  customButtonWidth, // Add this parameter
-  customButtonPadding, // Add this parameter
-  customDescriptionPadding, // Add this parameter
-  customFontHeading = "30px",
-  customPaddingDesc,
-  paginationWidth = "auto",
-  paginationLeft = "0",
-  paginationBottom = "0",
-  paginationClassName = "",
-  Headingpadding,
+  className = '',
+  _customButtonWidth, // Add this parameter
+  _customButtonPadding, // Add this parameter
+  _customDescriptionPadding, // Add this parameter
+  customFontHeading = '30px',
+  _customPaddingDesc,
+  _paginationWidth = 'auto',
+  paginationLeft = '0',
+  paginationBottom = '0',
+  paginationClassName = '',
+  _Headingpadding,
   imagePadding,
   paddingBottom,
   minHeight,
-  Bgcolor,
-}: any): JSX.Element {
+  _Bgcolor,
+}: // eslint-disable-next-line @typescript-eslint/no-explicit-any
+any): JSX.Element {
   const containerRef = React.useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     // Get the slide container
-    const slideContainer = containerRef.current?.querySelector(
-      displayType === "card"
-        ? ".swiper-slide > .amplify-view"
-        : ".swiper-slide > .amplify-view"
+    const _slideContainer = containerRef.current?.querySelector(
+      displayType === 'card'
+        ? '.swiper-slide > .amplify-view'
+        : '.swiper-slide > .amplify-view'
     );
 
     // Create style element
-    const styleEl = document.createElement("style");
-    const uniqueClass = `custom-pagination-${Math.random().toString(36).substr(2, 9)}`;
+    const styleEl = document.createElement('style');
+    const uniqueClass = `custom-pagination-${Math.random()
+      .toString(36)
+      .substr(2, 9)}`;
 
     // Set CSS with dynamic width
     styleEl.innerHTML = `
       .${uniqueClass} {
-        ${paginationBottom !== "0" ? `bottom: ${paginationBottom} !important;` : ""}
-        ${paginationLeft !== "0" ? `left: ${paginationLeft} !important;` : ""}
+        ${
+          paginationBottom !== '0'
+            ? `bottom: ${paginationBottom} !important;`
+            : ''
+        }
+        ${paginationLeft !== '0' ? `left: ${paginationLeft} !important;` : ''}
         position: relative !important;
-        max-width: ${displayType === "card" ? "90%" : "auto"} !important;
+        max-width: ${displayType === 'card' ? '90%' : 'auto'} !important;
         margin: 0 auto !important;
       }
     `;
@@ -164,7 +202,7 @@ export default function SliderSection({
     document.head.appendChild(styleEl);
 
     // Apply class to pagination
-    const paginationEl = document.querySelector(".custom-pagination");
+    const paginationEl = document.querySelector('.custom-pagination');
     if (paginationEl) {
       paginationEl.classList.add(uniqueClass);
     }
@@ -187,11 +225,11 @@ export default function SliderSection({
     handleResize();
 
     // Add event listener
-    window.addEventListener("resize", handleResize);
+    window.addEventListener('resize', handleResize);
 
     // Clean up
     return () => {
-      window.removeEventListener("resize", handleResize);
+      window.removeEventListener('resize', handleResize);
     };
   }, []);
 
@@ -200,6 +238,11 @@ export default function SliderSection({
   const pagination = {
     clickable: true,
     el: paginationRef.current,
+    /**
+     *
+     * @param index
+     * @param className
+     */
     renderBullet: function (index: number, className: string) {
       return `<span class="${className}">${index + 1}</span>`;
     },
@@ -210,7 +253,7 @@ export default function SliderSection({
     if (!item) return [];
 
     // If custom styles are provided, use minimal spacing
-    const hasCustomStyles = customStyles.padding;
+    const _hasCustomStyles = customStyles.padding;
 
     if (isMobile && item.mobileLogos) {
       return item.mobileLogos || [];
@@ -221,85 +264,127 @@ export default function SliderSection({
     }
   };
 
-  const isLoopEnabled = typeof window !== "undefined" ? window.innerWidth >= 1280 : false;
+  const isLoopEnabled =
+    typeof window !== 'undefined' ? window.innerWidth >= 1280 : false;
   return (
     <View
       padding={{
-        base: customStyles.padding?.base || "2.8125rem 0 1.875rem",
+        base: customStyles.padding?.base || '2.8125rem 0 1.875rem',
         xl:
           customStyles.padding?.xl ||
-          (displayType === "card"
-            ? "3.375rem 2rem 8.125rem"
-            : "3.375rem 0 8.125rem"),
+          (displayType === 'card'
+            ? '3.375rem 2rem 8.125rem'
+            : '3.375rem 0 8.125rem'),
       }}
       maxWidth={{
-        base: customStyles.maxWidth?.base || "100%",
-        xl: customStyles.maxWidth?.xl || "100%",
+        base: customStyles.maxWidth?.base || '100%',
+        xl: customStyles.maxWidth?.xl || '100%',
       }}
       margin={{
-        base: customStyles.margin?.base || "0 auto",
-        xl: customStyles.margin?.xl || "0 auto",
+        base: customStyles.margin?.base || '0 auto',
+        xl: customStyles.margin?.xl || '0 auto',
       }}
       backgroundColor={
-        theme === SliderSectionTheme.Dark ? "#373948" : `${theme}`
+        theme === SliderSectionTheme.Dark ? '#373948' : `${theme}`
       }
-      className={`slider-section ${displayType === "card" ? " card-style" : ""} ${className ? ` ${className}` : ""}`}
+      className={`slider-section ${
+        displayType === 'card' ? ' card-style' : ''
+      } ${className ? ` ${className}` : ''}`}
     >
       <Flex
-        direction={"column"}
-        gap={{ base: "3.4375rem" }}
-        width={"100%"}
-        maxWidth={{ base: "100%", xl: "100%" }}
-        margin={"0 auto"}
-        position={"relative"}
+        direction={'column'}
+        gap={{
+          base: '3.4375rem',
+        }}
+        width={'100%'}
+        maxWidth={{
+          base: '100%',
+          xl: '100%',
+        }}
+        margin={'0 auto'}
+        position={'relative'}
       >
         {/* Only show title and description if they exist and for standard design */}
-        {displayType === "standard" && title && (
+        {displayType === 'standard' && title && (
           <Flex
-            textAlign={{ base: "start", xl: "center" }}
-            gap={{ base: "50px", xl: "33px" }}
-            direction={{
-              base: "column",
+            textAlign={{
+              base: 'start',
+              xl: 'center',
             }}
-            padding={{ base: "0 .9375rem" }}
+            gap={{
+              base: '50px',
+              xl: '33px',
+            }}
+            direction={{
+              base: 'column',
+            }}
+            padding={{
+              base: '0 .9375rem',
+            }}
           >
             <Heading
               level={headingAs}
-              width={{ base: "100%", xl: "45%" }}
-              fontSize={{ base: customFontHeading || "44px", xl: "56px" }}
+              width={{
+                base: '100%',
+                xl: '45%',
+              }}
+              fontSize={{
+                base: customFontHeading || '44px',
+                xl: '56px',
+              }}
               marginBottom={{
-                base: "0",
+                base: '0',
               }}
               fontWeight={400}
               fontFamily="var(--font-ToyotaType-Regular)"
-              lineHeight={{ base: "140%", xl: "100%" }}
-              fontStyle={"normal"}
-              style={{ verticalAlign: "middle" }}
-              color={theme === SliderSectionTheme.Dark ? "#ffffff" : `${color}`}
+              lineHeight={{
+                base: '140%',
+                xl: '100%',
+              }}
+              fontStyle={'normal'}
+              style={{
+                verticalAlign: 'middle',
+              }}
+              color={theme === SliderSectionTheme.Dark ? '#ffffff' : `${color}`}
               margin={{
-                base: "0 auto",
-                medium: "0 auto",
-                large: "0 auto",
-                xl: "0 auto initial",
+                base: '0 auto',
+                medium: '0 auto',
+                large: '0 auto',
+                xl: '0 auto initial',
               }}
             >
               {title}
             </Heading>
             {description && (
               <Heading
-                fontSize={{ base: "22px", xl: "18px" }}
-                lineHeight={{ base: "130%", xl: "110.00000000000001%" }}
-                letterSpacing={{ xl: "-2%" }}
+                fontSize={{
+                  base: '22px',
+                  xl: '18px',
+                }}
+                lineHeight={{
+                  base: '130%',
+                  xl: '110.00000000000001%',
+                }}
+                letterSpacing={{
+                  xl: '-2%',
+                }}
                 level={subtitleAs}
-                maxWidth={{ base: "100%", xl: "100%" }}
-                margin={"0 auto"}
+                maxWidth={{
+                  base: '100%',
+                  xl: '100%',
+                }}
+                margin={'0 auto'}
                 fontWeight={400}
-                width={{ xl: "910px" }}
+                width={{
+                  xl: '910px',
+                }}
                 fontFamily="var(--font-ToyotaType-Regular)"
                 color={
-                  theme === SliderSectionTheme.Dark ? "#ffffff" : "#000000"
+                  theme === SliderSectionTheme.Dark ? '#ffffff' : '#000000'
                 }
-                style={{ verticalAlign: "center" }}
+                style={{
+                  verticalAlign: 'center',
+                }}
               >
                 {description}
               </Heading>
@@ -308,14 +393,16 @@ export default function SliderSection({
         )}
 
         <Swiper
-          style={{ maxWidth: "100%" }}
+          style={{
+            maxWidth: '100%',
+          }}
           pagination={showPagination ? pagination : false}
           navigation={{
-            nextEl: ".slider-section-next",
-            prevEl: ".slider-section-prev",
+            nextEl: '.slider-section-next',
+            prevEl: '.slider-section-prev',
             enabled: true,
-            disabledClass: "swiper-button-disabled",
-            lockClass: "swiper-button-lock",
+            disabledClass: 'swiper-button-disabled',
+            lockClass: 'swiper-button-lock',
           }}
           modules={[Pagination, Navigation, Autoplay, EffectFade]}
           slidesPerView={1}
@@ -328,12 +415,12 @@ export default function SliderSection({
           centeredSlides={true}
           cssMode={false}
           speed={800}
-          effect={displayType === "card" ? "fade" : "slide"}
+          effect={displayType === 'card' ? 'fade' : 'slide'}
           fadeEffect={
-            displayType === "card"
+            displayType === 'card'
               ? {
-                crossFade: true,
-              }
+                  crossFade: true,
+                }
               : undefined
           }
           watchOverflow={true}
@@ -356,38 +443,67 @@ export default function SliderSection({
               }
 
               // Reset any transform that might be causing alignment issues
-              if (displayType === "card") {
+              if (displayType === 'card') {
                 const slides = document.querySelectorAll(
-                  ".slider-section.card-style .swiper-slide"
+                  '.slider-section.card-style .swiper-slide'
                 );
                 slides.forEach((slide) => {
-                  (slide as HTMLElement).style.transform = "none";
+                  (slide as HTMLElement).style.transform = 'none';
                 });
               }
             }, 200);
           }}
-          className={displayType === "card" ? "card-swiper" : ""}
+          className={displayType === 'card' ? 'card-swiper' : ''}
         >
           {/* Explicitly map over each item */}
           {items &&
             items.length > 0 &&
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             items.map((item: any, index: number) => (
               <SwiperSlide key={`slide-${index}-${item.title}`}>
-                {displayType === "card" ? (
+                {displayType === 'card' ? (
                   // Card style design
                   <View
-                    backgroundColor={SliderBgColor ? { base: SliderBgColor, md: SliderBgColor, lg: SliderBgColor } : { base: "transparent", md: "transparent", xl: "#000" }}
-                    border={{ base: "6px solid", md: "6px solid", xl: "none" }}
+                    backgroundColor={
+                      SliderBgColor
+                        ? {
+                            base: SliderBgColor,
+                            md: SliderBgColor,
+                            lg: SliderBgColor,
+                          }
+                        : {
+                            base: 'transparent',
+                            md: 'transparent',
+                            xl: '#000',
+                          }
+                    }
+                    border={{
+                      base: '6px solid',
+                      md: '6px solid',
+                      xl: 'none',
+                    }}
                     padding={{
-                      base: "0",
-                      xl: "0",
+                      base: '0',
+                      xl: '0',
                     }}
                     borderRadius="4px"
                     overflow="hidden"
-                    height={{ base: "auto", xl: "auto" }}
-                    minHeight={{ base: "600px", xl: "600px" }}
-                    width={{ base: "100%", xl: "90%" }}
-                    margin={{ base: "0", xl: "0 auto" }}
+                    height={{
+                      base: 'auto',
+                      xl: 'auto',
+                    }}
+                    minHeight={{
+                      base: '600px',
+                      xl: '600px',
+                    }}
+                    width={{
+                      base: '100%',
+                      xl: '90%',
+                    }}
+                    margin={{
+                      base: '0',
+                      xl: '0 auto',
+                    }}
                   >
                     <View
                       backgroundColor="#FFFFFF"
@@ -396,8 +512,8 @@ export default function SliderSection({
                       height="calc(100% - 20px)"
                       width="calc(100% - 20px)"
                       style={{
-                        display: "flex",
-                        flexDirection: "column",
+                        display: 'flex',
+                        flexDirection: 'column',
                       }}
                     >
                       <Heading
@@ -416,46 +532,48 @@ export default function SliderSection({
                         fontWeight={400}
                         fontFamily="var(--font-toyotaType-Regular)"
                       >
-                        {item.description || "No description"}
+                        {item.description || 'No description'}
                       </Text>
-
 
                       {/* Responsive Logos - get appropriate logos based on viewport */}
                       {getLogos(item)?.length > 0 && (
                         <Flex
                           direction="row"
                           style={{
-                            display: "flex",
-                            flexDirection: "row",
-                            flexWrap: "wrap",
+                            display: 'flex',
+                            flexDirection: 'row',
+                            flexWrap: 'wrap',
                             justifyContent: isMobile
-                              ? "center"
-                              : "space-between",
-                            gap: "15px",
-                            marginTop: "auto",
-                            marginBottom: "20px",
+                              ? 'center'
+                              : 'space-between',
+                            gap: '15px',
+                            marginTop: 'auto',
+                            marginBottom: '20px',
                           }}
                         >
-                          {getLogos(item).map((logo: any, i: number) => (
-                            <Image
-                              key={`logo-${i}`}
-                              src={logo.src}
-                              alt={logo.alt}
-                              height={
-                                logo.height || (isMobile ? "60px" : "80px")
-                              }
-                              width={logo.width || "auto"}
-                              objectFit={logo.objectFit || "contain"}
-                              style={{
-                                maxWidth: isMobile
-                                  ? "100%"
-                                  : "calc(33.333% - 10px)",
-                                flexBasis: isMobile
-                                  ? "100%"
-                                  : "calc(33.333% - 10px)",
-                              }}
-                            />
-                          ))}
+                          {
+                            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                            getLogos(item).map((logo: any, i: number) => (
+                              <Image
+                                key={`logo-${i}`}
+                                src={logo.src}
+                                alt={logo.alt}
+                                height={
+                                  logo.height || (isMobile ? '60px' : '80px')
+                                }
+                                width={logo.width || 'auto'}
+                                objectFit={logo.objectFit || 'contain'}
+                                style={{
+                                  maxWidth: isMobile
+                                    ? '100%'
+                                    : 'calc(33.333% - 10px)',
+                                  flexBasis: isMobile
+                                    ? '100%'
+                                    : 'calc(33.333% - 10px)',
+                                }}
+                              />
+                            ))
+                          }
                         </Flex>
                       )}
                     </View>
@@ -464,125 +582,132 @@ export default function SliderSection({
                   // Standard style (original design) with modifications
                   <View
                     className="slider-inner"
-                    height={{ base: "100%", xl: "auto" }}
-                    backgroundColor={SliderBgColor || "#000"}
+                    height={{
+                      base: '100%',
+                      xl: 'auto',
+                    }}
+                    backgroundColor={SliderBgColor || '#000'}
                     padding={{
-                      base: "1.875rem  2.18rem 63px  2.18rem",
+                      base: '1.875rem  2.18rem 63px  2.18rem',
                       xl:
                         theme === SliderSectionTheme.Dark
-                          ? ""
-                          : "63px 0px 63px",
+                          ? ''
+                          : '63px 0px 63px',
                     }}
                     maxWidth={{
-                      xl: "min(76.25rem, 80%)",
-                      xll: "1220px",
+                      xl: 'min(76.25rem, 80%)',
+                      xll: '1220px',
                     }}
                     minWidth={{
-                      xl: "min(76.25rem, 80%)",
-                      xll: "1220px",
+                      xl: 'min(76.25rem, 80%)',
+                      xll: '1220px',
                     }}
-                    margin={"auto"}
-                    position={"relative"}
+                    margin={'auto'}
+                    position={'relative'}
                     minHeight={
                       minHeight || {
-                        base: "330px",
-                        medium: "330px",
-                        xl: "100%",
+                        base: '330px',
+                        medium: '330px',
+                        xl: '100%',
                       }
                     }
-                    maxHeight={{ medium: "640px", large: "640px", xl: "640px" }}
+                    maxHeight={{
+                      medium: '640px',
+                      large: '640px',
+                      xl: '640px',
+                    }}
                     marginBottom={{
-                      xl: paddingBottom ? paddingBottom : "30px",
+                      xl: paddingBottom ? paddingBottom : '30px',
                     }}
                   >
                     <div
                       style={{
-                        overflow: "hidden",
-                        height: "100%",
-                        marginTop: customStyles.margin ? "120px" : "0px",
+                        overflow: 'hidden',
+                        height: '100%',
+                        marginTop: customStyles.margin ? '120px' : '0px',
                       }}
                     >
                       <div
                         style={{
-                          display: "flex",
-                          height: "100%",
+                          display: 'flex',
+                          height: '100%',
                         }}
                       >
                         <Flex
-                          width={"100%"}
-                          flex={"0 0 100%"}
+                          width={'100%'}
+                          flex={'0 0 100%'}
                           justifyContent="center"
                           alignItems="center"
                         >
                           <Grid
-                            templateColumns={{ xl: "auto 1fr" }}
-                            backgroundColor={"#ffffff"}
-                            width={"100%"}
-                            flex={"0 0 100%"}
-                            margin={"0"}
+                            templateColumns={{
+                              xl: 'auto 1fr',
+                            }}
+                            backgroundColor={'#ffffff'}
+                            width={'100%'}
+                            flex={'0 0 100%'}
+                            margin={'0'}
                             style={{
-                              minHeight: "440px",
+                              minHeight: '440px',
                             }}
                             maxWidth={
                               theme === SliderSectionTheme.Dark
-                                ? "auto"
+                                ? 'auto'
                                 : item.image.src
-                                  ? "911px"
-                                  : "100%"
+                                ? '911px'
+                                : '100%'
                             }
-                            gap={"0"}
+                            gap={'0'}
                           >
                             {item.image && item.image.src && (
                               <Flex
-                                alignItems={"center"}
+                                alignItems={'center'}
                                 position="relative"
                                 height={{
-                                  base: "191px",
-                                  xl: "100%",
+                                  base: '191px',
+                                  xl: '100%',
                                 }}
                                 style={{
-                                  width: "100%",
-                                  overflow: "hidden",
+                                  width: '100%',
+                                  overflow: 'hidden',
                                 }}
-                                maxWidth={{ xl: "100%" }}
-                                overflow={"hidden"}
+                                maxWidth={{
+                                  xl: '100%',
+                                }}
+                                overflow={'hidden'}
                               >
                                 <Image
-                                  padding={imagePadding ? imagePadding : ""}
+                                  padding={imagePadding ? imagePadding : ''}
                                   src={item.image.src}
                                   alt={item.image.alt}
                                   width="100%"
                                   objectFit={{
-                                    base: item.image.objectFit || "cover",
-                                    medium: item.image.objectFit || "cover",
-                                    xl: item.image.objectFit || "cover",
-                                    xxl: item.image.objectFit || "cover",
+                                    base: item.image.objectFit || 'cover',
+                                    medium: item.image.objectFit || 'cover',
+                                    xl: item.image.objectFit || 'cover',
+                                    xxl: item.image.objectFit || 'cover',
                                   }}
                                   style={{
-                                    objectPosition: "center",
-                                  }}
-                                  maxWidth={{
-                                    base: "none",
-                                    medium: "495px",
-                                    xl: "495px",
+                                    objectPosition: 'center',
                                   }}
                                   minWidth={{
-                                    base: "",
-                                    medium: "",
-                                    xl: "495px",
+                                    base: '',
+                                    medium: '',
+                                    xl: '440px',
+                                    xl: '495px',
                                   }}
                                   minHeight={{
-                                    base: "250px",
-                                    medium: "",
-                                    xl: "440px",
-                                    xxl: "495px",
+                                    base: '250px',
+                                    medium: '',
+                                    xl: '440px',
+                                    xxl: '495px',
                                   }}
                                   maxHeight={{
-                                    base: "250px",
-                                    medium: "318px",
-                                    large: "420px",
-                                    xl: "478px",
-                                    xxl: "495px",
+                                    base: '250px',
+                                    medium: '318px',
+                                    large: '420px',
+                                    xl: '478px',
+                                    xxl: '495px',
                                   }}
                                 />
                                 {showImageReference && (
@@ -591,187 +716,185 @@ export default function SliderSection({
                                     color="#FFFFFF"
                                     position="absolute"
                                     bottom="10px"
-                                    left={{ base: "25%", xl: "35%" }}
+                                    left={{
+                                      base: '25%',
+                                      xl: '35%',
+                                    }}
                                     padding="2px 8px"
                                     borderRadius="4px"
                                     zIndex="10"
                                   >
-                                    *Imágenes de referencia
+                                    *Imagenes de referencia
                                   </Text>
                                 )}
                               </Flex>
                             )}
                             <Flex
-                              direction={"column"}
+                              direction={'column'}
                               justifyContent={{
-                                base: "center",
-                                xl: item.image.src ? "start" : "center",
+                                base: 'center',
+                                xl: item.image.src ? 'start' : 'center',
                               }}
-                              alignItems={"center"}
-                              gap={"0"}
-                              padding={{ base: "30px 12px", xl: "0 30px" }}
-                              width={"100%"}
+                              alignItems={'center'}
+                              gap={'0'}
+                              padding={{
+                                base: '30px 12px',
+                                xl: '0 30px',
+                              }}
+                              width={'100%'}
                             >
                               <View
                                 maxWidth={{
-                                  base: "100%",
-                                  xl: "82%",
+                                  base: '100%',
+                                  xl: '82%',
                                 }}
                                 className="view-container-tgr-text"
                                 display={{
-                                  base: "",
-                                  medium: "flex",
-                                  large: "flex",
-                                  xl: "",
+                                  base: '',
+                                  medium: 'flex',
+                                  large: 'flex',
+                                  xl: '',
                                 }}
                                 justifyContent={{
-                                  base: "",
-                                  medium: "center",
-                                  large: "center",
-                                  xl: "",
+                                  base: '',
+                                  medium: 'center',
+                                  large: 'center',
+                                  xl: '',
                                 }}
                                 alignItems={{
-                                  base: "",
-                                  medium: "center",
-                                  large: "center",
-                                  xl: "",
+                                  base: '',
+                                  medium: 'center',
+                                  large: 'center',
+                                  xl: '',
                                 }}
-                              // flexDirection={{
-                              //   base: "",
-                              //   medium: "column",
-                              //   large: "column",
-                              //   xl: "",
-                              // }}
+                                // flexDirection={{
+                                //   base: "",
+                                //   medium: "column",
+                                //   large: "column",
+                                //   xl: "",
+                                // }}
                               >
                                 {/* Check if title is a number to determine rendering style */}
                                 {!isNaN(Number(item.title)) ? (
-                                  // <Flex
-                                  //   alignItems="center"
-                                  //   marginBottom="1.5rem"
-                                  // >
-                                  //   {/* Red circular background for title number */}
-                                  //   <View
-                                  //     width="50px"
-                                  //     height="50px"
-                                  //     backgroundColor="#D83639"
-                                  //     borderRadius="50%"
-                                  //     display="flex"
-                                  //     justifyContent="center"
-                                  //     alignItems="center"
-                                  //     marginRight="15px"
-                                  //     marginRight="50px"
-                                  //   >
-                                  //     <Text
-                                  //       fontSize="22px"
-                                  //       fontWeight="700"
-                                  //       color="#FFFFFF"
-                                  //       textAlign="center"
-                                  //     >
-                                  //       {item.title}
-                                  //     </Text>
-                                  //   </View>
-                                  // </Flex>
-
                                   <Heading
                                     level={4}
-                                    fontSize={{ base: "22px", xl: "22px" }}
-                                    fontStyle={"normal"}
-                                    fontWeight={"700"}
-                                    marginBottom={{
-                                      base: ".9375rem",
-                                      xl: "1.5rem",
+                                    fontSize={{
+                                      base: '22px',
+                                      xl: '22px',
                                     }}
-                                    lineHeight={{ base: "24px", xl: "28px" }}
-                                    textAlign={"start"}
+                                    fontStyle={'normal'}
+                                    fontWeight={'700'}
+                                    marginBottom={{
+                                      base: '.9375rem',
+                                      xl: '1.5rem',
+                                    }}
+                                    lineHeight={{
+                                      base: '24px',
+                                      xl: '28px',
+                                    }}
+                                    textAlign={'start'}
                                     fontFamily="var(--font-ToyotaType-Regular)"
-                                    color={"#000"}
-                                    marginTop={{ xl: "100px", xll: "100px" }}
+                                    color={'#000'}
+                                    marginTop={{
+                                      xl: '100px',
+                                      xll: '100px',
+                                    }}
                                   >
                                     {item.title}
                                   </Heading>
                                 ) : (
                                   <Heading
                                     level={4}
-                                    fontSize={{ base: "22px", xl: "22px" }}
-                                    fontStyle={"normal"}
-                                    fontWeight={"700"}
-                                    marginBottom={{
-                                      base: ".9375rem",
-                                      xl: "1.5rem",
+                                    fontSize={{
+                                      base: '22px',
+                                      xl: '22px',
                                     }}
-                                    lineHeight={{ base: "24px", xl: "28px" }}
-                                    textAlign={{ xl: textAlignment }}
+                                    fontStyle={'normal'}
+                                    fontWeight={'700'}
+                                    marginBottom={{
+                                      base: '.9375rem',
+                                      xl: '1.5rem',
+                                    }}
+                                    lineHeight={{
+                                      base: '24px',
+                                      xl: '28px',
+                                    }}
+                                    textAlign={{
+                                      xl: textAlignment,
+                                    }}
                                     fontFamily="var(--font-ToyotaType-Regular)"
-                                    color={"#000"}
-                                    marginTop={{ xl: "100px", xll: "100px" }}
+                                    color={'#000'}
+                                    marginTop={{
+                                      xl: '100px',
+                                      xll: '100px',
+                                    }}
                                   >
                                     {item.title}
                                   </Heading>
                                 )}
                                 <Text
-                                  fontSize={{ base: "12px", xl: "18px" }}
-                                  lineHeight={"normal"}
+                                  fontSize={{
+                                    base: '12px',
+                                    xl: '18px',
+                                  }}
+                                  lineHeight={'normal'}
                                   marginBottom={{
-                                    base: "1.5625rem",
-                                    xl: "3.125rem",
+                                    base: '1.5625rem',
+                                    xl: '3.125rem',
                                   }}
                                   fontWeight={400}
                                   fontFamily="var(--font-ToyotaType-Regular)"
                                   width={{
-                                    base: "",
-                                    medium: "50%",
-                                    large: "50%",
-                                    xl: item.image.src ? "100%" : "100%",
+                                    base: '',
+                                    medium: '50%',
+                                    large: '50%',
+                                    xl: item.image.src ? '100%' : '100%',
                                   }}
-                                  textAlign={{ xl: textAlignment }}
+                                  textAlign={{
+                                    xl: textAlignment,
+                                  }}
                                 >
                                   {item.description}
                                 </Text>
-
-                                {/* Secondary description if available */}
-                                {/* {item.secondaryDescription && (
-                                  <Text
-                                    fontSize={{ base: "12px", xl: "18px" }}
-                                    lineHeight={"normal"}
-                                    fontWeight={400}
-                                    fontFamily="var(--font-ToyotaType-Regular)"
-                                    textAlign={{ xl: textAlignment }}
-                                  >
-                                    {item.secondaryDescription}
-                                  </Text>
-                                )} */}
 
                                 {/* Responsive Logos for standard layout */}
                                 {getLogos(item)?.length > 0 && (
                                   <Flex
                                     direction="row"
                                     style={{
-                                      display: "flex",
-                                      flexDirection: "row",
-                                      flexWrap: "wrap",
+                                      display: 'flex',
+                                      flexDirection: 'row',
+                                      flexWrap: 'wrap',
                                       justifyContent: isMobile
-                                        ? "center"
-                                        : "flex-start",
-                                      gap: "10px",
-                                      marginBottom: "20px",
+                                        ? 'center'
+                                        : 'flex-start',
+                                      gap: '10px',
+                                      marginBottom: '20px',
                                     }}
                                   >
-                                    {getLogos(item).map((logo: any, i: number) => (
-                                      <Image
-                                        key={`logo-${i}`}
-                                        src={logo.src}
-                                        alt={logo.alt}
-                                        height={
-                                          logo.height ||
-                                          (isMobile ? "40px" : "60px")
-                                        }
-                                        width={logo.width || "auto"}
-                                        objectFit={logo.objectFit || "contain"}
-                                        style={{
-                                          maxWidth: isMobile ? "100%" : "auto",
-                                        }}
-                                      />
-                                    ))}
+                                    {getLogos(item).map(
+                                      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                                      (logo: any, i: number) => (
+                                        <Image
+                                          key={`logo-${i}`}
+                                          src={logo.src}
+                                          alt={logo.alt}
+                                          height={
+                                            logo.height ||
+                                            (isMobile ? '40px' : '60px')
+                                          }
+                                          width={logo.width || 'auto'}
+                                          objectFit={
+                                            logo.objectFit || 'contain'
+                                          }
+                                          style={{
+                                            maxWidth: isMobile
+                                              ? '100%'
+                                              : 'auto',
+                                          }}
+                                        />
+                                      )
+                                    )}
                                   </Flex>
                                 )}
                               </View>
@@ -788,12 +911,16 @@ export default function SliderSection({
           <AmplifyButton
             className="slider-section-prev arrowCustom arrowCustom--prev"
             aria-label="Previous slide"
-            style={{ border: "none" }}
+            style={{
+              border: 'none',
+            }}
           ></AmplifyButton>
           <AmplifyButton
             className="slider-section-next arrowCustom arrowCustom--next"
             aria-label="Next slide"
-            style={{ border: "none" }}
+            style={{
+              border: 'none',
+            }}
           ></AmplifyButton>
 
           <div

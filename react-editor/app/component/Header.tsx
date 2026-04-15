@@ -1,12 +1,24 @@
-"use client";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { Flex, Link, Text, View } from '@aws-amplify/ui-react';
+import React from 'react';
+import { megaMenuStore } from './zone';
+import { Render } from '@puckeditor/core';
+import config from '../../puck.config';
+import { usePuck } from './PuckContext';
 
-import { Flex, Link, Text, View } from "@aws-amplify/ui-react";
-import React from "react";
-import { megaMenuStore } from "./zone";
-import { Render } from "@puckeditor/core";
-import config from "./puck.config";
-import { usePuck } from "./PuckContext";
-
+/**
+ *
+ * @param root0
+ * @param root0.backgroundColor
+ * @param root0.textColor
+ * @param root0.logoUrl
+ * @param root0.menuItems
+ * @param root0.rightLinks
+ * @param root0.hamburgerIcon
+ * @param root0.navPosition
+ * @param root0.layout
+ * @param root0._menuMode
+ */
 export default function Header({
   backgroundColor,
   textColor,
@@ -16,15 +28,20 @@ export default function Header({
   hamburgerIcon,
   navPosition,
   layout,
-  menuMode,
-}: any) {
+  _menuMode,
+}: // eslint-disable-next-line @typescript-eslint/no-explicit-any
+any) {
   const [openIndex, setOpenIndex] = React.useState<number | null>(null);
-  const { puckData, setPuckData } = usePuck();
-  const [mobileOpenIndex, setMobileOpenIndex] = React.useState<number | null>(null);
+  const { puckData } = usePuck();
+
+  const logoSrc =
+    typeof logoUrl === 'string'
+      ? logoUrl
+      : logoUrl?._previewUrl || logoUrl?.url;
 
   const uniqueClass = `header-${Math.random().toString(36).slice(2, 9)}`;
   const defaultHamburger =
-    "https://upload.wikimedia.org/wikipedia/commons/b/b2/Hamburger_icon.svg";
+    'https://upload.wikimedia.org/wikipedia/commons/b/b2/Hamburger_icon.svg';
 
   return (
     <View
@@ -35,13 +52,13 @@ export default function Header({
     >
       <style>{`
                 .${uniqueClass} a { text-decoration: none; }
-        
+
                 .${uniqueClass}.nav-sticky {
                     position: sticky;
                     top: 0;
                     z-index: 1000;
                   }
-        
+
                   .${uniqueClass}.nav-fixed {
                     position: fixed;
                     top: 0;
@@ -49,22 +66,22 @@ export default function Header({
                     width: 100%;
                     z-index: 1000;
                   }
-        
+
                   /* Prevent content jump when navbar is fixed */
                   body:has(.${uniqueClass}.nav-fixed) {
                     padding-top: 72px;
                   }
-        
+
                 /* --- DESKTOP --- */
                 .${uniqueClass} .desktop-nav { display: flex; }
                 .${uniqueClass} .hamburger-btn { display: none; }
                 .${uniqueClass} .mobile-panel { display: none; }
-        
+
                 /* --- TABLET & MOBILE --- */
                 @media (max-width: 900px) {
                   .${uniqueClass} .desktop-nav { display: none; }
                   .${uniqueClass} .hamburger-btn { display: block; }
-        
+
                   .${uniqueClass} .mobile-panel {
                     position: fixed;
                     top: 0;
@@ -78,12 +95,11 @@ export default function Header({
                     z-index: 9999;
                     display: block;
                   }
-        
+
                   .${uniqueClass} .mobile-panel.open {
                     transform: translateX(0);
-                    overflow-y: auto;
                   }
-        
+
                   .${uniqueClass} .mobile-item {
                     padding: 14px 20px;
                     border-bottom: 1px solid #eee;
@@ -101,182 +117,53 @@ export default function Header({
       >
         {/* LOGO */}
         <Link href="/">
-          <img src={logoUrl} style={{ height: "32px" }} />
+          <img
+            src={logoSrc}
+            style={{
+              height: '32px',
+            }}
+          />
         </Link>
 
-        {layout === "LogoMenu" && (
+        {layout === 'LogoMenu' && (
           <Flex className="desktop-nav" direction="row" gap="24px">
-            {menuItems.map((item: any, i: number) => {
-              const isDropdown =
-                item.menuMode === "dropdown" &&
-                Array.isArray(item.dropdownItems) &&
-                item.dropdownItems.length > 0;
-
-              const isMegaMenu =
-                item.menuMode === "megamenu" && !!item.savedMegaMenu;
-
-              const isOpen = openIndex === i;
-
-              if (isMegaMenu && item.savedMegaMenu !== null) {
-                const content = megaMenuStore.get(item.savedMegaMenu)?.content;
-                const megaMenuData = megaMenuStore.get(item.savedMegaMenu);
-
-                const formattedData = {
-                  root: { props: {} },
-                  content: megaMenuData?.content || [],
-                  zones: puckData.zones || {},
-                };
-                return (
-                  <View key={i} style={{ position: "relative" }}>
-                    <Text
-                      onClick={() => setOpenIndex(isOpen ? null : i)}
-                      style={{
-                        cursor: "pointer",
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "6px",
-                      }}
-                    >
-                      {item.label}
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="12"
-                        height="8"
-                        viewBox="0 0 12 8"
-                        fill="none"
-                      >
-                        <path
-                          d="M10.589 0.294922L5.99902 4.87492L1.40902 0.294922L-0.000976563 1.70492L5.99902 7.70492L11.999 1.70492L10.589 0.294922Z"
-                          fill="black"
-                        />
-                      </svg>
-                    </Text>
-                    {isOpen && isMegaMenu && content && (
-                      <View
-                        style={{
-                          // inset: "60px 0px 0px",
-                          // display: "flex",
-                          position: "fixed",
-                          top: "110px",
-                          left: 0,
-                          background: "#fff",
-                          width: "100vw",
-                          padding: "20px",
-                          height: "100%",
-                          zIndex: 999,
-                        }}
-                      >
-                        <Render data={formattedData} config={config as any} />
-                      </View>
-                    )}
-                  </View>
-                );
-              }
-
-              if (!isDropdown) {
-                return (
-                  <Link key={i} href={item.href} color={textColor}>
-                    {item.label}
-                  </Link>
-                );
-              }
-
-              return (
-                <View key={i} style={{ position: "relative" }}>
-                  <Text
-                    onClick={() => setOpenIndex(isOpen ? null : i)}
-                    style={{
-                      cursor: "pointer",
-                      display: "flex",
-                      alignItems: "center",
-                      gap: "6px",
-                    }}
-                  >
-                    {item.label}
-                    <span style={{ fontSize: "12px" }}>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="12"
-                        height="8"
-                        viewBox="0 0 12 8"
-                        fill="none"
-                      >
-                        <path
-                          d="M10.589 0.294922L5.99902 4.87492L1.40902 0.294922L-0.000976563 1.70492L5.99902 7.70492L11.999 1.70492L10.589 0.294922Z"
-                          fill="black"
-                        />
-                      </svg>
-                    </span>
-                  </Text>
-
-                  {isOpen && (
-                    <View
-                      className="dropdown-panel"
-                      style={{
-                        position: "absolute",
-                        top: "100%",
-                        left: 0,
-                        background: "#ffffff",
-                        minWidth: "220px",
-                        boxShadow: "0 4px 12px rgba(0,0,0,.12)",
-                        borderRadius: "6px",
-                        zIndex: 999,
-                      }}
-                    >
-                      {item.dropdownItems.map((d: any, j: number) => (
-                        <Link
-                          key={j}
-                          href={d.href}
-                          style={{
-                            display: "block",
-                            padding: "10px 14px",
-                            borderBottom: "1px solid #eee",
-                          }}
-                        >
-                          {d.label}
-                        </Link>
-                      ))}
-                    </View>
-                  )}
-                </View>
-              );
-            })}
-          </Flex>
-        )}
-        {layout === "LogoMenuCTA" && (
-          <>
-            <Flex className="desktop-nav" direction="row" gap="24px">
-              {menuItems.map((item: any, i: number) => {
+            {
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              menuItems.map((item: any, i: number) => {
                 const isDropdown =
-                  item.menuMode === "dropdown" &&
+                  item.menuMode === 'dropdown' &&
                   Array.isArray(item.dropdownItems) &&
                   item.dropdownItems.length > 0;
 
                 const isMegaMenu =
-                  item.menuMode === "megamenu" && !!item.savedMegaMenu;
+                  item.menuMode === 'megamenu' && !!item.savedMegaMenu;
 
                 const isOpen = openIndex === i;
 
                 if (isMegaMenu && item.savedMegaMenu !== null) {
-                  const content = megaMenuStore.get(
-                    item.savedMegaMenu
-                  )?.content;
                   const megaMenuData = megaMenuStore.get(item.savedMegaMenu);
 
                   const formattedData = {
-                    root: { props: {} },
+                    root: {
+                      props: {},
+                    },
                     content: megaMenuData?.content || [],
                     zones: puckData.zones || {},
                   };
                   return (
-                    <View key={i} style={{ position: "relative" }}>
+                    <View
+                      key={i}
+                      style={{
+                        position: 'relative',
+                      }}
+                    >
                       <Text
                         onClick={() => setOpenIndex(isOpen ? null : i)}
                         style={{
-                          cursor: "pointer",
-                          display: "flex",
-                          alignItems: "center",
-                          gap: "6px",
+                          cursor: 'pointer',
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: '6px',
                         }}
                       >
                         {item.label}
@@ -293,22 +180,28 @@ export default function Header({
                           />
                         </svg>
                       </Text>
-                      {isOpen && isMegaMenu && content && (
+                      {isOpen && isMegaMenu && megaMenuData?.content && (
                         <View
                           style={{
                             // inset: "60px 0px 0px",
                             // display: "flex",
-                            position: "fixed",
-                            top: "110px",
+                            position: 'fixed',
+                            top: '110px',
                             left: 0,
-                            background: "#fff",
-                            width: "100vw",
-                            padding: "20px",
-                            height: "100%",
+                            background: '#fff',
+                            width: '100vw',
+                            padding: '20px',
+                            height: '100%',
                             zIndex: 999,
                           }}
                         >
-                          <Render data={formattedData} config={config as any} />
+                          <Render
+                            data={formattedData}
+                            config={
+                              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                              config as any
+                            }
+                          />
                         </View>
                       )}
                     </View>
@@ -324,18 +217,27 @@ export default function Header({
                 }
 
                 return (
-                  <View key={i} style={{ position: "relative" }}>
+                  <View
+                    key={i}
+                    style={{
+                      position: 'relative',
+                    }}
+                  >
                     <Text
                       onClick={() => setOpenIndex(isOpen ? null : i)}
                       style={{
-                        cursor: "pointer",
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "6px",
+                        cursor: 'pointer',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '6px',
                       }}
                     >
                       {item.label}
-                      <span style={{ fontSize: "12px" }}>
+                      <span
+                        style={{
+                          fontSize: '12px',
+                        }}
+                      >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           width="12"
@@ -355,34 +257,205 @@ export default function Header({
                       <View
                         className="dropdown-panel"
                         style={{
-                          position: "absolute",
-                          top: "100%",
+                          position: 'absolute',
+                          top: '100%',
                           left: 0,
-                          background: "#ffffff",
-                          minWidth: "220px",
-                          boxShadow: "0 4px 12px rgba(0,0,0,.12)",
-                          borderRadius: "6px",
+                          background: '#ffffff',
+                          minWidth: '220px',
+                          boxShadow: '0 4px 12px rgba(0,0,0,.12)',
+                          borderRadius: '6px',
                           zIndex: 999,
                         }}
                       >
-                        {item.dropdownItems.map((d: any, j: number) => (
-                          <Link
-                            key={j}
-                            href={d.href}
-                            style={{
-                              display: "block",
-                              padding: "10px 14px",
-                              borderBottom: "1px solid #eee",
-                            }}
-                          >
-                            {d.label}
-                          </Link>
-                        ))}
+                        {
+                          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                          item.dropdownItems.map((d: any, j: number) => (
+                            <Link
+                              key={j}
+                              href={d.href}
+                              style={{
+                                display: 'block',
+                                padding: '10px 14px',
+                                borderBottom: '1px solid #eee',
+                              }}
+                            >
+                              {d.label}
+                            </Link>
+                          ))
+                        }
                       </View>
                     )}
                   </View>
                 );
-              })}
+              })
+            }
+          </Flex>
+        )}
+        {layout === 'LogoMenuCTA' && (
+          <>
+            <Flex className="desktop-nav" direction="row" gap="24px">
+              {
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                menuItems.map((item: any, i: number) => {
+                  const isDropdown =
+                    item.menuMode === 'dropdown' &&
+                    Array.isArray(item.dropdownItems) &&
+                    item.dropdownItems.length > 0;
+
+                  const isMegaMenu =
+                    item.menuMode === 'megamenu' && !!item.savedMegaMenu;
+
+                  const isOpen = openIndex === i;
+
+                  if (isMegaMenu && item.savedMegaMenu !== null) {
+                    const megaMenuData = megaMenuStore.get(item.savedMegaMenu);
+
+                    const formattedData = {
+                      root: {
+                        props: {},
+                      },
+                      content: megaMenuData?.content || [],
+                      zones: puckData.zones || {},
+                    };
+                    return (
+                      <View
+                        key={i}
+                        style={{
+                          position: 'relative',
+                        }}
+                      >
+                        <Text
+                          onClick={() => setOpenIndex(isOpen ? null : i)}
+                          style={{
+                            cursor: 'pointer',
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '6px',
+                          }}
+                        >
+                          {item.label}
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="12"
+                            height="8"
+                            viewBox="0 0 12 8"
+                            fill="none"
+                          >
+                            <path
+                              d="M10.589 0.294922L5.99902 4.87492L1.40902 0.294922L-0.000976563 1.70492L5.99902 7.70492L11.999 1.70492L10.589 0.294922Z"
+                              fill="black"
+                            />
+                          </svg>
+                        </Text>
+                        {isOpen && isMegaMenu && megaMenuData?.content && (
+                          <View
+                            style={{
+                              // inset: "60px 0px 0px",
+                              // display: "flex",
+                              position: 'fixed',
+                              top: '110px',
+                              left: 0,
+                              background: '#fff',
+                              width: '100vw',
+                              padding: '20px',
+                              height: '100%',
+                              zIndex: 999,
+                            }}
+                          >
+                            <Render
+                              data={formattedData}
+                              config={
+                                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                                config as any
+                              }
+                            />
+                          </View>
+                        )}
+                      </View>
+                    );
+                  }
+
+                  if (!isDropdown) {
+                    return (
+                      <Link key={i} href={item.href} color={textColor}>
+                        {item.label}
+                      </Link>
+                    );
+                  }
+
+                  return (
+                    <View
+                      key={i}
+                      style={{
+                        position: 'relative',
+                      }}
+                    >
+                      <Text
+                        onClick={() => setOpenIndex(isOpen ? null : i)}
+                        style={{
+                          cursor: 'pointer',
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: '6px',
+                        }}
+                      >
+                        {item.label}
+                        <span
+                          style={{
+                            fontSize: '12px',
+                          }}
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="12"
+                            height="8"
+                            viewBox="0 0 12 8"
+                            fill="none"
+                          >
+                            <path
+                              d="M10.589 0.294922L5.99902 4.87492L1.40902 0.294922L-0.000976563 1.70492L5.99902 7.70492L11.999 1.70492L10.589 0.294922Z"
+                              fill="black"
+                            />
+                          </svg>
+                        </span>
+                      </Text>
+
+                      {isOpen && (
+                        <View
+                          className="dropdown-panel"
+                          style={{
+                            position: 'absolute',
+                            top: '100%',
+                            left: 0,
+                            background: '#ffffff',
+                            minWidth: '220px',
+                            boxShadow: '0 4px 12px rgba(0,0,0,.12)',
+                            borderRadius: '6px',
+                            zIndex: 999,
+                          }}
+                        >
+                          {
+                            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                            item.dropdownItems.map((d: any, j: number) => (
+                              <Link
+                                key={j}
+                                href={d.href}
+                                style={{
+                                  display: 'block',
+                                  padding: '10px 14px',
+                                  borderBottom: '1px solid #eee',
+                                }}
+                              >
+                                {d.label}
+                              </Link>
+                            ))
+                          }
+                        </View>
+                      )}
+                    </View>
+                  );
+                })
+              }
             </Flex>
 
             <Flex
@@ -391,21 +464,35 @@ export default function Header({
               gap="16px"
               alignItems="center"
             >
-              {rightLinks.map((r: any, i: number) => (
-                <Link
-                  key={i}
-                  href={r.href}
-                  color={textColor}
-                  style={{ display: "flex", alignItems: "center", gap: "6px" }}
-                >
-                  {r.icon && <img src={r.icon} style={{ height: "18px" }} />}
-                  {r.label}
-                </Link>
-              ))}
+              {
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                rightLinks.map((r: any, i: number) => (
+                  <Link
+                    key={i}
+                    href={r.href}
+                    color={textColor}
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '6px',
+                    }}
+                  >
+                    {r.icon && (
+                      <img
+                        src={r.icon}
+                        style={{
+                          height: '18px',
+                        }}
+                      />
+                    )}
+                    {r.label}
+                  </Link>
+                ))
+              }
             </Flex>
           </>
         )}
-        {layout === "LogoCTA" && (
+        {layout === 'LogoCTA' && (
           <>
             <Flex
               className="desktop-nav"
@@ -413,17 +500,31 @@ export default function Header({
               gap="16px"
               alignItems="center"
             >
-              {rightLinks.map((r: any, i: number) => (
-                <Link
-                  key={i}
-                  href={r.href}
-                  color={textColor}
-                  style={{ display: "flex", alignItems: "center", gap: "6px" }}
-                >
-                  {r.icon && <img src={r.icon} style={{ height: "18px" }} />}
-                  {r.label}
-                </Link>
-              ))}
+              {
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                rightLinks.map((r: any, i: number) => (
+                  <Link
+                    key={i}
+                    href={r.href}
+                    color={textColor}
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '6px',
+                    }}
+                  >
+                    {r.icon && (
+                      <img
+                        src={r.icon}
+                        style={{
+                          height: '18px',
+                        }}
+                      />
+                    )}
+                    {r.label}
+                  </Link>
+                ))
+              }
             </Flex>
           </>
         )}
@@ -434,13 +535,19 @@ export default function Header({
           onClick={() =>
             document
               .querySelector(`.${uniqueClass} .mobile-panel`)
-              ?.classList.add("open")
+              ?.classList.add('open')
           }
-          style={{ background: "none", border: "none", cursor: "pointer" }}
+          style={{
+            background: 'none',
+            border: 'none',
+            cursor: 'pointer',
+          }}
         >
           <img
             src={hamburgerIcon || defaultHamburger}
-            style={{ height: "26px" }}
+            style={{
+              height: '26px',
+            }}
           />
         </button>
       </Flex>
@@ -453,21 +560,28 @@ export default function Header({
           justifyContent="space-between"
           alignItems="center"
           padding="16px 20px"
-          style={{ borderBottom: "1px solid #eee" }}
+          style={{
+            borderBottom: '1px solid #eee',
+          }}
         >
-          <img src={logoUrl} style={{ height: "28px" }} />
+          <img
+            src={logoSrc}
+            style={{
+              height: '28px',
+            }}
+          />
 
           <button
             onClick={() =>
               document
                 .querySelector(`.${uniqueClass} .mobile-panel`)
-                ?.classList.remove("open")
+                ?.classList.remove('open')
             }
             style={{
-              background: "none",
-              border: "none",
-              fontSize: "22px",
-              cursor: "pointer",
+              background: 'none',
+              border: 'none',
+              fontSize: '22px',
+              cursor: 'pointer',
             }}
           >
             ✕
@@ -475,154 +589,36 @@ export default function Header({
         </Flex>
 
         {/* MENU ITEMS (VERTICAL LIKE YOUR IMAGE) */}
-        {layout === "LogoMenu" && (
+        {layout === 'LogoMenu' && (
           <View>
-            {menuItems.map((item: any, i: number) => {
-              const isMegaMenu = item.menuMode === "megamenu" && !!item.savedMegaMenu;
-              const isDropdown =
-                item.menuMode === "dropdown" &&
-                Array.isArray(item.dropdownItems) &&
-                item.dropdownItems.length > 0;
-              const isOpen = mobileOpenIndex === i;
-
-              if (isMegaMenu) {
-                const megaMenuData = megaMenuStore.get(item.savedMegaMenu);
-                const content = megaMenuData?.content;
-                const formattedData = {
-                  root: { props: {} },
-                  content: megaMenuData?.content || [],
-                  zones: puckData.zones || {},
-                };
-                return (
-                  <View key={i}>
-                    <View
-                      className="mobile-item"
-                      onClick={() => setMobileOpenIndex(isOpen ? null : i)}
-                      style={{ cursor: "pointer" }}
-                    >
-                      <span style={{ color: textColor }}>{item.label}</span>
-                      <span style={{ display: "inline-block", transform: isOpen ? "rotate(90deg)" : "none", transition: "transform .2s" }}>›</span>
-                    </View>
-                    {isOpen && content && (
-                      <View style={{ borderBottom: "1px solid #eee", overflowY: "auto", maxHeight: "60vh" }}>
-                        <Render data={formattedData} config={config as any} />
-                      </View>
-                    )}
-                  </View>
-                );
-              }
-
-              if (isDropdown) {
-                return (
-                  <View key={i}>
-                    <View
-                      className="mobile-item"
-                      onClick={() => setMobileOpenIndex(isOpen ? null : i)}
-                      style={{ cursor: "pointer" }}
-                    >
-                      <span style={{ color: textColor }}>{item.label}</span>
-                      <span style={{ display: "inline-block", transform: isOpen ? "rotate(90deg)" : "none", transition: "transform .2s" }}>›</span>
-                    </View>
-                    {isOpen && (
-                      <View style={{ background: "#f9f9f9", borderBottom: "1px solid #eee" }}>
-                        {item.dropdownItems.map((d: any, j: number) => (
-                          <Link
-                            key={j}
-                            href={d.href}
-                            style={{ display: "block", padding: "10px 28px", borderBottom: "1px solid #eee" }}
-                          >
-                            {d.label}
-                          </Link>
-                        ))}
-                      </View>
-                    )}
-                  </View>
-                );
-              }
-
-              return (
-                <Link key={i} href={item.href} className="mobile-item" color={textColor}>
-                  <span>{item.label}</span>
-                  <span>›</span>
-                </Link>
-              );
-            })}
+            {menuItems.map((item: any, i: number) => (
+              <Link
+                key={i}
+                href={item.href}
+                className="mobile-item"
+                color={textColor}
+              >
+                <span>{item.label}</span>
+                <span>›</span>
+              </Link>
+            ))}
           </View>
         )}
 
-        {layout === "LogoMenuCTA" && (
+        {layout === 'LogoMenuCTA' && (
           <>
             <View>
-              {menuItems.map((item: any, i: any) => {
-                const isMegaMenu = item.menuMode === "megamenu" && !!item.savedMegaMenu;
-                const isDropdown =
-                  item.menuMode === "dropdown" &&
-                  Array.isArray(item.dropdownItems) &&
-                  item.dropdownItems.length > 0;
-                const isOpen = mobileOpenIndex === i;
-
-                if (isMegaMenu) {
-                  const megaMenuData = megaMenuStore.get(item.savedMegaMenu);
-                  const content = megaMenuData?.content;
-                  const formattedData = {
-                    root: { props: {} },
-                    content: megaMenuData?.content || [],
-                    zones: puckData.zones || {},
-                  };
-                  return (
-                    <View key={i}>
-                      <View
-                        className="mobile-item"
-                        onClick={() => setMobileOpenIndex(isOpen ? null : i)}
-                        style={{ cursor: "pointer" }}
-                      >
-                        <span style={{ color: textColor }}>{item.label}</span>
-                        <span style={{ display: "inline-block", transform: isOpen ? "rotate(90deg)" : "none", transition: "transform .2s" }}>›</span>
-                      </View>
-                      {isOpen && content && (
-                        <View style={{ padding: "12px 16px", borderBottom: "1px solid #eee", overflowY: "auto", maxHeight: "60vh" }}>
-                          <Render data={formattedData} config={config as any} />
-                        </View>
-                      )}
-                    </View>
-                  );
-                }
-
-                if (isDropdown) {
-                  return (
-                    <View key={i}>
-                      <View
-                        className="mobile-item"
-                        onClick={() => setMobileOpenIndex(isOpen ? null : i)}
-                        style={{ cursor: "pointer" }}
-                      >
-                        <span style={{ color: textColor }}>{item.label}</span>
-                        <span style={{ display: "inline-block", transform: isOpen ? "rotate(90deg)" : "none", transition: "transform .2s" }}>›</span>
-                      </View>
-                      {isOpen && (
-                        <View style={{ background: "#f9f9f9", borderBottom: "1px solid #eee" }}>
-                          {item.dropdownItems.map((d: any, j: number) => (
-                            <Link
-                              key={j}
-                              href={d.href}
-                              style={{ display: "block", padding: "10px 28px", borderBottom: "1px solid #eee" }}
-                            >
-                              {d.label}
-                            </Link>
-                          ))}
-                        </View>
-                      )}
-                    </View>
-                  );
-                }
-
-                return (
-                  <Link key={i} href={item.href} className="mobile-item" color={textColor}>
-                    <span>{item.label}</span>
-                    <span>›</span>
-                  </Link>
-                );
-              })}
+              {menuItems.map((item: any, i: any) => (
+                <Link
+                  key={i}
+                  href={item.href}
+                  className="mobile-item"
+                  color={textColor}
+                >
+                  <span>{item.label}</span>
+                  <span>›</span>
+                </Link>
+              ))}
             </View>
 
             <View padding="20px">
@@ -635,7 +631,10 @@ export default function Header({
               {rightLinks.find((r: any) => r.icon) && (
                 <img
                   src={rightLinks.find((r: any) => r.icon)?.icon}
-                  style={{ height: "28px", marginTop: "8px" }}
+                  style={{
+                    height: '28px',
+                    marginTop: '8px',
+                  }}
                 />
               )}
             </View>
@@ -643,7 +642,7 @@ export default function Header({
         )}
 
         {/* BOTTOM UTILITIES */}
-        {layout === "LogoCTA" && (
+        {layout === 'LogoCTA' && (
           <View padding="20px">
             {rightLinks.map((r: any, i: any) => (
               <Text key={i} fontWeight="bold" marginBottom="10px">
@@ -654,7 +653,10 @@ export default function Header({
             {rightLinks.find((r: any) => r.icon) && (
               <img
                 src={rightLinks.find((r: any) => r.icon)?.icon}
-                style={{ height: "28px", marginTop: "8px" }}
+                style={{
+                  height: '28px',
+                  marginTop: '8px',
+                }}
               />
             )}
           </View>

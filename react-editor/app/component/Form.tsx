@@ -1,7 +1,5 @@
-"use client";
-
-import React, { FormEvent, useId, CSSProperties } from "react";
-import { DropZone } from "@puckeditor/core";
+import React, { FormEvent, useId, CSSProperties } from 'react';
+import { DropZone } from '@puckeditor/core';
 
 interface FormProps {
   submitLabel?: string;
@@ -11,15 +9,24 @@ interface FormProps {
   onSubmit?: (values: Record<string, FormDataEntryValue>) => void;
 }
 
+/**
+ *
+ * @param root0
+ * @param root0.submitLabel
+ * @param root0.className
+ * @param root0.customCss
+ * @param root0.formLabel
+ * @param root0.onSubmit
+ */
 export default function Form({
-  submitLabel = "Submit",
-  className = "",
+  submitLabel = 'Submit',
+  className = '',
   customCss,
-  formLabel = "Form",
+  formLabel = 'Form',
   onSubmit,
 }: FormProps) {
   const uniqueId = useId();
-  const uniqueClass = `form-${uniqueId.replace(/:/g, "")}`;
+  const uniqueClass = `form-${uniqueId.replace(/:/g, '')}`;
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -35,19 +42,19 @@ export default function Form({
   };
 
   const formStyle: CSSProperties = {
-    padding: "20px",
-    borderRadius: "10px",
-    margin: "16px auto",
+    padding: '20px',
+    borderRadius: '10px',
+    margin: '16px auto',
   };
 
   const buttonStyle: CSSProperties = {
-    marginTop: "16px",
-    padding: "10px 14px",
-    borderRadius: "8px",
-    border: "none",
-    background: "#2563eb",
-    color: "white",
-    cursor: "pointer",
+    marginTop: '16px',
+    padding: '10px 14px',
+    borderRadius: '8px',
+    border: 'none',
+    background: '#2563eb',
+    color: 'white',
+    cursor: 'pointer',
   };
 
   return (
@@ -64,7 +71,13 @@ export default function Form({
         `}</style>
       )}
 
-      <h3 style={{ marginBottom: "12px" }}>{formLabel}</h3>
+      <h3
+        style={{
+          marginBottom: '12px',
+        }}
+      >
+        {formLabel}
+      </h3>
 
       {/* DropZone inside form */}
       <DropZone zone="form-content" />
